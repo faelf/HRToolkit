@@ -1,4 +1,8 @@
-body {
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  background-color: #f4f4f5;
-}
+/* Global */
+@import "./global/reset.css";
+@import "./global/variables.css";
+@import "./global/dark.css";
+
+/* Components */
+@import "./components/navbar.css";
+@import "./components/buttons.css";
