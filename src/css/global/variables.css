@@ -1,0 +1,23 @@
+:root {
+  /* Backgrounds */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+
+  /* Text */
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+
+  /* Brand */
+  --primary: #2563eb;
+  --secondary: #6b7280;
+
+  /* Semantic colours */
+  --info: #0ea5e9;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --success: #10b981;
+
+  /* Utilities */
+  --shadow: rgba(0, 0, 0, 0.1);
+  --border-radius: 0.5rem;
+}

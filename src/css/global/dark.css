@@ -1,0 +1,13 @@
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-primary: #373535;
+  --bg-secondary: #2d2d2d;
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+
+  /* Brand */
+  --primary: #3b82f6;
+  --secondary: #6b7280;
+}
