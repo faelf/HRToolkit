@@ -11,26 +11,27 @@ export const MaternityPage = {
           <div class="mb-3">
             <label for="start-date-input" class="form-label">Employment Start Date</label>
             <input type="date" id="start-date-input">
-            <div class="start-date-input-helper">
+            <div id="start-date-input-helper" class="input-helper">
               The date the employee started employment.
             </div>
           </div>
           <div class="mb-3">
             <label for="baby-due-date-input" class="form-label">Baby Due Date</label>
-            <input type="date" id="baby-due-date-input">
-            <div class="baby-due-date-input-helper">
+            <input type="date" id="baby-due-date-input" class="input-helper">
+            <div id="baby-due-date-input-helper">
               The expected due date of the baby, as shown on the MATB1 certificate.
             </div>
           </div>
           <div class="mb-3">
             <label for="maternity-start-date-input" class="form-label">Maternity Start Date</label>
             <input type="date" id="maternity-start-date-input">
-            <div class="maternity-start-date-input-helper">
+            <div id="maternity-start-date-input-helper" class="input-helper">
               The date the employee wants to start the maternity leave.
             </div>
           </div>
           <div class="mb-3">
             <button type="button" class="btn btn-success" id="m-calculate">Calculate</button>
+            <button type="reset" class="btn btn-warning">Reset</button>
           </div>
         </form>
       </div>
@@ -287,13 +288,13 @@ export const MaternityPage = {
 
     // Validation
     const employmentHelper = document.querySelector(
-      ".start-date-input-helper",
+      "#start-date-input-helper",
     );
     const babyDueHelper = document.querySelector(
-      ".baby-due-date-input-helper",
+      "#baby-due-date-input-helper",
     );
     const maternityHelper = document.querySelector(
-      ".maternity-start-date-input-helper",
+      "#maternity-start-date-input-helper",
     );
 
     // Store original text
