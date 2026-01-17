@@ -10,8 +10,18 @@
 
 .btn-primary {
   background-color: var(--primary);
+  color: var(--text-btn);
 }
 
 .btn-primary:hover {
+  filter: brightness(0.9);
+}
+
+.btn-success {
+  background-color: var(--success);
+  color: var(--text-btn);
+}
+
+.btn-success:hover {
   filter: brightness(0.9);
 }

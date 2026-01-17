@@ -1,22 +1,22 @@
 :root {
   /* Backgrounds */
   --bg-primary: #fcfcfd;
-  --bg-secondary: #f0f2f5;
-  --bg-tertiary: #e4e7eb;
+  --bg-secondary: #d8d8d8;
 
   /* Text */
+  --text-btn: #ffffff;
   --text-primary: #0f172a;
   --text-secondary: #475569;
 
   /* Brand */
-  --primary: #005eb8;
-  --secondary: #64748b;
+  --primary: #1e40af;
+  --secondary: #475569;
 
   /* Semantic */
-  --info: #0ea5e9;
-  --warning: #d97706;
-  --danger: #dc2626;
-  --success: #059669;
+  --info: #0284c7;
+  --warning: #c2410c;
+  --danger: #b91c1c;
+  --success: #047857;
 
   /* Utilities */
   --border: #e2e8f0;
