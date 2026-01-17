@@ -26,27 +26,77 @@
 }
 
 .navbar-links li {
-  display: flex; /* Make li a flex container */
-  align-items: center; /* Centre button inside li */
+  display: flex;
+  align-items: center;
   margin: 0;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .btn-nav {
   background: none;
-  color: var(--text-secondary);
-}
-
-.btn-nav:hover {
-  background-color: var(--bg-secondary);
   color: var(--text-primary);
 }
 
-.btn-nav.active {
+.btn-nav:hover {
   background-color: var(--primary);
-  color: #ffffff;
+  color: var(--text-btn);
+}
+
+.btn-nav.active {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   transition: filter 0.2s;
 }
 
 .btn-nav.active:hover {
   filter: brightness(0.9);
+}
+
+/* Hide mobile menu toggle on desktop */
+.mobile-only {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 992px) {
+  .navbar {
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem;
+  }
+
+  /* Show hamburger button */
+  .mobile-only {
+    display: block;
+  }
+
+  /* Hide navigation links by default */
+  .navbar-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0;
+    order: 3; /* Moves below brand and actions */
+  }
+
+  /* Show when active class is added */
+  .navbar-links.active {
+    display: flex;
+  }
+
+  /* Full-width buttons on mobile */
+  .navbar-links li {
+    width: 100%;
+  }
+
+  .navbar-links .btn-nav {
+    width: 100%;
+    text-align: left;
+    justify-content: flex-start;
+  }
 }
