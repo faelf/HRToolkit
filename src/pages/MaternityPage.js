@@ -1,12 +1,292 @@
+import { formatters } from "../utilities/formatters.js";
+
 export const MaternityPage = {
   title: "HR Toolkit - Maternity Calculator",
   html: /* html */ `
   <section>
-    <h2>Maternity Calculator</h2>
+    <div class="calContainers">
+      <div class="card">
+        <h2>Calculator</h2>
+        <form id="maternity-form">
+          <div class="mb-3">
+            <label for="start-date-input" class="form-label">Employment Start Date</label>
+            <input type="date" id="start-date-input">
+          </div>
+          <div class="mb-3">
+            <label for="baby-due-date-input" class="form-label">Baby Due Date</label>
+            <input type="date" id="baby-due-date-input">
+            <div class="input-helper">
+              The expected due date of the baby, as shown on the MATB1 certificate.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="maternity-start-date-input" class="form-label">Maternity Start Date</label>
+            <input type="date" id="maternity-start-date-input">
+            <div class="input-helper">
+              The date the employee wants to start the maternity leave.
+            </div>
+          </div>
+          <div class="mb-3">
+            <button type="button" class="btn btn-primary" id="m-calculate">Calculate</button>
+          </div>
+        </form>
+      </div>
+      <div class="card">
+        <div id="results">
+          <h2>Maternity Calculation Guide</h2>
+
+          <p>This guide explains how the Maternity Calculator works and what each date means:</p>
+
+          <ul>
+            <li>
+              <strong>Maternity Start Date:</strong>
+              If you leave this field blank, the calculator will automatically use the <strong>earliest legal start date</strong>, which is 11 weeks before the Expected Week of Childbirth (EWC). You can override this by selecting a preferred start date.
+            </li>
+
+            <li>
+              <strong>Eligibility:</strong>
+              The system checks if the employee has at least <strong>26 weeks of continuous service</strong> by the <strong>Qualifying Week</strong>. There are two possible outcomes:
+              <ul>
+                <li>
+                  <strong>Eligible:</strong> The calculator displays a full schedule of maternity pay, including:
+                  <ul>
+                    <li><strong>Full Pay:</strong> 6 weeks at 100% (company-enhanced)</li>
+                    <li><strong>Half Pay:</strong> 6 weeks at 50% (or SMP if higher)</li>
+                    <li><strong>Statutory Maternity Pay (SMP):</strong> 27 weeks</li>
+                    <li><strong>Unpaid Leave:</strong> Remaining weeks to complete 52-week entitlement</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Not Eligible:</strong> The employee is entitled to the <strong>52-week leave</strong> but all leave is unpaid.
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <strong>Expected Week of Childbirth (EWC):</strong>
+              The calculator determines the week of the baby&apos;s expected birth, starting from Sunday to Saturday. This is used to calculate qualifying week and earliest maternity start date.
+            </li>
+
+            <li>
+              <strong>Qualifying Week:</strong>
+              The week, 15 weeks before the EWC, that determines if the employee meets the service requirement for paid maternity leave.
+            </li>
+          </ul>
+
+          <p><em>Note: All calculations assume a standard pregnancy timeline. Actual dates may change if the baby arrives early, late, or in cases of pregnancy-related illness.</em></p>
+
+          <p>Once the calculation is complete, the output will display:</p>
+
+          <ul>
+            <li><strong>Employment Start Date</strong></li>
+            <li><strong>Maternity Leave Start Date</strong></li>
+            <li><strong>EWC Start and End</strong></li>
+            <li><strong>Qualifying Week Start and End</strong></li>
+            <li><strong>Pay Periods</strong> with start and end dates for Full Pay, Half Pay, SMP, and Unpaid Leave</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
   `,
 
   setup() {
-    // Page logic will go here
+    const employmentStartInput = document.getElementById("start-date-input");
+    const babyDueInput = document.getElementById("baby-due-date-input");
+    const maternityStartInput = document.getElementById(
+      "maternity-start-date-input",
+    );
+    const mCalculate = document.getElementById("m-calculate");
+    const resultsContainer = document.getElementById("results");
+
+    // Policy Constants
+    const duration = {
+      fullPayWeeks: 6,
+      halfPayWeeks: 6,
+      smpWeeks: 27,
+      unpaidWeeks: 13,
+      totalWeeks: 52,
+    };
+
+    const offset = {
+      qualifying: 15,
+      earliestStart: 11,
+    };
+
+    // Date Helpers
+    const getWeekSunday = (date) => {
+      const result = new Date(date);
+      result.setHours(0, 0, 0, 0);
+      result.setDate(result.getDate() - result.getDay());
+      return result;
+    };
+
+    const getWeekSaturday = (date) => {
+      const sunday = getWeekSunday(date);
+      const saturday = new Date(sunday);
+      saturday.setDate(sunday.getDate() + 6);
+      return saturday;
+    };
+
+    const addWeeksInclusive = (startDate, weeks) => {
+      const start = new Date(startDate);
+      const end = new Date(start);
+      end.setDate(start.getDate() + weeks * 7 - 1);
+      return { start, end };
+    };
+
+    const hasRequiredService = (employmentStart, qualifyingWeekEnd) => {
+      const msPerWeek = 7 * 24 * 60 * 60 * 1000;
+      // Hospital policy: 26 weeks continuous service by the end of the Qualifying Week
+      const weeksWorked = Math.floor(
+        (qualifyingWeekEnd - employmentStart) / msPerWeek,
+      );
+      return weeksWorked >= 26;
+    };
+
+    // Pay Period Generator
+    const getMaternityPayPeriods = (startDate, eligible) => {
+      const start = new Date(startDate);
+
+      // Scenario: Not Eligible
+      if (!eligible) {
+        return {
+          fullPay: null,
+          halfPay: null,
+          smp: null,
+          unpaid: addWeeksInclusive(start, duration.totalWeeks),
+        };
+      }
+
+      // Scenario: Eligible (Contiguous 6/6/27/13 split)
+      const fullPay = addWeeksInclusive(start, duration.fullPayWeeks);
+
+      const halfPayStart = new Date(fullPay.end);
+      halfPayStart.setDate(halfPayStart.getDate() + 1);
+      const halfPay = addWeeksInclusive(halfPayStart, duration.halfPayWeeks);
+
+      const smpStart = new Date(halfPay.end);
+      smpStart.setDate(smpStart.getDate() + 1);
+      const smp = addWeeksInclusive(smpStart, duration.smpWeeks);
+
+      const unpaidStart = new Date(smp.end);
+      unpaidStart.setDate(unpaidStart.getDate() + 1);
+      const unpaid = addWeeksInclusive(unpaidStart, duration.unpaidWeeks);
+
+      return { fullPay, halfPay, smp, unpaid };
+    };
+
+    // Main Calculation
+    const calculateMaternityDetails = () => {
+      const empStartDate = new Date(employmentStartInput.value);
+      const babyDueDate = new Date(babyDueInput.value);
+
+      // 1. Expected Week of Childbirth (EWC)
+      const ewcStart = getWeekSunday(babyDueDate);
+      const ewcEnd = getWeekSaturday(babyDueDate);
+
+      // 2. Qualifying Week (15 weeks before EWC)
+      const qualifyingStart = new Date(ewcStart);
+      qualifyingStart.setDate(ewcStart.getDate() - offset.qualifying * 7);
+      const qualifyingEnd = getWeekSaturday(qualifyingStart);
+
+      // 3. Eligibility Check
+      const eligible = hasRequiredService(empStartDate, qualifyingEnd);
+
+      // 4. Maternity Start Date Logic
+      // If user provided a date, use it. Otherwise, default to earliest (11 weeks before EWC).
+      let maternityLeaveStart;
+      if (maternityStartInput.value) {
+        maternityLeaveStart = new Date(maternityStartInput.value);
+      } else {
+        maternityLeaveStart = new Date(ewcStart);
+        maternityLeaveStart.setDate(
+          ewcStart.getDate() - offset.earliestStart * 7,
+        );
+      }
+
+      // 5. Generate Periods
+      const payPeriods = getMaternityPayPeriods(maternityLeaveStart, eligible);
+
+      const formatRange = (range) =>
+        range
+          ? {
+              start: formatters.longDate(range.start),
+              end: formatters.longDate(range.end),
+            }
+          : null;
+
+      return {
+        employmentStartDate: formatters.longDate(empStartDate),
+        eligibility: eligible,
+        maternityLeaveStart: formatters.longDate(maternityLeaveStart),
+        ewc: formatRange({ start: ewcStart, end: ewcEnd }),
+        qualifyingWeek: formatRange({
+          start: qualifyingStart,
+          end: qualifyingEnd,
+        }),
+        payPeriods: {
+          fullPay: formatRange(payPeriods.fullPay),
+          halfPay: formatRange(payPeriods.halfPay),
+          smp: formatRange(payPeriods.smp),
+          unpaid: formatRange(payPeriods.unpaid),
+        },
+      };
+    };
+
+    const generateNarrative = (res) => {
+      if (!res) return "";
+
+      // If employee is not eligible for pay
+      if (!res.eligibility) {
+        return /* html */ `
+        <div class="maternity-guide">
+          <h2>Maternity Leave Summary</h2>
+          <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
+          <p><strong>Eligibility:</strong> Not eligible for pay because the employee has not completed 26 weeks of continuous service by the end of the Qualifying Week (${res.qualifyingWeek.start} to ${res.qualifyingWeek.end}).</p>
+          <p>You are entitled to 52 weeks of maternity leave as unpaid leave:</p>
+          <ul>
+            <li><strong>Unpaid Leave:</strong> ${res.payPeriods.unpaid.start} to ${res.payPeriods.unpaid.end}</li>
+          </ul>
+          <p><em>Note: All calculations assume standard dates. Actual leave may change if the baby arrives early or there are pregnancy-related complications.</em></p>
+        </div>
+        `;
+      }
+
+      // If eligible for pay
+      return /* html */ `
+      <div class="maternity-guide">
+        <h2>Maternity Leave Summary</h2>
+        <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
+        <p><strong>Maternity Leave Start Date:</strong> ${res.maternityLeaveStart}</p>
+        <p><strong>Expected Week of Childbirth (EWC):</strong> ${res.ewc.start} to ${res.ewc.end}</p>
+        <p><strong>Qualifying Week:</strong> ${res.qualifyingWeek.start} to ${res.qualifyingWeek.end}</p>
+
+        <h3>Leave & Pay Breakdown (52 Weeks)</h3>
+        <ul>
+          <li><strong>Full Pay (${duration.fullPayWeeks} weeks):</strong> ${res.payPeriods.fullPay.start} to ${res.payPeriods.fullPay.end}</li>
+          <li><strong>Half Pay (${duration.halfPayWeeks} weeks):</strong> ${res.payPeriods.halfPay.start} to ${res.payPeriods.halfPay.end}</li>
+          <li><strong>Statutory Maternity Pay (${duration.smpWeeks} weeks):</strong> ${res.payPeriods.smp.start} to ${res.payPeriods.smp.end}</li>
+          <li><strong>Unpaid Leave (${duration.unpaidWeeks} weeks):</strong> ${res.payPeriods.unpaid.start} to ${res.payPeriods.unpaid.end}</li>
+        </ul>
+
+        <p><strong>Final Day of Maternity Leave:</strong> ${res.payPeriods.unpaid.end}</p>
+
+        <h3>Important Notes</h3>
+        <ul>
+          <li>If the <strong>Maternity Leave Start Date</strong> is left blank, the calculator uses the <strong>earliest legal start date</strong> (11 weeks before EWC).</li>
+          <li>Eligibility for pay requires at least 26 weeks of continuous service by the end of the Qualifying Week.</li>
+          <li>All dates assume standard progression. Early delivery or illness may affect actual leave dates.</li>
+        </ul>
+      </div>
+      `;
+    };
+
+    // Eventlistener
+    mCalculate.addEventListener("click", () => {
+      const result = calculateMaternityDetails();
+      console.log(result);
+      resultsContainer.innerHTML = generateNarrative(result);
+    });
   },
 };
