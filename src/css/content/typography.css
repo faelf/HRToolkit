@@ -1,0 +1,85 @@
+/* Base typography */
+body {
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Headings */
+:is(h1, h2, h3, h4, h5, h6) {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.75rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
+h5 {
+  font-size: 1.25rem;
+}
+h6 {
+  font-size: 1rem;
+}
+
+/* Paragraphs */
+p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+/* Lists */
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+li {
+  margin-bottom: 0.75rem;
+}
+
+/* Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--primary);
+  filter: brightness(1.1);
+  text-decoration: none;
+}
+
+/* Small text */
+small {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* Code */
+code {
+  padding: 0.2rem 0.4rem;
+  background-color: var(--bg-secondary);
+  border-radius: 3px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+}

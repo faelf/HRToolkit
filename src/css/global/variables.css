@@ -1,23 +1,25 @@
 :root {
   /* Backgrounds */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f5f5;
+  --bg-primary: #fcfcfd;
+  --bg-secondary: #f0f2f5;
+  --bg-tertiary: #e4e7eb;
 
   /* Text */
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
 
   /* Brand */
-  --primary: #2563eb;
-  --secondary: #6b7280;
+  --primary: #005eb8;
+  --secondary: #64748b;
 
-  /* Semantic colours */
+  /* Semantic */
   --info: #0ea5e9;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --success: #10b981;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --success: #059669;
 
   /* Utilities */
-  --shadow: rgba(0, 0, 0, 0.1);
-  --border-radius: 0.5rem;
+  --border: #e2e8f0;
+  --shadow: rgba(0, 0, 0, 0.05);
+  --border-radius: 8px;
 }
