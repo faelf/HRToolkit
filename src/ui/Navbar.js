@@ -1,6 +1,9 @@
+import { toggleTheme } from "../utilities/theme.js";
+
 class Navbar extends HTMLElement {
   connectedCallback() {
     this.render();
+    this.attachEventListeners();
   }
 
   render() {
@@ -8,13 +11,20 @@ class Navbar extends HTMLElement {
     <nav class="navbar">
       <div class="navbar-brand">HR Toolkit</div>
       <ul class="navbar-links">
-        <li><button type="button" class="nav-link active" data-link="/">Home</button></li>
-        <li><button type="button" class="nav-link" data-link="/maternity">Maternity</button></li>
-        <li><button type="button" class="nav-link" data-link="/probation">Probation</button></li>
+        <li><button type="button" class="btn btn-nav" data-link="/">Home</button></li>
+        <li><button type="button" class="btn btn-nav" data-link="/maternity">Maternity</button></li>
+        <li><button type="button" class="btn btn-nav" data-link="/probation">Probation</button></li>
       </ul>
-      <button type="button" id="theme-toggle" class="theme-toggle">🌙</button>
+      <button type="button" id="theme-toggle" class="btn btn-nav"></button>
     </nav>
     `;
+  }
+
+  attachEventListeners() {
+    this.querySelector("#theme-toggle").addEventListener("click", () => {
+      console.log("Theme toggle clicked!");
+      toggleTheme();
+    });
   }
 }
 
