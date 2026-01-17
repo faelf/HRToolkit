@@ -11,23 +11,26 @@ export const MaternityPage = {
           <div class="mb-3">
             <label for="start-date-input" class="form-label">Employment Start Date</label>
             <input type="date" id="start-date-input">
+            <div class="start-date-input-helper">
+              The date the employee started employment.
+            </div>
           </div>
           <div class="mb-3">
             <label for="baby-due-date-input" class="form-label">Baby Due Date</label>
             <input type="date" id="baby-due-date-input">
-            <div class="input-helper">
+            <div class="baby-due-date-input-helper">
               The expected due date of the baby, as shown on the MATB1 certificate.
             </div>
           </div>
           <div class="mb-3">
             <label for="maternity-start-date-input" class="form-label">Maternity Start Date</label>
             <input type="date" id="maternity-start-date-input">
-            <div class="input-helper">
+            <div class="maternity-start-date-input-helper">
               The date the employee wants to start the maternity leave.
             </div>
           </div>
           <div class="mb-3">
-            <button type="button" class="btn btn-primary" id="m-calculate">Calculate</button>
+            <button type="button" class="btn btn-success" id="m-calculate">Calculate</button>
           </div>
         </form>
       </div>
@@ -282,10 +285,73 @@ export const MaternityPage = {
       `;
     };
 
-    // Eventlistener
+    // Validation
+    const employmentHelper = document.querySelector(
+      ".start-date-input-helper",
+    );
+    const babyDueHelper = document.querySelector(
+      ".baby-due-date-input-helper",
+    );
+    const maternityHelper = document.querySelector(
+      ".maternity-start-date-input-helper",
+    );
+
+    // Store original text
+    const originalTexts = {
+      employment: employmentHelper.textContent,
+      babyDue: babyDueHelper.textContent,
+      maternity: maternityHelper.textContent,
+    };
+
+    // Event listener
     mCalculate.addEventListener("click", () => {
+      let hasErrors = false;
+
+      // Validate Employment Start Date
+      if (!employmentStartInput.value) {
+        employmentHelper.className = "invalid-feedback";
+        employmentHelper.textContent = "Employment start date is required.";
+        hasErrors = true;
+      } else if (isNaN(new Date(employmentStartInput.value).getTime())) {
+        employmentHelper.className = "invalid-feedback";
+        employmentHelper.textContent = "Please enter a valid date.";
+        hasErrors = true;
+      } else {
+        employmentHelper.className = "input-helper start-date-input-helper";
+        employmentHelper.textContent = originalTexts.employment;
+      }
+
+      // Validate Baby Due Date
+      if (!babyDueInput.value) {
+        babyDueHelper.className = "invalid-feedback";
+        babyDueHelper.textContent = "Baby due date is required.";
+        hasErrors = true;
+      } else if (isNaN(new Date(babyDueInput.value).getTime())) {
+        babyDueHelper.className = "invalid-feedback";
+        babyDueHelper.textContent = "Please enter a valid date.";
+        hasErrors = true;
+      } else {
+        babyDueHelper.className = "input-helper baby-due-date-input-helper";
+        babyDueHelper.textContent = originalTexts.babyDue;
+      }
+
+      // Validate Maternity Start (optional)
+      if (
+        maternityStartInput.value &&
+        isNaN(new Date(maternityStartInput.value).getTime())
+      ) {
+        maternityHelper.className = "invalid-feedback";
+        maternityHelper.textContent = "Please enter a valid date.";
+        hasErrors = true;
+      } else if (maternityStartInput.value || !hasErrors) {
+        maternityHelper.className =
+          "input-helper maternity-start-date-input-helper";
+        maternityHelper.textContent = originalTexts.maternity;
+      }
+
+      if (hasErrors) return;
+
       const result = calculateMaternityDetails();
-      console.log(result);
       resultsContainer.innerHTML = generateNarrative(result);
     });
   },
