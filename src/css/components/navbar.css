@@ -76,27 +76,20 @@
 
   /* Hide navigation links by default */
   .navbar-links {
-    display: none;
     width: 100%;
-    flex-direction: column;
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
-    padding: 1rem 0;
-    order: 3; /* Moves below brand and actions */
+    order: 3;
   }
 
   /* Show when active class is added */
-  .navbar-links.active {
-    display: flex;
-  }
-
-  /* Full-width buttons on mobile */
-  .navbar-links li {
-    width: 100%;
+  .navbar-links.show {
+    display: grid;
+    justify-content: center;
   }
 
   .navbar-links .btn-nav {
     width: 100%;
-    text-align: left;
-    justify-content: flex-start;
   }
 }

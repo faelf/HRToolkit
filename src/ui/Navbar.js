@@ -10,14 +10,14 @@ class Navbar extends HTMLElement {
     this.innerHTML = /* html */ `
     <nav class="navbar">
       <div class="navbar-brand">HR Toolkit</div>
-      <ul class="navbar-links">
+      <ul class="navbar-links" data-dropdown-target="nav-menu">
         <li><button type="button" class="btn btn-nav" data-link="home">Home</button></li>
         <li><button type="button" class="btn btn-nav" data-link="maternity">Maternity</button></li>
         <li><button type="button" class="btn btn-nav" data-link="probation">Probation</button></li>
       </ul>
       <div class="navbar-actions">
         <button type="button" id="theme-toggle" class="btn btn-nav">Theme</button>
-        <button type="button" id="nav-toggle" class="btn btn-nav mobile-only">☰</button>
+        <button type="button" id="nav-toggle" class="btn btn-nav mobile-only" data-dropdown="nav-menu">☰</button>
       </div>
     </nav>
     `;
@@ -30,14 +30,14 @@ class Navbar extends HTMLElement {
     });
 
     // Mobile menu toggle
-    const navToggle = this.querySelector("#nav-toggle");
-    const navLinks = this.querySelector(".navbar-links");
+    const navToggle = this.querySelector("[data-dropdown='nav-menu']");
+    const navLinks = this.querySelector("[data-dropdown-target='nav-menu']");
 
     navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
+      navLinks.classList.toggle("show");
 
       // Update button text
-      if (navLinks.classList.contains("active")) {
+      if (navLinks.classList.contains("show")) {
         navToggle.textContent = "✕";
       } else {
         navToggle.textContent = "☰";
