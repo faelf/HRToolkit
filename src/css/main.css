@@ -5,13 +5,14 @@
 
 /* Layout */
 @import "./layout/grid.css";
+@import "./layout/spacing.css";
 
-/* Typography */
+/* Text Content */
 @import "./content/typography.css";
+@import "./content/table.css";
 
 /* Components */
 @import "./components/navbar.css";
 @import "./components/buttons.css";
 @import "./components/card.css";
 @import "./components/forms.css";
-@import "./components/timeline.css";

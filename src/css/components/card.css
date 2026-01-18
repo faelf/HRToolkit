@@ -1,5 +1,31 @@
+/* The main wrapper for a card */
 .card {
   background-color: var(--bg-primary);
   border-radius: var(--border-radius);
-  padding: 20px;
+}
+
+.card-header h2,
+.card-header h3 {
+  margin: 0;
+}
+
+.card-header {
+  padding: 0.5rem 0.8rem;
+  background-color: var(--bg-primary);
+  border-top-left-radius: calc(var(--border-radius) - 1px);
+  border-top-right-radius: calc(var(--border-radius) - 1px);
+}
+
+.card-body {
+  padding: 0.5rem 0.8rem;
+}
+
+.card-footer {
+  padding: 0.5rem 0.8rem;
+  border-bottom-left-radius: calc(var(--border-radius) - 2px);
+  border-bottom-right-radius: calc(var(--border-radius) - 2px);
+  background-color: color-mix(in srgb, var(--light), var(--dark) 2%);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }

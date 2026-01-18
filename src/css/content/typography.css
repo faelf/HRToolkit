@@ -53,12 +53,13 @@ ul {
 }
 
 li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Links */
 a {
   color: var(--primary);
+  font-weight: 600;
   text-decoration: none;
   transition: color 0.2s;
 }

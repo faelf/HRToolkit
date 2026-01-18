@@ -18,8 +18,14 @@
   }
 }
 
-.calContainers {
+.grid {
   display: grid;
+  gap: 10px;
+}
+
+.cal-containers {
+  display: grid;
+  align-items: start;
   gap: 10px;
   grid-template-columns: 1fr;
   @media (min-width: 768px) {

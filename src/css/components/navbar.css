@@ -10,10 +10,10 @@
 }
 
 .navbar-brand {
+  font-weight: 700;
   font-size: 1.5rem;
-  font-weight: 600;
-  margin: 0;
-  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .navbar-links {
@@ -37,23 +37,30 @@
   gap: 1rem;
 }
 
-.btn-nav {
+.nav-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: all 0.2s;
   background: none;
+  color: var(--text-primary);
+  border: none;
+}
+
+.nav-btn:hover {
+  background-color: var(--primary);
   color: var(--text-primary);
 }
 
-.btn-nav:hover {
-  background-color: var(--primary);
-  color: var(--text-btn);
-}
-
-.btn-nav.active {
+.nav-btn.active {
   background-color: var(--bg-secondary);
   color: var(--text-primary);
   transition: filter 0.2s;
 }
 
-.btn-nav.active:hover {
+.nav-btn.active:hover {
   filter: brightness(0.9);
 }
 
@@ -89,7 +96,7 @@
     justify-content: center;
   }
 
-  .navbar-links .btn-nav {
+  .navbar-links .nav-btn {
     width: 100%;
   }
 }
