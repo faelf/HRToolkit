@@ -11,13 +11,13 @@ class Navbar extends HTMLElement {
     <nav class="navbar">
       <div class="navbar-brand">HR Toolkit</div>
       <ul class="navbar-links" data-dropdown-target="nav-menu">
-        <li><button type="button" class="btn btn-nav" data-link="home">Home</button></li>
-        <li><button type="button" class="btn btn-nav" data-link="maternity">Maternity</button></li>
-        <li><button type="button" class="btn btn-nav" data-link="probation">Probation</button></li>
+        <li><button type="button" class="nav-btn" data-link="home">Home</button></li>
+        <li><button type="button" class="nav-btn" data-link="maternity">Maternity</button></li>
+        <li><button type="button" class="nav-btn" data-link="probation">Probation</button></li>
       </ul>
       <div class="navbar-actions">
-        <button type="button" id="theme-toggle" class="btn btn-nav">Theme</button>
-        <button type="button" id="nav-toggle" class="btn btn-nav mobile-only" data-dropdown="nav-menu">☰</button>
+        <button type="button" id="theme-toggle" class="nav-btn">Theme</button>
+        <button type="button" id="nav-toggle" class="nav-btn mobile-only" data-dropdown="nav-menu">☰</button>
       </div>
     </nav>
     `;
