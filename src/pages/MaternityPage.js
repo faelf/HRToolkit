@@ -3,10 +3,12 @@ import { formatters } from "../utilities/formatters.js";
 export const MaternityPage = {
   title: "HR Toolkit - Maternity Calculator",
   html: /* html */ `
-  <section>
-    <div class="calContainers">
-      <div class="card">
+  <section class="cal-containers">
+    <div id="maternity-calculator" class="card">
+      <div class="card-header">
         <h2>Calculator</h2>
+      </div>
+      <div class="card-body">
         <form id="maternity-form">
           <div class="mb-3">
             <label for="start-date-input" class="form-label">Employment Start Date</label>
@@ -17,8 +19,8 @@ export const MaternityPage = {
           </div>
           <div class="mb-3">
             <label for="baby-due-date-input" class="form-label">Baby Due Date</label>
-            <input type="date" id="baby-due-date-input" class="input-helper">
-            <div id="baby-due-date-input-helper">
+            <input type="date" id="baby-due-date-input">
+            <div id="baby-due-date-input-helper" class="input-helper">
               The expected due date of the baby, as shown on the MATB1 certificate.
             </div>
           </div>
@@ -29,23 +31,32 @@ export const MaternityPage = {
               The date the employee wants to start the maternity leave.
             </div>
           </div>
-          <div class="mb-3">
+          <div class="mb-2">
             <button type="button" class="btn btn-success" id="m-calculate">Calculate</button>
             <button type="reset" class="btn btn-warning">Reset</button>
           </div>
         </form>
       </div>
-      <div class="card">
-        <div id="results">
+    </div> <!-- Maternity Calculator Card Ends -->
+
+    <div id="maternity-content">
+      <div id="maternity-results" class="card mb-2">
+        <div class="card-header">
+          <h2>Results</h2>
+        </div>
+        <div id="results" class="card-body">
+          <p>Your results will show here.</p>
+        </div>
+      </div>
+
+      <div id="maternity-guide" class="card mb-2">
+        <div class="card-header">
           <h2>Maternity Calculation Guide</h2>
-
+        </div>
+        <div class="card-body">
           <p>This guide explains how the Maternity Calculator works and what each date means:</p>
-
           <ul>
-            <li>
-              <strong>Maternity Start Date:</strong>
-              If you leave this field blank, the calculator will automatically use the <strong>earliest legal start date</strong>, which is 11 weeks before the Expected Week of Childbirth (EWC). You can override this by selecting a preferred start date.
-            </li>
+            <li><strong>Maternity Start Date:</strong> If you leave this field blank, the calculator will automatically use the <strong>earliest start date</strong>, which is 11 weeks before the Expected Week of Childbirth (EWC). You can override this by selecting a preferred start date.</li>
 
             <li>
               <strong>Eligibility:</strong>
@@ -77,8 +88,6 @@ export const MaternityPage = {
             </li>
           </ul>
 
-          <p><em>Note: All calculations assume a standard pregnancy timeline. Actual dates may change if the baby arrives early, late, or in cases of pregnancy-related illness.</em></p>
-
           <p>Once the calculation is complete, the output will display:</p>
 
           <ul>
@@ -88,9 +97,24 @@ export const MaternityPage = {
             <li><strong>Qualifying Week Start and End</strong></li>
             <li><strong>Pay Periods</strong> with start and end dates for Full Pay, Half Pay, SMP, and Unpaid Leave</li>
           </ul>
+
+          <p><strong>Important Note:</strong> This tool calculates eligibility and leave dates based on service length and dates only. It does <strong>not</strong> check salary. To qualify for statutory maternity pay (SMP), the employee must earn at least the minimum qualifying amount, as defined on the GOV.UK page.</p>
+          <p><strong>Always verify eligibility with official guidance and your internal HR policies.</strong></p>
         </div>
-      </div>
-    </div>
+      </div> <!-- Maternity Guide Ends -->
+      <div id="maternity-references" class="card mb-2">
+        <div class="card-header">
+          <h2>References</h2>
+        </div>
+        <div class="card-body">
+          <p>The calculations and logic in this tool were based on the following sources:</p>
+          <ul>
+            <li><strong>GOV.UK:</strong><a href="https://www.gov.uk/government/publications/maternity-benefits-technical-guidance/maternity-benefits-technical-guidance" target="_blank" rel="noopener noreferrer"> Maternity pay and leave guidance</a></li>
+            <li><strong>Private Company Policy:</strong> Internal maternity leave policy for HR purposes.</li>
+          </ul>
+        </div>
+      </div> <!-- Maternity References Ends -->
+    </div> <!-- Maternity Content Ends -->
   </section>
   `,
 
@@ -141,7 +165,6 @@ export const MaternityPage = {
 
     const hasRequiredService = (employmentStart, qualifyingWeekEnd) => {
       const msPerWeek = 7 * 24 * 60 * 60 * 1000;
-      // Hospital policy: 26 weeks continuous service by the end of the Qualifying Week
       const weeksWorked = Math.floor(
         (qualifyingWeekEnd - employmentStart) / msPerWeek,
       );
@@ -259,14 +282,14 @@ export const MaternityPage = {
 
       // If eligible for pay
       return /* html */ `
-      <div class="maternity-guide">
-        <h2>Maternity Leave Summary</h2>
+      <div id="maternity-results">
+        <h3>Maternity Leave Summary</h3>
         <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
         <p><strong>Maternity Leave Start Date:</strong> ${res.maternityLeaveStart}</p>
         <p><strong>Expected Week of Childbirth (EWC):</strong> ${res.ewc.start} to ${res.ewc.end}</p>
         <p><strong>Qualifying Week:</strong> ${res.qualifyingWeek.start} to ${res.qualifyingWeek.end}</p>
 
-        <h3>Leave & Pay Breakdown (52 Weeks)</h3>
+        <h4>Leave & Pay Breakdown (52 Weeks)</h4>
         <ul>
           <li><strong>Full Pay (${duration.fullPayWeeks} weeks):</strong> ${res.payPeriods.fullPay.start} to ${res.payPeriods.fullPay.end}</li>
           <li><strong>Half Pay (${duration.halfPayWeeks} weeks):</strong> ${res.payPeriods.halfPay.start} to ${res.payPeriods.halfPay.end}</li>
@@ -276,7 +299,7 @@ export const MaternityPage = {
 
         <p><strong>Final Day of Maternity Leave:</strong> ${res.payPeriods.unpaid.end}</p>
 
-        <h3>Important Notes</h3>
+        <h4>Important Notes</h4>
         <ul>
           <li>If the <strong>Maternity Leave Start Date</strong> is left blank, the calculator uses the <strong>earliest legal start date</strong> (11 weeks before EWC).</li>
           <li>Eligibility for pay requires at least 26 weeks of continuous service by the end of the Qualifying Week.</li>
