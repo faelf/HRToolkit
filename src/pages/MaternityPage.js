@@ -12,14 +12,14 @@ export const MaternityPage = {
         <form id="maternity-form">
           <div class="mb-3">
             <label for="start-date-input" class="form-label">Employment Start Date</label>
-            <input type="date" id="start-date-input">
+            <input type="date" id="start-date-input" required>
             <div id="start-date-input-helper" class="input-helper">
               The date the employee started employment.
             </div>
           </div>
           <div class="mb-3">
             <label for="baby-due-date-input" class="form-label">Baby Due Date</label>
-            <input type="date" id="baby-due-date-input">
+            <input type="date" id="baby-due-date-input" required>
             <div id="baby-due-date-input-helper" class="input-helper">
               The expected due date of the baby, as shown on the MATB1 certificate.
             </div>
@@ -32,7 +32,7 @@ export const MaternityPage = {
             </div>
           </div>
           <div class="mb-2">
-            <button type="button" class="btn btn-success" id="m-calculate">Calculate</button>
+            <button type="submit" class="btn btn-success">Calculate</button>
             <button type="reset" class="btn btn-warning">Reset</button>
           </div>
         </form>
@@ -119,134 +119,158 @@ export const MaternityPage = {
   `,
 
   setup() {
+    // DOM Elements
     const employmentStartInput = document.getElementById("start-date-input");
     const babyDueInput = document.getElementById("baby-due-date-input");
-    const maternityStartInput = document.getElementById(
-      "maternity-start-date-input",
-    );
-    const mCalculate = document.getElementById("m-calculate");
+    const maternityStartInput = document.getElementById("maternity-start-date-input");
+    const maternityForm = document.getElementById("maternity-form");
     const resultsContainer = document.getElementById("results");
 
     // Policy Constants
     const duration = {
-      fullPayWeeks: 6,
-      halfPayWeeks: 6,
-      smpWeeks: 27,
-      unpaidWeeks: 13,
-      totalWeeks: 52,
+      fullPay: 6,
+      halfPay: 6,
+      smp: 27,
+      unpaid: 13,
+      total: 52,
     };
 
-    const offset = {
-      qualifying: 15,
-      earliestStart: 11,
-    };
+    // Weeks required for pay eligibility, this can be updated
+    const serviceRequirements = { smpWeeks: 26, ompWeeks: 26 };
+
+    const offset = { qualifying: 15, earliestStart: 11 };
 
     // Date Helpers
-    const getWeekSunday = (date) => {
-      const result = new Date(date);
-      result.setHours(0, 0, 0, 0);
-      result.setDate(result.getDate() - result.getDay());
-      return result;
-    };
+    function getWeekSunday(date) {
+      const sunday = new Date(date);
+      sunday.setHours(0, 0, 0, 0);
+      sunday.setDate(sunday.getDate() - sunday.getDay());
+      return sunday;
+    }
 
-    const getWeekSaturday = (date) => {
-      const sunday = getWeekSunday(date);
-      const saturday = new Date(sunday);
-      saturday.setDate(sunday.getDate() + 6);
+    function getWeekSaturday(date) {
+      const saturday = new Date(date);
+      saturday.setHours(0, 0, 0, 0);
+      saturday.setDate(date.getDate() - date.getDay() + 6);
       return saturday;
-    };
+    }
 
-    const addWeeksInclusive = (startDate, weeks) => {
+    function addWeeksInclusive(startDate, weeks) {
       const start = new Date(startDate);
       const end = new Date(start);
       end.setDate(start.getDate() + weeks * 7 - 1);
       return { start, end };
-    };
+    }
 
-    const hasRequiredService = (employmentStart, qualifyingWeekEnd) => {
-      const msPerWeek = 7 * 24 * 60 * 60 * 1000;
-      const weeksWorked = Math.floor(
-        (qualifyingWeekEnd - employmentStart) / msPerWeek,
-      );
-      return weeksWorked >= 26;
-    };
+    // Formatter Helper
+    function formatRange(range) {
+      if (!range) return null;
 
-    // Pay Period Generator
-    const getMaternityPayPeriods = (startDate, eligible) => {
-      const start = new Date(startDate);
+      return {
+        start: formatters.longDate(range.start),
+        end: formatters.longDate(range.end),
+      };
+    }
 
-      // Scenario: Not Eligible
-      if (!eligible) {
-        return {
-          fullPay: null,
-          halfPay: null,
-          smp: null,
-          unpaid: addWeeksInclusive(start, duration.totalWeeks),
-        };
+    // Eligibility Helpers
+    function hasSmpEligibility(employmentStart, qualifyingEnd) {
+      const weeksWorked = Math.floor((qualifyingEnd - employmentStart) / (7 * 24 * 60 * 60 * 1000));
+      return weeksWorked >= serviceRequirements.smpWeeks;
+    }
+
+    function hasOmpEligibility(employmentStart, qualifyingEnd) {
+      const weeksWorked = Math.floor((qualifyingEnd - employmentStart) / (7 * 24 * 60 * 60 * 1000));
+      return weeksWorked >= serviceRequirements.ompWeeks;
+    }
+
+    // Pay Period Generator Helper
+    function getMaternityPayPeriods(maternityStart, eligibility) {
+      const start = new Date(maternityStart);
+
+      let fullPay = null;
+      let halfPay = null;
+      let smpFirstSixWeeks = null;
+      let smp = null;
+      let unpaid = null;
+
+      if (!eligibility.smp) {
+        unpaid = addWeeksInclusive(start, duration.total);
       }
 
-      // Scenario: Eligible (Contiguous 6/6/27/13 split)
-      const fullPay = addWeeksInclusive(start, duration.fullPayWeeks);
+      if (eligibility.smp && !eligibility.omp) {
+        // Eligible for SMP only
+        smpFirstSixWeeks = addWeeksInclusive(start, 6); // weeks 1-6 at 90%
+        smp = addWeeksInclusive(
+          new Date(smpFirstSixWeeks.end).setDate(smpFirstSixWeeks.end.getDate() + 1),
+          33, // remaining SMP weeks
+        );
+        const unpaidStart = new Date(smp.end);
+        unpaidStart.setDate(unpaidStart.getDate() + 1);
+        unpaid = addWeeksInclusive(unpaidStart, duration.unpaid);
+      }
 
-      const halfPayStart = new Date(fullPay.end);
-      halfPayStart.setDate(halfPayStart.getDate() + 1);
-      const halfPay = addWeeksInclusive(halfPayStart, duration.halfPayWeeks);
+      if (eligibility.omp) {
+        fullPay = addWeeksInclusive(start, duration.fullPay);
 
-      const smpStart = new Date(halfPay.end);
-      smpStart.setDate(smpStart.getDate() + 1);
-      const smp = addWeeksInclusive(smpStart, duration.smpWeeks);
+        const halfPayStart = new Date(fullPay.end);
+        halfPayStart.setDate(halfPayStart.getDate() + 1);
+        halfPay = addWeeksInclusive(halfPayStart, duration.halfPay);
 
-      const unpaidStart = new Date(smp.end);
-      unpaidStart.setDate(unpaidStart.getDate() + 1);
-      const unpaid = addWeeksInclusive(unpaidStart, duration.unpaidWeeks);
+        const smpStart = new Date(halfPay.end);
+        smpStart.setDate(smpStart.getDate() + 1);
+        smp = addWeeksInclusive(smpStart, duration.smp);
 
-      return { fullPay, halfPay, smp, unpaid };
-    };
+        const unpaidStart = new Date(smp.end);
+        unpaidStart.setDate(unpaidStart.getDate() + 1);
+        unpaid = addWeeksInclusive(unpaidStart, duration.unpaid);
+      }
 
-    // Main Calculation
-    const calculateMaternityDetails = () => {
-      const empStartDate = new Date(employmentStartInput.value);
-      const babyDueDate = new Date(babyDueInput.value);
+      return { fullPay, halfPay, smpFirstSixWeeks, smp, unpaid };
+    }
 
-      // 1. Expected Week of Childbirth (EWC)
-      const ewcStart = getWeekSunday(babyDueDate);
-      const ewcEnd = getWeekSaturday(babyDueDate);
+    // Calculator
+    function calculateMaternityDetails() {
+      const empStart = new Date(employmentStartInput.value);
+      const babyDue = new Date(babyDueInput.value);
 
-      // 2. Qualifying Week (15 weeks before EWC)
+      const ewcStart = getWeekSunday(babyDue);
+      const ewcEnd = getWeekSaturday(babyDue);
+
       const qualifyingStart = new Date(ewcStart);
       qualifyingStart.setDate(ewcStart.getDate() - offset.qualifying * 7);
       const qualifyingEnd = getWeekSaturday(qualifyingStart);
 
-      // 3. Eligibility Check
-      const eligible = hasRequiredService(empStartDate, qualifyingEnd);
-
-      // 4. Maternity Start Date Logic
-      // If user provided a date, use it. Otherwise, default to earliest (11 weeks before EWC).
-      let maternityLeaveStart;
+      let maternityStart;
       if (maternityStartInput.value) {
-        maternityLeaveStart = new Date(maternityStartInput.value);
+        // If the user entered a maternity start date, use that
+        maternityStart = new Date(maternityStartInput.value);
       } else {
-        maternityLeaveStart = new Date(ewcStart);
-        maternityLeaveStart.setDate(
-          ewcStart.getDate() - offset.earliestStart * 7,
-        );
+        // Otherwise, use the earliest legal start date (11 weeks before EWC)
+        maternityStart = new Date(ewcStart);
+        maternityStart.setDate(ewcStart.getDate() - offset.earliestStart * 7);
       }
 
-      // 5. Generate Periods
-      const payPeriods = getMaternityPayPeriods(maternityLeaveStart, eligible);
+      // Check eligibility
+      const smpEligible = hasSmpEligibility(empStart, qualifyingEnd);
+      let ompEligible;
 
-      const formatRange = (range) =>
-        range
-          ? {
-              start: formatters.longDate(range.start),
-              end: formatters.longDate(range.end),
-            }
-          : null;
+      if (smpEligible) {
+        // Only check OMP eligibility if the employee is eligible for SMP
+        ompEligible = hasOmpEligibility(empStart, maternityStart);
+      } else {
+        // If not eligible for SMP, then not eligible for OMP either
+        ompEligible = false;
+      }
+
+      const payPeriods = getMaternityPayPeriods(maternityStart, {
+        smp: smpEligible,
+        omp: ompEligible,
+      });
 
       return {
-        employmentStartDate: formatters.longDate(empStartDate),
-        eligibility: eligible,
-        maternityLeaveStart: formatters.longDate(maternityLeaveStart),
+        employmentStartDate: formatters.longDate(empStart),
+        eligibility: { smp: smpEligible, omp: ompEligible },
+        maternityLeaveStart: formatters.longDate(maternityStart),
         ewc: formatRange({ start: ewcStart, end: ewcEnd }),
         qualifyingWeek: formatRange({
           start: qualifyingStart,
@@ -255,128 +279,98 @@ export const MaternityPage = {
         payPeriods: {
           fullPay: formatRange(payPeriods.fullPay),
           halfPay: formatRange(payPeriods.halfPay),
+          smpFirstSixWeeks: formatRange(payPeriods.smpFirstSixWeeks),
           smp: formatRange(payPeriods.smp),
           unpaid: formatRange(payPeriods.unpaid),
         },
       };
-    };
+    }
 
-    const generateNarrative = (res) => {
+    // Results
+    function generateNarrative(res) {
       if (!res) return "";
 
-      // If employee is not eligible for pay
-      if (!res.eligibility) {
+      if (!res.eligibility.smp) {
         return /* html */ `
-        <div class="maternity-guide">
-          <h2>Maternity Leave Summary</h2>
-          <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
-          <p><strong>Eligibility:</strong> Not eligible for pay because the employee has not completed 26 weeks of continuous service by the end of the Qualifying Week (${res.qualifyingWeek.start} to ${res.qualifyingWeek.end}).</p>
-          <p>You are entitled to 52 weeks of maternity leave as unpaid leave:</p>
-          <ul>
-            <li><strong>Unpaid Leave:</strong> ${res.payPeriods.unpaid.start} to ${res.payPeriods.unpaid.end}</li>
-          </ul>
-          <p><em>Note: All calculations assume standard dates. Actual leave may change if the baby arrives early or there are pregnancy-related complications.</em></p>
-        </div>
+        <h3>Maternity Leave Summary</h3>
+        <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
+        <p><strong>Eligibility:</strong> Not eligible for SMP (less than 26 weeks service).</p>
+        <p>52 weeks unpaid leave.</p>
+        <ul><li>${res.payPeriods.unpaid.start} to ${res.payPeriods.unpaid.end}</li></ul>
         `;
       }
 
-      // If eligible for pay
-      return /* html */ `
-      <div id="maternity-results">
+      if (res.eligibility.smp && !res.eligibility.omp) {
+        return /* html */ `
         <h3>Maternity Leave Summary</h3>
         <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
-        <p><strong>Maternity Leave Start Date:</strong> ${res.maternityLeaveStart}</p>
-        <p><strong>Expected Week of Childbirth (EWC):</strong> ${res.ewc.start} to ${res.ewc.end}</p>
-        <p><strong>Qualifying Week:</strong> ${res.qualifyingWeek.start} to ${res.qualifyingWeek.end}</p>
-
-        <h4>Leave & Pay Breakdown (52 Weeks)</h4>
+        <p><strong>Eligibility:</strong> SMP.</p>
         <ul>
-          <li><strong>Full Pay (${duration.fullPayWeeks} weeks):</strong> ${res.payPeriods.fullPay.start} to ${res.payPeriods.fullPay.end}</li>
-          <li><strong>Half Pay (${duration.halfPayWeeks} weeks):</strong> ${res.payPeriods.halfPay.start} to ${res.payPeriods.halfPay.end}</li>
-          <li><strong>Statutory Maternity Pay (${duration.smpWeeks} weeks):</strong> ${res.payPeriods.smp.start} to ${res.payPeriods.smp.end}</li>
-          <li><strong>Unpaid Leave (${duration.unpaidWeeks} weeks):</strong> ${res.payPeriods.unpaid.start} to ${res.payPeriods.unpaid.end}</li>
+          <li><strong>Weeks 1 - 6 (90% pay):</strong> ${res.payPeriods.smpFirstSixWeeks.start} to ${res.payPeriods.smpFirstSixWeeks.end}</li>
+          <li><strong>Weeks 7 - 39 (Standard SMP rate):</strong> ${res.payPeriods.smp.start} to ${res.payPeriods.smp.end}</li>
+          <li><strong>Weeks 40 - 52 (Unpaid):</strong> ${res.payPeriods.unpaid.start} to ${res.payPeriods.unpaid.end}</li>
         </ul>
+        `;
+      }
 
-        <p><strong>Final Day of Maternity Leave:</strong> ${res.payPeriods.unpaid.end}</p>
+      return /* html */ `
+      <h3>Maternity Leave Summary</h3>
+      <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
+      <p><strong>Maternity Leave Start Date:</strong> ${res.maternityLeaveStart}</p>
+      <p><strong>EWC:</strong> ${res.ewc.start} to ${res.ewc.end}</p>
+      <p><strong>Qualifying Week:</strong> ${res.qualifyingWeek.start} to ${res.qualifyingWeek.end}</p>
 
-        <h4>Important Notes</h4>
-        <ul>
-          <li>If the <strong>Maternity Leave Start Date</strong> is left blank, the calculator uses the <strong>earliest legal start date</strong> (11 weeks before EWC).</li>
-          <li>Eligibility for pay requires at least 26 weeks of continuous service by the end of the Qualifying Week.</li>
-          <li>All dates assume standard progression. Early delivery or illness may affect actual leave dates.</li>
-        </ul>
-      </div>
+      <h4>Leave & Pay Breakdown</h4>
+      <ul>
+        <li>Full Pay (${duration.fullPay} weeks): ${res.payPeriods.fullPay.start} to ${res.payPeriods.fullPay.end}</li>
+        <li>Half Pay (${duration.halfPay} weeks): ${res.payPeriods.halfPay.start} to ${res.payPeriods.halfPay.end}</li>
+        <li>SMP (${duration.smp} weeks): ${res.payPeriods.smp.start} to ${res.payPeriods.smp.end}</li>
+        <li>Unpaid (${duration.unpaid} weeks): ${res.payPeriods.unpaid.start} to ${res.payPeriods.unpaid.end}</li>
+      </ul>
       `;
-    };
+    }
 
     // Validation
-    const employmentHelper = document.querySelector(
-      "#start-date-input-helper",
-    );
-    const babyDueHelper = document.querySelector(
-      "#baby-due-date-input-helper",
-    );
-    const maternityHelper = document.querySelector(
-      "#maternity-start-date-input-helper",
-    );
-
-    // Store original text
+    const helpers = {
+      employment: document.querySelector("#start-date-input-helper"),
+      babyDue: document.querySelector("#baby-due-date-input-helper"),
+      maternity: document.querySelector("#maternity-start-date-input-helper"),
+    };
     const originalTexts = {
-      employment: employmentHelper.textContent,
-      babyDue: babyDueHelper.textContent,
-      maternity: maternityHelper.textContent,
+      employment: helpers.employment.textContent,
+      babydue: helpers.babyDue.textContent,
+      maternity: helpers.maternity.textContent,
     };
 
-    // Event listener
-    mCalculate.addEventListener("click", () => {
+    // Event Listener
+    maternityForm.addEventListener("submit", function (e) {
+      e.preventDefault();
       let hasErrors = false;
 
-      // Validate Employment Start Date
-      if (!employmentStartInput.value) {
-        employmentHelper.className = "invalid-feedback";
-        employmentHelper.textContent = "Employment start date is required.";
-        hasErrors = true;
-      } else if (isNaN(new Date(employmentStartInput.value).getTime())) {
-        employmentHelper.className = "invalid-feedback";
-        employmentHelper.textContent = "Please enter a valid date.";
-        hasErrors = true;
-      } else {
-        employmentHelper.className = "input-helper start-date-input-helper";
-        employmentHelper.textContent = originalTexts.employment;
+      function checkDate(input, helper, name, required = true) {
+        const value = input.value;
+        if (required && !value) {
+          helper.className = "invalid-feedback";
+          helper.textContent = `${name} is required`;
+          return false;
+        }
+        if (value && isNaN(new Date(value).getTime())) {
+          helper.className = "invalid-feedback";
+          helper.textContent = "Invalid date";
+          return false;
+        }
+        helper.className = "input-helper";
+        helper.textContent = originalTexts[name.toLowerCase()];
+        return true;
       }
 
-      // Validate Baby Due Date
-      if (!babyDueInput.value) {
-        babyDueHelper.className = "invalid-feedback";
-        babyDueHelper.textContent = "Baby due date is required.";
-        hasErrors = true;
-      } else if (isNaN(new Date(babyDueInput.value).getTime())) {
-        babyDueHelper.className = "invalid-feedback";
-        babyDueHelper.textContent = "Please enter a valid date.";
-        hasErrors = true;
-      } else {
-        babyDueHelper.className = "input-helper baby-due-date-input-helper";
-        babyDueHelper.textContent = originalTexts.babyDue;
-      }
-
-      // Validate Maternity Start (optional)
-      if (
-        maternityStartInput.value &&
-        isNaN(new Date(maternityStartInput.value).getTime())
-      ) {
-        maternityHelper.className = "invalid-feedback";
-        maternityHelper.textContent = "Please enter a valid date.";
-        hasErrors = true;
-      } else if (maternityStartInput.value || !hasErrors) {
-        maternityHelper.className =
-          "input-helper maternity-start-date-input-helper";
-        maternityHelper.textContent = originalTexts.maternity;
-      }
+      hasErrors |= !checkDate(employmentStartInput, helpers.employment, "Employment");
+      hasErrors |= !checkDate(babyDueInput, helpers.babyDue, "BabyDue");
+      hasErrors |= !checkDate(maternityStartInput, helpers.maternity, "Maternity", false);
 
       if (hasErrors) return;
 
-      const result = calculateMaternityDetails();
-      resultsContainer.innerHTML = generateNarrative(result);
+      resultsContainer.innerHTML = generateNarrative(calculateMaternityDetails());
     });
   },
 };
