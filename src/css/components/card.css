@@ -29,3 +29,23 @@
   justify-content: flex-end;
   gap: 10px;
 }
+
+/* Colours */
+.card-header.primary {
+  background-color: var(--primary);
+}
+
+.card-header.primary h2,
+.card-header.primary h3 {
+  color: color-mix(in srgb, var(--primary), black 60%);
+}
+
+.card-header.secondary {
+  background-color: var(--secondary);
+  border-color: color-mix(in srgb, var(--secondary), black 60%);
+}
+
+.card-header.secondary h2,
+.card-header.secondary h3 {
+  color: color-mix(in srgb, var(--secondary), black 60%);
+}
