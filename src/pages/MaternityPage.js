@@ -4,11 +4,11 @@ export const MaternityPage = {
   title: "HR Toolkit - Maternity Calculator",
   html: /* html */ `
   <section class="cal-containers">
-    <div id="maternity-calculator" class="card">
-      <div class="card-header">
+    <div id="maternity-calculator" class="">
+      <div class="section-header">
         <h2>Calculator</h2>
       </div>
-      <div class="card-body">
+      <div class="section-body">
         <form id="maternity-form">
           <div class="mb-3">
             <label for="start-date-input" class="form-label">Employment Start Date</label>
@@ -31,29 +31,29 @@ export const MaternityPage = {
               The date the employee wants to start the maternity leave.
             </div>
           </div>
-          <div class="mb-2">
-            <button type="submit" class="btn btn-success">Calculate</button>
-            <button type="reset" class="btn btn-warning">Reset</button>
+          <div class="form-btns mb-2">
+            <button type="submit" class="btn success">Calculate</button>
+            <button type="reset" class="btn warning">Reset</button>
           </div>
         </form>
       </div>
     </div> <!-- Maternity Calculator Card Ends -->
 
     <div id="maternity-content">
-      <div id="maternity-results" class="card mb-2">
-        <div class="card-header">
+      <div id="maternity-results" class="mb-2">
+        <div class="section-header">
           <h2>Results</h2>
         </div>
-        <div id="results" class="card-body">
+        <div id="results" class="section-body">
           <p>Your results will show here.</p>
         </div>
       </div>
 
-      <div id="maternity-guide" class="card mb-2">
-        <div class="card-header">
+      <div id="maternity-guide" class="mb-2">
+        <div class="section-header">
           <h2>Maternity Calculation Guide</h2>
         </div>
-        <div class="card-body">
+        <div class="section-body">
           <p>This guide explains how the Maternity Calculator works and what each date means:</p>
           <ul>
             <li><strong>Maternity Start Date:</strong> If you leave this field blank, the calculator will automatically use the <strong>earliest start date</strong>, which is 11 weeks before the Expected Week of Childbirth (EWC). You can override this by selecting a preferred start date.</li>
@@ -102,11 +102,11 @@ export const MaternityPage = {
           <p><strong>Always verify eligibility with official guidance and your internal HR policies.</strong></p>
         </div>
       </div> <!-- Maternity Guide Ends -->
-      <div id="maternity-references" class="card mb-2">
-        <div class="card-header">
+      <div id="maternity-references" class="mb-2">
+        <div class="section-header">
           <h2>References</h2>
         </div>
-        <div class="card-body">
+        <div class="section-body">
           <p>The calculations and logic in this tool were based on the following sources:</p>
           <ul>
             <li><strong>GOV.UK:</strong><a href="https://www.gov.uk/government/publications/maternity-benefits-technical-guidance/maternity-benefits-technical-guidance" target="_blank" rel="noopener noreferrer"> Maternity pay and leave guidance</a></li>
@@ -140,7 +140,11 @@ export const MaternityPage = {
 
     const offset = { qualifying: 15, earliestStart: 11 };
 
-    // Date Helpers
+    /**
+     * Returns the Sunday of the week for a given date.
+     * @param {Date} date - The input date.
+     * @returns {Date} The Sunday of that week.
+     */
     function getWeekSunday(date) {
       const sunday = new Date(date);
       sunday.setHours(0, 0, 0, 0);
@@ -148,6 +152,11 @@ export const MaternityPage = {
       return sunday;
     }
 
+    /**
+     * Returns the Saturday of the week for a given date.
+     * @param {Date} date - The input date.
+     * @returns {Date} The Saturday date.
+     */
     function getWeekSaturday(date) {
       const saturday = new Date(date);
       saturday.setHours(0, 0, 0, 0);
@@ -155,6 +164,12 @@ export const MaternityPage = {
       return saturday;
     }
 
+    /**
+     * Adds a number of weeks to a date and returns the start and end date of that period.
+     * @param {Date} startDate - The start date.
+     * @param {number} weeks - Number of weeks to add.
+     * @returns {{start: Date, end: Date}} Object containing start and end dates.
+     */
     function addWeeksInclusive(startDate, weeks) {
       const start = new Date(startDate);
       const end = new Date(start);
@@ -162,7 +177,11 @@ export const MaternityPage = {
       return { start, end };
     }
 
-    // Formatter Helper
+    /**
+     * Formats a date range object into strings.
+     * @param {{start: Date, end: Date}|null} range - The date range object.
+     * @returns {{start: string, end: string}|null} Formatted date strings or null.
+     */
     function formatRange(range) {
       if (!range) return null;
 
@@ -172,18 +191,34 @@ export const MaternityPage = {
       };
     }
 
-    // Eligibility Helpers
+    /**
+     * Checks if the employee is eligible for SMP.
+     * @param {Date} employmentStart - Employment start date.
+     * @param {Date} qualifyingEnd - End of the qualifying week.
+     * @returns {boolean} True if eligible.
+     */
     function hasSmpEligibility(employmentStart, qualifyingEnd) {
       const weeksWorked = Math.floor((qualifyingEnd - employmentStart) / (7 * 24 * 60 * 60 * 1000));
       return weeksWorked >= serviceRequirements.smpWeeks;
     }
 
+    /**
+     * Checks if the employee is eligible for OMP.
+     * @param {Date} employmentStart - Employment start date.
+     * @param {Date} qualifyingEnd - End of the qualifying week.
+     * @returns {boolean} True if eligible.
+     */
     function hasOmpEligibility(employmentStart, qualifyingEnd) {
       const weeksWorked = Math.floor((qualifyingEnd - employmentStart) / (7 * 24 * 60 * 60 * 1000));
       return weeksWorked >= serviceRequirements.ompWeeks;
     }
 
-    // Pay Period Generator Helper
+    /**
+     * Calculates the start and end dates for different pay periods.
+     * @param {Date} maternityStart - The start date of maternity leave.
+     * @param {{smp: boolean, omp: boolean}} eligibility - Eligibility status.
+     * @returns {Object} Object containing pay period ranges.
+     */
     function getMaternityPayPeriods(maternityStart, eligibility) {
       const start = new Date(maternityStart);
 
@@ -228,7 +263,10 @@ export const MaternityPage = {
       return { fullPay, halfPay, smpFirstSixWeeks, smp, unpaid };
     }
 
-    // Calculator
+    /**
+     * Main calculation function to determine dates and eligibility.
+     * @returns {Object} The calculation results.
+     */
     function calculateMaternityDetails() {
       const empStart = new Date(employmentStartInput.value);
       const babyDue = new Date(babyDueInput.value);
@@ -286,7 +324,11 @@ export const MaternityPage = {
       };
     }
 
-    // Results
+    /**
+     * Generates the HTML narrative based on calculation results.
+     * @param {Object} res - The result object from calculateMaternityDetails.
+     * @returns {string} HTML string.
+     */
     function generateNarrative(res) {
       if (!res) return "";
 
@@ -330,7 +372,6 @@ export const MaternityPage = {
       `;
     }
 
-    // Validation
     const helpers = {
       employment: document.querySelector("#start-date-input-helper"),
       babyDue: document.querySelector("#baby-due-date-input-helper"),
@@ -347,6 +388,14 @@ export const MaternityPage = {
       e.preventDefault();
       let hasErrors = false;
 
+      /**
+       * Validates a date input field.
+       * @param {HTMLInputElement} input - The input element.
+       * @param {HTMLElement} helper - The helper text element.
+       * @param {string} name - The name of the field for error messages.
+       * @param {boolean} [required=true] - Whether the field is required.
+       * @returns {boolean} True if valid, false otherwise.
+       */
       function checkDate(input, helper, name, required = true) {
         const value = input.value;
         if (required && !value) {
