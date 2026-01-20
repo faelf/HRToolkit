@@ -12,7 +12,7 @@ export const ProbationPage = {
         <form id="probation-form">
           <div class="mb-3">
             <label for="start-date" class="form-label">Employment Start Date</label>
-            <input id="start-date" type="date" class="form-control" required>
+            <input id="start-date" type="date" required>
             <div class="input-helper">The date the employee started employment.</div>
           </div>
           <div class="form-btns mb-2">
