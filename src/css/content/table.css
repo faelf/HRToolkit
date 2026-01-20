@@ -73,11 +73,3 @@ table tfoot tr td {
     width: 15ch;
   }
 }
-
-.table-rounded-bottom tr:last-child td:first-child {
-  border-bottom-left-radius: 8px;
-}
-
-.table-rounded-bottom tr:last-child td:last-child {
-  border-bottom-right-radius: 8px;
-}

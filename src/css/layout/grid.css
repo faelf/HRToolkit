@@ -23,6 +23,15 @@
   gap: 10px;
 }
 
+.form-btns {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
 .cal-containers {
   display: grid;
   align-items: start;

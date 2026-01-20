@@ -17,15 +17,22 @@ select,
 textarea {
   width: 100%;
   padding: 0.5rem 1rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   border: 1px solid var(--bg-secondary);
   border-radius: var(--border-radius);
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: inherit;
   transition:
     border-color 0.2s,
     background-color 0.2s;
+}
+
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  color: color-mix(in srgb, var(--text-primary), transparent 50%);
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {

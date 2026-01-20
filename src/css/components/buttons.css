@@ -1,6 +1,6 @@
 /* Base button styles */
 .btn {
-  border: 2px solid var(--dark);
+  border: none;
   background-color: var(--light);
   color: var(--dark);
 
@@ -23,74 +23,56 @@
 }
 
 /* Primary button styles */
-.btn-primary {
+.btn.primary {
   background-color: var(--primary);
-  border-color: color-mix(in srgb, var(--primary), black 60%);
   color: color-mix(in srgb, var(--primary), black 60%);
 }
 
-.btn-primary:hover {
-  border-color: var(--primary);
-  background-color: var(--primary);
+.btn.primary:hover {
   filter: brightness(0.9);
 }
 
-.btn-secondary {
+.btn.secondary {
   background-color: var(--secondary);
-  border-color: color-mix(in srgb, var(--secondary), black 60%);
   color: color-mix(in srgb, var(--secondary), black 60%);
 }
 
-.btn-secondary:hover {
-  border-color: var(--secondary);
-  background-color: var(--secondary);
+.btn.secondary:hover {
   filter: brightness(0.9);
 }
 
-.btn-success {
+.btn.success {
   background-color: var(--success);
-  border-color: color-mix(in srgb, var(--success), black 60%);
   color: color-mix(in srgb, var(--success), black 60%);
 }
 
-.btn-success:hover {
-  border-color: var(--success);
-  background-color: var(--success);
+.btn.success:hover {
   filter: brightness(0.9);
 }
 
-.btn-warning {
+.btn.warning {
   background-color: var(--warning);
-  border-color: color-mix(in srgb, var(--warning), black 60%);
   color: color-mix(in srgb, var(--warning), black 60%);
 }
 
-.btn-warning:hover {
-  border-color: var(--warning);
-  background-color: var(--warning);
+.btn.warning:hover {
   filter: brightness(0.9);
 }
 
-.btn-info {
+.btn.info {
   background-color: var(--info);
-  border-color: color-mix(in srgb, var(--info), black 60%);
   color: color-mix(in srgb, var(--info), black 60%);
 }
 
-.btn-info:hover {
-  border-color: var(--info);
-  background-color: var(--info);
+.btn.info:hover {
   filter: brightness(0.9);
 }
 
-.btn-danger {
+.btn.danger {
   background-color: var(--danger);
-  border-color: color-mix(in srgb, var(--danger), black 60%);
   color: color-mix(in srgb, var(--danger), black 60%);
 }
 
-.btn-danger:hover {
-  border-color: var(--danger);
-  background-color: var(--danger);
+.btn.danger:hover {
   filter: brightness(0.9);
 }
