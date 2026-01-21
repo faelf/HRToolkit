@@ -4,7 +4,7 @@
   margin: 0.5rem 0;
   color: var(--text-primary);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: inherit;
 }
 
 /* Inputs */
@@ -17,10 +17,10 @@ select,
 textarea {
   width: 100%;
   padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border: 1px solid var(--bg-secondary);
+  font-size: inherit;
+  border: 1px solid var(--bg-primary);
   border-radius: var(--border-radius);
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
   color: var(--text-primary);
   font-family: inherit;
   transition:
@@ -42,7 +42,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 input[type="date"]:hover::-webkit-calendar-picker-indicator {
   opacity: 1;
-  transform: scale(1.1); /* Subtle grow effect to show it's active */
+  transform: scale(1.1);
 }
 
 input:focus,

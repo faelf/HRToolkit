@@ -1,11 +1,12 @@
 :root {
   /* Backgrounds */
-  --bg-primary: #fcfcfd;
-  --bg-secondary: #d8d8d8;
+  --bg-primary: #d8d8d8;
+  --bg-secondary: #fcfcfd;
 
   /* Text */
   --text-primary: #0e0e0e;
-  --text-secondary: #475569;
+  --text-secondary: #616161;
+  --base-font-size: clamp(1rem, 0.5vw + 0.9rem, 1.2rem);
 
   /* Brand */
   --primary: #3b8ef0;

@@ -3,9 +3,8 @@
   border: none;
   background-color: var(--light);
   color: var(--dark);
-
   padding: 0.5rem 1rem;
-  font-size: 1rem;
+  font-size: inherit;
   font-weight: 600;
   cursor: pointer;
   border-radius: var(--border-radius);
