@@ -16,7 +16,7 @@ input[type="password"],
 select,
 textarea {
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   font-size: inherit;
   border: 1px solid var(--bg-primary);
   border-radius: var(--border-radius);
@@ -50,7 +50,7 @@ select:focus,
 textarea:focus {
   outline: none;
   border-color: var(--primary);
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
   box-shadow: 0 0 0 4px rgba(0, 94, 184, 0.15);
 }
 
