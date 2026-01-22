@@ -32,8 +32,8 @@ export const MaternityPage = {
             </div>
           </div>
           <div class="form-btns mb-2">
-            <button type="submit" class="btn success">Calculate</button>
-            <button type="reset" class="btn warning">Reset</button>
+            <button type="submit" class="btn green">Calculate</button>
+            <button type="reset" class="btn yellow">Reset</button>
           </div>
         </form>
       </div>
@@ -145,7 +145,7 @@ export const MaternityPage = {
      * @param {Date} date - The input date.
      * @returns {Date} The Sunday of that week.
      */
-    function getWeekSunday(date) {
+    function getWeekStart(date) {
       const sunday = new Date(date);
       sunday.setHours(0, 0, 0, 0);
       sunday.setDate(sunday.getDate() - sunday.getDay());
@@ -157,7 +157,7 @@ export const MaternityPage = {
      * @param {Date} date - The input date.
      * @returns {Date} The Saturday date.
      */
-    function getWeekSaturday(date) {
+    function getWeekEnd(date) {
       const saturday = new Date(date);
       saturday.setHours(0, 0, 0, 0);
       saturday.setDate(date.getDate() - date.getDay() + 6);
@@ -271,12 +271,12 @@ export const MaternityPage = {
       const empStart = new Date(startDateInput.value);
       const babyDue = new Date(babyDueInput.value);
 
-      const ewcStart = getWeekSunday(babyDue);
-      const ewcEnd = getWeekSaturday(babyDue);
+      const ewcStart = getWeekStart(babyDue);
+      const ewcEnd = getWeekEnd(babyDue);
 
       const qualifyingStart = new Date(ewcStart);
       qualifyingStart.setDate(ewcStart.getDate() - offset.qualifying * 7);
-      const qualifyingEnd = getWeekSaturday(qualifyingStart);
+      const qualifyingEnd = getWeekEnd(qualifyingStart);
 
       let maternityStart;
       if (maternityStartInput.value) {
