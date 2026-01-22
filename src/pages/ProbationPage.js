@@ -16,8 +16,8 @@ export const ProbationPage = {
             <div class="input-helper">The date the employee started employment.</div>
           </div>
           <div class="form-btns mb-2">
-            <button type="submit" class="btn success">Calculate</button>
-            <button type="reset" class="btn warning">Reset</button>
+            <button type="submit" class="btn green">Calculate</button>
+            <button type="reset" class="btn yellow">Reset</button>
           </div>
         </form>
       </div>
