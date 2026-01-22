@@ -1,11 +1,14 @@
 :root {
   /* Backgrounds */
-  --bg-primary: #d8d8d8;
-  --bg-secondary: #fcfcfd;
+  --bg-primary: hsl(0, 0%, 95%);
+  --bg-secondary: hsl(0, 0%, 100%);
+
+  /* Navbar */
 
   /* Text */
-  --text-primary: #0e0e0e;
-  --text-secondary: #616161;
+  --font-size-base: clamp(1rem, 0.5vw + 0.9rem, 1.2rem);
+  --text-primary: hsl(0, 0%, 18%);
+  --text-secondary: hsl(0, 0%, 54%);
   --base-font-size: clamp(1rem, 0.5vw + 0.9rem, 1.2rem);
 
   /* Brand */
@@ -18,7 +21,7 @@
   --danger: #f87171;
   --success: #34d399;
   --light: #d8d8d8;
-  --dark: #1a1a1a;
+  --dark: hsl(0, 0%, 18%);
 
   /* Utilities */
   --border: #e2e8f0;
