@@ -3,7 +3,7 @@
   border: none;
   background-color: var(--light);
   color: var(--dark);
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   font-size: inherit;
   font-weight: 600;
   cursor: pointer;
@@ -40,38 +40,38 @@
   filter: brightness(0.9);
 }
 
-.btn.success {
-  background-color: var(--success);
-  color: color-mix(in srgb, var(--success), black 60%);
+.btn.green {
+  background-color: var(--green);
+  color: color-mix(in srgb, var(--green), black 60%);
 }
 
-.btn.success:hover {
+.btn.green:hover {
   filter: brightness(0.9);
 }
 
-.btn.warning {
-  background-color: var(--warning);
-  color: color-mix(in srgb, var(--warning), black 60%);
+.btn.yellow {
+  background-color: var(--yellow);
+  color: color-mix(in srgb, var(--yellow), black 60%);
 }
 
-.btn.warning:hover {
+.btn.yellow:hover {
   filter: brightness(0.9);
 }
 
-.btn.info {
-  background-color: var(--info);
-  color: color-mix(in srgb, var(--info), black 60%);
+.btn.blue {
+  background-color: var(--blue);
+  color: color-mix(in srgb, var(--blue), black 60%);
 }
 
-.btn.info:hover {
+.btn.blue:hover {
   filter: brightness(0.9);
 }
 
-.btn.danger {
-  background-color: var(--danger);
-  color: color-mix(in srgb, var(--danger), black 60%);
+.btn.red {
+  background-color: var(--red);
+  color: color-mix(in srgb, var(--red), black 60%);
 }
 
-.btn.danger:hover {
+.btn.red:hover {
   filter: brightness(0.9);
 }
