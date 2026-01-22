@@ -16,10 +16,10 @@
   --secondary: #94a3b8;
 
   /* Semantic */
-  --info: #38bdf8;
-  --warning: #fbbf24;
-  --danger: #f87171;
-  --success: #34d399;
+  --blue: #38bdf8;
+  --yellow: #fbbf24;
+  --red: #f87171;
+  --green: #34d399;
   --light: #d8d8d8;
   --dark: hsl(0, 0%, 18%);
 
