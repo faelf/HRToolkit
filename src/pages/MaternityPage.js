@@ -120,10 +120,10 @@ export const MaternityPage = {
 
   setup() {
     // DOM Elements
-    const employmentStartInput = document.getElementById("start-date-input");
+    const maternityForm = document.getElementById("maternity-form");
+    const startDateInput = document.getElementById("start-date-input");
     const babyDueInput = document.getElementById("baby-due-date-input");
     const maternityStartInput = document.getElementById("maternity-start-date-input");
-    const maternityForm = document.getElementById("maternity-form");
     const resultsContainer = document.getElementById("results");
 
     // Policy Constants
@@ -268,7 +268,7 @@ export const MaternityPage = {
      * @returns {Object} The calculation results.
      */
     function calculateMaternityDetails() {
-      const empStart = new Date(employmentStartInput.value);
+      const empStart = new Date(startDateInput.value);
       const babyDue = new Date(babyDueInput.value);
 
       const ewcStart = getWeekSunday(babyDue);
@@ -413,7 +413,7 @@ export const MaternityPage = {
         return true;
       }
 
-      hasErrors |= !checkDate(employmentStartInput, helpers.employment, "Employment");
+      hasErrors |= !checkDate(startDateInput, helpers.employment, "Employment");
       hasErrors |= !checkDate(babyDueInput, helpers.babyDue, "BabyDue");
       hasErrors |= !checkDate(maternityStartInput, helpers.maternity, "Maternity", false);
 
