@@ -16,7 +16,7 @@ body {
     "Segoe UI",
     sans-serif;
   line-height: 1.6;
-  font-size: clamp(1rem, 0.5vw + 0.9rem, 1.2rem);
+  font-size: var(--font-size-base);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   margin: 0;
