@@ -1,33 +1,40 @@
 import { toggleTheme } from "../utilities/theme.js";
 
 class Navbar extends HTMLElement {
-  connectedCallback() {
-    this.render();
-    this.attachEventListeners();
-  }
-
   render() {
     this.innerHTML = /* html */ `
     <nav class="navbar">
-      <div class="navbar-brand">HR Toolkit</div>
-      <ul class="navbar-links" data-dropdown-target="nav-menu">
-        <li><button type="button" class="nav-btn" data-link="home">Home</button></li>
-        <li><button type="button" class="nav-btn" data-link="maternity">Maternity</button></li>
-        <li><button type="button" class="nav-btn" data-link="probation">Probation</button></li>
-      </ul>
-      <div class="navbar-actions">
-        <button type="button" id="theme-toggle" class="nav-btn">Theme</button>
-        <button type="button" id="nav-toggle" class="nav-btn mobile-only" data-dropdown="nav-menu">☰</button>
-      </div>
+      <div class="navbar-container">
+
+        <div class="navbar-brand">HR Toolkit</div>
+
+        <div class="navbar-links" data-dropdown-target="nav-menu">
+          <button type="button" class="nav-btn" data-link="home">Home</button>
+          <button type="button" class="nav-btn" data-link="maternity">Maternity</button>
+          <button type="button" class="nav-btn" data-link="probation">Probation</button>
+        </div>
+          
+        <div class="navbar-actions">
+          <button type="button" class="nav-btn" id="theme-toggle">
+            <!-- Set in theme.js -->
+          </button>
+          
+          <button type="button" class="nav-btn mobile-only" id="nav-toggle" data-dropdown="nav-menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="nav-icon">
+              <path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/>
+            </svg>
+            <span>Menu</span>
+          </button>
+        </div>
+
+      </div> <!-- Navbar Container Ends -->
     </nav>
     `;
   }
 
   attachEventListeners() {
     // Theme toggler
-    this.querySelector("#theme-toggle").addEventListener("click", () => {
-      toggleTheme();
-    });
+    this.querySelector("#theme-toggle").addEventListener("click", toggleTheme);
 
     // Mobile menu toggle
     const navToggle = this.querySelector("[data-dropdown='nav-menu']");
@@ -35,14 +42,12 @@ class Navbar extends HTMLElement {
 
     navToggle.addEventListener("click", () => {
       navLinks.classList.toggle("show");
-
-      // Update button text
-      if (navLinks.classList.contains("show")) {
-        navToggle.textContent = "✕";
-      } else {
-        navToggle.textContent = "☰";
-      }
     });
+  }
+
+  connectedCallback() {
+    this.render();
+    this.attachEventListeners();
   }
 }
 
