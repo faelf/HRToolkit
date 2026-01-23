@@ -4,8 +4,11 @@
   --bg-secondary: #2d2d2d;
 
   /* Text */
-  --text-primary: #f4f4f4;
-  --text-secondary: #a0a0a0;
+  --text-primary: hsl(0, 0%, 95%);
+  --text-secondary: hsl(0, 0%, 70%);
+
+  /* Utilities */
+  --border-color: hsl(0, 0%, 10%);
 
   /* Table */
   --tbody-bg: #333131;

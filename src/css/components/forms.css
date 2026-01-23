@@ -18,7 +18,7 @@ textarea {
   width: 100%;
   padding: 0.75rem 1rem;
   font-size: inherit;
-  border: 1px solid var(--bg-primary);
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   background-color: var(--bg-secondary);
   color: var(--text-primary);
@@ -32,7 +32,7 @@ input[type="date"]::-webkit-datetime-edit-text,
 input[type="date"]::-webkit-datetime-edit-month-field,
 input[type="date"]::-webkit-datetime-edit-day-field,
 input[type="date"]::-webkit-datetime-edit-year-field {
-  color: color-mix(in srgb, var(--text-primary), transparent 50%);
+  color: var(--text-primary);
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -100,7 +100,7 @@ select:user-invalid {
 }
 
 input:user-valid {
-  border-color: #2e7d32;
+  border-color: var(--green);
 }
 
 /* Form validation feedback */
@@ -115,5 +115,5 @@ input:user-valid {
   display: block;
   margin-top: 0.5rem;
   font-size: 0.875rem;
-  color: var(--success);
+  color: var(--green);
 }
