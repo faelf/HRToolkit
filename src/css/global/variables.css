@@ -1,32 +1,31 @@
 :root {
   /* Backgrounds */
-  --bg-primary: hsl(0, 0%, 95%);
-  --bg-secondary: hsl(0, 0%, 100%);
+  --bg-primary: hsl(0 0% 95%);
+  --bg-secondary: hsl(0 0% 100%);
 
   /* Navbar */
 
   /* Text */
   --font-size-base: clamp(1rem, 0.5vw + 0.9rem, 1.2rem);
-  --text-primary: hsl(0, 0%, 18%);
-  --text-secondary: hsl(0, 0%, 54%);
-  --base-font-size: clamp(1rem, 0.5vw + 0.9rem, 1.2rem);
+  --text-primary: hsl(0 0% 10%);
+  --text-secondary: hsl(0 0% 50%);
 
   /* Brand */
-  --primary: #3b8ef0;
-  --secondary: #94a3b8;
+  --primary: hsl(212, 86%, 59%);
+  --secondary: hsl(0 0% 60%);
 
   /* Semantic */
-  --blue: #38bdf8;
-  --yellow: #fbbf24;
-  --red: #f87171;
-  --green: #34d399;
-  --light: #d8d8d8;
-  --dark: hsl(0, 0%, 18%);
+  --blue: hsl(198 93% 60%);
+  --yellow: hsl(43 96% 56%);
+  --red: hsl(0 91% 71%);
+  --green: hsl(158 64% 52%);
+  --light: hsl(0 0% 95%);
+  --dark: hsl(0 0% 20%);
 
   /* Utilities */
-  --border: #e2e8f0;
-  --shadow: rgba(0, 0, 0, 0.05);
+  --border-color: hsl(0 0% 70%);
   --border-radius: 8px;
+  --shadow: hsl(0 0% 20% / 0.25);
 
   /* Table #e9e9e9;*/
   --table-caption-bg: var(--bg-secondary);
