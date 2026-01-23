@@ -4,7 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><text y="14" font-size="16">🖥️</text></svg>' type="image/svg+xml">
+  <!-- Light mode toolbar -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="hsl(0 0% 100%)">
+  <!-- Dark mode toolbar -->
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2d2d2d">
   <title>HR Toolkit</title>
+  <meta name="author" content="Rafael Ferreira">
+  <meta name="description" content="A single-page app built with vanilla JS">
   <link rel="stylesheet" href="src/css/main.css">
 </head>
 
@@ -15,6 +22,9 @@
   <main id="main-content" class="container">
     <!-- Content will be inject here -->
   </main>
+  <noscript>
+    <p>Please enable JavaScript to use the HR Toolkit.</p>
+  </noscript>
   <script type="module" src="src/core/app.js"></script>
 </body>
 
