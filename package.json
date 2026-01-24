@@ -1,0 +1,22 @@
+{
+  "author": "Rafael Ferreira",
+  "name": "hrtoolkit",
+  "version": "1.0.0",
+  "description": "SPA developed with JavaScript",
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/faelf/HRToolkit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faelf/HRToolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/faelf/HRToolkit/issues"
+  },
+  "devDependencies": {}
+}
