@@ -1,12 +1,9 @@
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
 }
+
 * {
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 body {
@@ -15,7 +12,7 @@ body {
     -apple-system,
     "Segoe UI",
     sans-serif;
-  line-height: 1.6;
+  line-height: var(--line-height-base);
   font-size: var(--font-size-base);
   background-color: var(--bg-primary);
   color: var(--text-primary);
