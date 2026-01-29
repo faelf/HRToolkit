@@ -98,8 +98,14 @@ export const MaternityPage = {
             <li><strong>Pay Periods</strong> with start and end dates for Full Pay, Half Pay, SMP, and Unpaid Leave</li>
           </ul>
 
-          <p><strong>Important Note:</strong> This tool calculates eligibility and leave dates based on service length and dates only. It does <strong>not</strong> check salary. To qualify for statutory maternity pay (SMP), the employee must earn at least the minimum qualifying amount, as defined on the GOV.UK page.</p>
-          <p><strong>Always verify eligibility with official guidance and your internal HR policies.</strong></p>
+          <div class="info-box red">
+            <div class="info-box-header">Important Note:</div>
+            <div class="info-box-body">
+              <p>This tool calculates eligibility and leave dates based on service length and dates only. It does <strong>not</strong> check salary. To qualify for statutory maternity pay (SMP), the employee must earn at least the minimum qualifying amount, as defined on the GOV.UK page.</p>
+            <p><strong>Always verify eligibility with official guidance and your internal HR policies.</strong></p>
+            </div>
+          </div>
+          
         </div>
       </div> <!-- Maternity Guide Ends -->
       <div id="maternity-references" class="mb-2">

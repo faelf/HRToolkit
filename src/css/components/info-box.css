@@ -1,0 +1,41 @@
+.info-box {
+  --box-bg-colour: var(--dark);
+  --box-boder-colour: var(--dark);
+  --box-border-width: 2px;
+
+  border: var(--box-border-width) solid var(--box-boder-colour);
+  background-color: var(--box-bg-colour);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.info-box-header {
+  border-bottom: var(--box-border-width) solid var(--box-boder-colour);
+  background-color: var(--box-bg-colour);
+  color: var(--light);
+  padding: 0.25rem 1rem;
+  font-weight: 700;
+}
+
+.info-box-body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 0.25rem 1rem;
+}
+
+.info-box.red {
+  --box-bg-colour: var(--red);
+  --box-boder-colour: color-mix(in srgb, var(--red), black 60%);
+}
+
+.info-box.red .info-box-header {
+  color: color-mix(in srgb, var(--red), black 60%);
+}
+
+.info-box.blue {
+  --box-bg-colour: var(--blue);
+}
+
+.info-box.blue .info-box-header {
+  color: color-mix(in srgb, var(--blue), black 60%);
+}
