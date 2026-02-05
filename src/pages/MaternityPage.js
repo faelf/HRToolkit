@@ -10,6 +10,19 @@ export const MaternityPage = {
       </div>
       <div class="section-body">
         <form id="maternity-form">
+
+          <div class="mb-3">
+            <label for="leave-type-input" class="form-label">Select leave type</label>
+            <select id="leave-type-input" name="leaveType" aria-describedby="leave-type-helper" disabled>
+              <option value="" disabled selected>Select an option</option>
+              <option value="smp">Statutory Maternity Pay</option>
+              <option value="omp">Occupational Maternity Pay</option>
+            </select>
+            <div id="leave-type-helper" class="input-helper">
+              Select the type of leave you want to calculate.
+            </div>
+          </div>
+
           <div class="mb-3">
             <label for="start-date-input" class="form-label">Employment Start Date</label>
             <input type="date" id="start-date-input" required>
@@ -17,6 +30,7 @@ export const MaternityPage = {
               The date the employee started employment.
             </div>
           </div>
+
           <div class="mb-3">
             <label for="baby-due-date-input" class="form-label">Baby Due Date</label>
             <input type="date" id="baby-due-date-input" required>
@@ -24,6 +38,7 @@ export const MaternityPage = {
               The expected due date of the baby, as shown on the MATB1 certificate.
             </div>
           </div>
+
           <div class="mb-3">
             <label for="maternity-start-date-input" class="form-label">Maternity Start Date</label>
             <input type="date" id="maternity-start-date-input">
@@ -31,10 +46,12 @@ export const MaternityPage = {
               The date the employee wants to start the maternity leave.
             </div>
           </div>
+
           <div class="form-btns mb-2">
             <button type="submit" class="btn green">Calculate</button>
             <button type="reset" class="btn yellow">Reset</button>
           </div>
+
         </form>
       </div>
     </div> <!-- Maternity Calculator Card Ends -->
