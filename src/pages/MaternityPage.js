@@ -58,29 +58,20 @@ export const MaternityPage = {
           <ul>
             <li><strong>Maternity Start Date:</strong> If you leave this field blank, the calculator will automatically use the <strong>earliest start date</strong>, which is 11 weeks before the Expected Week of Childbirth (EWC). You can override this by selecting a preferred start date.</li>
 
-            <li>
-              <strong>Eligibility:</strong>
-              The system checks if the employee has at least <strong>26 weeks of continuous service</strong> by the <strong>Qualifying Week</strong>. There are two possible outcomes:
-              <ul>
-                <li>
-                  <strong>Eligible:</strong> The calculator displays a full schedule of maternity pay, including:
-                  <ul>
-                    <li><strong>Full Pay:</strong> 6 weeks at 100% (company-enhanced)</li>
-                    <li><strong>Half Pay:</strong> 6 weeks at 50% (or SMP if higher)</li>
-                    <li><strong>Statutory Maternity Pay (SMP):</strong> 27 weeks</li>
-                    <li><strong>Unpaid Leave:</strong> Remaining weeks to complete 52-week entitlement</li>
-                  </ul>
-                </li>
-                <li>
-                  <strong>Not Eligible:</strong> The employee is entitled to the <strong>52-week leave</strong> but all leave is unpaid.
-                </li>
-              </ul>
-            </li>
+            <li><strong>Eligibility:</strong> The system checks if the employee has at least <strong>26 weeks of continuous service</strong> by the <strong>Qualifying Week</strong>. There are two possible outcomes:</li>
 
-            <li>
-              <strong>Expected Week of Childbirth (EWC):</strong>
-              The calculator determines the week of the baby&apos;s expected birth, starting from Sunday to Saturday. This is used to calculate qualifying week and earliest maternity start date.
-            </li>
+            <ul>
+              <li><strong>Eligible:</strong> The calculator displays a full schedule of maternity pay, including:</li>
+              <ul>
+                <li><strong>Full Pay:</strong> 6 weeks at 100% (company-enhanced)</li>
+                <li><strong>Half Pay:</strong> 6 weeks at 50% (or SMP if higher)</li>
+                <li><strong>Statutory Maternity Pay (SMP):</strong> 27 weeks</li>
+                <li><strong>Unpaid Leave:</strong> Remaining weeks to complete 52-week entitlement</li>
+              </ul>
+              <li><strong>Not Eligible:</strong> The employee is entitled to the <strong>52-week leave</strong> but all leave is unpaid.</li>
+            </ul>
+            
+            <li><strong>Expected Week of Childbirth (EWC):</strong> The calculator determines the week of the baby&apos;s expected birth, starting from Sunday to Saturday. This is used to calculate qualifying week and earliest maternity start date.</li>
 
             <li>
               <strong>Qualifying Week:</strong>
