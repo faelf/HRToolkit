@@ -1,7 +1,7 @@
 table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0;
+  border-spacing: 0 1px;
 }
 
 table caption {
@@ -17,6 +17,20 @@ table caption,
 table th,
 table td {
   padding: 0.5rem 1rem;
+  border-top: 1px solid var(--bg-primary);
+  border-bottom: 1px solid var(--bg-primary);
+}
+
+tr td:first-child, tr th:first-child {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  border-left: 1px solid var(--bg-primary);
+}
+
+tr td:last-child, tr th:last-child {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  border-right: 1px solid var(--bg-primary);
 }
 
 table tbody {
