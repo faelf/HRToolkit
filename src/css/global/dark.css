@@ -1,14 +1,15 @@
 [data-theme="dark"] {
   /* Backgrounds */
-  --bg-primary: #373535;
-  --bg-secondary: #2d2d2d;
+  --bg-primary: hsl(0 0% 15%);
+  --bg-secondary: hsl(0 0% 30%);
 
   /* Text */
   --text-primary: hsl(0, 0%, 95%);
   --text-secondary: hsl(0, 0%, 70%);
 
   /* Utilities */
-  --border-color: hsl(0, 0%, 10%);
+  --border-color: hsl(0 0% 100% / 0.25);
+  --shadow: hsl(0 0% 30% / 0.25);
 
   /* Table */
   --tbody-bg: #333131;
