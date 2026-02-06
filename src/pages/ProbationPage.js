@@ -89,7 +89,7 @@ export const ProbationPage = {
       const resultDiv = document.getElementById("results");
 
       resultDiv.innerHTML = /* html */ `
-        <table class="table-rounded-bottom">
+        <table>
           <thead>
             <tr><th colspan="2">Monthly Milestones</th></tr>
           </thead>
