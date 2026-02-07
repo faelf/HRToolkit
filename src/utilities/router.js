@@ -38,9 +38,10 @@ export class Router {
    * Update the main content area with a page.
    * @param {string} pageKey - The key of the page to display.
    * @param {Object} [params={}] - Optional parameters (e.g., { id: 123 }).
+   * @param {boolean} [addToHistory=true] - Whether to push a new history state.
    * @returns {Promise<void>} - A promise that resolves when the content is updated.
    */
-  async updateMainContent(pageKey, params = {}) {
+  async updateMainContent(pageKey, params = {}, addToHistory = true) {
     // Get the page data from the pageContent object
     const content = this.pageContent[pageKey];
 
@@ -60,12 +61,14 @@ export class Router {
       let url = "#" + pageKey; // Start with the page key
 
       // If there is a pageId, add it as a query string
-      if (params.pageId) {
+      if (params.pageId || params.pageId === 0) {
         url = url + "?id=" + params.pageId;
       }
 
-      // Update browser history without reloading the page
-      history.pushState({ pageKey, params }, content.title, url);
+      if (addToHistory) {
+        // Update browser history without reloading the page
+        history.pushState({ pageKey, params }, content.title, url);
+      }
 
       // Update the browser tab title
       document.title = content.title;
@@ -79,15 +82,12 @@ export class Router {
   updateActiveLinks(activePageKey) {
     const links = document.querySelectorAll("[data-link]");
 
-    const activeLinkElement = Array.from(links).find(
-      (l) => l.dataset.link === activePageKey,
-    );
+    const activeLinkElement = Array.from(links).find((l) => l.dataset.link === activePageKey);
     const activeGroup = activeLinkElement?.dataset.activeGroup;
 
     links.forEach((link) => {
       const isExactMatch = link.dataset.link === activePageKey;
-      const isGroupMatch =
-        activeGroup && link.dataset.activeGroup === activeGroup;
+      const isGroupMatch = activeGroup && link.dataset.activeGroup === activeGroup;
 
       if (isExactMatch || isGroupMatch) {
         link.classList.add("active");
@@ -112,7 +112,7 @@ export class Router {
     // Get page key
     const linkKey = link.dataset.link.replace("#", "");
     // Get ID for the page
-    const linkId = parseInt(link.dataset.linkId);
+    const linkId = link.dataset.linkId;
 
     // Passes the details to the event listener
     const detail = {
@@ -140,7 +140,7 @@ export class Router {
   handlePopState(event) {
     if (event.state) {
       // If state exists, update content based on stored pageKey and params
-      this.updateMainContent(event.state.pageKey, event.state.params);
+      this.updateMainContent(event.state.pageKey, event.state.params, false);
     } else {
       // If no state, fallback: parse URL hash for pageKey and params
       const hash = window.location.hash.substring(1);
@@ -148,11 +148,11 @@ export class Router {
       const params = {};
       if (query) {
         const urlParams = new URLSearchParams(query);
-        params.gameId = urlParams.get("id");
+        params.pageId = urlParams.get("id");
       }
 
       // Show the page from the hash or default to 'dashboard-page'
-      this.updateMainContent(pageKey || this.landingPage, params);
+      this.updateMainContent(pageKey || this.landingPage, params, false);
     }
   }
 
