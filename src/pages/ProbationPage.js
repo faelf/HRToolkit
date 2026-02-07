@@ -81,8 +81,10 @@ export const ProbationPage = {
         const milestoneDate = addMonths(startDate, i);
         milestonesHtml += /* html */ `
         <tr>
-          <td>Month ${i}</td>
-          <td class="text-right">${formatters.longDate(milestoneDate)}</td>
+          <td data-cell="Monthly Milestone">Month ${i}</td>
+          <td data-cell="Date">
+            ${formatters.longDate(milestoneDate)}
+          </td>
         </tr>`;
       }
 
@@ -91,7 +93,10 @@ export const ProbationPage = {
       resultDiv.innerHTML = /* html */ `
         <table>
           <thead>
-            <tr><th colspan="2">Monthly Milestones</th></tr>
+            <tr>
+              <th>Monthly Milestone</th>
+              <th>Date</th>
+            </tr>
           </thead>
           <tbody>
             ${milestonesHtml}
