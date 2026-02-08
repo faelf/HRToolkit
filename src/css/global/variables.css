@@ -28,11 +28,4 @@
   --border-color: hsl(0 0% 70%);
   --border-radius: 8px;
   --shadow: hsl(0 0% 20% / 0.25);
-
-  /* Table #e9e9e9;*/
-  --table-caption-bg: var(--bg-secondary);
-  --thead-bg: var(--bg-secondary);
-  --tbody-bg: #e9e9e9;
-  --tr-second-bg: var(--bg-secondary);
-  --tfoot-bg: var(--bg-secondary);
 }

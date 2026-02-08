@@ -10,7 +10,4 @@
   /* Utilities */
   --border-color: hsl(0 0% 100% / 0.25);
   --shadow: hsl(0 0% 30% / 0.25);
-
-  /* Table */
-  --tbody-bg: #333131;
 }
