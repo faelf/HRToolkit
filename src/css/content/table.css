@@ -1,36 +1,40 @@
 table {
+  --table-font-colour: var(--text-primary);
+  --table-border-colour: var(--bg-primary);
+  --table-border: 2px solid var(--table-border-colour);
+  --table-border-radius: var(--border-radius);
+  --table-caption-bg: var(--bg-secondary);
+  --thead-bg: var(--bg-secondary);
+  --tbody-bg: var(--bg-primary);
+  --tr-second-bg: var(--bg-secondary);
+  --tfoot-bg: var(--bg-secondary);
+
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 1px;
+  border-spacing: 0;
+  color: var(--table-font-colour);
+  border: var(--table-border);
+  border-radius: var(--table-border-radius);
+  overflow: hidden;
 }
 
-table caption {
-  background-color: var(--table-caption-bg);
-  text-transform: uppercase;
+table.primary {
+  --table-font-colour: color-mix(in srgb, var(--primary), black 60%);
+  --table-border-colour: color-mix(in srgb, var(--primary), black 60%);
+  --table-caption-bg: var(--bg-secondary);
+  --thead-bg: var(--primary);
+  --tbody-bg: color-mix(in srgb, var(--primary), white 60%);
+  --tr-second-bg: var(--primary);
+  --tfoot-bg: var(--bg-secondary);
 }
 
 table thead {
   background-color: var(--thead-bg);
 }
 
-table caption,
 table th,
 table td {
   padding: 0.5rem 1rem;
-  border-top: 1px solid var(--bg-primary);
-  border-bottom: 1px solid var(--bg-primary);
-}
-
-tr td:first-child, tr th:first-child {
-  border-top-left-radius: var(--border-radius);
-  border-bottom-left-radius: var(--border-radius);
-  border-left: 1px solid var(--bg-primary);
-}
-
-tr td:last-child, tr th:last-child {
-  border-top-right-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
-  border-right: 1px solid var(--bg-primary);
 }
 
 table tbody {
@@ -46,42 +50,46 @@ table tfoot tr td {
 }
 
 @media (max-width: 576px) {
-  .responsive-table thead {
+  table {
+    --table-border-radius: none;
+  }
+
+  table thead {
     display: none;
   }
 
-  .responsive-table tbody td,
-  .responsive-table tfoot td {
+  table tbody td,
+  table tfoot td {
     display: grid;
     align-items: center;
-    grid-template-columns: 15ch auto;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .responsive-table tbody td:first-child {
+  table tbody td:first-child {
     margin-top: 0.5rem;
   }
 
-  .responsive-table tbody td:last-child {
+  table tbody td:last-child {
     margin-bottom: 0.5rem;
   }
 
-  .responsive-table tbody td::before {
+  table tbody td::before {
     content: attr(data-cell);
     font-weight: 700;
     text-transform: uppercase;
   }
 
-  .responsive-table tbody td:first-child::before {
+  table tbody td:first-child::before {
     content: attr(data-cell);
     text-transform: uppercase;
   }
 
-  .responsive-table tfoot tr {
+  table tfoot tr {
     display: grid;
-    grid-template-columns: 15ch auto;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .responsive-table tfoot tr td:first-child {
+  table tfoot tr td:first-child {
     text-transform: uppercase;
     text-align: left;
     width: 15ch;
