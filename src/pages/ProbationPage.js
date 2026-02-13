@@ -28,10 +28,8 @@ export const ProbationPage = {
         <div class="section-header">
           <h2>Results</h2>
         </div>
-        <div id="results">
-          <div class="section-body">
-            <p>Your results will show here.</p>
-          </div>
+        <div class="section-body" id="results">
+          <p>Your results will show here.</p>
         </div>
       </div>
 
