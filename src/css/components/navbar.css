@@ -1,14 +1,15 @@
 .navbar {
+  --gap: 10px;
   background-color: var(--bg-secondary);
 }
 
 .navbar-container {
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0.8rem;
+  margin: 0 auto;
+  padding: 0.8rem;
 
   @media (min-width: 576px) {
     max-width: 540px;
@@ -31,6 +32,7 @@
   }
 }
 
+/* Logo */
 .navbar-brand {
   font-weight: 700;
   font-size: 1.5rem;
@@ -39,53 +41,62 @@
 }
 
 .navbar-links {
-  width: 100%;
   display: none;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  gap: var(--gap);
+  width: 100%;
+  /* To show last in the dom */
   order: 3;
 }
 
-/* Show when active class is added */
+/* Show add in JS */
 .navbar-links.show {
-  margin-top: 10px;
   display: grid;
-  justify-content: center;
-}
-
-.navbar-links .nav-btn {
-  width: 100%;
+  grid-template-columns: 1fr;
+  margin-top: var(--gap);
 }
 
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: var(--gap);
 }
 
 .nav-btn {
   --nav-btn-colour: var(--text-primary);
+
+  /* Button defults */
   border: none;
-  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  background: none;
+
+  /* Typography */
+  line-height: var(--line-height-base);
   font-size: inherit;
   font-weight: 600;
-  cursor: pointer;
-  border-radius: var(--border-radius);
-  transition: all 0.2s;
-  background: none;
   color: var(--nav-btn-colour);
-  display: grid;
+
+  /* Sizing */
+  width: 100%;
+  padding: 0.5rem 1rem;
+
+  /* Layout */
+  display: flex;
   align-items: center;
-  grid-template-columns: 1fr auto;
+  justify-content: start;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
+/* SVG Icon */
 .nav-icon {
   --icon-width: var(--font-size-base);
   --icon-height: var(--font-size-base);
-  margin-right: 10px;
+
+  display: block;
   width: var(--icon-width);
   height: var(--icon-height);
-  display: block;
+  margin-right: var(--gap);
   fill: none;
   stroke: currentColor;
   stroke-width: 3;
@@ -95,28 +106,100 @@
 
 .nav-btn:hover {
   background-color: var(--primary);
-  color: var(--text-primary);
+  color: var(--dark);
 }
 
 .nav-btn.active {
   background-color: var(--primary);
-  color: var(--text-primary);
+  color: var(--dark);
   transition: filter 0.2s;
-}
-
-/* Humburger button */
-.mobile-only {
-  display: grid;
 }
 
 .nav-btn.active:hover {
   background-color: var(--primary);
+  color: var(--dark);
   filter: brightness(0.9);
 }
 
 #theme-toggle, #nav-toggle {
+  color: var(--dark);
   background-color: var(--primary);
   min-width: 100px;
+}
+
+/* Dropdown Behaviour in Navbar */
+.navbar .dropdown-container {
+  /* Layout */
+  display: grid;
+  gap: 10px;
+}
+
+.navbar .dropdown-btn {
+  display: none;
+}
+
+.navbar .dropdown {
+  /* Layout */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.xlg-only {
+  /* Layout */
+  display: none;
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+  .nav-btn {
+    justify-content: center;
+  }
+
+  .navbar-links.show {
+    display: flex;
+    margin-top: 10px;
+  }
+
+  .navbar .dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .navbar .dropdown-btn {
+    display: flex;
+  }
+
+  .navbar .dropdown {
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    opacity: 0;
+
+    position: absolute;
+    right: 0;
+    top: 100%;
+    transform: translateY(-5px);
+
+    width: max-content;
+    padding: 0.5rem;
+
+    display: grid;
+    gap: 10px;
+    pointer-events: none;
+
+    transition: 0.2s ease;
+  }
+
+  .navbar .dropdown .nav-btn {
+    justify-content: start;
+  }
+
+  .navbar .dropdown.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
 }
 
 /* Desktop styles */
@@ -126,16 +209,14 @@
   }
 
   .navbar-links {
-    width: auto;
     display: flex;
     order: 0;
+    width: auto;
   }
 
+  /* In case the screen is resized */
   .navbar-links.show {
     margin-top: 0;
-  }
-
-  .navbar-links .nav-btn {
     width: auto;
   }
 
