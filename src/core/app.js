@@ -10,6 +10,9 @@ import { initTheme } from "../utilities/theme.js";
 // Load all Web Components and global UI logic
 import "../ui/index.js";
 
+// Import UI utilities
+import { dropdown } from "../utilities/dropdown.js";
+
 /**
  * Router Setup
  * ------------
@@ -17,8 +20,12 @@ import "../ui/index.js";
  * 2. Initialise the Router with the container, page data, and home as the fallback.
  * 3. Attach event listeners for clicks and history navigation.
  */
-const mainContentArea = document.getElementById("main-content");
-const router = new Router(mainContentArea, pageContent);
+const router = new Router({
+  contentArea: "#main-content",
+  pageContent: pageContent,
+  linkAttribute: "data-link",
+  idAttribute: "data-link-id",
+});
 router.init();
 
 /**
@@ -27,6 +34,7 @@ router.init();
  * Runs once when the browser window has fully loaded.
  */
 function initialLoad() {
+  dropdown();
   // Sync the UI with the current URL
   router.handlePopState({ state: history.state });
 
