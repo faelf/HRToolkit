@@ -1,11 +1,12 @@
 [data-theme="dark"] {
   /* Backgrounds */
-  --bg-primary: hsl(0 0% 15%);
-  --bg-secondary: hsl(0 0% 30%);
+  --bg-primary: hsl(0 0% 10%);
+  --bg-secondary: hsl(0 0% 20%);
 
   /* Text */
   --text-primary: hsl(0, 0%, 95%);
-  --text-secondary: hsl(0, 0%, 70%);
+  --text-secondary: hsl(0, 0%, 85%);
+  --text-muted: hsl(0 0% 60%);
 
   /* Utilities */
   --border-color: hsl(0 0% 100% / 0.25);

@@ -2,7 +2,7 @@
 .form-label {
   display: block;
   margin: 0.5rem 0;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-weight: 600;
   font-size: inherit;
 }
@@ -63,7 +63,7 @@ input::placeholder {
 .input-helper {
   margin-top: 0.5rem;
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   line-height: 1.4;
 }
 

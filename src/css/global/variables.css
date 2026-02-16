@@ -1,16 +1,15 @@
 :root {
   /* Backgrounds */
-  --bg-primary: hsl(0 0% 95%);
-  --bg-secondary: hsl(0 0% 100%);
-
-  /* Navbar */
+  --bg-primary: hsl(0 0% 90%);
+  --bg-secondary: hsl(0 0% 80%);
 
   /* Text */
   --font-size-base: 1rem;
   --line-height-base: 1.6;
   --line-height-headings: 1.2;
-  --text-primary: hsl(0 0% 10%);
-  --text-secondary: hsl(0 0% 50%);
+  --text-primary: hsl(0 0% 5%);
+  --text-secondary: hsl(0 0% 15%);
+  --text-muted: hsl(0 0% 40%);
 
   /* Brand */
   --primary: hsl(212, 86%, 59%);
