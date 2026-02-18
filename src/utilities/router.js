@@ -71,13 +71,14 @@ export class Router {
     links.forEach((link) => {
       const val = link.getAttribute(this.linkAttribute);
       const isExactMatch = val === activePageKey || val === `#${activePageKey}`;
-      const isGroupMatch =
-        activeGroup && link.getAttribute("data-active-group") === activeGroup;
+      const isGroupMatch = activeGroup && link.getAttribute("data-active-group") === activeGroup;
 
       if (isExactMatch || isGroupMatch) {
         link.classList.add("active");
+        link.setAttribute("aria-current", "page");
       } else {
         link.classList.remove("active");
+        link.removeAttribute("aria-current");
       }
     });
   }
