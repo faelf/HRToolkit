@@ -23,8 +23,8 @@ import { dropdown } from "../utilities/dropdown.js";
 const router = new Router({
   contentArea: "#main-content",
   pageContent: pageContent,
-  linkAttribute: "data-link",
-  idAttribute: "data-link-id",
+  linkAttribute: "href",
+  idAttribute: "data-id",
 });
 router.init();
 

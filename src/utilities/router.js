@@ -35,7 +35,7 @@ export class Router {
       landingPage = "home",
       baseHtmlPath = "src/html/",
       linkAttribute = "href",
-      idAttribute = "data-doc-id",
+      idAttribute = "data-id",
     } = config;
 
     this.container = document.querySelector(contentArea);
