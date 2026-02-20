@@ -18,8 +18,8 @@
 }
 
 .info-box-body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  background-color: var(--bg-bottom);
+  color: var(--text);
   padding: 0.25rem 1rem;
 }
 

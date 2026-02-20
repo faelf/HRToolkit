@@ -1,13 +1,13 @@
 table {
-  --table-font-colour: var(--text-primary);
-  --table-border-colour: var(--bg-primary);
+  --table-font-colour: var(--text);
+  --table-border-colour: var(--bg-bottom);
   --table-border: 2px solid var(--table-border-colour);
   --table-border-radius: var(--border-radius);
-  --table-caption-bg: var(--bg-secondary);
-  --thead-bg: var(--bg-secondary);
-  --tbody-bg: var(--bg-primary);
-  --tr-second-bg: var(--bg-secondary);
-  --tfoot-bg: var(--bg-secondary);
+  --table-caption-bg: var(--bg-surface);
+  --thead-bg: var(--bg-surface);
+  --tbody-bg: var(--bg-bottom);
+  --tr-second-bg: var(--bg-surface);
+  --tfoot-bg: var(--bg-surface);
 
   width: 100%;
   border-collapse: separate;
@@ -21,11 +21,11 @@ table {
 table.primary {
   --table-font-colour: color-mix(in srgb, var(--primary), black 60%);
   --table-border-colour: color-mix(in srgb, var(--primary), black 60%);
-  --table-caption-bg: var(--bg-secondary);
+  --table-caption-bg: var(--bg-surface);
   --thead-bg: var(--primary);
   --tbody-bg: color-mix(in srgb, var(--primary), white 60%);
   --tr-second-bg: var(--primary);
-  --tfoot-bg: var(--bg-secondary);
+  --tfoot-bg: var(--bg-surface);
 }
 
 table thead {
