@@ -133,6 +133,7 @@ export const MaternityPage = {
   `,
 
   setup() {
+    formatters.setMinMaxDates();
     // DOM Elements
     const maternityForm = document.getElementById("maternity-form");
     const startDateInput = document.getElementById("start-date-input");
