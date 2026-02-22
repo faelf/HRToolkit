@@ -1,14 +1,18 @@
 :root {
   /* Backgrounds */
-  --bg-primary: hsl(0 0% 90%);
-  --bg-secondary: hsl(0 0% 80%);
+  --bg-bottom: hsl(0 0% 70%);
+  --bg-surface: hsl(0 0% 80%);
 
   /* Text */
-  --font-size-base: 1rem;
-  --line-height-base: 1.6;
-  --line-height-headings: 1.2;
-  --text-primary: hsl(0 0% 5%);
-  --text-secondary: hsl(0 0% 15%);
+  --line-height-text: 1.6;
+  --line-height-heading: 1.2;
+
+  --text-small: 0.8rem;
+  --text-medium: 1rem;
+  --text-large: 1.2rem;
+
+  --text: hsl(0 0% 20%);
+  --text-heading: hsl(0 0% 10%);
   --text-muted: hsl(0 0% 40%);
 
   /* Brand */
@@ -20,11 +24,14 @@
   --yellow: hsl(43 96% 56%);
   --red: hsl(0 91% 71%);
   --green: hsl(158 64% 52%);
-  --light: hsl(0 0% 95%);
+  --light: hsl(0 0% 90%);
   --dark: hsl(0 0% 10%);
 
   /* Utilities */
   --border-color: hsl(0 0% 70%);
+  --border: 1px solid var(--border-color);
   --border-radius: 8px;
-  --shadow: hsl(0 0% 20% / 0.25);
+
+  /* Form Variables */
+  --input-shadow: inset 2px 2px 3px 1px hsla(0 0% 0% / 0.3);
 }

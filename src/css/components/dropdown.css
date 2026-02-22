@@ -1,0 +1,42 @@
+/* Dropdown Behaviour in tablet and larger screens */
+.dropdown-container {
+  --gap: 10px;
+  --dropdown-border: 1px solid black;
+  anchor-scope: --dropdown-container;
+}
+
+[data-dropdown-btn] {
+  anchor-name: --dropdown-container;
+}
+
+.dropdown {
+  border-radius: var(--border-radius);
+  border: none;
+  box-shadow: var(--shadow);
+  background: var(--bg-surface);
+
+  position: absolute;
+  position-anchor: --dropdown-container;
+  inset: auto;
+  top: anchor(bottom);
+  justify-self: anchor-center;
+
+  width: max-content;
+  padding: var(--gap);
+
+  display: none;
+  gap: var(--gap);
+
+  opacity: 0;
+  transition: display 500ms, opacity 500ms;
+  transition-behavior: allow-discrete;
+}
+
+.dropdown.show {
+  display: grid;
+  opacity: 1;
+
+  @starting-style {
+    opacity: 0;
+  }
+}

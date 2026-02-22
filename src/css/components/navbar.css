@@ -2,20 +2,34 @@
   /* Spacing */
   --nav-gap: 10px;
   /* Theming */
-  --nav-bg: var(--bg-secondary, hsl(0 0% 100%));
   --nav-btn-colour: var(--primary, hsl(212, 86%, 59%));
-  --nav-font-colour: var(--text-primary, hsl(0 0% 10%));
+  --nav-font-colour: var(--text, hsl(0 0% 10%));
   --nav-font-dark-colour: var(--dark, hsl(0 0% 10%));
   --nav-dropdown-border: 1px solid var(--border-color, hsl(0 0% 70%));
+
+  --shadow:
+    3px 3px 5px 2px hsla(0 0% 0% / 0.3),
+    inset -1px -1px 2px 2px color-mix(in hsl, var(--primary) 60%, black);
+
+  --shadow-hover:
+    -1px -1px 3px 1px hsla(0 0% 0% / 0.3),
+    inset 1px 1px 2px 2px color-mix(in hsl, var(--primary) 60%, black);
+
+  --shadow-pressed:
+    -1px -1px 3px 1px hsla(0 0% 0% / 0.3),
+    inset 1px 1px 2px 2px color-mix(in hsl, var(--primary) 60%, black);
+
   /* Typography */
-  --nav-line-height: var(--line-height-base, 1.6);
-  --nav-icon-width: var(--font-size-base, 1rem);
-  --nav-icon-height: var(--font-size-base, 1rem);
+  --logo-font-size: 1.75rem;
+  --nav-line-height: var(--line-height-text, 1.6);
+  --nav-icon-width: var(--text-medium, 1rem);
+  --nav-icon-height: var(--text-medium, 1rem);
+
   /* Visuals */
   --nav-btn-bg: none;
   --nav-btn-border: none;
+  --nav-btn-shadow: none;
   --nav-border-radius: var(--border-radius, 0.5rem);
-  background-color: var(--nav-bg);
 }
 
 .navbar-container {
@@ -24,7 +38,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  padding: 0.8rem;
+  padding: 0.5rem 0.8rem;
 
   @media (min-width: 576px) {
     max-width: 540px;
@@ -49,10 +63,23 @@
 
 /* Logo */
 .navbar-brand {
-  font-weight: 700;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: var(--logo-font-size);
+  color: var(--text);
+}
+
+.logo {
+  display: block;
+  margin-right: 10px;
+  width: var(--logo-font-size);
+  height: var(--logo-font-size);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .navbar-links {
@@ -82,6 +109,7 @@
   border: var(--nav-btn-border);
   border-radius: var(--nav-border-radius);
   background: var(--nav-btn-bg);
+  box-shadow: var(--nav-btn-shadow);
 
   /* Typography */
   line-height: var(--nav-line-height);
@@ -98,7 +126,7 @@
   align-items: center;
   justify-content: start;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.25s;
 }
 
 /* SVG Icon */
@@ -117,39 +145,62 @@
 .nav-btn:hover {
   --nav-btn-bg: var(--nav-btn-colour);
   --nav-font-colour: var(--dark);
+  --nav-btn-shadow: var(--shadow);
+  color: var(--dark);
+  filter: brightness(1.1);
 }
 
 .nav-btn.active {
   --nav-btn-bg: var(--nav-btn-colour);
-  --nav-font-colour: var(--nav-font-dark-colour);
-  transition: filter 0.2s;
-}
-
-.nav-btn.active:hover {
-  --nav-btn-bg: var(--nav-btn-colour);
+  --nav-btn-shadow: var(--shadow-hover);
   --nav-font-colour: var(--nav-font-dark-colour);
   filter: brightness(0.9);
 }
 
-#theme-toggle, #nav-toggle {
-  --nav-font-colour: var(--nav-font-dark-colour);
+.nav-btn.active:hover {
   --nav-btn-bg: var(--nav-btn-colour);
+  --nav-btn-shadow: var(--shadow);
+  --nav-font-colour: var(--nav-font-dark-colour);
+  filter: brightness(1.1);
+}
+
+.nav-btn.active:active, .nav-btn:hover:active {
+  --nav-btn-bg: var(--nav-btn-colour);
+  --nav-btn-shadow: var(--shadow-hover);
+  --nav-font-colour: var(--nav-font-dark-colour);
+  filter: brightness(0.9);
+}
+
+.nav-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--primary), black 60%);
+  border: none;
+}
+
+#theme-toggle, #nav-toggle {
   min-width: 100px;
 }
 
-/* Dropdown Behaviour in Navbar */
+/*
+  Dropdown Behaviour in Navbar 
+  - It will show as a static container
+*/
 .navbar .dropdown-container {
-  /* Layout */
   display: grid;
   gap: var(--nav-gap);
 }
 
-.navbar .dropdown-btn {
+.navbar [data-dropdown-btn]:not([data-dropdown-btn="nav-menu"]) {
   display: none;
 }
 
 .navbar .dropdown {
-  /* Layout */
+  background: none;
+  position: static;
+  opacity: 1;
+  width: 100%;
+  border: none;
+  padding: 0;
+  box-shadow: none;
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--nav-gap);
@@ -171,34 +222,40 @@
     margin-top: var(--nav-gap);
   }
 
+  /*
+    Dropdown Behaviour in Navbar 
+    - It will show as a dropdwn menu
+  */
   .navbar .dropdown-container {
-    position: relative;
-    display: inline-block;
+    anchor-scope: --dropdown-container;
   }
 
-  .navbar .dropdown-btn {
+  /* Keep the menu button hidden */
+  .navbar [data-dropdown-btn]:not([data-dropdown-btn="nav-menu"]) {
     display: flex;
+    anchor-name: --dropdown-container;
   }
 
   .navbar .dropdown {
     border-radius: var(--nav-border-radius);
     border: var(--nav-dropdown-border);
-    background: var(--nav-bg);
-    opacity: 0;
+    background: var(--bg-surface);
 
     position: absolute;
-    right: 0;
-    top: 100%;
-    transform: translateY(-5px);
+    position-anchor: --dropdown-container;
+    inset: auto;
+    top: calc(anchor(bottom) + 5px);
+    justify-self: anchor-center;
 
     width: max-content;
     padding: var(--nav-gap);
 
-    display: grid;
+    display: none;
     gap: var(--nav-gap);
-    pointer-events: none;
 
-    transition: 0.2s ease;
+    opacity: 0;
+    transition: display 500ms, opacity 500ms;
+    transition-behavior: allow-discrete;
   }
 
   .navbar .dropdown .nav-btn {
@@ -206,9 +263,12 @@
   }
 
   .navbar .dropdown.show {
+    display: grid;
     opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
+
+    @starting-style {
+      opacity: 0;
+    }
   }
 }
 
