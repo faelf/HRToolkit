@@ -1,19 +1,20 @@
 export function dropdown() {
-  const dropdownBtns = document.querySelectorAll("[data-dropdown-btn]");
+  document.addEventListener("click", (e) => {
+    console.log("click");
+    const btn = e.target.closest("[data-dropdown-btn]");
 
-  dropdownBtns.forEach((btn) => {
-    const dropdownId = btn.dataset.dropdownBtn;
-    const dropdown = document.querySelector(`[data-dropdown="${dropdownId}"]`);
-
-    btn.addEventListener("click", () => {
+    if (btn) {
+      const dropdownId = btn.dataset.dropdownBtn;
+      const dropdown = document.querySelector(
+        `[data-dropdown="${dropdownId}"]`,
+      );
+      e.stopPropagation();
       dropdown.classList.toggle("show");
-    });
+      return;
+    }
 
-    // Close dropdown if clicked outside
-    document.addEventListener("click", (e) => {
-      if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
-        dropdown.classList.remove("show");
-      }
+    document.querySelectorAll("[data-dropdown]").forEach((dropdown) => {
+      dropdown.classList.remove("show");
     });
   });
 }
