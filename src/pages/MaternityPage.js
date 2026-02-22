@@ -11,7 +11,7 @@ export const MaternityPage = {
       <div class="section-body">
         <form id="maternity-form">
 
-          <div class="mb-3">
+          <div class="mb-3 d-none">
             <label for="leave-type-input" class="form-label">Select leave type</label>
             <select id="leave-type-input" name="leaveType" aria-describedby="leave-type-helper" disabled>
               <option value="" disabled selected>Select an option</option>
