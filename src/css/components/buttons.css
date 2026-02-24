@@ -6,19 +6,17 @@
   background: var(--light);
   color: var(--dark);
   padding: 0.5em 1em;
-  font-size: var(--text-medium);
+  font-size: var(--text-md);
   font-weight: 600;
   cursor: pointer;
   border-radius: var(--border-radius);
   transition: all 0.3s;
   box-shadow:
-    2px 2px 4px 1px hsla(0 0% 10% / 0.2),
     inset -2px -2px 2px 1px hsla(0 0% 10% / 0.2);
 }
 
 .btn:hover {
   box-shadow:
-    -2px -2px 4px 1px hsla(0 0% 0% / 0.2),
     inset 2px 2px 1px 1px hsla(0 0% 0% / 0.2);
 }
 
@@ -34,15 +32,13 @@
   background-color: var(--green);
   color: color-mix(in srgb, var(--green), black 60%);
   box-shadow:
-    3px 3px 8px 2px hsla(0 0% 0% / 0.2),
-    inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 70%, var(--shadow-mix));
+    inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
 .btn.green:hover {
   filter: brightness(0.9);
   box-shadow:
-    -1px -1px 3px 1px hsla(0 0% 0% / 0.2),
-    inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 70%, var(--shadow-mix));
+    inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
 .btn.yellow {
@@ -51,13 +47,11 @@
   background-color: var(--yellow);
   color: color-mix(in srgb, var(--yellow), black 60%);
   box-shadow:
-    3px 3px 8px 2px hsla(0 0% 0% / 0.2),
-    inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 70%, var(--shadow-mix));
+    inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
 .btn.yellow:hover {
   filter: brightness(0.9);
   box-shadow:
-    -1px -1px 3px 1px hsla(0 0% 0% / 0.2),
-    inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 70%, var(--shadow-mix));
+    inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }

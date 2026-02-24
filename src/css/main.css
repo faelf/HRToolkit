@@ -1,7 +1,8 @@
 /* Global */
 @import "./global/variables.css";
-@import "./global/reset.css";
+@import "./global/light.css";
 @import "./global/dark.css";
+@import "./global/reset.css";
 
 /* Layout */
 @import "./layout/grid.css";

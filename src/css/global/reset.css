@@ -9,7 +9,7 @@ body {
     "Segoe UI",
     sans-serif;
   line-height: var(--line-height-text);
-  font-size: var(--text-medium);
+  font-size: var(--text-md);
   background-color: var(--bg-bottom);
   color: var(--text);
   margin: 0;

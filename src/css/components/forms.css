@@ -14,12 +14,12 @@ textarea {
   width: 100%;
   margin: 0 0 0.5rem 0;
   padding: 0.5rem 1rem;
-  font-size: inherit;
+  font-size: var(--text-md);
   border-radius: var(--border-radius);
-  background-color: var(--bg-surface);
-  color: var(--text-muted);
+  background-color: var(--bg-bottom);
+  color: var(--text);
   font-family: inherit;
-  border: none;
+  border: 1px solid var(--border-colour);
   box-shadow: var(--input-shadow);
 }
 
@@ -27,7 +27,7 @@ input[type="date"]::-webkit-datetime-edit-text,
 input[type="date"]::-webkit-datetime-edit-month-field,
 input[type="date"]::-webkit-datetime-edit-day-field,
 input[type="date"]::-webkit-datetime-edit-year-field {
-  color: var(--text-muted);
+  color: var(--text);
 }
 
 input[type="date"] {

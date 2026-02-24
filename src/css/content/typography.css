@@ -6,27 +6,27 @@
 }
 
 .headline-1 {
-  font-size: calc(var(--text-medium) * 1.625 + 4.5vw);
+  font-size: calc(var(--text-md) * 1.625 + 4.5vw);
 }
 
 .headline-2 {
-  font-size: calc(var(--text-medium) * 1.575 + 3.9vw);
+  font-size: calc(var(--text-md) * 1.575 + 3.9vw);
 }
 
 .headline-3 {
-  font-size: calc(var(--text-medium) * 1.525 + 3.9vw);
+  font-size: calc(var(--text-md) * 1.525 + 3.9vw);
 }
 
 .headline-4 {
-  font-size: calc(var(--text-medium) * 1.475 + 3.9vw);
+  font-size: calc(var(--text-md) * 1.475 + 3.9vw);
 }
 
 .headline-5 {
-  font-size: calc(var(--text-medium) * 1.425 + 3.9vw);
+  font-size: calc(var(--text-md) * 1.425 + 3.9vw);
 }
 
 .headline-6 {
-  font-size: calc(var(--text-medium) * 1.375 + 1.5vw);
+  font-size: calc(var(--text-md) * 1.375 + 1.5vw);
 }
 
 /* Standard Headings Base Styles */
@@ -41,33 +41,33 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Standard Headings */
 .h1, h1 {
-  font-size: calc(var(--text-medium) * 1.375 + 1.5vw);
+  font-size: calc(var(--text-md) * 1.375 + 1.5vw);
 }
 
 .h2, h2 {
-  font-size: calc(var(--text-medium) * 1.325 + 0.9vw);
+  font-size: calc(var(--text-md) * 1.325 + 0.9vw);
 }
 
 .h3, h3 {
-  font-size: calc(var(--text-medium) * 1.3 + 0.6vw);
+  font-size: calc(var(--text-md) * 1.3 + 0.6vw);
 }
 
 .h4, h4 {
-  font-size: calc(var(--text-medium) * 1.275 + 0.3vw);
+  font-size: calc(var(--text-md) * 1.275 + 0.3vw);
 }
 
 .h5, h5 {
-  font-size: calc(var(--text-medium) * 1.25);
+  font-size: calc(var(--text-md) * 1.25);
 }
 
 .h6, h6 {
-  font-size: var(--text-medium);
+  font-size: var(--text-md);
 }
 
 p {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-size: var(--text-medium);
+  font-size: var(--text-md);
   line-height: var(--line-height-text);
   text-align: justify;
   hyphens: auto;
@@ -126,42 +126,42 @@ code {
 /* Desktop Breakpoint (1200px+) */
 @media (min-width: 1200px) {
   .headline-1 {
-    font-size: calc(var(--text-medium) * 5);
+    font-size: calc(var(--text-md) * 5);
   }
 
   .headline-2 {
-    font-size: calc(var(--text-medium) * 4.5);
+    font-size: calc(var(--text-md) * 4.5);
   }
 
   .headline-3 {
-    font-size: calc(var(--text-medium) * 4);
+    font-size: calc(var(--text-md) * 4);
   }
 
   .headline-4 {
-    font-size: calc(var(--text-medium) * 3.5);
+    font-size: calc(var(--text-md) * 3.5);
   }
 
   .headline-5 {
-    font-size: calc(var(--text-medium) * 3);
+    font-size: calc(var(--text-md) * 3);
   }
 
   .headline-6 {
-    font-size: calc(var(--text-medium) * 2.5);
+    font-size: calc(var(--text-md) * 2.5);
   }
 
   .h1, h1 {
-    font-size: calc(var(--text-medium) * 2.5);
+    font-size: calc(var(--text-md) * 2.5);
   }
 
   .h2, h2 {
-    font-size: calc(var(--text-medium) * 2);
+    font-size: calc(var(--text-md) * 2);
   }
 
   .h3, h3 {
-    font-size: calc(var(--text-medium) * 1.75);
+    font-size: calc(var(--text-md) * 1.75);
   }
 
   .h4, h4 {
-    font-size: calc(var(--text-medium) * 1.5);
+    font-size: calc(var(--text-md) * 1.5);
   }
 }
