@@ -349,7 +349,7 @@ export const MaternityPage = {
 
       if (!res.eligibility.smp) {
         return /* html */ `
-        <h3>Maternity Leave Summary</h3>
+        <h3 class="mb-2">Maternity Leave Summary</h3>
         <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
         <p><strong>Eligibility:</strong> Not eligible for SMP (less than 26 weeks service).</p>
         <p>52 weeks unpaid leave.</p>
@@ -359,7 +359,7 @@ export const MaternityPage = {
 
       if (res.eligibility.smp && !res.eligibility.omp) {
         return /* html */ `
-        <h3>Maternity Leave Summary</h3>
+        <h3 class="mb-2">Maternity Leave Summary</h3>
         <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
         <p><strong>Eligibility:</strong> SMP.</p>
         <ul>
@@ -371,13 +371,13 @@ export const MaternityPage = {
       }
 
       return /* html */ `
-      <h3>Maternity Leave Summary</h3>
+      <h3 class="mb-2">Maternity Leave Summary</h3>
       <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
       <p><strong>Maternity Leave Start Date:</strong> ${res.maternityLeaveStart}</p>
       <p><strong>EWC:</strong> ${res.ewc.start} to ${res.ewc.end}</p>
       <p><strong>Qualifying Week:</strong> ${res.qualifyingWeek.start} to ${res.qualifyingWeek.end}</p>
 
-      <h4>Leave & Pay Breakdown</h4>
+      <h4 class="mb-2">Leave & Pay Breakdown</h4>
       <ul>
         <li>Full Pay (${duration.fullPay} weeks): ${res.payPeriods.fullPay.start} to ${res.payPeriods.fullPay.end}</li>
         <li>Half Pay (${duration.halfPay} weeks): ${res.payPeriods.halfPay.start} to ${res.payPeriods.halfPay.end}</li>
