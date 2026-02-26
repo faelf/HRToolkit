@@ -87,13 +87,12 @@ textarea:disabled {
 }
 
 /* Invalid/Error state */
-input:user-invalid,
-select:user-invalid {
+.is-invalid {
   border-color: var(--red);
   outline-color: none;
 }
 
-input:user-valid {
+.is-valid {
   border-color: var(--green);
 }
 
@@ -108,14 +107,12 @@ input:user-valid {
 /* Form validation feedback */
 .invalid-feedback {
   display: block;
-  margin-top: 0.5rem;
   font-size: 0.875rem;
-  color: var(--danger);
+  color: var(--red);
 }
 
 .valid-feedback {
   display: block;
-  margin-top: 0.5rem;
   font-size: 0.875rem;
   color: var(--green);
 }

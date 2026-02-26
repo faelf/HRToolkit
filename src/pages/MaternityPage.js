@@ -234,7 +234,7 @@ export const MaternityPage = {
      * @param {{smp: boolean, omp: boolean}} eligibility - Eligibility status.
      * @returns {Object} Object containing pay period ranges.
      */
-    function getMaternityPayPeriods(maternityStart, eligibility) {
+    function getPayPeriods(maternityStart, eligibility) {
       const start = new Date(maternityStart);
 
       let fullPay = null;
@@ -282,7 +282,7 @@ export const MaternityPage = {
      * Main calculation function to determine dates and eligibility.
      * @returns {Object} The calculation results.
      */
-    function calculateMaternityDetails() {
+    function calculateMat() {
       const empStart = new Date(startDateInput.value);
       const babyDue = new Date(babyDueInput.value);
 
@@ -315,7 +315,7 @@ export const MaternityPage = {
         ompEligible = false;
       }
 
-      const payPeriods = getMaternityPayPeriods(maternityStart, {
+      const payPeriods = getPayPeriods(maternityStart, {
         smp: smpEligible,
         omp: ompEligible,
       });
@@ -341,7 +341,7 @@ export const MaternityPage = {
 
     /**
      * Generates the HTML narrative based on calculation results.
-     * @param {Object} res - The result object from calculateMaternityDetails.
+     * @param {Object} res - The result object from calculateMat.
      * @returns {string} HTML string.
      */
     function generateNarrative(res) {
@@ -390,51 +390,43 @@ export const MaternityPage = {
     const helpers = {
       employment: document.querySelector("#start-date-input-helper"),
       babyDue: document.querySelector("#baby-due-date-input-helper"),
-      maternity: document.querySelector("#maternity-start-date-input-helper"),
+      mat: document.querySelector("#maternity-start-date-input-helper"),
     };
     const originalTexts = {
       employment: helpers.employment.textContent,
       babydue: helpers.babyDue.textContent,
-      maternity: helpers.maternity.textContent,
+      mat: helpers.mat.textContent,
     };
 
     // Event Listener
     maternityForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      let hasErrors = false;
 
-      /**
-       * Validates a date input field.
-       * @param {HTMLInputElement} input - The input element.
-       * @param {HTMLElement} helper - The helper text element.
-       * @param {string} name - The name of the field for error messages.
-       * @param {boolean} [required=true] - Whether the field is required.
-       * @returns {boolean} True if valid, false otherwise.
-       */
-      function checkDate(input, helper, name, required = true) {
-        const value = input.value;
-        if (required && !value) {
-          helper.className = "invalid-feedback";
-          helper.textContent = `${name} is required`;
-          return false;
-        }
-        if (value && isNaN(new Date(value).getTime())) {
-          helper.className = "invalid-feedback";
-          helper.textContent = "Invalid date";
-          return false;
-        }
-        helper.className = "input-helper";
-        helper.textContent = originalTexts[name.toLowerCase()];
-        return true;
+      const StartDate = new Date(startDateInput.value);
+      const BabyDueDate = new Date(babyDueInput.value);
+      const MatStartDate = new Date(maternityStartInput.value);
+
+      if (StartDate > BabyDueDate) {
+        babyDueInput.classList.add("is-invalid");
+        helpers.babyDue.className = "invalid-feedback";
+        helpers.babyDue.textContent = "Baby cannot be due before the start date.";
+        return;
+      } else {
+        babyDueInput.classList.remove("is-invalid");
+        helpers.babyDue.className = "input-helper";
+        helpers.babyDue.textContent = originalTexts.mat;
       }
 
-      hasErrors |= !checkDate(startDateInput, helpers.employment, "Employment");
-      hasErrors |= !checkDate(babyDueInput, helpers.babyDue, "BabyDue");
-      hasErrors |= !checkDate(maternityStartInput, helpers.maternity, "Maternity", false);
+      if (BabyDueDate < MatStartDate) {
+        helpers.mat.className = "invalid-feedback";
+        helpers.mat.textContent = "Maternity cannot start after baby is due.";
+        return;
+      } else {
+        helpers.mat.className = "input-helper";
+        helpers.mat.textContent = originalTexts.mat;
+      }
 
-      if (hasErrors) return;
-
-      resultsContainer.innerHTML = generateNarrative(calculateMaternityDetails());
+      resultsContainer.innerHTML = generateNarrative(calculateMat());
     });
   },
 };
