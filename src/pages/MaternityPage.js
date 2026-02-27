@@ -398,33 +398,43 @@ export const MaternityPage = {
       mat: helpers.mat.textContent,
     };
 
-    // Event Listener
-    maternityForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+    function validateDates() {
+      let isValid = true;
 
       const StartDate = new Date(startDateInput.value);
       const BabyDueDate = new Date(babyDueInput.value);
       const MatStartDate = new Date(maternityStartInput.value);
 
       if (StartDate > BabyDueDate) {
-        babyDueInput.classList.add("is-invalid");
         helpers.babyDue.className = "invalid-feedback";
         helpers.babyDue.textContent = "Baby cannot be due before the start date.";
-        return;
+        babyDueInput.classList.add("is-invalid");
+        isValid = false;
       } else {
-        babyDueInput.classList.remove("is-invalid");
         helpers.babyDue.className = "input-helper";
-        helpers.babyDue.textContent = originalTexts.mat;
+        helpers.babyDue.textContent = originalTexts.babyDue;
+        babyDueInput.classList.remove("is-invalid");
       }
 
       if (BabyDueDate < MatStartDate) {
         helpers.mat.className = "invalid-feedback";
         helpers.mat.textContent = "Maternity cannot start after baby is due.";
-        return;
+        maternityStartInput.classList.add("is-invalid");
+        isValid = false;
       } else {
         helpers.mat.className = "input-helper";
         helpers.mat.textContent = originalTexts.mat;
+        maternityStartInput.classList.remove("is-invalid");
       }
+
+      return isValid;
+    }
+
+    // Event Listener
+    maternityForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (!validateDates()) return;
 
       resultsContainer.innerHTML = generateNarrative(calculateMat());
     });
