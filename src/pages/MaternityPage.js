@@ -11,7 +11,7 @@ export const MaternityPage = {
       <div class="section-body">
         <form id="maternity-form">
 
-          <div class="mb-3 d-none">
+          <div class="input-item d-none">
             <label for="leave-type-input" class="form-label">Select leave type</label>
             <select id="leave-type-input" name="leaveType" aria-describedby="leave-type-helper" disabled>
               <option value="" disabled selected>Select an option</option>
@@ -23,7 +23,7 @@ export const MaternityPage = {
             </div>
           </div>
 
-          <div class="mb-3">
+          <div class="input-item">
             <label for="start-date-input" class="form-label">Employment Start Date</label>
             <input type="date" id="start-date-input" required>
             <div id="start-date-input-helper" class="input-helper">
@@ -31,7 +31,7 @@ export const MaternityPage = {
             </div>
           </div>
 
-          <div class="mb-3">
+          <div class="input-item">
             <label for="baby-due-date-input" class="form-label">Baby Due Date</label>
             <input type="date" id="baby-due-date-input" required>
             <div id="baby-due-date-input-helper" class="input-helper">
@@ -39,7 +39,7 @@ export const MaternityPage = {
             </div>
           </div>
 
-          <div class="mb-3">
+          <div class="input-item">
             <label for="maternity-start-date-input" class="form-label">Maternity Start Date</label>
             <input type="date" id="maternity-start-date-input">
             <div id="maternity-start-date-input-helper" class="input-helper">
@@ -345,32 +345,46 @@ export const MaternityPage = {
      * @returns {string} HTML string.
      */
     function generateNarrative(res) {
-      if (!res) return "";
+      let results;
 
+      if (!res) {
+        results = "There is no results.";
+        return results;
+      }
+
+      // Not eligible
       if (!res.eligibility.smp) {
-        return /* html */ `
+        results = /* html */ `
         <h3 class="mb-2">Maternity Leave Summary</h3>
         <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
         <p><strong>Eligibility:</strong> Not eligible for SMP (less than 26 weeks service).</p>
         <p>52 weeks unpaid leave.</p>
         <ul><li>${res.payPeriods.unpaid.start} to ${res.payPeriods.unpaid.end}</li></ul>
         `;
+        return results;
       }
 
+      // SMP eligible
       if (res.eligibility.smp && !res.eligibility.omp) {
-        return /* html */ `
+        results = /* html */ `
         <h3 class="mb-2">Maternity Leave Summary</h3>
-        <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
         <p><strong>Eligibility:</strong> SMP.</p>
+        <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
+        <p><strong>EWC:</strong> ${res.ewc.start} to ${res.ewc.end}</p>
+        <p><strong>Maternity Leave Start Date:</strong> ${res.maternityLeaveStart}</p>
+        <p><strong>Qualifying Week:</strong> ${res.qualifyingWeek.start} to ${res.qualifyingWeek.end}</p>
         <ul>
           <li><strong>Weeks 1 - 6 (90% pay):</strong> ${res.payPeriods.smpFirstSixWeeks.start} to ${res.payPeriods.smpFirstSixWeeks.end}</li>
           <li><strong>Weeks 7 - 39 (Standard SMP rate):</strong> ${res.payPeriods.smp.start} to ${res.payPeriods.smp.end}</li>
           <li><strong>Weeks 40 - 52 (Unpaid):</strong> ${res.payPeriods.unpaid.start} to ${res.payPeriods.unpaid.end}</li>
         </ul>
         `;
+
+        return results;
       }
 
-      return /* html */ `
+      // OMP eligible
+      results = /* html */ `
       <h3 class="mb-2">Maternity Leave Summary</h3>
       <p><strong>Employment Start Date:</strong> ${res.employmentStartDate}</p>
       <p><strong>Maternity Leave Start Date:</strong> ${res.maternityLeaveStart}</p>
@@ -385,6 +399,8 @@ export const MaternityPage = {
         <li>Unpaid (${duration.unpaid} weeks): ${res.payPeriods.unpaid.start} to ${res.payPeriods.unpaid.end}</li>
       </ul>
       `;
+
+      return results;
     }
 
     const helpers = {
