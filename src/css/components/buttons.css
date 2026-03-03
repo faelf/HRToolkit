@@ -5,7 +5,8 @@
   border: none;
   background: var(--light);
   color: var(--dark);
-  padding: 0.5em 1em;
+  padding: 0.5rem 1rem;
+  line-height: var(--line-height-text);
   font-size: var(--text-md);
   font-weight: 600;
   cursor: pointer;
