@@ -12,6 +12,7 @@
   --border-colour: hsla(0 0% 0% / 1);
 
   /* Form */
+  --input-focus: hsl(0 0% 100% / 0.05);
   --input-shadow:
     inset 1px 1px 2px 1px hsla(0 0% 0% / 0.6);
 }
