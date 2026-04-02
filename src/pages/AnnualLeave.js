@@ -70,11 +70,13 @@ export const AnnualLeavePage = {
       AnnualEntitlement: document.querySelector("#annual-entitlement"),
     };
 
-    function showresults(submit, DomElements) {
-      submit.preventDefault();
-      console.log(DomElements.Form);
+    function showresults(event, elements) {
+      event.preventDefault();
+      console.log(elements.Form);
     }
 
-    proratedform.addEventListener("submit", showresults(DomElements));
+    DomElements.Form.addEventListener("submit", function (event) {
+      showresults(event, DomElements);
+    });
   },
 };
