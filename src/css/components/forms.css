@@ -4,6 +4,14 @@
   margin-bottom: 1rem;
 }
 
+/* Checkbox Item Layout */
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
 /* Labels */
 label {
   display: block;
@@ -11,6 +19,10 @@ label {
   color: var(--text);
   font-weight: 600;
   font-size: inherit;
+}
+
+fieldset {
+  border-radius: var(--border-radius);
 }
 
 /* Inputs */
@@ -63,6 +75,27 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  border-radius: 4px;
+  /* Slightly smaller radius for checkboxes */
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 input:focus,
@@ -138,4 +171,36 @@ textarea:disabled {
   display: block;
   font-size: 0.875rem;
   color: var(--green);
+}
+
+/* Progress Bar */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+progress {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: var(--text-md);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 1px solid var(--text);
+  background-color: var(--text);
+}
+
+progress::-webkit-progress-bar {
+  background-color: var(--text);
+}
+
+progress::-webkit-progress-value {
+  background-color: var(--green);
+  border-radius: var(--border-radius);
+}
+
+progress::-moz-progress-bar {
+  background-color: var(--green);
+  border-radius: var(--border-radius);
 }

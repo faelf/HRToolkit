@@ -123,6 +123,10 @@ code {
   text-align: right;
 }
 
+.text-center {
+  text-align: center;
+}
+
 /* Desktop Breakpoint (1200px+) */
 @media (min-width: 1200px) {
   .headline-1 {
