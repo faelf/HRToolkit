@@ -1,0 +1,30 @@
+.form-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--gap);
+  margin-bottom: var(--gap);
+}
+
+.candidate-details, .employment-details, .onboarding-progress, .accounts {
+  display: grid;
+  gap: var(--gap);
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .candidate-details {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .employment-details {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .onboarding-progress {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .accounts {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

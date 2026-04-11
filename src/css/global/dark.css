@@ -9,7 +9,7 @@
   --text-muted: hsl(0 0% 75%);
 
   /* Utilities */
-  --border-colour: hsla(0 0% 0% / 1);
+  --border-colour: hsla(0 0% 10% / 0.5);
 
   /* Form */
   --input-focus: hsl(0 0% 100% / 0.05);

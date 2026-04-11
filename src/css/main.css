@@ -13,6 +13,9 @@
 @import "./content/typography.css";
 @import "./content/table.css";
 
+/* Images */
+@import "./content/svg.css";
+
 /* Components */
 @import "./components/navbar.css";
 @import "./components/buttons.css";
@@ -20,3 +23,6 @@
 @import "./components/forms.css";
 @import "./components/info-box.css";
 @import "./components/dropdown.css";
+
+/* Page Layouts */
+@import "./layout/candidatedetails.css";

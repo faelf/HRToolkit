@@ -23,6 +23,11 @@ label {
 
 fieldset {
   border-radius: var(--border-radius);
+  border: 1px solid hsla(0 0% 30% / 0.5);
+}
+
+legend {
+  font-weight: 600;
 }
 
 /* Inputs */

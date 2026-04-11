@@ -2,10 +2,13 @@
 .btn {
   --shadow-inset-colour: hsl(0 0% 10% / 0.3);
   --shadow-mix: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   background: var(--light);
   color: var(--dark);
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   line-height: var(--line-height-text);
   font-size: var(--text-md);
   font-weight: 600;
@@ -67,6 +70,21 @@
 }
 
 .btn.blue:hover {
+  filter: brightness(0.9);
+  box-shadow:
+    inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
+}
+
+.btn.red {
+  --shadow-inset-colour: var(--red);
+  --shadow-mix: black;
+  background-color: var(--red);
+  color: color-mix(in srgb, var(--red), black 60%);
+  box-shadow:
+    inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
+}
+
+.btn.red:hover {
   filter: brightness(0.9);
   box-shadow:
     inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
