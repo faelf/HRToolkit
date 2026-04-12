@@ -1,52 +1,42 @@
 table {
-  --table-font-colour: var(--text);
-  --table-border-colour: var(--bg-bottom);
-  --table-border: 2px solid var(--table-border-colour);
-  --table-border-radius: var(--border-radius);
-  --table-caption-bg: var(--bg-surface);
-  --thead-bg: var(--bg-surface);
-  --tbody-bg: var(--bg-bottom);
-  --tr-second-bg: var(--bg-surface);
-  --tfoot-bg: var(--bg-surface);
-
-  width: 100%;
-  border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 0;
-  color: var(--table-font-colour);
-  border: var(--table-border);
-  border-radius: var(--table-border-radius);
+  width: 100%;
+  border-radius: calc(var(--border-radius) * 2);
   overflow: hidden;
+  box-shadow: none;
 }
 
-table.primary {
-  --table-font-colour: color-mix(in srgb, var(--primary), black 60%);
-  --table-border-colour: color-mix(in srgb, var(--primary), black 60%);
-  --table-caption-bg: var(--bg-surface);
-  --thead-bg: var(--primary);
-  --tbody-bg: color-mix(in srgb, var(--primary), white 60%);
-  --tr-second-bg: var(--primary);
-  --tfoot-bg: var(--bg-surface);
+thead {
+  background: var(--bg-thead);
 }
 
-table thead {
-  background-color: var(--thead-bg);
+tbody tr:nth-child(even) {
+  background: var(--bg-tr-second);
 }
 
-table th,
-table td {
-  padding: 0.5rem 1rem;
+tbody tr:hover, tr:nth-child(even):hover {
+  background: var(--bg-tr-hover);
 }
 
-table tbody {
-  background-color: var(--tbody-bg);
+th {
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  text-align: left;
 }
 
-table tbody tr:nth-of-type(2n) {
-  background-color: var(--tr-second-bg);
+td {
+  padding: 0.75rem 1.5rem;
 }
 
-table tfoot tr td {
-  background-color: var(--tfoot-bg);
+table.lower {
+  --border-bottom: none;
+  box-shadow: var(--box-shadow-lower);
+}
+
+table.top {
+  --border-bottom: none;
+  box-shadow: var(--box-shadow-top);
 }
 
 @media (max-width: 992px) {

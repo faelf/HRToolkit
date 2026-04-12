@@ -15,4 +15,17 @@
   --input-focus: hsla(0 0% 0% / 0.05);
   --input-shadow:
     inset 1px 1px 2px 1px hsla(0 0% 0% / 0.4);
+
+  /* Table */
+  --bg-thead: hsla(0 0% 0% / 0.2);
+  --bg-tr-second: hsla(0 0% 0% / 0.1);
+  --bg-tr-hover: hsla(0 0% 0% / 0.3);
+
+  --box-shadow-lower:
+    inset 3px 3px 6px hsla(0 0% 0% / 0.4),
+    inset -3px -3px 6px hsla(0 0% 90% / 0.1);
+
+  --box-shadow-top:
+    inset 1px 1px 6px 1px hsla(0 0% 80% / 0.4),
+    4px 4px 6px 1px hsla(0 0% 0% / 0.3);
 }
