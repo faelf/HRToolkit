@@ -8,7 +8,7 @@
   border: none;
   background: var(--light);
   color: var(--dark);
-  padding: 0.3rem 1rem;
+  padding: 0.5rem 1rem;
   line-height: var(--line-height-text);
   font-size: var(--text-md);
   font-weight: 600;
@@ -19,18 +19,38 @@
     inset -2px -2px 2px 1px hsla(0 0% 10% / 0.2);
 }
 
-.btn:hover {
+.btn-sm {
+  --shadow-inset-colour: hsl(0 0% 10% / 0.3);
+  --shadow-mix: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: var(--light);
+  color: var(--dark);
+  padding: 0.3rem 0.6rem;
+  line-height: var(--line-height-text);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: all 0.3s;
+  box-shadow:
+    inset -2px -2px 2px 1px hsla(0 0% 10% / 0.2);
+}
+
+.btn-sm:hover, .btn:hover {
   box-shadow:
     inset 2px 2px 1px 1px hsla(0 0% 0% / 0.2);
 }
 
-.btn:active {
+.btn-sm:active, .btn:active {
   transform: scale(0.98);
   transition: transform 0.1s;
 }
 
 /* Semantic Button Styles */
-.btn.green {
+.btn-sm.green, .btn.green {
   --shadow-inset-colour: var(--green);
   --shadow-mix: black;
   background-color: var(--green);
@@ -39,13 +59,13 @@
     inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
-.btn.green:hover {
+.btn-sm.green:hover, .btn.green:hover {
   filter: brightness(0.9);
   box-shadow:
     inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
-.btn.yellow {
+.btn-sm.yellow, .btn.yellow {
   --shadow-inset-colour: var(--yellow);
   --shadow-mix: black;
   background-color: var(--yellow);
@@ -54,13 +74,13 @@
     inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
-.btn.yellow:hover {
+.btn-sm.yellow:hover, .btn.yellow:hover {
   filter: brightness(0.9);
   box-shadow:
     inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
-.btn.blue {
+.btn-sm.blue, .btn.blue {
   --shadow-inset-colour: var(--blue);
   --shadow-mix: black;
   background-color: var(--blue);
@@ -69,13 +89,13 @@
     inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
-.btn.blue:hover {
+.btn-sm.blue:hover, .btn.blue:hover {
   filter: brightness(0.9);
   box-shadow:
     inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
-.btn.red {
+.btn-sm.red, .btn.red {
   --shadow-inset-colour: var(--red);
   --shadow-mix: black;
   background-color: var(--red);
@@ -84,7 +104,7 @@
     inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
-.btn.red:hover {
+.btn-sm.red:hover, .btn.red:hover {
   filter: brightness(0.9);
   box-shadow:
     inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
