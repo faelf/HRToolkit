@@ -1,16 +1,8 @@
+import SalaryHTML from "../html/salary.html?raw";
+
 export const SalaryPage = {
   title: "HR Toolkit - Salary",
-  html: /* html */ `
-  <section>
-    <header class="section-header">
-      <h2>Salary</h2>
-    </header>
-    <article class="section-body">
-      <p>Coming Soon ...</p>
-    </article>
-  </section>
-  `,
-
+  html: SalaryHTML,
   setup() {
     // Page logic will go here
   },
