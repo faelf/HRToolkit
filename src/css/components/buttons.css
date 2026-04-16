@@ -14,7 +14,6 @@
   font-weight: 600;
   cursor: pointer;
   border-radius: var(--border-radius);
-  transition: all 0.3s;
   box-shadow:
     inset -2px -2px 2px 1px hsla(0 0% 10% / 0.2);
 }
@@ -34,7 +33,6 @@
   font-weight: 600;
   cursor: pointer;
   border-radius: var(--border-radius);
-  transition: all 0.3s;
   box-shadow:
     inset -2px -2px 2px 1px hsla(0 0% 10% / 0.2);
 }
@@ -42,11 +40,6 @@
 .btn-sm:hover, .btn:hover {
   box-shadow:
     inset 2px 2px 1px 1px hsla(0 0% 0% / 0.2);
-}
-
-.btn-sm:active, .btn:active {
-  transform: scale(0.98);
-  transition: transform 0.1s;
 }
 
 /* Semantic Button Styles */
@@ -108,4 +101,13 @@
   filter: brightness(0.9);
   box-shadow:
     inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
+}
+
+/* Active States */
+.btn-sm:active, .btn:active,
+.btn-sm.green:active, .btn.green:active,
+.btn-sm.yellow:active, .btn.yellow:active,
+.btn-sm.blue:active, .btn.blue:active,
+.btn-sm.red:active, .btn.red:active {
+  filter: brightness(1.2);
 }
