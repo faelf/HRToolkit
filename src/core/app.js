@@ -35,9 +35,6 @@ router.init();
  */
 function initialLoad() {
   dropdown();
-  // Sync the UI with the current URL
-  router.handlePopState({ state: history.state });
-
   // Apply the user's preferred theme
   initTheme();
 }
