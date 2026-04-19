@@ -56,8 +56,9 @@ export class Router {
    * Syncs the UI by adding the 'active' class to matching links.
    * Uses the configured linkAttribute to identify navigation elements.
    * @param {string} activePageKey
+   * @param {string} [providedActiveGroup]
    */
-  updateActiveLinks(activePageKey) {
+  updateActiveLinks(activePageKey, providedActiveGroup) {
     const selector = `[${this.linkAttribute}]`;
     const links = document.querySelectorAll(selector);
 
@@ -66,7 +67,7 @@ export class Router {
       return val === activePageKey || val === `#${activePageKey}`;
     });
 
-    const activeGroup = activeLinkElement?.getAttribute("data-active-group");
+    const activeGroup = providedActiveGroup || activeLinkElement?.getAttribute("data-active-group");
 
     links.forEach((link) => {
       const val = link.getAttribute(this.linkAttribute);
@@ -132,7 +133,7 @@ export class Router {
     document.title = content.title;
 
     // Visual feedback for navigation
-    this.updateActiveLinks(pageKey);
+    this.updateActiveLinks(pageKey, params.activeGroup);
   }
 
   /**
@@ -151,10 +152,11 @@ export class Router {
 
       const pageKey = rawLink.replace("#", "");
       const pageId = link.getAttribute(this.idAttribute);
+      const activeGroup = link.getAttribute("data-active-group");
 
       document.dispatchEvent(
         new CustomEvent("navigate", {
-          detail: { pageKey, pageId },
+          detail: { pageKey, pageId, activeGroup },
         }),
       );
     }
