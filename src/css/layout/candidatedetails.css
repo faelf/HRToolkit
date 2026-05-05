@@ -1,8 +1,6 @@
-.form-buttons {
+#candidate-form {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   gap: var(--gap);
-  margin-bottom: var(--gap);
 }
 
 .candidate-details, .employment-details, .onboarding-progress, .accounts {
@@ -12,19 +10,91 @@
 }
 
 @media (min-width: 768px) {
+  #candidate-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .candidate-details {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 1 / -1;
   }
 
   .employment-details {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 1 / -1;
   }
 
   .onboarding-progress {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 1 / -1;
   }
 
   .accounts {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 1 / -1;
+  }
+
+  .onboarding-completed {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 992px) {
+  #candidate-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .candidate-details {
+    grid-template-columns: 1fr;
+    grid-column: 1 / 2;
+  }
+
+  .employment-details {
+    grid-template-columns: 1fr;
+    grid-column: 2 / 3;
+  }
+
+  .onboarding-progress {
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 1 / -1;
+  }
+
+  .accounts {
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 1 / -1;
+  }
+
+  .onboarding-completed {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1200px) {
+  #candidate-form {
+    grid-template-columns: 1fr repeat(3, 1fr);
+  }
+
+  .candidate-details {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 1 / 3;
+  }
+
+  .employment-details {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 3 / 5;
+  }
+
+  .onboarding-progress {
+    grid-template-columns: repeat(6, 1fr);
+    grid-column: 1 / -1;
+  }
+
+  .accounts {
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 1 / 3;
+  }
+
+  .onboarding-completed {
+    grid-column: 3 / 5;
   }
 }

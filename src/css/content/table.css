@@ -5,10 +5,12 @@ table {
   border-radius: calc(var(--border-radius) * 2);
   overflow: hidden;
   box-shadow: none;
+  color: var(--text);
 }
 
 thead {
   background: var(--bg-thead);
+  color: var(--text-heading);
 }
 
 tbody tr:nth-child(even) {
@@ -30,48 +32,50 @@ td {
 }
 
 table.lower {
-  --border-bottom: none;
   box-shadow: var(--box-shadow-lower);
 }
 
 table.top {
-  --border-bottom: none;
   box-shadow: var(--box-shadow-top);
 }
 
-@media (max-width: 992px) {
-  table {
-    --table-border-radius: none;
-  }
 
+@media (max-width: 992px) {
   table thead {
     display: none;
   }
 
-  table tbody td,
-  table tfoot td {
+  table tbody tr {
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 1fr;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  table tbody td, table tfoot td {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 15ch 1fr;
   }
 
   table tbody td:first-child {
-    margin-top: 0.5rem;
+    margin-top: 0;
   }
 
   table tbody td:last-child {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
+    border-bottom: none;
   }
 
   table tbody td::before {
     content: attr(data-cell);
     font-weight: 700;
-    text-transform: uppercase;
+    color: var(--text-heading);
   }
 
   table tbody td:first-child::before {
     content: attr(data-cell);
-    text-transform: uppercase;
   }
 
   table tfoot tr {
@@ -80,8 +84,18 @@ table.top {
   }
 
   table tfoot tr td:first-child {
-    text-transform: uppercase;
     text-align: left;
     width: 15ch;
   }
+}
+
+@media (max-width: 768px) {
+  table tbody tr {
+    grid-template-columns: 1fr;
+  }
+
+  table tbody td, table tfoot td {
+    border-bottom: 1px solid hsla(0 0% 40% / 0.1);
+  }
+
 }

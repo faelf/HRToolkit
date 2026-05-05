@@ -29,4 +29,8 @@
   --box-shadow-top:
     inset 1px 1px 6px 1px hsla(0 0% 20% / 0.4),
     4px 4px 6px 1px hsla(0 0% 0% / 0.3);
+
+  /* Skeleton */
+  --shimmer-base: hsla(0, 0%, 20%, 1);
+  --shimmer-highlight: hsla(0, 0%, 35%, 0.6);
 }

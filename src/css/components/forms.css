@@ -208,3 +208,15 @@ progress::-moz-progress-bar {
   background-color: var(--green);
   border-radius: var(--border-radius);
 }
+
+.form-buttons {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--gap);
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-content: center;
+    justify-content: end;
+  }
+}

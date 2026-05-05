@@ -9,6 +9,10 @@
 @import "./layout/spacing.css";
 @import "./layout/section.css";
 
+/* Page Layouts */
+@import "./layout/candidatedetails.css";
+@import "./layout/onboarding.css";
+
 /* Text Content */
 @import "./content/typography.css";
 @import "./content/table.css";
@@ -23,6 +27,5 @@
 @import "./components/forms.css";
 @import "./components/info-box.css";
 @import "./components/dropdown.css";
-
-/* Page Layouts */
-@import "./layout/candidatedetails.css";
+@import "./components/modal.css";
+@import "./content/skeleton.css";

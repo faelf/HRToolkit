@@ -1,0 +1,29 @@
+dialog {
+  padding: 0;
+  background-color: var(--bg-bottom);
+  border: 1px solid var(--border-colour);
+  border-radius: var(--border-radius);
+  width: 95%;
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+}
+
+dialog::backdrop {
+  background-color: hsla(0 0% 0% / 0.5);
+}
+
+.modal-header {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border-colour);
+}
+
+.modal-body {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-colour);
+}
+
+.modal-footer {
+  padding: 0.5rem 1rem;
+}
