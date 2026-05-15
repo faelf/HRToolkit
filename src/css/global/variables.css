@@ -20,6 +20,6 @@
   --text-lg: 1.2rem;
 
   /* Utilities */
-  --border-radius: 8px;
+  --border-radius: 0.5rem;
   --gap: 10px;
 }

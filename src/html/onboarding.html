@@ -1,0 +1,120 @@
+<section aria-label="All candidates">
+  <header class="section-header" aria-label="Page Header">
+    <h2>Onboarding Tracker</h2>
+  </header>
+
+  <article class="section-body" aria-label="Candidates table">
+
+    <div class="onboarding-tools" aria-label="Filters">
+
+      <div class="search-input">
+        <input id="search-candidate" type="search" class="search" placeholder="Search by name">
+      </div>
+
+      <div class="sort-container">
+        <div class="btn yellow">Sort by</div>
+        <button class="btn yellow">Progress</button>
+      </div>
+
+      <div class="add-candidate-container">
+        <button type="button" class="btn blue" popovertarget="add-candidate">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+            <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+            <path d="M9 15h6" />
+            <path d="M12 18v-6" />
+          </svg>
+          Add Candidate</button>
+        <dialog popover id="add-candidate">
+          <div class="modal-header">
+            <h2>New Candidate</h2>
+          </div>
+          <form id="new-candidate">
+            <div class="modal-body">
+              <fieldset class="mb-2">
+                <legend>Candidate Details</legend>
+                <div class="input-item">
+                  <label for="first-name">First Name</label>
+                  <input type="text" id="first-name" name="firstName">
+                  <div class="input-helper">
+                    Enter first name as shown on the passport
+                  </div>
+                </div>
+                <div class="input-item">
+                  <label for="last-name">Last Name</label>
+                  <input type="text" id="last-name" name="lastName">
+                  <div class="input-helper">
+                    Enter last name as shown on the passport
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="mb-2">
+                <legend>Employment Details</legend>
+                <div class="input-item">
+                  <label for="job-title">Job Title</label>
+                  <input type="text" id="job-title" name="jobTitle">
+                </div>
+                <div class="input-item">
+                  <label for="department">Department</label>
+                  <input type="text" id="department" name="department">
+                </div>
+                <div class="input-item">
+                  <label for="hiring-manager">Hiring Manager</label>
+                  <input type="text" id="hiring-manager" name="hiringManager">
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="modal-footer">
+              <div class="form-buttons">
+                <button class="btn green">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+                    <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+                    <path d="M9 15h6" />
+                    <path d="M12 18v-6" />
+                  </svg>
+                  Add Candidate</button>
+                <button type="button" class="btn red">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                  </svg>
+                  Close</button>
+              </div>
+            </div>
+          </form>
+        </dialog>
+      </div>
+    </div>
+
+    <div id="candidates-container">
+      <!-- Injected by JS -->
+    </div>
+
+    <div class="table-skeleton">
+      <div class="row">
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      </div>
+      <div class="row">
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      </div>
+      <div class="row">
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      </div>
+    </div>
+
+  </article>
+</section>
