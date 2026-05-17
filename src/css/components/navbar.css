@@ -19,8 +19,7 @@
   /* Typography */
   --logo-font-size: 1.75rem;
   --nav-line-height: var(--line-height-text, 1.6);
-  --nav-icon-width: var(--text-md, 1rem);
-  --nav-icon-height: var(--text-md, 1rem);
+  --nav-icon-size: var(--text-md, 1rem);
 
   /* Visuals */
   --nav-btn-bg: none;
@@ -122,21 +121,14 @@
   display: flex;
   align-items: center;
   justify-content: start;
+  gap: var(--nav-gap);
   cursor: pointer;
   transition: all 0.25s;
 }
 
 /* SVG Icon */
 .nav-icon {
-  display: block;
-  width: var(--nav-icon-width);
-  height: var(--nav-icon-height);
-  margin-right: var(--nav-gap);
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  --svg-size: var(--text-md);
 }
 
 .nav-btn:hover {

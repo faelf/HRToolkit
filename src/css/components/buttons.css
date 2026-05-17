@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--gap);
   border: none;
   background: var(--light);
   color: var(--dark);

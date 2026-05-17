@@ -1,8 +1,8 @@
 svg {
+  --svg-size: var(--text-md, 1rem);
+  width: var(--svg-size);
+  height: var(--svg-size);
   display: block;
-  width: var(--text-md);
-  height: var(--text-md);
-  margin-right: var(--gap);
   fill: none;
   stroke: currentColor;
   stroke-width: 3;
