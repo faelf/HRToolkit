@@ -1,8 +1,9 @@
 table {
   border-collapse: collapse;
+  table-layout: fixed;
   border-spacing: 0;
   width: 100%;
-  border-radius: calc(var(--border-radius) * 2);
+  border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: none;
   color: var(--text);
@@ -22,18 +23,19 @@ tbody tr:hover, tr:nth-child(even):hover {
 }
 
 th {
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 0.75rem;
   font-weight: 700;
   text-align: left;
 }
 
-.cursor-pointer {
-  cursor: pointer;
+td {
+  padding: 0.5rem 0.75rem;
 }
 
-td {
-  padding: 0.75rem 1.5rem;
-}
+/* 
+  Colours
+  -------------------
+*/
 
 table.lower {
   box-shadow: var(--box-shadow-lower);
@@ -43,6 +45,28 @@ table.top {
   box-shadow: var(--box-shadow-top);
 }
 
+/* 
+  Utilities
+  -------------------
+*/
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.th-sorting {
+  cursor: pointer;
+}
+
+.th-sorting:hover {
+  background: hsla(0 0% 0% / 0.3);
+}
+
+.sorting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 @media (max-width: 992px) {
   table thead {
@@ -61,6 +85,10 @@ table.top {
     display: grid;
     align-items: center;
     grid-template-columns: 15ch 1fr;
+  }
+
+  td {
+    padding: 0.75rem 1rem;
   }
 
   table tbody td:first-child {

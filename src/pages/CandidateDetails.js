@@ -12,6 +12,10 @@ export const CandidateDetails = {
       return;
     }
 
+    const fullname = `${candidate.firstName} ${candidate.lastName}`;
+    const title = document.querySelector("#candidate-full-name");
+    title.innerText = fullname;
+
     // Find the form within the Candidate Details page
     const form = document.querySelector("#candidate-form");
     if (!form) return;
