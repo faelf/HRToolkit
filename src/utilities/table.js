@@ -9,11 +9,6 @@ export const table = {
       tr.appendChild(th);
     }
 
-    // Header for the "View" link column
-    const thDetails = document.createElement("th");
-    thDetails.textContent = "Details";
-    tr.appendChild(thDetails);
-
     thead.appendChild(tr);
     return thead;
   },
@@ -23,6 +18,8 @@ export const table = {
     data.forEach((item) => {
       const tr = document.createElement("tr");
       tr.setAttribute("data-id", item.id);
+      tr.classList.add("cursor-pointer");
+      tr.setAttribute("href", "candidatedetails");
 
       // Create the rest of the columns based on the head configuration
       for (const column of Object.keys(columns)) {
@@ -31,23 +28,6 @@ export const table = {
         td.innerHTML = item[column] ?? "";
         tr.appendChild(td);
       }
-
-      // Create the view link
-      const tdDetails = document.createElement("td");
-      tdDetails.setAttribute("data-cell", "Details");
-      const aDetails = document.createElement("a");
-      aDetails.classList.add("btn-sm", "blue");
-      aDetails.href = "candidatedetails";
-      aDetails.setAttribute("data-active-group", "onboarding");
-      aDetails.setAttribute("data-id", item.id);
-      aDetails.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
-      <circle cx="12" cy="12" r="3"/>
-      </svg>View
-      `;
-      tdDetails.appendChild(aDetails);
-      tr.appendChild(tdDetails);
 
       tbody.appendChild(tr);
     });
