@@ -19,10 +19,7 @@ export const OnboardingPage = {
         return {
           ...candidate,
           fullName: `${candidate.firstName} ${candidate.lastName}`,
-          progress: /* html */ `
-          <div class="progress-container">
-            <progress value="${percentage}" max="100"></progress>
-          </div>`,
+          progress: /* html */ `<progress value="${percentage}" max="100"></progress>`,
         };
       });
 
