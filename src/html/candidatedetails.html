@@ -42,7 +42,7 @@
 
       <!-- Onboarding Progress -->
       <fieldset class="onboarding-progress">
-        <legend>Onboarding Progress</legend>
+        <legend>Pre-employment checks</legend>
         <!-- Right to work -->
         <div class="input-item">
           <label for="right-to-work">Right to work</label>
@@ -81,38 +81,34 @@
           <label for="references">References</label>
           <input type="date" id="references" name="references">
         </div>
+      </fieldset>
+
+      <!-- Post Onboarding -->
+      <fieldset class="accounts">
+        <legend>Post Checks</legend>
         <!-- Start Date -->
         <div class="input-item">
           <label for="start-date">Start Date</label>
           <input type="date" id="start-date" name="startDate">
         </div>
-      </fieldset>
-
-      <!-- Post Onboarding -->
-      <fieldset class="accounts">
-        <legend>Accounts</legend>
         <div class="checkbox-item">
           <input type="checkbox" id="learn-space" name="learnSpace">
           <label for="learn-space">Learn Space</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" id="adp">
+          <input type="checkbox" id="adp" name="adp">
           <label for="adp">ADP</label>
         </div>
         <div class="checkbox-item">
           <input type="checkbox" id="name-badge" name="nameBadge">
           <label for="name-badge">Name Badge</label>
         </div>
-      </fieldset>
-
-      <!-- Completion Check -->
-      <fieldset class="onboarding-completed">
-        <legend>Onboarding Competed</legend>
         <div class="checkbox-item">
-          <input type="checkbox" id="completed">
-          <label for="completed">Completed</label>
+          <input type="checkbox" id="completed" name="completed">
+          <label for="completed">Onboarding Completed</label>
         </div>
       </fieldset>
+
       <div class="form-buttons">
         <button type="submit" class="btn green">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

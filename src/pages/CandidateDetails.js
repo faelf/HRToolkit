@@ -43,11 +43,24 @@ export const CandidateDetails = {
 
     loadcandidate(id, form);
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
+
       const newCandidate = Object.fromEntries(new FormData(event.target).entries());
-      firebase.updateDocument("candidates", id, newCandidate);
-      loadcandidate(id);
+
+      const checkboxes = event.target.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach((checkbox) => {
+        if (checkbox.name && checkbox.name.trim() !== "") {
+          newCandidate[checkbox.name] = checkbox.checked;
+        }
+      });
+
+      try {
+        await firebase.updateDocument("candidates", id, newCandidate);
+        await loadcandidate(id, form);
+      } catch (error) {
+        console.error("Firebase Update Error:", error);
+      }
     });
 
     const deleteCandidateBtn = document.querySelector("#delete-candidate");
