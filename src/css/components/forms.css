@@ -1,18 +1,7 @@
-.input-item {
-  display: grid;
-  gap: 4px;
-  margin-bottom: 1rem;
-}
-
-/* Checkbox Item Layout */
-.checkbox-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-/* Labels */
+/*
+  Global / General Styles
+  ------------------------------
+*/
 label {
   display: block;
   margin: 0;
@@ -31,7 +20,6 @@ legend {
   font-weight: 600;
 }
 
-/* Inputs */
 input,
 select,
 textarea {
@@ -47,13 +35,35 @@ textarea {
   box-shadow: var(--input-shadow);
 }
 
-input[type="date"]::-webkit-datetime-edit-text,
-input[type="date"]::-webkit-datetime-edit-month-field,
-input[type="date"]::-webkit-datetime-edit-day-field,
-input[type="date"]::-webkit-datetime-edit-year-field {
+input::placeholder {
   color: var(--text);
+  opacity: 0.7;
 }
 
+/*
+  States
+  ------------------------------
+*/
+input:focus,
+select:focus,
+textarea:focus {
+  border: 1px solid color-mix(in hsl, var(--primary), black 60%);
+  outline: none;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background-color: var(--bg-surface);
+  color: var(--text);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/*
+  Date Input
+  ------------------------------
+*/
 input[type="date"] {
   appearance: none;
   padding: calc(0.5rem - 1px) 2.5rem calc(0.5rem - 1px) 0.8rem;
@@ -71,6 +81,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   right: 0.75rem;
 }
 
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  color: var(--text);
+}
+
+/*
+  Number Input
+  ------------------------------
+*/
 input[type="number"] {
   appearance: textfield;
   -moz-appearance: textfield;
@@ -82,46 +103,67 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* Checkbox */
+/*
+  Checkbox Input
+  ------------------------------
+*/
+.checkbox-item label {
+  font-size: 1rem;
+  line-height: 1.4;
+  cursor: pointer;
+  user-select: none;
+}
+
 input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
+  /* Sizing & Structure */
   width: 1.25rem;
   height: 1.25rem;
   padding: 0;
+  flex-shrink: 0;
+
+  /* Reset & Appearance */
+  appearance: none;
+  -webkit-appearance: none;
   border-radius: 4px;
-  /* Slightly smaller radius for checkboxes */
   cursor: pointer;
+
+  /* Borders & Background Defaults */
+  border: 2px solid #ccc;
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+
+  /* Micro-interactions */
+  transition: all 0.2s ease;
+}
+
+/* ❌ State: NOT selected */
+input[type="checkbox"]:not(:checked) {
+  color: var(--input-border);
+  border-color: var(--input-border);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
 }
 
 input[type="checkbox"]:checked {
-  background-color: var(--primary);
   border-color: var(--primary);
+  background-color: var(--primary);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-  background-size: 70%;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  border: 1px solid color-mix(in hsl, var(--primary), black 60%);
-  outline: none;
-}
-
-input::placeholder {
-  color: var(--text);
-  opacity: 0.7;
-}
-
-/* Textarea */
+/*
+  Text Area
+  ------------------------------
+*/
 textarea {
   resize: vertical;
   min-height: 100px;
 }
 
-/* Select dropdown */
+/*
+  Select dropdown
+  ------------------------------
+*/
 select {
   cursor: pointer;
   appearance: none;
@@ -136,54 +178,10 @@ select option:first-child {
   opacity: 0.7;
 }
 
-/* Disabled inputs */
-input:disabled,
-select:disabled,
-textarea:disabled {
-  background-color: var(--bg-surface);
-  color: var(--text);
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* Invalid/Error state */
-.is-invalid {
-  border-color: var(--red);
-  outline-color: none;
-}
-
-.is-valid {
-  border-color: var(--green);
-}
-
-/* Input helper text */
-.input-helper {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  line-height: 1.4;
-}
-
-/* Form validation feedback */
-.invalid-feedback {
-  display: block;
-  font-size: 0.875rem;
-  color: var(--red);
-}
-
-.valid-feedback {
-  display: block;
-  font-size: 0.875rem;
-  color: var(--green);
-}
-
-/* Progress Bar */
-.progress-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
+/*
+  Progress Element
+  ------------------------------
+*/
 progress {
   appearance: none;
   -webkit-appearance: none;
@@ -209,14 +207,72 @@ progress::-moz-progress-bar {
   border-radius: var(--border-radius);
 }
 
+/*
+  Component Classes
+  ------------------------------
+*/
+.input-item {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .form-buttons {
   grid-column: 1 / -1;
   display: grid;
   gap: var(--gap);
 
-  @media (min-width: 768px) {
+  @media (min-width: 576px) {
     display: flex;
     align-content: center;
     justify-content: end;
   }
+}
+
+/*
+  State & Helper Classes
+  ------------------------------
+*/
+
+/* Input helper text */
+.input-helper {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Invalid/Error state */
+.is-invalid {
+  border-color: var(--red);
+  outline-color: none;
+}
+
+.is-valid {
+  border-color: var(--green);
+}
+
+/* Form validation feedback */
+.valid-feedback {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--green);
+}
+
+.invalid-feedback {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--red);
 }
