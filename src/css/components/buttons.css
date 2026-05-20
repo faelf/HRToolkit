@@ -1,27 +1,21 @@
 /* Base button styles */
 .btn {
-  --shadow-inset-colour: hsl(0 0% 10% / 0.3);
-  --shadow-mix: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--gap);
+  gap: var(--gap-md);
   border: none;
   background: var(--light);
   color: var(--dark);
   padding: 0.5rem 1rem;
-  line-height: var(--line-height-text);
+  line-height: var(--line-height-btn);
   font-size: var(--text-md);
   font-weight: 600;
   cursor: pointer;
   border-radius: var(--border-radius);
-  box-shadow:
-    inset -2px -2px 2px 1px hsla(0 0% 10% / 0.2);
 }
 
 .btn-sm {
-  --shadow-inset-colour: hsl(0 0% 10% / 0.3);
-  --shadow-mix: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,74 +28,43 @@
   font-weight: 600;
   cursor: pointer;
   border-radius: var(--border-radius);
-  box-shadow:
-    inset -2px -2px 2px 1px hsla(0 0% 10% / 0.2);
-}
-
-.btn-sm:hover, .btn:hover {
-  box-shadow:
-    inset 2px 2px 1px 1px hsla(0 0% 0% / 0.2);
 }
 
 /* Semantic Button Styles */
 .btn-sm.green, .btn.green {
-  --shadow-inset-colour: var(--green);
-  --shadow-mix: black;
   background-color: var(--green);
   color: color-mix(in srgb, var(--green), black 60%);
-  box-shadow:
-    inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
 .btn-sm.green:hover, .btn.green:hover {
   filter: brightness(0.9);
-  box-shadow:
-    inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
 .btn-sm.yellow, .btn.yellow {
-  --shadow-inset-colour: var(--yellow);
-  --shadow-mix: black;
   background-color: var(--yellow);
   color: color-mix(in srgb, var(--yellow), black 60%);
-  box-shadow:
-    inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
 .btn-sm.yellow:hover, .btn.yellow:hover {
   filter: brightness(0.9);
-  box-shadow:
-    inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
 .btn-sm.blue, .btn.blue {
-  --shadow-inset-colour: var(--blue);
-  --shadow-mix: black;
   background-color: var(--blue);
   color: color-mix(in srgb, var(--blue), black 60%);
-  box-shadow:
-    inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
 .btn-sm.blue:hover, .btn.blue:hover {
   filter: brightness(0.9);
-  box-shadow:
-    inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
 .btn-sm.red, .btn.red {
-  --shadow-inset-colour: var(--red);
-  --shadow-mix: black;
   background-color: var(--red);
   color: color-mix(in srgb, var(--red), black 60%);
-  box-shadow:
-    inset -1px -1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
 .btn-sm.red:hover, .btn.red:hover {
   filter: brightness(0.9);
-  box-shadow:
-    inset 1px 1px 2px 2px color-mix(in hsl, var(--shadow-inset-colour) 60%, var(--shadow-mix));
 }
 
 /* Active States */
