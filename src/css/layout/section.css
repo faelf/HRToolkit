@@ -1,5 +1,5 @@
 .section-header {
-  padding: 0.5rem 0.8rem;
+  padding: 0.5rem;
 }
 
 .section-header h2,
@@ -8,11 +8,11 @@
 }
 
 .section-body {
-  padding: 0.5rem 0.8rem;
+  padding: 0.5rem;
 }
 
 .section-footer {
-  padding: 0.5rem 0.8rem;
+  padding: 0.5rem;
   border-bottom-left-radius: calc(var(--border-radius) - 2px);
   border-bottom-right-radius: calc(var(--border-radius) - 2px);
   background-color: color-mix(in srgb, var(--light), var(--dark) 2%);

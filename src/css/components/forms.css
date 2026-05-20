@@ -232,7 +232,7 @@ progress::-moz-progress-bar {
 .form-buttons {
   grid-column: 1 / -1;
   display: grid;
-  gap: var(--gap);
+  gap: var(--gap-md);
 
   @media (min-width: 576px) {
     display: flex;

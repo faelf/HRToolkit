@@ -1,11 +1,11 @@
 #candidate-form {
   display: grid;
-  gap: var(--gap);
+  gap: var(--gap-md);
 }
 
 .candidate-details, .employment-details, .onboarding-progress, .accounts {
   display: grid;
-  gap: var(--gap);
+  gap: var(--gap-md);
   align-items: start;
 }
 

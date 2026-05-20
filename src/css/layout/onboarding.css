@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--gap);
-  margin-bottom: var(--gap);
+  gap: var(--gap-md);
+  margin-bottom: var(--gap-md);
 
   @media (min-width: 576px) {
     flex-direction: row;

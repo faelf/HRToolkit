@@ -1,6 +1,6 @@
 /* Dropdown Behaviour in tablet and larger screens */
 .dropdown-container {
-  --gap: 10px;
+  --gap-md: 10px;
   --dropdown-border: 1px solid black;
   anchor-scope: --dropdown-container;
 }
@@ -22,10 +22,10 @@
   justify-self: anchor-center;
 
   width: max-content;
-  padding: var(--gap);
+  padding: var(--gap-md);
 
   display: none;
-  gap: var(--gap);
+  gap: var(--gap-md);
 
   opacity: 0;
   transition: display 500ms, opacity 500ms;
