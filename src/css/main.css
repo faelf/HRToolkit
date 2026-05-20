@@ -5,11 +5,11 @@
 @import "./global/reset.css";
 
 /* Layout */
-@import "./layout/grid.css";
 @import "./layout/spacing.css";
 @import "./layout/section.css";
 
 /* Page Layouts */
+@import "./layout/base.css";
 @import "./layout/candidatedetails.css";
 @import "./layout/onboarding.css";
 
