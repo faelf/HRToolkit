@@ -1,7 +1,7 @@
 [data-theme="dark"] {
   /* Backgrounds */
   --bg-bottom: hsl(0 0% 10%);
-  --bg-surface: hsl(0 0% 20%);
+  --bg-surface: hsl(0 0% 15%);
 
   /* Text */
   --text: hsl(0, 0%, 80%);
