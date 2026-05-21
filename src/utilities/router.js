@@ -67,7 +67,9 @@ export class Router {
       return val === activePageKey || val === `#${activePageKey}`;
     });
 
-    const activeGroup = providedActiveGroup || activeLinkElement?.getAttribute("data-active-group");
+    const pageConfig = this.pageContent[activePageKey];
+    const activeGroup =
+      providedActiveGroup || pageConfig?.activeGroup || activeLinkElement?.getAttribute("data-active-group");
 
     links.forEach((link) => {
       const val = link.getAttribute(this.linkAttribute);
