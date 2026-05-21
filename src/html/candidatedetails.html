@@ -1,12 +1,11 @@
-<section>
-  <header class="section-header">
+<section class="card">
+  <header class="card-header">
     <h2 id="candidate-full-name" class="mb-2">Candidate</h2>
   </header>
-  <article class="section-body">
+  <article class="card-body">
     <form id="candidate-form">
       <!-- Candidate Details -->
-      <fieldset class="candidate-details">
-        <legend>Candidate Details</legend>
+      <div class="candidate-details">
         <div class="input-item">
           <label for="first-name">First Name</label>
           <input type="text" id="first-name" name="firstName">
@@ -21,11 +20,10 @@
             Enter last name as shown on the passport
           </div>
         </div>
-      </fieldset>
+      </div>
 
       <!-- Employment Details -->
-      <fieldset class="employment-details">
-        <legend>Employment Details</legend>
+      <div class="employment-details">
         <div class="input-item">
           <label for="job-title">Job Title</label>
           <input type="text" id="job-title" name="jobTitle">
@@ -38,22 +36,21 @@
           <label for="hiring-manager">Hiring Manager</label>
           <input type="text" id="hiring-manager" name="hiringManager">
         </div>
-      </fieldset>
+      </div>
 
       <!-- Onboarding Progress -->
-      <fieldset class="onboarding-progress">
-        <legend>Pre-employment checks</legend>
+      <div class="onboarding-progress">
         <!-- Right to work -->
-        <div class="input-item">
+        <div class="select-dropdown">
           <label for="right-to-work">Right to work</label>
-          <select id="right-to-work" name="rightToWork">
-            <option value="">Select</option>
-            <option value="british">British</option>
-            <option value="irish">Irish</option>
-            <option value="swv">Skilled Worker Visa</option>
-            <option value="visa">Visa</option>
-            <option value="ilr">ILR</option>
-          </select>
+          <input type="text" class="dropdown-input" autocomplete="off" id="right-to-work" name="rightToWork">
+
+          <div class="select-options">
+            <div class="option">British / Irish</div>
+            <div class="option">Skilled Worker Visa</div>
+            <div class="option">Visa</div>
+            <div class="option">Indefinite Leave to Remain</div>
+          </div>
         </div>
         <!-- Expiry Date -->
         <div class="input-item">
@@ -68,6 +65,22 @@
           <label for="dbs">DBS</label>
           <input type="date" id="dbs" name="dbs">
         </div>
+        <div class="input-item">
+          <label for="dbs-number">DBS Certificate Number</label>
+          <input type="text" id="dbs-number" name="dbsNumber">
+        </div>
+
+        <div class="select-dropdown">
+          <label for="dbs-level">DBS Level</label>
+          <input type="text" class="dropdown-input" autocomplete="off" id="dbs-level" name="dbsLevel">
+
+          <div class="select-options">
+            <div class="option">Basic</div>
+            <div class="option">Standard</div>
+            <div class="option">Enhanced</div>
+          </div>
+        </div>
+
         <!-- OH -->
         <div class="input-item">
           <label for="oh">OH</label>
@@ -81,11 +94,10 @@
           <label for="references">References</label>
           <input type="date" id="references" name="references">
         </div>
-      </fieldset>
+      </div>
 
       <!-- Post Onboarding -->
-      <fieldset class="accounts">
-        <legend>Post Checks</legend>
+      <div class="accounts">
         <!-- Start Date -->
         <div class="input-item">
           <label for="start-date">Start Date</label>
@@ -107,7 +119,7 @@
           <input type="checkbox" id="completed" name="completed">
           <label for="completed">Onboarding Completed</label>
         </div>
-      </fieldset>
+      </div>
 
       <div class="form-buttons">
         <button type="submit" class="btn green">

@@ -3,6 +3,7 @@ import { firebase } from "../utilities/firebase";
 
 export const CandidateDetails = {
   title: "HR Toolkit - Candidate Details",
+  activeGroup: "onboarding",
   html: CandidateDetailsHTML,
   async setup(id) {
     const form = document.querySelector("#candidate-form");
