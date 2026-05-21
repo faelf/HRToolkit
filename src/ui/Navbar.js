@@ -1,5 +1,3 @@
-import { toggleTheme } from "../utilities/theme.js";
-
 class Navbar extends HTMLElement {
   render() {
     this.innerHTML = /* html */ `
@@ -69,23 +67,12 @@ class Navbar extends HTMLElement {
   }
 
   attachEventListeners() {
-    const nav = this.querySelector(".sidebar-nav");
-
-    document.addEventListener("click", (event) => {
-      const target = event.target;
-
-      if (target.closest("#theme-toggle")) {
-        toggleTheme();
-      } else if (target.closest("a.nav-btn")) {
-        nav.classList.remove("sidebar-open");
-      }
-    });
-
-    this.querySelector(".sidebar-nav").addEventListener("mouseenter", () => {
+    const nav = document.querySelector(".sidebar-nav");
+    document.querySelector(".sidebar-nav").addEventListener("mouseenter", () => {
       nav.classList.add("sidebar-open");
     });
 
-    this.querySelector(".sidebar-nav").addEventListener("mouseleave", () => {
+    document.querySelector(".sidebar-nav").addEventListener("mouseleave", () => {
       nav.classList.remove("sidebar-open");
     });
   }
