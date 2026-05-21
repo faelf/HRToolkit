@@ -43,7 +43,7 @@
         <!-- Right to work -->
         <div class="select-dropdown">
           <label for="right-to-work">Right to work</label>
-          <input type="text" class="dropdown-input" autocomplete="off" id="right-to-work" name="rightToWork">
+          <input type="text" class="select-input" autocomplete="off" id="right-to-work" name="rightToWork">
 
           <div class="select-options">
             <div class="option">British / Irish</div>
@@ -52,27 +52,30 @@
             <div class="option">Indefinite Leave to Remain</div>
           </div>
         </div>
+
         <!-- Expiry Date -->
         <div class="input-item">
           <label for="expiry-date">Expiry Date</label>
-          <input type="date" id="expiry-date" name="expiryDate">
+          <input id="expiry-date" name="expiryDate" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
           <div class="input-helper">
             Date the visa expiries
           </div>
         </div>
+
         <!-- DBS -->
         <div class="input-item">
           <label for="dbs">DBS</label>
-          <input type="date" id="dbs" name="dbs">
+          <input id="dbs" name="dbs" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
         </div>
+
         <div class="input-item">
           <label for="dbs-number">DBS Certificate Number</label>
-          <input type="text" id="dbs-number" name="dbsNumber">
+          <input id="dbs-number" name="dbsNumber" type="text">
         </div>
 
         <div class="select-dropdown">
           <label for="dbs-level">DBS Level</label>
-          <input type="text" class="dropdown-input" autocomplete="off" id="dbs-level" name="dbsLevel">
+          <input type="text" class="select-input" autocomplete="off" id="dbs-level" name="dbsLevel">
 
           <div class="select-options">
             <div class="option">Basic</div>
@@ -84,15 +87,16 @@
         <!-- OH -->
         <div class="input-item">
           <label for="oh">OH</label>
-          <input type="date" id="oh">
+          <input id="oh" name="oh" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
           <div class="input-helper">
             Date clearance was received
           </div>
         </div>
+
         <!-- References -->
         <div class="input-item">
           <label for="references">References</label>
-          <input type="date" id="references" name="references">
+          <input id="references" name="references" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
         </div>
       </div>
 
@@ -101,20 +105,24 @@
         <!-- Start Date -->
         <div class="input-item">
           <label for="start-date">Start Date</label>
-          <input type="date" id="start-date" name="startDate">
+          <input id="start-date" name="startDate" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
         </div>
+
         <div class="checkbox-item">
           <input type="checkbox" id="learn-space" name="learnSpace">
           <label for="learn-space">Learn Space</label>
         </div>
+
         <div class="checkbox-item">
           <input type="checkbox" id="adp" name="adp">
           <label for="adp">ADP</label>
         </div>
+
         <div class="checkbox-item">
           <input type="checkbox" id="name-badge" name="nameBadge">
           <label for="name-badge">Name Badge</label>
         </div>
+
         <div class="checkbox-item">
           <input type="checkbox" id="completed" name="completed">
           <label for="completed">Onboarding Completed</label>
