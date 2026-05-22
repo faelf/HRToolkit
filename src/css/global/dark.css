@@ -18,8 +18,8 @@
   --input-focus: hsl(0 0% 100% / 0.1);
 
   /* Table */
-  --bg-thead: hsla(0 0% 0% / 0.2);
-  --bg-tr-second: hsla(0 0% 0% / 0.1);
+  --bg-thead: hsla(0 0% 100% / 0.1);
+  --bg-tr-second: hsla(0 0% 50% / 0.1);
   --bg-tr-hover: hsla(0 0% 0% / 0.3);
 
   --box-shadow-lower:

@@ -1,74 +1,18 @@
 #candidate-form {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
   gap: var(--gap-md);
 }
 
-.candidate-details, .employment-details, .onboarding-progress, .accounts {
+.post-onboarding {
+  grid-column: 1 / -1;
   display: grid;
-  gap: var(--gap-md);
-  align-items: start;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 @media (min-width: 576px) {
   #candidate-form {
     grid-template-columns: repeat(4, 1fr);
-  }
-
-  .candidate-details {
-    grid-column: 1 / -1;
-  }
-
-  .employment-details {
-    grid-column: 1 / -1;
-  }
-
-  .onboarding-progress {
-    grid-template-columns: repeat(2, 1fr);
-    grid-column: 1 / -1;
-  }
-
-  .accounts {
-    grid-template-columns: repeat(2, 1fr);
-    grid-column: 1 / -1;
-  }
-}
-
-@media (min-width: 768px) {
-  .candidate-details {
-    grid-column: 1 / 3;
-  }
-
-  .employment-details {
-    grid-column: 3 / 5;
-  }
-
-  .onboarding-progress {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .accounts {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 992px) {
-  .onboarding-progress {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .accounts {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media (min-width: 1200px) {
-  .candidate-details {
-    grid-template-columns: repeat(2, 1fr);
-    grid-column: 1 / 3;
-  }
-
-  .employment-details {
-    grid-template-columns: repeat(2, 1fr);
-    grid-column: 3 / 5;
   }
 }

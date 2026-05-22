@@ -17,13 +17,13 @@
   --line-height-btn: 1;
 
   --text-sm: 0.8rem;
-  --text-md: 1rem;
-  --text-lg: 1.2rem;
+  --text-md: 1.2rem;
+  --text-lg: 1.6rem;
 
   --svg-size: 1rem;
 
   /* Utilities */
-  --border-radius: 0.5rem;
+  --border-radius: 1rem;
   --gap-sm: 0.25rem;
   --gap-md: 0.5rem;
   --gap-lg: 0.75rem;

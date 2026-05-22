@@ -5,67 +5,82 @@ body {
   grid-template-rows: auto 1fr;
 }
 
-main {
-  padding: 0.25rem;
-  max-width: 1000px;
-  margin: 0 auto;
-  overflow-y: auto;
-}
-
 .page-header {
   --svg-size: 2rem;
   grid-column: 1 / -1;
-  background: var(--bg-bottom);
+  background: var(--primary);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  gap: var(--gap-md);
   font-weight: 600;
   font-size: var(--svg-size);
-  color: var(--text);
+  color: var(--dark);
   border-bottom: 1px solid var(--border-colour);
-  padding: 1rem;
+  padding: var(--gap-md);
 }
 
-.grid {
+main {
   display: grid;
-  gap: 10px;
+  grid-template-columns: 1fr;
+  gap: var(--gap-md);
+  padding: var(--gap-md);
+  overflow-y: auto;
+}
+
+
+/*
+  Dashboard
+*/
+.kpi-grid {
+  display: grid;
+  gap: var(--gap-md);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.action-grid {
+  display: grid;
+  gap: var(--gap-md);
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+}
+
+/* 
+  Onboarding
+*/
+.onboarding-tools {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-md);
+  margin-bottom: var(--gap-md);
+
+  @media (min-width: 576px) {
+    flex-direction: row;
+  }
+}
+
+/* 
+  Calculators
+*/
+
+.cal, .cal-content, .cal-containers {
+  display: grid;
+  gap: var(--gap-md)
 }
 
 .form-btns {
-  display: grid;
-  gap: 10px;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
 
-  @media (min-width: 992px) {
-    grid-template-columns: 1fr;
+  @media (min-width: 576px) {
+    justify-content: end;
+    flex-direction: row;
   }
 }
 
-.cal-containers {
-  display: grid;
-  align-items: start;
-  gap: 10px;
-  grid-template-columns: 1fr;
-
-  @media (min-width: 992px) {
-    grid-template-columns: 300px 1fr;
+@media (min-width: 1200px) {
+  .cal-containers {
+    grid-template-columns: 1fr 3fr;
   }
-}
-
-#maternity-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-
-  @media (min-width: 992px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-#maternity-form > :last-child {
-  grid-column: 1 / -1;
-}
-
-.d-none {
-  display: none;
 }

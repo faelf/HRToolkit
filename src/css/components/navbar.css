@@ -1,6 +1,6 @@
 ui-navbar {
-  --sidebar-width: 49px;
-  --border-size: 1px;
+  --sidebar-width: 69px;
+  --border-size: 2px;
   position: relative;
   width: var(--sidebar-width);
 }
@@ -8,7 +8,7 @@ ui-navbar {
 .sidebar-nav {
   border-right: var(--border-size) solid var(--border-colour);
   background-color: var(--bg-bottom);
-  padding: 0.25rem;
+  padding: 0.5rem;
   width: var(--sidebar-width);
   height: 100%;
   position: absolute;
@@ -17,12 +17,12 @@ ui-navbar {
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
   transition: width 0.3s ease-in-out;
 }
 
 .sidebar-open {
-  --sidebar-width: 200px;
+  --sidebar-width: 250px;
 }
 
 .sidebar-nav span {
@@ -39,22 +39,22 @@ ui-navbar {
 }
 
 .nav-btn {
-  --svg-size: 1rem;
+  --svg-size: 1.2rem;
   /* Button defults */
   border: none;
   border-radius: var(--border-radius, 0.5rem);
-  background: hsla(0 0% 0% / 0.1);
+  background: hsla(0 0% 50% / 0.2);
 
   /* Typography */
   line-height: 1;
   font-size: var(--svg-size);
   font-weight: 600;
-  color: var(--text, hsl(0 0% 10%));
+  color: var(--dark, hsl(0 0% 10%));
 
   /* Sizing */
   overflow: hidden;
   width: 100%;
-  padding: 0.75rem;
+  padding: 1rem;
 
   /* Layout */
   display: flex;
@@ -63,12 +63,14 @@ ui-navbar {
   gap: var(--gap-md);
   cursor: pointer;
   transition: all 0.25s;
+  box-shadow:
+    0 2px 6px rgb(0 0 0 / 0.08),
+    0 8px 24px rgb(0 0 0 / 0.12);
 }
 
 .nav-btn:hover, .nav-btn.active {
-  background: hsla(0 0% 0% / 0.3);
-  color: var(--text);
-  filter: brightness(1.1);
+  background: var(--primary);
+  color: var(--dark);
 }
 
 .nav-btn:focus-visible {
@@ -78,9 +80,9 @@ ui-navbar {
 
 @media (min-width: 768px) {
   ui-navbar {
+    --sidebar-width: 250px;
     border-right: var(--border-size) solid var(--border-colour);
     position: static;
-    width: 200px;
   }
 
   .sidebar-nav span {
@@ -88,7 +90,6 @@ ui-navbar {
   }
 
   .sidebar-nav {
-    width: 200px;
     position: static;
     background-color: transparent;
     border-right: none;
