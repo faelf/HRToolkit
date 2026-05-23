@@ -18,37 +18,37 @@
 
     <form id="maternity-form" class="card-body">
 
-      <div class="input-item d-none">
-        <label for="leave-type-input" class="form-label">Select leave type</label>
-        <select id="leave-type-input" name="leaveType" aria-describedby="leave-type-helper" disabled>
-          <option value="" disabled selected>Select an option</option>
-          <option value="smp">Statutory Maternity Pay</option>
-          <option value="omp">Occupational Maternity Pay</option>
-        </select>
+      <div class="select-dropdown">
+        <label class="form-label" for="leave-type-input">Select leave type</label>
+        <input type="text" id="leave-type-input" name="leaveType" class="select-input" autocomplete="off">
+        <div class="select-options">
+          <div class="option">Statutory Maternity Pay</div>
+          <div class="option">Occupational Maternity Pay</div>
+        </div>
         <div id="leave-type-helper" class="input-helper">
           Select the type of leave you want to calculate.
         </div>
       </div>
 
       <div class="input-item">
-        <label for="start-date-input" class="form-label">Employment Start Date</label>
-        <input type="date" id="start-date-input" required>
+        <label class="form-label" for="start-date-input">Employment Start Date</label>
+        <input type="text" id="start-date-input" name="startDate" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
         <div id="start-date-input-helper" class="input-helper">
           The date the employee started employment.
         </div>
       </div>
 
       <div class="input-item">
-        <label for="baby-due-date-input" class="form-label">Baby Due Date</label>
-        <input type="date" id="baby-due-date-input" required>
+        <label class="form-label" for="baby-due-date-input" class="form-label">Baby Due Date</label>
+        <input type="text" id="baby-due-date-input" name="babyDueDate" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off" required>
         <div id="baby-due-date-input-helper" class="input-helper">
           The expected due date of the baby, as shown on the MATB1 certificate.
         </div>
       </div>
 
       <div class="input-item">
-        <label for="maternity-start-date-input" class="form-label">Maternity Start Date</label>
-        <input type="date" id="maternity-start-date-input">
+        <label class="form-label" for="maternity-start-date-input" class="form-label">Maternity Start Date</label>
+        <input id="maternity-start-date-input" name="maternityStartDate" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
         <div id="maternity-start-date-input-helper" class="input-helper">
           The date the employee wants to start the maternity leave.
         </div>
@@ -140,7 +140,14 @@
         </ul>
 
         <div class="info-box red">
-          <div class="info-box-header">Important Note:</div>
+          <div class="info-box-header">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+              <path d="M12 9v4" />
+              <path d="M12 17h.01" />
+            </svg>
+            Important Note:
+          </div>
           <div class="info-box-body">
             <p>This tool calculates eligibility and leave dates based on service length and dates only. It does <strong>not</strong> check salary. To qualify for statutory maternity pay (SMP), the employee must earn at least the minimum qualifying amount, as defined on the GOV.UK page.</p>
             <p><strong>Always verify eligibility with official guidance and your internal HR policies.</strong></p>
@@ -151,7 +158,10 @@
     </section> <!-- Maternity Guide Ends -->
     <section id="maternity-references" class="card">
       <header class="card-header">
-        <h2>References</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
+        </svg>
+        <h4>References</h4>
       </header>
       <article class="card-body">
         <p>The calculations and logic in this tool were based on the following sources:</p>

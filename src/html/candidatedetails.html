@@ -1,159 +1,162 @@
-<section class="card">
+<section class="card card--full">
   <header class="card-header">
     <h2 id="candidate-full-name" class="mb-2">Candidate</h2>
   </header>
-  <article class="card-body">
-    <form id="candidate-form">
-      <!-- Candidate Details -->
-      <div class="candidate-details">
-        <div class="input-item">
-          <label for="first-name">First Name</label>
-          <input type="text" id="first-name" name="firstName">
-          <div class="input-helper">
-            Enter first name as shown on the passport
-          </div>
-        </div>
-        <div class="input-item">
-          <label for="last-name">Last Name</label>
-          <input type="text" id="last-name" name="lastName">
-          <div class="input-helper">
-            Enter last name as shown on the passport
-          </div>
+  <form id="candidate-form" class="card-body">
+    <!-- Candidate Details -->
+    <div class="input-item">
+      <label class="form-label" for="first-name">First Name</label>
+      <input type="text" id="first-name" name="firstName">
+      <div class="input-helper">
+        Enter first name as shown on the passport
+      </div>
+    </div>
+
+    <div class="input-item">
+      <label class="form-label" for="last-name">Last Name</label>
+      <input type="text" id="last-name" name="lastName">
+      <div class="input-helper">
+        Enter last name as shown on the passport
+      </div>
+    </div>
+
+    <!-- Employment Details -->
+    <div class="job-details-group">
+      <div class="input-item">
+        <label class="form-label" for="job-title">Job Title</label>
+        <input type="text" id="job-title" name="jobTitle">
+      </div>
+
+      <div class="input-item">
+        <label class="form-label" for="department">Department</label>
+        <input type="text" id="department" name="department">
+      </div>
+
+      <div class="input-item">
+        <label class="form-label" for="hiring-manager">Hiring Manager</label>
+        <input type="text" id="hiring-manager" name="hiringManager">
+      </div>
+    </div>
+
+    <!-- Right to work -->
+    <div class="right-to-work-group">
+      <div class="select-dropdown">
+        <label class="form-label" for="right-to-work">Right to work</label>
+        <input type="text" id="right-to-work" name="rightToWork" class="select-input" autocomplete="off">
+
+        <div class="select-options">
+          <div class="option">British / Irish</div>
+          <div class="option">Skilled Worker Visa</div>
+          <div class="option">Visa</div>
+          <div class="option">Indefinite Leave to Remain</div>
         </div>
       </div>
 
-      <!-- Employment Details -->
-      <div class="employment-details">
-        <div class="input-item">
-          <label for="job-title">Job Title</label>
-          <input type="text" id="job-title" name="jobTitle">
-        </div>
-        <div class="input-item">
-          <label for="department">Department</label>
-          <input type="text" id="department" name="department">
-        </div>
-        <div class="input-item">
-          <label for="hiring-manager">Hiring Manager</label>
-          <input type="text" id="hiring-manager" name="hiringManager">
+      <!-- Expiry Date -->
+      <div class="input-item">
+        <label class="form-label" for="expiry-date">Expiry Date</label>
+        <input type="text" id="expiry-date" name="expiryDate" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
+        <div class="input-helper">
+          Date the visa expiries
         </div>
       </div>
+    </div>
 
-      <!-- Onboarding Progress -->
-      <div class="onboarding-progress">
-        <!-- Right to work -->
-        <div class="select-dropdown">
-          <label for="right-to-work">Right to work</label>
-          <input type="text" class="select-input" autocomplete="off" id="right-to-work" name="rightToWork">
-
-          <div class="select-options">
-            <div class="option">British / Irish</div>
-            <div class="option">Skilled Worker Visa</div>
-            <div class="option">Visa</div>
-            <div class="option">Indefinite Leave to Remain</div>
-          </div>
-        </div>
-
-        <!-- Expiry Date -->
-        <div class="input-item">
-          <label for="expiry-date">Expiry Date</label>
-          <input id="expiry-date" name="expiryDate" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
-          <div class="input-helper">
-            Date the visa expiries
-          </div>
-        </div>
-
-        <!-- DBS -->
-        <div class="input-item">
-          <label for="dbs">DBS</label>
-          <input id="dbs" name="dbs" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
-        </div>
-
-        <div class="input-item">
-          <label for="dbs-number">DBS Certificate Number</label>
-          <input id="dbs-number" name="dbsNumber" type="text">
-        </div>
-
-        <div class="select-dropdown">
-          <label for="dbs-level">DBS Level</label>
-          <input type="text" class="select-input" autocomplete="off" id="dbs-level" name="dbsLevel">
-
-          <div class="select-options">
-            <div class="option">Basic</div>
-            <div class="option">Standard</div>
-            <div class="option">Enhanced</div>
-          </div>
-        </div>
-
-        <!-- OH -->
-        <div class="input-item">
-          <label for="oh">OH</label>
-          <input id="oh" name="oh" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
-          <div class="input-helper">
-            Date clearance was received
-          </div>
-        </div>
-
-        <!-- References -->
-        <div class="input-item">
-          <label for="references">References</label>
-          <input id="references" name="references" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
-        </div>
+    <!-- DBS -->
+    <div class="dbs-group">
+      <div class="input-item">
+        <label class="form-label" for="dbs">DBS</label>
+        <input type="text" id="dbs" name="dbs" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
       </div>
 
-      <!-- Post Onboarding -->
-      <div class="accounts">
-        <!-- Start Date -->
-        <div class="input-item">
-          <label for="start-date">Start Date</label>
-          <input id="start-date" name="startDate" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
-        </div>
-
-        <div class="checkbox-item">
-          <input type="checkbox" id="learn-space" name="learnSpace">
-          <label for="learn-space">Learn Space</label>
-        </div>
-
-        <div class="checkbox-item">
-          <input type="checkbox" id="adp" name="adp">
-          <label for="adp">ADP</label>
-        </div>
-
-        <div class="checkbox-item">
-          <input type="checkbox" id="name-badge" name="nameBadge">
-          <label for="name-badge">Name Badge</label>
-        </div>
-
-        <div class="checkbox-item">
-          <input type="checkbox" id="completed" name="completed">
-          <label for="completed">Onboarding Completed</label>
-        </div>
+      <div class="input-item">
+        <label class="form-label" for="dbs-number">DBS Certificate Number</label>
+        <input id="dbs-number" name="dbsNumber" type="text">
       </div>
 
-      <div class="form-buttons">
-        <button type="submit" class="btn green">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
-            <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
-            <path d="M7 3v4a1 1 0 0 0 1 1h7" />
-          </svg>
-          Save</button>
-        <button type="reset" class="btn yellow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-            <path d="M3 3v5h5" />
-          </svg>
-          Reset</button>
-        <button type="button" class="btn red" id="delete-candidate">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M10 11v6" />
-            <path d="M14 11v6" />
-            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
-            <path d="M3 6h18" />
-            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-          </svg>
-          Delete</button>
-      </div>
-    </form>
-  </article>
+      <div class="select-dropdown">
+        <label class="form-label" for="dbs-level">DBS Level</label>
+        <input type="text" class="select-input" autocomplete="off" id="dbs-level" name="dbsLevel">
 
+        <div class="select-options">
+          <div class="option">Basic</div>
+          <div class="option">Standard</div>
+          <div class="option">Enhanced</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- OH -->
+    <div class="input-item">
+      <label class="form-label" for="oh">OH</label>
+      <input id="oh" name="oh" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
+      <div class="input-helper">
+        Date clearance was received
+      </div>
+    </div>
+
+    <!-- References -->
+    <div class="input-item">
+      <label class="form-label" for="references">References</label>
+      <input id="references" name="references" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
+    </div>
+
+    <!-- Post Onboarding -->
+    <div class="input-item">
+      <label class="form-label" for="start-date">Start Date</label>
+      <input id="start-date" name="startDate" type="text" class="date-input" placeholder="DD/MM/YYYY" inputmode="numeric" maxlength="10" autocomplete="off">
+    </div>
+
+    <div class="checkbox-item align-middle">
+      <input type="checkbox" id="adp" name="adp">
+      <label class="form-label" for="adp">ADP</label>
+    </div>
+
+    <div class="checkbox-item align-middle">
+      <input type="checkbox" id="learn-space" name="learnSpace">
+      <label class="form-label" for="learn-space">Learn Space</label>
+    </div>
+
+    <div class="checkbox-item align-middle">
+      <input type="checkbox" id="name-badge" name="nameBadge">
+      <label class="form-label" for="name-badge">Name Badge</label>
+    </div>
+
+    <div class="select-dropdown">
+      <label class="form-label" for="status">Status</label>
+      <input type="text" id="status" name="status" class="select-input" autocomplete="off">
+
+      <div class="select-options">
+        <div class="option">Onboarding</div>
+        <div class="option">Ready</div>
+        <div class="option">Completed</div>
+      </div>
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit" class="btn green">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+          <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
+          <path d="M7 3v4a1 1 0 0 0 1 1h7" />
+        </svg>
+        Save</button>
+      <button type="reset" class="btn yellow">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+          <path d="M3 3v5h5" />
+        </svg>
+        Reset</button>
+      <button type="button" class="btn red" id="delete-candidate">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M10 11v6" />
+          <path d="M14 11v6" />
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+          <path d="M3 6h18" />
+          <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        </svg>
+        Delete</button>
+    </div>
+  </form>
 </section>
