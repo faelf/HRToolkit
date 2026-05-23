@@ -4,10 +4,12 @@ class Navbar extends HTMLElement {
     <nav class="sidebar-nav" aria-label="Main navigation bar">
       <a class="nav-btn" href="home">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
-          <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <rect width="7" height="9" x="3" y="3" rx="1"/>
+          <rect width="7" height="5" x="14" y="3" rx="1"/>
+          <rect width="7" height="9" x="14" y="12" rx="1"/>
+          <rect width="7" height="5" x="3" y="16" rx="1"/>
         </svg>
-        <span>Home</span>
+        <span>Dashboard</span>
       </a>
       <a class="nav-btn" href="onboarding" data-active-group="onboarding">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -67,14 +69,17 @@ class Navbar extends HTMLElement {
   }
 
   attachEventListeners() {
-    const nav = document.querySelector(".sidebar-nav");
-    document.querySelector(".sidebar-nav").addEventListener("mouseenter", () => {
-      nav.classList.add("sidebar-open");
-    });
+    const sidebar = this.querySelector(".sidebar-nav");
 
-    document.querySelector(".sidebar-nav").addEventListener("mouseleave", () => {
-      nav.classList.remove("sidebar-open");
-    });
+    if (sidebar) {
+      sidebar.addEventListener("mouseenter", () => {
+        sidebar.classList.add("sidebar-open");
+      });
+
+      sidebar.addEventListener("mouseleave", () => {
+        sidebar.classList.remove("sidebar-open");
+      });
+    }
   }
 
   connectedCallback() {
