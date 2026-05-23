@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  gameslibrary:
+    image: node:20
+    container_name: hrhelper-dev
+    ports:
+      - "8002:5173"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: npm run dev -- --host 0.0.0.0
+    restart: unless-stopped
