@@ -1,9 +1,25 @@
-import HomeHTML from "../html/home.html?raw";
+import { firebase } from "../utilities/firebase.js";
+import { tasks } from "../utilities/tasks.js";
 
-export const HomePage = {
-  title: "HR Toolkit - Home",
-  html: HomeHTML,
-  setup() {
-    // Page logic will go here
+import DashboardHTML from "../html/home.html?raw";
+
+export const DashboardPage = {
+  title: "HR Helper - Dashboard",
+  html: DashboardHTML,
+  async setup() {
+    const cards = {
+      total: document.querySelector("#total"),
+      todo: document.querySelector("#todo"),
+      tasksList: document.querySelector("#task-list-container"),
+      startersList: document.querySelector("#starters"),
+    };
+
+    const candidates = await firebase.getDocuments("candidates");
+    const onboarding = candidates.filter((c) => c.status == "Onboarding");
+
+    cards.todo.textContent = tasks.getTotal(candidates);
+    cards.total.textContent = onboarding.length;
+    cards.tasksList.innerHTML = "";
+    cards.tasksList.appendChild(tasks.htmlList(onboarding));
   },
 };
