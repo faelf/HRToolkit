@@ -2,7 +2,7 @@
   Global / General Styles
   ------------------------------
 */
-label {
+.form-label {
   display: block;
   margin: 0;
   color: var(--text);
@@ -27,12 +27,12 @@ textarea {
   margin: 0;
   padding: 0.375rem 0.75rem;
   font-size: var(--text-md);
-  line-height: 1.5;
+  line-height: var(--line-height-form);
   border-radius: var(--border-radius);
-  background-color: var(--bg-bottom);
+  background-color: var(--bg-body);
   color: var(--text);
   font-family: inherit;
-  border: 2px solid var(--input-border);
+  border: 2px solid var(--border-colour);
 }
 
 input::placeholder {
@@ -48,7 +48,7 @@ input:focus,
 select:focus,
 button:focus,
 textarea:focus {
-  border: 2px solid color-mix(in hsl, var(--primary), black 60%);
+  border: 2px solid var(--border-highlight);
   outline: none;
 }
 
@@ -153,14 +153,14 @@ input[type="checkbox"] {
 
 /* Not selected */
 /* input[type="checkbox"]:not(:checked) {
-  color: var(--input-border);
-  border-color: var(--input-border);
+  color: var(--border-colour);
+  border-color: var(--border-colour);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
 } */
 
 input[type="checkbox"]:checked {
-  border-color: var(--primary);
-  background-color: var(--primary);
+  border-color: var(--border-colour);
+  background-color: var(--blue);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
 }
 
@@ -183,12 +183,12 @@ select {
   margin: 0;
   padding: 0.375rem 2.25rem 0.375rem 0.75rem;
   font-size: var(--text-md);
-  line-height: 1.5;
+  line-height: var(--line-height-form);
   border-radius: var(--border-radius);
-  background-color: var(--bg-bottom);
+  background-color: var(--bg-body);
   color: var(--text);
   font-family: inherit;
-  border: 2px solid var(--input-border);
+  border: 2px solid var(--border-colour);
   cursor: pointer;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
@@ -202,7 +202,7 @@ select {
   ------------------------------
 */
 input[type="search"] {
-  color: var(--input-border);
+  color: var(--border-colour);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.34-4.34'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-size: 20px;
@@ -238,15 +238,15 @@ input[type="search"] {
   position-try-fallbacks: --left, --right, --bottom-center, --bottom-left,
     --bottom-right;
   inset: auto;
-  top: calc(anchor(bottom) + 0.25rem);
+  top: calc(anchor(bottom) + 2px);
   justify-self: anchor-center;
   width: anchor-size(width);
-  background: var(--bg-surface);
+  background: var(--bg-body);
   border-radius: var(--border-radius);
   z-index: 1000;
   max-height: 120px;
   overflow-y: auto;
-  border: 2px solid var(--input-border);
+  border: 2px solid var(--border-colour);
   display: none;
 }
 
@@ -311,12 +311,12 @@ progress {
   height: var(--text-md);
   border-radius: var(--border-radius);
   overflow: hidden;
-  border: 1px solid var(--text);
+  border: var(--border-size) solid var(--border-highlight);
   background-color: var(--text);
 }
 
 progress::-webkit-progress-bar {
-  background-color: var(--text);
+  background-color: var(--border-highlight);
 }
 
 progress::-webkit-progress-value {

@@ -1,13 +1,16 @@
 ui-navbar {
-  --sidebar-width: 69px;
-  --border-size: 2px;
+  grid-area: sidebar;
+  --sidebar-width: 66px;
+  --sidebar-open: 200px;
   position: relative;
   width: var(--sidebar-width);
+  background: var(--bg-highlight);
+  border-right: var(--border-size) solid var(--border-colour);
 }
 
 .sidebar-nav {
+  background: var(--bg-highlight);
   border-right: var(--border-size) solid var(--border-colour);
-  background-color: var(--bg-bottom);
   padding: 0.5rem;
   width: var(--sidebar-width);
   height: 100%;
@@ -22,7 +25,7 @@ ui-navbar {
 }
 
 .sidebar-open {
-  --sidebar-width: 250px;
+  --sidebar-width: var(--sidebar-open);
 }
 
 .sidebar-nav span {
@@ -34,27 +37,25 @@ ui-navbar {
   display: inline-block;
 }
 
-#theme-toggle {
-  margin-top: auto;
-}
-
 .nav-btn {
-  --svg-size: 1.2rem;
+  --svg-size: 1.1rem;
+  --svg-colour: var(--text);
+  --svg-stroke-width: 2;
   /* Button defults */
-  border: none;
-  border-radius: var(--border-radius, 0.5rem);
-  background: hsla(0 0% 50% / 0.2);
+  background: none;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius);
 
   /* Typography */
   line-height: 1;
   font-size: var(--svg-size);
-  font-weight: 600;
-  color: var(--dark, hsl(0 0% 10%));
+  font-weight: 500;
+  color: var(--text);
 
   /* Sizing */
   overflow: hidden;
   width: 100%;
-  padding: 1rem;
+  padding: .75rem;
 
   /* Layout */
   display: flex;
@@ -62,26 +63,22 @@ ui-navbar {
   justify-content: start;
   gap: var(--gap-md);
   cursor: pointer;
-  transition: all 0.25s;
-  box-shadow:
-    0 2px 6px rgb(0 0 0 / 0.08),
-    0 8px 24px rgb(0 0 0 / 0.12);
+  transition: all .3s ease-in-out;
 }
 
 .nav-btn:hover, .nav-btn.active {
-  background: var(--primary);
-  color: var(--dark);
+  background: var(--bg-body);
+  color: var(--text);
 }
 
 .nav-btn:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--primary), black 60%);
-  border: none;
+  outline: none;
+  border: var(--border-size) solid var(--border-highlight);
 }
 
 @media (min-width: 768px) {
   ui-navbar {
-    --sidebar-width: 250px;
-    border-right: var(--border-size) solid var(--border-colour);
+    --sidebar-width: var(--sidebar-open);
     position: static;
   }
 
@@ -92,7 +89,5 @@ ui-navbar {
   .sidebar-nav {
     position: static;
     background-color: transparent;
-    border-right: none;
-    clip-path: none;
   }
 }

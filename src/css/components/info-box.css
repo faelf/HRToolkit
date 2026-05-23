@@ -10,26 +10,31 @@
 }
 
 .info-box-header {
+  --svg-size: var(--text-md);
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
   border-bottom: var(--box-border-width) solid var(--box-boder-colour);
   background-color: var(--box-bg-colour);
   color: var(--light);
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 0.5rem;
   font-weight: 700;
 }
 
 .info-box-body {
-  background-color: var(--bg-bottom);
+  background-color: var(--bg-highlight);
   color: var(--text);
   padding: 0.25rem 1rem;
 }
 
 .info-box.red {
+  --svg-colour: color-mix(in hsl, var(--red), black 60%);
   --box-bg-colour: var(--red);
-  --box-boder-colour: color-mix(in srgb, var(--red), black 60%);
+  --box-boder-colour: color-mix(in hsl, var(--red), black 60%);
 }
 
 .info-box.red .info-box-header {
-  color: color-mix(in srgb, var(--red), black 60%);
+  color: color-mix(in hsl, var(--red), black 60%);
 }
 
 .info-box.blue {
@@ -37,5 +42,5 @@
 }
 
 .info-box.blue .info-box-header {
-  color: color-mix(in srgb, var(--blue), black 60%);
+  color: color-mix(in hsl, var(--blue), black 60%);
 }

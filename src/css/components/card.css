@@ -2,6 +2,7 @@
   --svg-size: calc(var(--text-md) * 1.275 + 0.3vw);
   background-color: var(--bg-surface);
   border-radius: 20px;
+  border: var(--border-size) solid var(--border-colour);
   overflow: clip;
   display: flex;
   flex-direction: column;
@@ -12,8 +13,8 @@
 
 .card-header {
   padding: 0.75rem 1rem;
-  background: hsla(0 0% 70% / 0.1);
-  border-bottom: 2px solid var(--border-colour);
+  border-bottom: var(--border-size) solid var(--border-colour);
+  background: var(--bg-highlight);
   display: flex;
   align-items: center;
   gap: var(--gap-md);
@@ -59,6 +60,19 @@
   font-size: 0.9rem;
 }
 
+.empty-tasks, .empty-starters {
+  --svg-size: calc(var(--text-md) * 1.625 + 4.5vw);
+  --svg-stroke-width: 1.5;
+  font-size: calc(var(--text-md) * 1.375 + 1.5vw);
+  place-content: center;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
 .task-list li {
   padding: 0.75rem 1rem;
   cursor: pointer;
@@ -83,22 +97,37 @@
   font-size: var(--text-md);
 }
 
+.task-badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--gap-sm);
+}
+
 .task-badge {
   color: var(--dark);
   display: inline-block;
   margin-top: 0.5rem;
-  padding: 0.3rem 0.6rem;
+  padding: 0.3rem 0.75rem;
   border-radius: 999px;
-  font-size: var(--text-sm);
+  font-size: 0.8rem;
   font-weight: 600;
   background: var(--yellow);
   white-space: nowrap;
+  text-align: center;
+}
+
+.task-badge.complete {
+  background: var(--green);
+}
+
+.task-badge.pending {
+  background: var(--red);
 }
 
 .card-footer {
   padding: 0.75rem 1rem;
-  background-color: color-mix(in srgb, var(--light), var(--dark) 2%);
+  background-color: var(--bg-highlight);
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: var(--gap-md);
 }

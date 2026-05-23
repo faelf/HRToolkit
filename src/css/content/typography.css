@@ -118,6 +118,10 @@ code {
   font-size: 0.9em;
 }
 
+.text-muted {
+  color: var(--text-muted);
+}
+
 .text-right {
   text-align: right;
 }

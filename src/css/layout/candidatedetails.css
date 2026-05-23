@@ -16,3 +16,31 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+.align-middle {
+  align-self: center;
+}
+
+.job-details-group {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--gap-md);
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+}
+
+.right-to-work-group {
+  grid-column: 1 / 3;
+  display: grid;
+  gap: var(--gap-md);
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+}
+
+.dbs-group {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--gap-md);
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+}

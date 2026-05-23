@@ -1,21 +1,18 @@
 [data-theme="dark"] {
   /* Backgrounds */
-  --bg-bottom: hsl(0 0% 10%);
-  --bg-surface: hsl(0 0% 15%);
+  --bg-body: hsl(220 16% 30%);
+  --bg-surface: hsl(220 16% 25%);
+  --bg-highlight: hsl(220 16% 20%);
 
   /* Text */
-  --text: hsl(0, 0%, 80%);
-  --text-heading: hsl(0, 0%, 95%);
+  --text: hsl(216, 19%, 95%);
+  --text-heading: hsl(222, 20%, 87%);
   --text-muted: hsl(0 0% 70%);
+  --svg-colour: hsl(0 0% 85%);
 
   /* Utilities */
-  --border-colour: hsla(0 0% 0% / 0.2);
-
-  /* Form */
-  --input-border: hsla(0 0% 50% / 0.2);
-  --input-shadow:
-    inset 1px 1px 2px 1px hsla(0 0% 0% / 0.2);
-  --input-focus: hsl(0 0% 100% / 0.1);
+  --border-colour: hsl(220 16% 15%);
+  --border-highlight: hsl(220 16% 5%);
 
   /* Table */
   --bg-thead: hsla(0 0% 100% / 0.1);

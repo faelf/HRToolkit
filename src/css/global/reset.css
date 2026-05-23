@@ -1,19 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif;
+  font-family: "Lato", sans-serif;
   line-height: var(--line-height-text);
   font-size: var(--text-md);
-  background-color: var(--bg-bottom);
+  background-color: var(--bg-body);
   color: var(--text);
   margin: 0;
   padding: 0;

@@ -1,69 +1,76 @@
-.btn {
+.btn, .btn-sm {
   --svg-size: var(--text-md);
+  --svg-colour: var(--text);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--gap-md);
-  border: 2px solid var(--border-colour);
-  background: var(--light);
-  color: var(--dark);
-  padding: 0.375rem 1.2rem;
-  line-height: 1.5;
-  font-size: var(--text-md);
   font-weight: 600;
+  background: var(--bg-body);
+  color: var(--text);
   cursor: pointer;
   border-radius: var(--border-radius);
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  border: var(--border-size) solid var(--border-colour);
+  transition: all .3s ease-in-out;
+}
+
+.btn {
+  gap: var(--gap-md);
+  padding: 0.375rem 1.2rem;
+  line-height: var(--line-height-form);
+  font-size: var(--text-md);
 }
 
 .btn-sm {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: var(--light);
-  color: var(--dark);
+  --svg-size: var(--text-sm);
+  --svg-stroke: 2;
+  gap: var(--gap-sm);
   padding: 0.3rem 0.6rem;
   line-height: var(--line-height-text);
   font-size: var(--text-sm);
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: var(--border-radius);
+}
+
+.btn-sm.dark, .btn.dark {
+  --svg-colour: var(--light);
+  --border-colour: var(--dark);
+  background: var(--dark);
+  color: var(--svg-colour);
 }
 
 /* Semantic Button Styles */
 .btn-sm.green, .btn.green {
-  background-color: var(--green);
-  color: color-mix(in srgb, var(--green), black 60%);
-}
-
-.btn-sm.green:hover, .btn.green:hover {
-  filter: brightness(0.9);
+  --svg-colour: color-mix(in hsl, var(--green), black 60%);
+  --border-colour: color-mix(in hsl, var(--green), white 10%);
+  background: var(--green);
+  color: var(--svg-colour);
 }
 
 .btn-sm.yellow, .btn.yellow {
-  background-color: var(--yellow);
-  color: color-mix(in srgb, var(--yellow), black 60%);
-}
-
-.btn-sm.yellow:hover, .btn.yellow:hover {
-  filter: brightness(0.9);
+  --svg-colour: color-mix(in hsl, var(--yellow), black 60%);
+  --border-colour: color-mix(in hsl, var(--yellow), white 10%);
+  background: var(--yellow);
+  color: var(--svg-colour);
 }
 
 .btn-sm.blue, .btn.blue {
-  background-color: var(--blue);
-  color: color-mix(in srgb, var(--blue), black 60%);
-}
-
-.btn-sm.blue:hover, .btn.blue:hover {
-  filter: brightness(0.9);
+  --svg-colour: color-mix(in hsl, var(--blue), black 60%);
+  --border-colour: color-mix(in hsl, var(--blue), white 10%);
+  background: var(--blue);
+  color: var(--svg-colour);
 }
 
 .btn-sm.red, .btn.red {
-  background-color: var(--red);
-  color: color-mix(in srgb, var(--red), black 60%);
+  --svg-colour: color-mix(in hsl, var(--red), black 60%);
+  --border-colour: color-mix(in hsl, var(--red), white 10%);
+  background: var(--red);
+  color: var(--svg-colour);
 }
 
+/* Hover States */
+.btn-sm:hover, .btn:hover,
+.btn-sm.dark:hover, .btn.dark:hover,
+.btn-sm.green:hover, .btn.green:hover,
+.btn-sm.yellow:hover, .btn.yellow:hover,
+.btn-sm.blue:hover, .btn.blue:hover,
 .btn-sm.red:hover, .btn.red:hover {
   filter: brightness(0.9);
 }
@@ -75,4 +82,35 @@
 .btn-sm.blue:active, .btn.blue:active,
 .btn-sm.red:active, .btn.red:active {
   filter: brightness(1.2);
+}
+
+.btn-group {
+  display: flex;
+}
+
+.btn-group > * {
+  border-radius: 0;
+}
+
+.btn-group > * + * {
+  margin-left: calc(var(--border-size) * -1);
+}
+
+.btn-group > :first-child {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.btn-group > :last-child {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.btn-group .btn,
+.btn-group .btn.dark,
+.btn-group .btn.green,
+.btn-group .btn.yellow,
+.btn-group .btn.blue,
+.btn-group .btn.red {
+  --border-colour: inherit;
 }

@@ -1,29 +1,30 @@
 :root {
   /* Brand */
-  --primary: hsl(212, 86%, 59%);
-  --secondary: hsl(0 0% 60%);
+  --primary: hsl(266 85% 58%);
 
   /* Semantic */
-  --blue: hsl(198 93% 60%);
-  --yellow: hsl(43 96% 56%);
-  --red: hsl(0 91% 71%);
-  --green: hsl(158 64% 52%);
-  --light: hsl(0 0% 90%);
-  --dark: hsl(0 0% 10%);
+  --blue: hsl(210 90% 60%);
+  --yellow: hsl(45 90% 60%);
+  --red: hsl(5 90% 60%);
+  --green: hsl(150 90% 60%);
+  --light: hsl(217 25% 95%);
+  --dark: hsl(217 25% 15%);
 
   /* Text */
   --line-height-text: 1.4;
   --line-height-heading: 1.2;
-  --line-height-btn: 1;
+  --line-height-form: 1.5;
 
   --text-sm: 0.8rem;
-  --text-md: 1.2rem;
-  --text-lg: 1.6rem;
+  --text-md: 1rem;
+  --text-lg: 1.2rem;
 
   --svg-size: 1rem;
+  --svg-stroke-width: 3;
 
   /* Utilities */
-  --border-radius: 1rem;
+  --border-radius: 0.75rem;
+  --border-size: 2px;
   --gap-sm: 0.25rem;
   --gap-md: 0.5rem;
   --gap-lg: 0.75rem;
