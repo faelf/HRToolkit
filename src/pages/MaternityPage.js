@@ -2,7 +2,7 @@ import MaternityHTML from "../html/maternity.html?raw";
 import { formatters } from "../utilities/formatters.js";
 
 export const MaternityPage = {
-  title: "HR Toolkit - Maternity Calculator",
+  title: "HR Helper - Maternity Calculator",
   html: MaternityHTML,
   setup() {
     formatters.setMinMaxDates();
@@ -26,6 +26,17 @@ export const MaternityPage = {
     const serviceRequirements = { smpWeeks: 26, ompWeeks: 26 };
 
     const offset = { qualifying: 15, earliestStart: 11 };
+
+    /**
+     * Parses a "DD/MM/YYYY" string into a JavaScript Date object.
+     * @param {string} input - The British formatted date string.
+     * @returns {Date|null} The parsed Date object, or null if empty.
+     */
+    function parseBritishDate(input) {
+      if (!input) return null;
+      const [day, m, y] = input.split("/").map(Number);
+      return new Date(y, m - 1, day);
+    }
 
     /**
      * Returns the Sunday of the week for a given date.
@@ -155,8 +166,8 @@ export const MaternityPage = {
      * @returns {Object} The calculation results.
      */
     function calculateMat() {
-      const empStart = new Date(startDateInput.value);
-      const babyDue = new Date(babyDueInput.value);
+      const empStart = parseBritishDate(startDateInput.value);
+      const babyDue = parseBritishDate(babyDueInput.value);
 
       const ewcStart = getWeekStart(babyDue);
       const ewcEnd = getWeekEnd(babyDue);
@@ -168,7 +179,7 @@ export const MaternityPage = {
       let maternityStart;
       if (maternityStartInput.value) {
         // If the user entered a maternity start date, use that
-        maternityStart = new Date(maternityStartInput.value);
+        maternityStart = parseBritishDate(maternityStartInput.value);
       } else {
         // Otherwise, use the earliest legal start date (11 weeks before EWC)
         maternityStart = new Date(ewcStart);
@@ -282,16 +293,18 @@ export const MaternityPage = {
     };
     const originalTexts = {
       employment: helpers.employment.textContent,
-      babydue: helpers.babyDue.textContent,
+      babyDue: helpers.babyDue.textContent,
       mat: helpers.mat.textContent,
     };
 
     function validateDates() {
       let isValid = true;
 
-      const StartDate = new Date(startDateInput.value);
-      const BabyDueDate = new Date(babyDueInput.value);
-      const MatStartDate = new Date(maternityStartInput.value);
+      const StartDate = parseBritishDate(startDateInput.value);
+      const BabyDueDate = parseBritishDate(babyDueInput.value);
+      const MatStartDate = parseBritishDate(maternityStartInput.value);
+
+      if (!StartDate || !BabyDueDate) return false;
 
       if (StartDate > BabyDueDate) {
         helpers.babyDue.className = "invalid-feedback";
@@ -304,7 +317,7 @@ export const MaternityPage = {
         babyDueInput.classList.remove("is-invalid");
       }
 
-      if (BabyDueDate < MatStartDate) {
+      if (MatStartDate && BabyDueDate < MatStartDate) {
         helpers.mat.className = "invalid-feedback";
         helpers.mat.textContent = "Maternity cannot start after baby is due.";
         maternityStartInput.classList.add("is-invalid");

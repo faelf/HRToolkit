@@ -2,7 +2,7 @@ import ProbationHTML from "../html/probation.html?raw";
 import { formatters } from "../utilities/formatters.js";
 
 export const ProbationPage = {
-  title: "HR Toolkit - Probation Calculator",
+  title: "HR Helper - Probation Calculator",
   html: ProbationHTML,
   setup() {
     const probationForm = document.getElementById("probation-form");
@@ -23,7 +23,8 @@ export const ProbationPage = {
       const input = document.getElementById("start-date").value;
       if (!input) return;
 
-      const [y, m, day] = input.split("-").map(Number);
+      // Split the British "DD/MM/YYYY" format by the slash
+      const [day, m, y] = input.split("/").map(Number);
       const startDate = new Date(y, m - 1, day);
 
       let milestonesHtml = "";
