@@ -1,6 +1,6 @@
 export const storages = {
   getStorage() {
-    return localStorage.getItem("storage") ?? "localstorage";
+    return localStorage.getItem("storage") ?? "Local Storage";
   },
 
   async _getFirebase() {
@@ -12,10 +12,10 @@ export const storages = {
   },
 
   async load(collectionName) {
-    if (this.getStorage() === "localstorage") {
+    if (this.getStorage() === "Local Storage") {
       const storedData = localStorage.getItem(collectionName);
       return storedData ? JSON.parse(storedData) : [];
-    } else if (this.getStorage() === "firebase") {
+    } else if (this.getStorage() === "Firebase") {
       const { db, collection, getDocs } = await this._getFirebase();
       const col = collection(db, collectionName);
       const snapshot = await getDocs(col);
@@ -24,10 +24,10 @@ export const storages = {
   },
 
   async get(collectionName, itemId) {
-    if (this.getStorage() === "localstorage") {
+    if (this.getStorage() === "Local Storage") {
       const items = await this.load(collectionName);
       return items.find((item) => item.id == itemId);
-    } else if (this.getStorage() === "firebase") {
+    } else if (this.getStorage() === "Firebase") {
       const { db, doc, getDoc } = await this._getFirebase();
       const docRef = doc(db, collectionName, itemId);
       const docSnap = await getDoc(docRef);
@@ -36,7 +36,7 @@ export const storages = {
   },
 
   async add(collectionName, data) {
-    if (this.getStorage() === "localstorage") {
+    if (this.getStorage() === "Local Storage") {
       const items = await this.load(collectionName);
       const newItem = {
         id: String(Date.now() + Math.floor(Math.random() * 1000)),
@@ -45,7 +45,7 @@ export const storages = {
       items.push(newItem);
       this.save(collectionName, items);
       return newItem;
-    } else if (this.getStorage() === "firebase") {
+    } else if (this.getStorage() === "Firebase") {
       const { db, collection, addDoc } = await this._getFirebase();
       const col = collection(db, collectionName);
       const docRef = await addDoc(col, data);
@@ -54,14 +54,14 @@ export const storages = {
   },
 
   async update(collectionName, itemId, updates) {
-    if (this.getStorage() === "localstorage") {
+    if (this.getStorage() === "Local Storage") {
       const items = await this.load(collectionName);
       const itemIndex = items.findIndex((item) => item.id == itemId);
       if (itemIndex === -1) return false;
       items[itemIndex] = { ...items[itemIndex], ...updates };
       this.save(collectionName, items);
       return true;
-    } else if (this.getStorage() === "firebase") {
+    } else if (this.getStorage() === "Firebase") {
       const { db, doc, updateDoc } = await this._getFirebase();
       const docRef = doc(db, collectionName, itemId);
       await updateDoc(docRef, updates);
@@ -70,12 +70,12 @@ export const storages = {
   },
 
   async remove(collectionName, itemId) {
-    if (this.getStorage() === "localstorage") {
+    if (this.getStorage() === "Local Storage") {
       const items = await this.load(collectionName);
       const filteredItems = items.filter((item) => item.id != itemId);
       this.save(collectionName, filteredItems);
       return true;
-    } else if (this.getStorage() === "firebase") {
+    } else if (this.getStorage() === "Firebase") {
       const { db, doc, deleteDoc } = await this._getFirebase();
       const docRef = doc(db, collectionName, itemId);
       await deleteDoc(docRef);

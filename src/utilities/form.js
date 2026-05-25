@@ -12,6 +12,7 @@ export const form = {
         if (input && optionsPanel) {
           input.value = option.textContent.trim();
           optionsPanel.classList.remove("open");
+          input.dispatchEvent(new Event("change", { bubbles: true }));
         }
         return true;
       }

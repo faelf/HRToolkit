@@ -13,14 +13,15 @@
     </div>
     <div>
       <form id="storage-form">
-        <div class="input-item">
-          <label for="storage-options" class="form-label">Select the database</label>
-          <select class="form-select" id="storage-options" name="storage-options">
-            <option value="localstorage">Local Storage</option>
-            <option value="firebase">Firebase</option>
-          </select>
+        <div class="select-dropdown">
+          <label class="form-label" for="storage-options">Select the database</label>
+          <input type="text" id="storage-options" name="storage-options" class="select-input" autocomplete="off" readonly placeholder="Select storage...">
+          <div class="select-options">
+            <div class="option">Local Storage</div>
+            <div class="option">Firebase</div>
+          </div>
         </div>
-        <div id="firebase-fields">
+        <div id="firebase-fields" class="d-none">
           <div class="input-item">
             <label for="api-key" class="form-label">API Key</label>
             <input type="text" id="api-key" name="api-key" autocomplete="off">
