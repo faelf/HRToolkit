@@ -29,6 +29,22 @@ main {
   overflow-y: auto;
 }
 
+.empty-state {
+  --svg-size: var(--headline-1);
+  --svg-stroke-width: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(var(--gap-md) * 2);
+  gap: var(--gap-md);
+}
+
+.d-none {
+  display: none !important;
+}
+
 
 /*
   Dashboard
@@ -85,4 +101,11 @@ main {
   .cal-containers {
     grid-template-columns: 1fr 3fr;
   }
+}
+
+/* Settings Page */
+.settings-grid {
+  display: grid;
+  gap: var(--gap-md);
+  grid-template-columns: 1fr 1fr;
 }
