@@ -1,4 +1,17 @@
 export const table = {
+  _emptyContainer(text) {
+    const container = document.createElement("div");
+    container.className = "empty-state";
+    container.innerHTML = /* html */ `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="m15 9-6 6"/>
+          <path d="m9 9 6 6"/>
+        </svg>
+        <p class="h1">${text}</p>
+      `;
+    return container;
+  },
   thead(columns) {
     const thead = document.createElement("thead");
     const tr = document.createElement("tr");
@@ -50,7 +63,7 @@ export const table = {
     container.innerHTML = "";
 
     if (config.tbody.length === 0) {
-      container.innerHTML = "No Candidates";
+      container.appendChild(this._emptyContainer(config.emptyText));
     } else {
       const table = document.createElement("table");
       table.classList.add("top");
