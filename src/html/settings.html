@@ -1,0 +1,67 @@
+<section class="card">
+  <header class="card-header">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+    <h4>Settings</h4>
+  </header>
+  <article class="card-body settings-grid">
+    <div>
+      <h3>Storage Options</h3>
+      <p class="card-text">You can select from Firestore or Localstorage</p>
+    </div>
+    <div>
+      <form id="storage-form">
+        <div class="input-item">
+          <label for="storage-options" class="form-label">Select the database</label>
+          <select class="form-select" id="storage-options">
+            <option value="localstorage">Local Storage</option>
+            <option value="firebase">Firebase</option>
+          </select>
+        </div>
+        <div id="firebase-fields">
+          <div class="input-item">
+            <label for="api-key" class="form-label">API Key</label>
+            <input type="text" class="form-control" id="api-key" autocomplete="off">
+          </div>
+
+          <div class="input-item">
+            <label for="auth-domain" class="form-label">Auth Domain</label>
+            <input type="text" class="form-control" id="auth-domain" autocomplete="off">
+          </div>
+
+          <div class="input-item">
+            <label for="project-id" class="form-label">Project ID</label>
+            <input type="text" class="form-control" id="project-id" autocomplete="off">
+          </div>
+
+          <div class="input-item">
+            <label for="storage-bucket" class="form-label">Storage Bucket</label>
+            <input type="text" class="form-control" id="storage-bucket" autocomplete="off">
+          </div>
+
+          <div class="input-item">
+            <label for="sender-id" class="form-label">Messaging Sender ID</label>
+            <input type="text" class="form-control" id="sender-id" autocomplete="off">
+          </div>
+
+          <div class="input-item">
+            <label for="app-id" class="form-label">App ID</label>
+            <input type="text" class="form-control" id="app-id" autocomplete="off">
+          </div>
+        </div>
+
+
+        <button class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-md me-2">
+            <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+            <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
+            <path d="M7 3v4a1 1 0 0 0 1 1h7" />
+          </svg>
+          Save
+        </button>
+      </form>
+    </div>
+  </article>
+</section>

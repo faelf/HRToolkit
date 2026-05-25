@@ -1,4 +1,4 @@
-import { firebase } from "../utilities/firebase.js";
+import { storages } from "../utilities/storages.js";
 import { tasks } from "../utilities/tasks.js";
 
 import DashboardHTML from "../html/home.html?raw";
@@ -14,7 +14,7 @@ export const DashboardPage = {
       startersList: document.querySelector("#starters"),
     };
 
-    const candidates = await firebase.getDocuments("candidates");
+    const candidates = await storages.load("candidates");
     const onboarding = candidates.filter((c) => c.status == "Onboarding");
 
     cards.todo.textContent = tasks.getTotal(candidates);

@@ -1,5 +1,5 @@
 import CandidateDetailsHTML from "../html/candidatedetails.html?raw";
-import { firebase } from "../utilities/firebase.js";
+import { storages } from "../utilities/storages.js";
 import { form } from "../utilities/form.js";
 
 export const CandidateDetails = {
@@ -10,7 +10,7 @@ export const CandidateDetails = {
     const candidateForm = document.querySelector("#candidate-form");
 
     async function loadcandidate(id, candidateForm) {
-      const rawCandidate = await firebase.getDocument("candidates", id);
+      const rawCandidate = await storages.get("candidates", id);
 
       const candidate = form.date.format.toUi(rawCandidate);
 
@@ -27,10 +27,10 @@ export const CandidateDetails = {
       const newCandidate = form.submit(event);
 
       try {
-        await firebase.updateDocument("candidates", id, newCandidate);
+        await storages.update("candidates", id, newCandidate);
         await loadcandidate(id, candidateForm);
       } catch (error) {
-        console.error("Firebase Update Error:", error);
+        console.error("Storage Update Error:", error);
       }
     });
 
@@ -40,10 +40,10 @@ export const CandidateDetails = {
 
       if (confirmed) {
         try {
-          await firebase.deleteDocument("candidates", id);
+          await storages.remove("candidates", id);
           window.location.hash = "onboarding";
         } catch (error) {
-          console.error("Firebase Delete Error:", error);
+          console.error("Storage Delete Error:", error);
         }
       }
     });
