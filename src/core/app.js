@@ -8,6 +8,7 @@ import { pageContent } from "../pages/index.js";
 import { theme } from "../utilities/theme.js";
 import { form } from "../utilities/form.js";
 import { modal } from "../utilities/modal.js";
+import { storages } from "../utilities/storages.js";
 
 // Load all Web Components and global UI logic
 import "../ui/index.js";
@@ -35,6 +36,7 @@ router.init();
 function initialLoad() {
   // Apply the user's preferred theme
   theme.init();
+  storages.init();
 }
 
 /*
