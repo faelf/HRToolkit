@@ -1,5 +1,5 @@
 import OnboardingHTML from "../html/onboarding.html?raw";
-import { firebase } from "../utilities/firebase.js";
+import { storages } from "../utilities/storages.js";
 import { table } from "../utilities/table.js";
 import { form } from "../utilities/form.js";
 
@@ -8,7 +8,7 @@ export const OnboardingPage = {
   html: OnboardingHTML,
   async setup() {
     async function renderTable() {
-      const candidates = await firebase.getDocuments("candidates");
+      const candidates = await storages.load("candidates");
 
       if (candidates) {
         // To Display Full Name and Progress
@@ -35,6 +35,7 @@ export const OnboardingPage = {
             progress: "Progress",
           },
           tbody: processedCandidates,
+          emptyText: "No Candidates",
         };
 
         table.render(candidatesTable);
@@ -43,12 +44,9 @@ export const OnboardingPage = {
 
     renderTable();
 
-    // Add Candidate
     const newCandidateForm = document.querySelector("#new-candidate");
 
     newCandidateForm.addEventListener("submit", async (event) => {
-      // 1. Firebase is NoSQL, so we define a blank template to guarantee
-      // that all expected fields exist in the database from the start!
       const defaultCandidate = {
         firstName: "",
         lastName: "",
@@ -68,11 +66,10 @@ export const OnboardingPage = {
         nameBadge: false,
       };
 
-      // 2. Safely extract inputs and merge them over the blank template
       const formData = form.submit(event);
       const newCandidate = { ...defaultCandidate, ...formData, status: "Onboarding" };
 
-      await firebase.addDocument("candidates", newCandidate);
+      await storages.add("candidates", newCandidate);
 
       event.target.reset();
 
