@@ -14,13 +14,13 @@ export const OnboardingPage = {
         // To Display Full Name and Progress
         const processedCandidates = candidates.map((candidate) => {
           // Fields that count towards the progress
-          const progressFields = ["dbs", "rightToWork", "oh", "references"];
+          const progressFields = ["dbs", "right-to-work", "oh", "references"];
           const completedCount = progressFields.filter((field) => candidate[field]).length;
           const percentage = Math.round((completedCount / progressFields.length) * 100);
 
           return {
             ...candidate,
-            fullName: `${candidate.firstName} ${candidate.lastName}`,
+            fullName: `${candidate["first-name"]} ${candidate["last-name"]}`,
             progress: /* html */ `<progress value="${percentage}" max="100"></progress>`,
           };
         });
@@ -29,9 +29,9 @@ export const OnboardingPage = {
           container: "#candidates-container",
           thead: {
             fullName: "Full Name",
-            jobTitle: "Job Title",
+            "job-title": "Job Title",
             department: "Department",
-            hiringManager: "Hiring Manager",
+            "hiring-manager": "Hiring Manager",
             progress: "Progress",
           },
           tbody: processedCandidates,
@@ -48,22 +48,22 @@ export const OnboardingPage = {
 
     newCandidateForm.addEventListener("submit", async (event) => {
       const defaultCandidate = {
-        firstName: "",
-        lastName: "",
-        jobTitle: "",
+        "first-name": "",
+        "last-name": "",
+        "job-title": "",
         department: "",
-        hiringManager: "",
-        rightToWork: "",
-        expiryDate: "",
+        "hiring-manager": "",
+        "right-to-work": "",
+        "expiry-date": "",
         dbs: "",
-        dbsNumber: "",
-        dbsLevel: "",
+        "dbs-number": "",
+        "dbs-level": "",
         oh: "",
         references: "",
-        startDate: "",
+        "start-date": "",
         adp: false,
-        learnSpace: false,
-        nameBadge: false,
+        "learn-space": false,
+        "name-badge": false,
       };
 
       const formData = form.submit(event);

@@ -10,7 +10,7 @@ export const formatters = {
     return d.toLocaleDateString("en-GB", options);
   },
   setMinMaxDates() {
-    const dateInputs = document.querySelectorAll('input[type="date"]');
+    const dateInputs = document.querySelectorAll(".date-input");
 
     const today = new Date();
 

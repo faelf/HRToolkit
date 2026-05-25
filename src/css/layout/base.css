@@ -41,6 +41,14 @@ main {
   gap: var(--gap-md);
 }
 
+.empty-state svg {
+  width: var(--svg-size);
+  height: var(--svg-size);
+  stroke-width: var(--svg-stroke-width);
+  stroke: var(--text-muted, currentColor);
+  fill: none;
+}
+
 .d-none {
   display: none !important;
 }

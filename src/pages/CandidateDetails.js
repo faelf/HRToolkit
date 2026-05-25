@@ -14,7 +14,7 @@ export const CandidateDetails = {
 
       const candidate = form.date.format.toUi(rawCandidate);
 
-      const fullname = `${candidate.firstName} ${candidate.lastName}`;
+      const fullname = `${candidate["first-name"]} ${candidate["last-name"]}`;
       const title = document.querySelector("#candidate-full-name");
       if (title) title.innerText = fullname;
 

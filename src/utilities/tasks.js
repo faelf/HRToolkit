@@ -18,7 +18,7 @@ export const tasks = {
       tasks.push("References");
     }
 
-    if (!candidate.rightToWork) {
+    if (!candidate["right-to-work"]) {
       tasks.push("Right to Work");
     }
 
@@ -30,7 +30,7 @@ export const tasks = {
       tasks.push("Occupational Health");
     }
 
-    if (candidate.learnSpace === false) {
+    if (candidate["learn-space"] === false) {
       tasks.push("Learn Space setup");
     }
 
@@ -38,7 +38,7 @@ export const tasks = {
       tasks.push("ADP setup");
     }
 
-    if (candidate.nameBadge === false) {
+    if (candidate["name-badge"] === false) {
       tasks.push("Name badge");
     }
 
@@ -52,7 +52,7 @@ export const tasks = {
     return candidates.flatMap((candidate) =>
       this.get(candidate).map((task) => ({
         id: candidate.id,
-        candidate: candidate.firstName + " " + candidate.lastName,
+        candidate: candidate["first-name"] + " " + candidate["last-name"],
         task,
       })),
     );
@@ -64,7 +64,7 @@ export const tasks = {
   getGrouped(onboarding) {
     return onboarding.map((candidate) => ({
       id: candidate.id,
-      candidate: candidate.firstName + " " + candidate.lastName,
+      candidate: candidate["first-name"] + " " + candidate["last-name"],
       tasks: this.get(candidate),
     }));
   },
