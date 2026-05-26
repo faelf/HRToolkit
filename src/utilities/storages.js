@@ -1,93 +1,134 @@
 export const storages = {
+  Key: "hrhelper-storage",
+  Value: {
+    Default: "Local Storage",
+    LocalStorage: "Local Storage",
+    Firestore: "Firestore",
+  },
+  Firebase: {
+    app: "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js",
+    Database: "Firestore",
+    Firestore: {
+      ConfigKey: "hrhelper-firebase",
+      url: "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js",
+    },
+  },
   init() {
-    const current = localStorage.getItem("storage");
-    if (current !== "Local Storage" && current !== "Firebase") {
-      localStorage.setItem("storage", "Local Storage");
+    if (!localStorage.getItem(this.Key)) {
+      localStorage.setItem(this.Key, this.Value.Default);
     }
   },
 
   getStorage() {
-    return localStorage.getItem("storage") ?? "Local Storage";
+    return localStorage.getItem(this.Key) ?? this.Value.Default;
   },
 
-  async _getFirebase() {
-    const [{ db }, firestore] = await Promise.all([
-      import("./firebase.js"),
-      import("https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js"),
+  async _getFirestore() {
+    const [firebaseApp, firestore] = await Promise.all([
+      import(this.Firebase.app),
+      import(this.Firebase.Firestore.url),
     ]);
+
+    const config = JSON.parse(localStorage.getItem(this.Firebase.Firestore.ConfigKey));
+    const app = firebaseApp.initializeApp(config);
+    const db = firestore.getFirestore(app);
+
     return { db, ...firestore };
   },
 
   async load(collectionName) {
-    if (this.getStorage() === "Firebase") {
-      const { db, collection, getDocs } = await this._getFirebase();
+    if (this.getStorage() === this.Value.LocalStorage) {
+      try {
+        const storedData = localStorage.getItem(collectionName);
+        return storedData ? JSON.parse(storedData) : [];
+      } catch (error) {
+        console.error("Local Storage parse error:", error);
+        return [];
+      }
+    }
+
+    if (this.getStorage() === this.Value.Firestore) {
+      const { db, collection, getDocs } = await this._getFirestore();
       const col = collection(db, collectionName);
       const snapshot = await getDocs(col);
+
+      if (snapshot.empty) {
+        return [];
+      }
+
       return snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
     }
-    // Fallback to Local Storage
-    const storedData = localStorage.getItem(collectionName);
-    return storedData ? JSON.parse(storedData) : [];
+
+    return [];
   },
 
   async get(collectionName, itemId) {
-    if (this.getStorage() === "Firebase") {
-      const { db, doc, getDoc } = await this._getFirebase();
+    if (this.getStorage() === this.Value.LocalStorage) {
+      const items = await this.load(collectionName);
+      return items.find((item) => item.id == itemId);
+    }
+
+    if (this.getStorage() === this.Value.Firestore) {
+      const { db, doc, getDoc } = await this._getFirestore();
       const docRef = doc(db, collectionName, itemId);
       const docSnap = await getDoc(docRef);
       return docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
     }
-    // Fallback to Local Storage
-    const items = await this.load(collectionName);
-    return items.find((item) => item.id == itemId);
   },
 
   async add(collectionName, data) {
-    if (this.getStorage() === "Firebase") {
-      const { db, collection, addDoc } = await this._getFirebase();
-      const col = collection(db, collectionName);
-      const docRef = await addDoc(col, data);
-      return { id: docRef.id, ...data };
+    if (this.getStorage() === this.Value.LocalStorage) {
+      const items = await this.load(collectionName);
+      const newItem = {
+        id: String(Date.now() + Math.floor(Math.random() * 1000)),
+        ...data,
+      };
+      items.push(newItem);
+      this.save(collectionName, items);
+      return newItem;
     }
-    // Fallback to Local Storage
-    const items = await this.load(collectionName);
-    const newItem = {
-      id: String(Date.now() + Math.floor(Math.random() * 1000)),
-      ...data,
-    };
-    items.push(newItem);
-    this.save(collectionName, items);
-    return newItem;
+
+    if (this.getStorage() === this.Value.Firestore) {
+      const { db, collection, addDoc } = await this._getFirestore();
+      const col = collection(db, collectionName);
+      const { id, ...dataToSave } = data;
+      const docRef = await addDoc(col, dataToSave);
+      return { id: docRef.id, ...dataToSave };
+    }
   },
 
   async update(collectionName, itemId, updates) {
-    if (this.getStorage() === "Firebase") {
-      const { db, doc, updateDoc } = await this._getFirebase();
+    if (this.getStorage() === this.Value.LocalStorage) {
+      const items = await this.load(collectionName);
+      const itemIndex = items.findIndex((item) => item.id == itemId);
+      if (itemIndex === -1) return false;
+      items[itemIndex] = { ...items[itemIndex], ...updates };
+      this.save(collectionName, items);
+      return true;
+    }
+
+    if (this.getStorage() === this.Value.Firestore) {
+      const { db, doc, updateDoc } = await this._getFirestore();
       const docRef = doc(db, collectionName, itemId);
       await updateDoc(docRef, updates);
       return true;
     }
-    // Fallback to Local Storage
-    const items = await this.load(collectionName);
-    const itemIndex = items.findIndex((item) => item.id == itemId);
-    if (itemIndex === -1) return false;
-    items[itemIndex] = { ...items[itemIndex], ...updates };
-    this.save(collectionName, items);
-    return true;
   },
 
   async remove(collectionName, itemId) {
-    if (this.getStorage() === "Firebase") {
-      const { db, doc, deleteDoc } = await this._getFirebase();
+    if (this.getStorage() === this.Value.LocalStorage) {
+      const items = await this.load(collectionName);
+      const filteredItems = items.filter((item) => item.id != itemId);
+      this.save(collectionName, filteredItems);
+      return true;
+    }
+
+    if (this.getStorage() === this.Value.Firestore) {
+      const { db, doc, deleteDoc } = await this._getFirestore();
       const docRef = doc(db, collectionName, itemId);
       await deleteDoc(docRef);
       return true;
     }
-    // Fallback to Local Storage
-    const items = await this.load(collectionName);
-    const filteredItems = items.filter((item) => item.id != itemId);
-    this.save(collectionName, filteredItems);
-    return true;
   },
 
   async exists(collectionName, itemId) {

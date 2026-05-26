@@ -1,5 +1,6 @@
 import SettingsHTML from "../html/settings.html?raw";
 import { form } from "../utilities/form.js";
+import { storages } from "../utilities/storages.js";
 
 export const SettingsPage = {
   title: "HR Helper - Settings",
@@ -7,10 +8,10 @@ export const SettingsPage = {
   setup() {
     const storageForm = document.querySelector("#storage-form");
     const storageInput = document.querySelector("#storage-options");
-    const firebaseFields = document.querySelector("#firebase-fields");
+    const firebaseFields = document.querySelector("#firestore-keys");
 
     function toggleFirebaseFields() {
-      const isFirebase = storageInput.value === "Firebase";
+      const isFirebase = storageInput.value === storages.Value.Firestore;
       if (isFirebase) {
         firebaseFields.classList.remove("d-none");
       } else {
@@ -20,8 +21,8 @@ export const SettingsPage = {
 
     storageInput.addEventListener("change", toggleFirebaseFields);
 
-    const savedStorage = localStorage.getItem("storage") ?? "Local Storage";
-    const savedConfig = JSON.parse(localStorage.getItem("firebase-config") ?? "{}");
+    const savedStorage = storages.getStorage();
+    const savedConfig = JSON.parse(localStorage.getItem(storages.Firebase.Firestore.ConfigKey) ?? "{}");
 
     form.populate(storageForm, {
       "storage-options": savedStorage,
@@ -38,9 +39,9 @@ export const SettingsPage = {
     storageForm.addEventListener("submit", (event) => {
       const formData = form.submit(event);
       const selectedStorage = formData["storage-options"];
-      localStorage.setItem("storage", selectedStorage);
+      localStorage.setItem(storages.Key, selectedStorage);
 
-      if (selectedStorage === "Firebase") {
+      if (selectedStorage === storages.Value.Firestore) {
         const config = {
           apiKey: formData["api-key"],
           authDomain: formData["auth-domain"],
@@ -49,7 +50,7 @@ export const SettingsPage = {
           messagingSenderId: formData["sender-id"],
           appId: formData["app-id"],
         };
-        localStorage.setItem("firebase-config", JSON.stringify(config));
+        localStorage.setItem(storages.Firebase.Firestore.ConfigKey, JSON.stringify(config));
       }
     });
   },
