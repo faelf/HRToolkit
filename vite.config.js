@@ -2,12 +2,12 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   base: "./",
-  server: {
-    port: 5050,
-  },
-  preview: {
-    port: 5050,
-  },
+  // server: {
+  //   port: 4173,
+  // },
+  // preview: {
+  //   port: 4173,
+  // },
   build: {
     outDir: "dist",
     rollupOptions: {
