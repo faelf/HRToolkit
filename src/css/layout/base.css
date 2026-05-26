@@ -31,7 +31,8 @@ main {
 
 .empty-state {
   --svg-size: var(--headline-1);
-  --svg-stroke-width: 2;
+  --svg-stroke-width: 1;
+  --svg-colour: var(--text-muted);
   display: flex;
   flex-direction: column;
   align-items: center;

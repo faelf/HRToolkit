@@ -8,7 +8,7 @@ export const tasks = {
           <path d="m15 9-6 6"/>
           <path d="m9 9 6 6"/>
         </svg>
-        <p class="h1">${text}</p>
+        <p class="text-muted h1">${text}</p>
       `;
     return container;
   },
