@@ -14,33 +14,22 @@ li {
   margin-bottom: 0.5rem;
 }
 
-
-.candidate-list, .task-list {
-  list-style: none;
-  padding: 0;
-}
-
-.candidate-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-}
-
-.candidate-list li + li {
-  border-top: 1px solid var(--border-colour);
-}
-
 .candidate-name {
   font-weight: 500;
 }
 
-.candidate-date {
-  opacity: 0.7;
-  font-size: 0.9rem;
+.task-list, .starters-list {
+  list-style: none;
+  padding: 0;
 }
 
-.task-list li {
+.starters-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-list li, .starters-list li {
   padding: 0.75rem 1rem;
   cursor: pointer;
   margin: 0.25rem 0;
@@ -48,7 +37,7 @@ li {
   background: hsla(0 0% 70% / 0.1);
 }
 
-.task-list li:hover {
+.task-list li:hover, .starters-list li:hover {
   cursor: pointer;
   background: var(--border-colour);
 }
