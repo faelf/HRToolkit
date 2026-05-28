@@ -45,7 +45,6 @@ function initialLoad() {
 */
 document.addEventListener("click", (e) => {
   const target = e.target;
-  const nav = document.querySelector(".sidebar-nav");
 
   switch (true) {
     case theme.click(e):
