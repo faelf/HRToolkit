@@ -19,11 +19,13 @@
 /* Images */
 @import "./content/svg.css";
 
+/* Form */
+@import "./form/form.css";
+@import "./form/button.css";
+
 /* Components */
 @import "./components/navbar.css";
-@import "./components/buttons.css";
 @import "./components/card.css";
-@import "./components/forms.css";
 @import "./components/info-box.css";
 @import "./components/dropdown.css";
 @import "./components/modal.css";
