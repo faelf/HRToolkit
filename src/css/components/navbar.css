@@ -1,40 +1,20 @@
-ui-navbar {
-  grid-area: sidebar;
-  --sidebar-width: 66px;
-  --sidebar-open: 200px;
-  position: relative;
-  width: var(--sidebar-width);
-  background: var(--bg-highlight);
-  border-right: var(--border-size) solid var(--border-colour);
-}
-
-.sidebar-nav {
-  background: var(--bg-highlight);
-  border-right: var(--border-size) solid var(--border-colour);
-  padding: 0.5rem;
-  width: var(--sidebar-width);
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+.sidebar-btn {
+  --svg-size: var(--h2);
+  --svg-stroke-width: 4;
+  background: var(--bg-body);
+  border: var(--border-size) solid transparent;
+  border-radius: var(--border-radius);
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  transition: width 0.3s ease-in-out;
+  align-items: center;
+  padding: 0.25rem;
 }
 
-.sidebar-open {
-  --sidebar-width: var(--sidebar-open);
+.sidebar-btn svg {
+  transition: transform 0.5s ease-in-out;
 }
 
-.sidebar-nav span {
-  white-space: nowrap;
-  display: none;
-}
-
-.sidebar-open span {
-  display: inline-block;
+.rotate svg {
+  transform: scaleX(-1);
 }
 
 .nav-btn {
@@ -74,20 +54,4 @@ ui-navbar {
 .nav-btn:focus-visible {
   outline: none;
   border: var(--border-size) solid var(--border-highlight);
-}
-
-@media (min-width: 768px) {
-  ui-navbar {
-    --sidebar-width: var(--sidebar-open);
-    position: static;
-  }
-
-  .sidebar-nav span {
-    display: inline-block;
-  }
-
-  .sidebar-nav {
-    position: static;
-    background-color: transparent;
-  }
 }

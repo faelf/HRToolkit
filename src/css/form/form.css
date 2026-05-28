@@ -62,46 +62,6 @@ textarea:disabled {
 }
 
 /*
-  Date Input
-  ------------------------------
-*/
-input[type="date"] {
-  appearance: none;
-  height: 40px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 14h1v4'/%3E%3Cpath d='M16 2v4'/%3E%3Cpath d='M3 10h18'/%3E%3Cpath d='M8 2v4'/%3E%3Crect x='3' y='4' width='18' height='18' rx='2'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.5rem center;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0;
-  cursor: pointer;
-  width: 18px;
-  height: 18px;
-  position: absolute;
-  right: 0.75rem;
-}
-
-input[type="date"]::-webkit-datetime-edit-text,
-input[type="date"]::-webkit-datetime-edit-month-field,
-input[type="date"]::-webkit-datetime-edit-day-field,
-input[type="date"]::-webkit-datetime-edit-year-field {
-  color: var(--text);
-}
-
-.date-input {
-  /* 1. Injects your inline SVG calendar icon */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 14h1v4'/%3E%3Cpath d='M16 2v4'/%3E%3Cpath d='M3 10h18'/%3E%3Cpath d='M8 2v4'/%3E%3Crect x='3' y='4' width='18' height='18' rx='2'/%3E%3C/svg%3E");
-
-  /* 2. Positions the icon securely on the right side */
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-
-  /* 3. Adds padding to the right so typed text never runs over the icon */
-  padding-right: 40px;
-}
-
-/*
   Number Input
   ------------------------------
 */
@@ -173,29 +133,7 @@ textarea {
   min-height: 100px;
 }
 
-/*
-  Select Input
-  ------------------------------
-*/
-select {
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-  font-size: var(--text-md);
-  line-height: var(--line-height-form);
-  border-radius: var(--border-radius);
-  background-color: var(--bg-body);
-  color: var(--text);
-  font-family: inherit;
-  border: 2px solid var(--border-colour);
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: 24px;
-  background-position: right 0.5rem center;
-}
+
 
 /*
   Search Input
@@ -210,95 +148,7 @@ input[type="search"] {
   padding-left: 2.1rem;
 }
 
-/*
-  Select Dropdown
-  ------------------------------
-*/
-.select-input {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: 20px;
-  background-position: right 0.5rem center;
-  padding-right: 2.1rem;
-  anchor-name: --select-input;
-}
 
-.select-dropdown {
-  position: relative;
-  display: grid;
-  gap: 4px;
-  margin-bottom: 0.5rem;
-  width: 100%;
-  anchor-scope: --select-input;
-}
-
-.select-options {
-  position: fixed;
-  position-anchor: --select-input;
-  position-try-fallbacks: --left, --right, --bottom-center, --bottom-left,
-    --bottom-right;
-  inset: auto;
-  top: calc(anchor(bottom) + 2px);
-  justify-self: anchor-center;
-  width: anchor-size(width);
-  background: var(--bg-body);
-  border-radius: var(--border-radius);
-  z-index: 1000;
-  max-height: 120px;
-  overflow-y: auto;
-  border: 2px solid var(--border-colour);
-  display: none;
-}
-
-@position-try --left {
-  inset: auto;
-  top: anchor(bottom);
-  left: anchor(left);
-}
-
-@position-try --right {
-  inset: auto;
-  top: anchor(bottom);
-  right: anchor(right);
-}
-
-@position-try --bottom-center {
-  inset: auto;
-  bottom: calc(anchor(top) + 0.5rem);
-  justify-self: anchor-center;
-}
-
-@position-try --bottom-left {
-  inset: auto;
-  bottom: anchor(top);
-  left: anchor(left);
-}
-
-@position-try --bottom-right {
-  inset: auto;
-  bottom: anchor(top);
-  right: anchor(right);
-}
-
-.select-options.open {
-  display: block;
-}
-
-.option {
-  height: 40px;
-  line-height: 40px;
-  padding-left: 10px;
-  cursor: pointer;
-  box-sizing: border-box;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  padding-right: 15px;
-  overflow: hidden;
-}
-
-.option:hover {
-  background: hsla(0 0% 0% / 0.3);
-}
 
 /*
   Progress Element

@@ -1,0 +1,15 @@
+/*
+  Dashboard
+*/
+.kpi-grid {
+  display: grid;
+  gap: var(--gap-md);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-bottom: var(--gap-md);
+}
+
+.action-grid {
+  display: grid;
+  gap: var(--gap-md);
+  grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+}

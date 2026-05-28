@@ -88,23 +88,6 @@ p {
   hyphens: auto;
 }
 
-/* Lists */
-ul,
-ol {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  padding-left: 2rem;
-}
-
-ul {
-  list-style-type: disc;
-}
-
-li {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
 /* Links */
 a {
   color: var(--primary);

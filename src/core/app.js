@@ -9,9 +9,7 @@ import { theme } from "../utilities/theme.js";
 import { form } from "../utilities/form.js";
 import { modal } from "../utilities/modal.js";
 import { storages } from "../utilities/storages.js";
-
-// Load all Web Components and global UI logic
-import "../ui/index.js";
+import { sidebar } from "../ui/sidebar.js";
 
 /**
  * Router Setup
@@ -37,6 +35,7 @@ function initialLoad() {
   // Apply the user's preferred theme
   theme.init();
   storages.init();
+  sidebar.responsive();
 }
 
 /*
@@ -47,6 +46,9 @@ document.addEventListener("click", (e) => {
   const target = e.target;
 
   switch (true) {
+    case sidebar.click(e):
+      break;
+
     case theme.click(e):
       break;
 
@@ -65,3 +67,6 @@ document.addEventListener("input", (e) => {
 
 // Listen for the 'load' event to trigger the startup sequence
 window.addEventListener("load", initialLoad);
+window.addEventListener("resize", () => {
+  sidebar.responsive();
+});
