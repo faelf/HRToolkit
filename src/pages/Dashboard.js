@@ -1,7 +1,7 @@
 import { storages } from "../utilities/storages.js";
 import { tasks } from "../utilities/tasks.js";
 
-import DashboardHTML from "../html/home.html?raw";
+import DashboardHTML from "../html/dashboard.html?raw";
 
 export const DashboardPage = {
   title: "HR Helper - Dashboard",

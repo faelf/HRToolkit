@@ -23,6 +23,7 @@ const router = new Router({
   pageContent: pageContent,
   linkAttribute: "href",
   idAttribute: "data-id",
+  landingPage: "dashboard",
 });
 router.init();
 
