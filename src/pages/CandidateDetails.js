@@ -1,6 +1,7 @@
 import CandidateDetailsHTML from "../html/candidatedetails.html?raw";
 import { storages } from "../utilities/storages.js";
 import { form } from "../utilities/form.js";
+import { CandidateScheme } from "../data/candidate.js";
 
 export const CandidateDetails = {
   title: "HR Helper - Candidate Details",
@@ -8,6 +9,28 @@ export const CandidateDetails = {
   html: CandidateDetailsHTML,
   async setup(id) {
     const candidateForm = document.querySelector("#candidate-form");
+
+    form.render({
+      selector: "#personal-information",
+      scheme: CandidateScheme.PersonalInformation,
+    });
+    form.render({
+      selector: "#employment-information",
+      scheme: CandidateScheme.EmploymentInformation,
+    });
+    form.render({
+      selector: "#onboarding-progress",
+      scheme: CandidateScheme.OnboardingProgress,
+    });
+    form.render({
+      selector: "#post-checks",
+      scheme: CandidateScheme.PostChecks,
+    });
+
+    form.buttons.render({
+      containerId: "#form-buttons",
+      deleteBtnId: "delete-candidate",
+    });
 
     async function loadcandidate(id, candidateForm) {
       const rawCandidate = await storages.get("candidates", id);

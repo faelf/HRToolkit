@@ -39,55 +39,19 @@
           </div>
           <form id="new-candidate">
             <div class="modal-body">
-              <fieldset class="mb-2">
-                <legend>Candidate Details</legend>
-                <div class="input-item">
-                  <label class="form-label" for="first-name">First Name</label>
-                  <input type="text" id="first-name" name="first-name">
-                  <div class="input-helper">
-                    Enter first name as shown on the passport
-                  </div>
-                </div>
-                <div class="input-item">
-                  <label class="form-label" for="last-name">Last Name</label>
-                  <input type="text" id="last-name" name="last-name">
-                  <div class="input-helper">
-                    Enter last name as shown on the passport
-                  </div>
-                </div>
-              </fieldset>
-              <fieldset class="mb-2">
-                <legend>Employment Details</legend>
-                <div class="input-item">
-                  <label class="form-label" for="job-title">Job Title</label>
-                  <input type="text" id="job-title" name="job-title">
-                </div>
-                <div class="input-item">
-                  <label class="form-label" for="department">Department</label>
-                  <input type="text" id="department" name="department">
-                </div>
-                <div class="input-item">
-                  <label class="form-label" for="hiring-manager">Hiring Manager</label>
-                  <input type="text" id="hiring-manager" name="hiring-manager">
-                </div>
-              </fieldset>
+              <h4 class="mb-3">Personal Information</h4>
+              <div id="personal-information" class="form-grid">
+                <!-- JS -->
+              </div>
+
+              <h4 class="mb-3">Employement Information</h4>
+              <div id="employment-information" class="form-grid">
+                <!-- JS -->
+              </div>
             </div>
 
-            <div class="modal-footer">
-              <button class="btn green">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
-                  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
-                  <path d="M9 15h6" />
-                  <path d="M12 18v-6" />
-                </svg>
-                Add Candidate</button>
-              <button type="button" class="btn red" data-modal="close">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
-                </svg>
-                Close</button>
+            <div id="form-buttons" class="modal-footer">
+              <!-- JS -->
             </div>
           </form>
         </dialog>

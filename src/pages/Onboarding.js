@@ -2,6 +2,7 @@ import OnboardingHTML from "../html/onboarding.html?raw";
 import { storages } from "../utilities/storages.js";
 import { table } from "../utilities/table.js";
 import { form } from "../utilities/form.js";
+import { CandidateScheme } from "../data/candidate.js";
 
 export const OnboardingPage = {
   title: "HR Helper - Onboarding",
@@ -9,6 +10,20 @@ export const OnboardingPage = {
   async setup() {
     async function renderTable() {
       const candidates = await storages.load("candidates");
+
+      form.render({
+        selector: "#personal-information",
+        scheme: CandidateScheme.PersonalInformation,
+      });
+      form.render({
+        selector: "#employment-information",
+        scheme: CandidateScheme.EmploymentInformation,
+      });
+
+      form.buttons.render({
+        containerId: "#form-buttons",
+        deleteBtnId: "delete-candidate",
+      });
 
       if (candidates) {
         // To Display Full Name and Progress
