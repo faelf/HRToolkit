@@ -2,6 +2,10 @@
   Global / General Styles
   ------------------------------
 */
+form {
+  container-type: inline-size;
+}
+
 .form-label {
   display: block;
   margin: 0;
@@ -44,6 +48,15 @@ input::placeholder {
   States
   ------------------------------
 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-highlight) inset;
+  -webkit-text-fill-color: var(--text);
+}
+
 input:focus,
 select:focus,
 button:focus,
@@ -133,8 +146,6 @@ textarea {
   min-height: 100px;
 }
 
-
-
 /*
   Search Input
   ------------------------------
@@ -147,8 +158,6 @@ input[type="search"] {
   background-position: left 0.5rem center;
   padding-left: 2.1rem;
 }
-
-
 
 /*
   Progress Element
@@ -206,9 +215,9 @@ progress::-moz-progress-bar {
   display: grid;
   gap: var(--gap-md);
 
-  @media (min-width: 576px) {
+  @container (min-width: 576px) {
     display: flex;
-    align-content: center;
+    align-items: center;
     justify-content: end;
   }
 }

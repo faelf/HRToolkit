@@ -1,6 +1,7 @@
 .card {
-  --svg-size: calc(var(--text-md) * 1.275 + 0.3vw);
-  background-color: var(--bg-surface);
+  --svg-size: var(--h3);
+  --svg-stroke-width: 1.75;
+  background: var(--bg-surface);
   border-radius: 20px;
   border: var(--border-size) solid var(--border-colour);
   overflow: clip;
@@ -24,6 +25,15 @@
   padding: 0.75rem 1rem;
 }
 
+.card-footer {
+  padding: 0.75rem 1rem;
+  border-top: var(--border-size) solid var(--border-colour);
+  background: var(--bg-highlight);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--gap-md);
+}
+
 .card-number {
   font-size: 3rem;
   font-weight: 700;
@@ -33,12 +43,4 @@
 .card-description {
   opacity: 0.7;
   margin-top: 0.5rem;
-}
-
-.card-footer {
-  padding: 0.75rem 1rem;
-  background-color: var(--bg-highlight);
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--gap-md);
 }

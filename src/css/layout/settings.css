@@ -1,8 +1,47 @@
 /* 
   Settings Page
 */
-.settings-grid {
+#storage-form {
   display: grid;
   gap: var(--gap-md);
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+}
+
+#firestore-keys {
+  display: grid;
+  gap: var(--gap-md);
+  grid-template-columns: 1fr;
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 576px) {
+  #firestore-keys {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  #storage-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  #firestore-keys {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  #storage-form {
+    display: grid;
+    gap: var(--gap-md);
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .settings-grid {
+    display: grid;
+    gap: var(--gap-md);
+    grid-template-columns: 1fr 2fr;
+  }
 }
