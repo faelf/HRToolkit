@@ -16,6 +16,7 @@
 
 .headline-1, .headline-2, .headline-3,
 .headline-4, .headline-5, .headline-6 {
+  text-wrap: balance;
   font-weight: 300;
   line-height: var(--line-height-heading);
 }
@@ -47,6 +48,7 @@
 /* Standard Headings Base Styles */
 .h1, .h2, .h3, .h4, .h5, .h6,
 h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 600;
@@ -80,12 +82,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
+  text-wrap: pretty;
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-size: var(--text-md);
   line-height: var(--line-height-text);
   text-align: justify;
   hyphens: auto;
+}
+
+strong {
+  color: var(--text-strong);
 }
 
 /* Links */

@@ -1,4 +1,4 @@
-<section class="cal-containers">
+<section class="grid-cols align-start">
   <section id="maternity-calculator" class="card">
     <header class="card-header">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -16,7 +16,7 @@
       <h4>Calculator</h4>
     </header>
 
-    <form id="maternity-form" class="card-body">
+    <form id="maternity-form" class="card-body grid align-start col-200">
 
       <div class="select-dropdown d-none">
         <label class="form-label" for="leave-type-input">Select leave type</label>
@@ -80,7 +80,7 @@
     </form>
   </section> <!-- Maternity Calculator Card Ends -->
 
-  <div id="maternity-content" class="cal-content">
+  <div id="maternity-content" class="grid">
     <section id="maternity-results" class="section">
       <header class="section-header">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -95,64 +95,70 @@
     </section>
 
     <section id="maternity-guide" class="section">
-      <header class="section-header">
+      <header class="section-header" data-slidedown-btn="menu">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M12 13v8" />
           <path d="M12 3v3" />
           <path d="M2.354 10.354a1.207 1.207 0 0 1 0-1.708l2.06-2.06A2 2 0 0 1 5.828 6h12.344a2 2 0 0 1 1.414.586l2.06 2.06a1.207 1.207 0 0 1 0 1.708l-2.06 2.06a2 2 0 0 1-1.414.586H5.828a2 2 0 0 1-1.414-.586z" />
         </svg>
         <h2>Maternity Calculation Guide</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="link chevron">
+          <path d="m6 9 6 6 6-6" />
+        </svg>
       </header>
-      <article class="section-body">
-        <p>This guide explains how the Maternity Calculator works and what each date means:</p>
-        <ul>
-          <li><strong>Maternity Start Date:</strong> If you leave this field blank, the calculator will automatically use the <strong>earliest start date</strong>, which is 11 weeks before the Expected Week of Childbirth (EWC). You can override this by selecting a preferred start date.</li>
-
-          <li><strong>Eligibility:</strong> The system checks if the employee has at least <strong>26 weeks of continuous service</strong> by the <strong>Qualifying Week</strong>. There are two possible outcomes:</li>
-
+      <article data-slidedown="menu">
+        <div class="section-body">
+          <p>This guide explains how the Maternity Calculator works and what each date means:</p>
           <ul>
-            <li><strong>Eligible:</strong> The calculator displays a full schedule of maternity pay, including:</li>
+            <li><strong>Maternity Start Date:</strong> If you leave this field blank, the calculator will automatically use the <strong>earliest start date</strong>, which is 11 weeks before the Expected Week of Childbirth (EWC). You can override this by selecting a preferred start date.</li>
+
+            <li><strong>Eligibility:</strong> The system checks if the employee has at least <strong>26 weeks of continuous service</strong> by the <strong>Qualifying Week</strong>. There are two possible outcomes:</li>
+
             <ul>
-              <li><strong>Full Pay:</strong> 6 weeks at 100% (company-enhanced)</li>
-              <li><strong>Half Pay:</strong> 6 weeks at 50% (or SMP if higher)</li>
-              <li><strong>Statutory Maternity Pay (SMP):</strong> 27 weeks</li>
-              <li><strong>Unpaid Leave:</strong> Remaining weeks to complete 52-week entitlement</li>
+              <li><strong>Eligible:</strong> The calculator displays a full schedule of maternity pay, including:</li>
+              <ul>
+                <li><strong>Full Pay:</strong> 6 weeks at 100% (company-enhanced)</li>
+                <li><strong>Half Pay:</strong> 6 weeks at 50% (or SMP if higher)</li>
+                <li><strong>Statutory Maternity Pay (SMP):</strong> 27 weeks</li>
+                <li><strong>Unpaid Leave:</strong> Remaining weeks to complete 52-week entitlement</li>
+              </ul>
+              <li><strong>Not Eligible:</strong> The employee is entitled to the <strong>52-week leave</strong> but all leave is unpaid.</li>
             </ul>
-            <li><strong>Not Eligible:</strong> The employee is entitled to the <strong>52-week leave</strong> but all leave is unpaid.</li>
+
+            <li><strong>Expected Week of Childbirth (EWC):</strong> The calculator determines the week of the baby&apos;s expected birth, starting from Sunday to Saturday. This is used to calculate qualifying week and earliest maternity start date.</li>
+
+            <li>
+              <strong>Qualifying Week:</strong>
+              The week, 15 weeks before the EWC, that determines if the employee meets the service requirement for paid maternity leave.
+            </li>
           </ul>
 
-          <li><strong>Expected Week of Childbirth (EWC):</strong> The calculator determines the week of the baby&apos;s expected birth, starting from Sunday to Saturday. This is used to calculate qualifying week and earliest maternity start date.</li>
+          <p>Once the calculation is complete, the output will display:</p>
 
-          <li>
-            <strong>Qualifying Week:</strong>
-            The week, 15 weeks before the EWC, that determines if the employee meets the service requirement for paid maternity leave.
-          </li>
-        </ul>
+          <ul>
+            <li><strong>Employment Start Date</strong></li>
+            <li><strong>Maternity Leave Start Date</strong></li>
+            <li><strong>EWC Start and End</strong></li>
+            <li><strong>Qualifying Week Start and End</strong></li>
+            <li><strong>Pay Periods</strong> with start and end dates for Full Pay, Half Pay, SMP, and Unpaid Leave</li>
+          </ul>
 
-        <p>Once the calculation is complete, the output will display:</p>
-
-        <ul>
-          <li><strong>Employment Start Date</strong></li>
-          <li><strong>Maternity Leave Start Date</strong></li>
-          <li><strong>EWC Start and End</strong></li>
-          <li><strong>Qualifying Week Start and End</strong></li>
-          <li><strong>Pay Periods</strong> with start and end dates for Full Pay, Half Pay, SMP, and Unpaid Leave</li>
-        </ul>
-
-        <div class="info-box red">
-          <div class="info-box-header">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
-              <path d="M12 9v4" />
-              <path d="M12 17h.01" />
-            </svg>
-            Important Note:
-          </div>
-          <div class="info-box-body">
-            <p>This tool calculates eligibility and leave dates based on service length and dates only. It does <strong>not</strong> check salary. To qualify for statutory maternity pay (SMP), the employee must earn at least the minimum qualifying amount, as defined on the GOV.UK page.</p>
-            <p><strong>Always verify eligibility with official guidance and your internal HR policies.</strong></p>
+          <div class="info-box red">
+            <div class="info-box-header">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+                <path d="M12 9v4" />
+                <path d="M12 17h.01" />
+              </svg>
+              Important Note:
+            </div>
+            <div class="info-box-body">
+              <p>This tool calculates eligibility and leave dates based on service length and dates only. It does <strong>not</strong> check salary. To qualify for statutory maternity pay (SMP), the employee must earn at least the minimum qualifying amount, as defined on the GOV.UK page.</p>
+              <p><strong>Always verify eligibility with official guidance and your internal HR policies.</strong></p>
+            </div>
           </div>
         </div>
+
 
       </article>
     </section> <!-- Maternity Guide Ends -->

@@ -5,14 +5,15 @@
   --bg-highlight: hsl(217 25% 85%);
 
   /* Text */
-  --text: hsl(235 15% 30%);
+  --text: hsl(235 15% 20%);
   --text-heading: hsl(235 15% 25%);
+  --text-strong: hsl(235 15% 30%);
   --text-muted: hsl(235 15% 40%);
   --svg-colour: hsl(235 15% 25%);
 
   /* Utilities */
   --border-colour: hsl(217 25% 75%);
-  --border-highlight: hsl(217 25% 65%);
+  --border-highlight: hsl(217 25% 55%);
 
   /* Table */
   --bg-thead: hsla(0 0% 0% / 0.2);

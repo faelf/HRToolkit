@@ -7,7 +7,8 @@
   /* Text */
   --text: hsl(220, 20%, 80%);
   --text-heading: hsl(220, 20%, 95%);
-  --text-muted: hsl(0 0% 70%);
+  --text-strong: hsl(220 20% 90%);
+  --text-muted: hsl(220 20% 70%);
   --svg-colour: hsl(220, 20%, 95%);
 
   /* Utilities */

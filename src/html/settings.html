@@ -8,64 +8,67 @@
   </header>
   <article class="section-body">
 
-    <form id="storage-form">
+    <form id="storage-form" class="grid col-250">
 
       <div>
         <h3>Storage Options</h3>
         <p class="text-muted">You can select from Firestore or Localstorage</p>
       </div>
 
-      <div class="select-dropdown">
-        <label class="form-label" for="storage-options">Select the database</label>
-        <input type="text" id="storage-options" name="storage-options" class="select-input" autocomplete="off" readonly placeholder="Select storage...">
-        <div class="select-options">
-          <div class="option">Local Storage</div>
-          <div class="option">Firestore</div>
+      <div>
+        <div class="select-dropdown">
+          <label class="form-label" for="storage-options">Select the database</label>
+          <input type="text" id="storage-options" name="storage-options" class="select-input" autocomplete="off" readonly placeholder="Select storage...">
+          <div class="select-options">
+            <div class="option">Local Storage</div>
+            <div class="option">Firestore</div>
+          </div>
+        </div>
+
+        <div id="firestore-keys" class="d-none">
+          <div class="input-item">
+            <label for="api-key" class="form-label">API Key</label>
+            <input type="text" id="api-key" name="api-key" autocomplete="off">
+          </div>
+
+          <div class="input-item">
+            <label for="auth-domain" class="form-label">Auth Domain</label>
+            <input type="text" id="auth-domain" name="auth-domain" autocomplete="off">
+          </div>
+
+          <div class="input-item">
+            <label for="project-id" class="form-label">Project ID</label>
+            <input type="text" id="project-id" name="project-id" autocomplete="off">
+          </div>
+
+          <div class="input-item">
+            <label for="storage-bucket" class="form-label">Storage Bucket</label>
+            <input type="text" id="storage-bucket" name="storage-bucket" autocomplete="off">
+          </div>
+
+          <div class="input-item">
+            <label for="sender-id" class="form-label">Messaging Sender ID</label>
+            <input type="text" id="sender-id" name="sender-id" autocomplete="off">
+          </div>
+
+          <div class="input-item">
+            <label for="app-id" class="form-label">App ID</label>
+            <input type="text" id="app-id" name="app-id" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="form-buttons">
+          <button type="submit" class="btn green">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-md me-2">
+              <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+              <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
+              <path d="M7 3v4a1 1 0 0 0 1 1h7" />
+            </svg>
+            Save
+          </button>
         </div>
       </div>
 
-      <div id="firestore-keys" class="d-none">
-        <div class="input-item">
-          <label for="api-key" class="form-label">API Key</label>
-          <input type="text" id="api-key" name="api-key" autocomplete="off">
-        </div>
-
-        <div class="input-item">
-          <label for="auth-domain" class="form-label">Auth Domain</label>
-          <input type="text" id="auth-domain" name="auth-domain" autocomplete="off">
-        </div>
-
-        <div class="input-item">
-          <label for="project-id" class="form-label">Project ID</label>
-          <input type="text" id="project-id" name="project-id" autocomplete="off">
-        </div>
-
-        <div class="input-item">
-          <label for="storage-bucket" class="form-label">Storage Bucket</label>
-          <input type="text" id="storage-bucket" name="storage-bucket" autocomplete="off">
-        </div>
-
-        <div class="input-item">
-          <label for="sender-id" class="form-label">Messaging Sender ID</label>
-          <input type="text" id="sender-id" name="sender-id" autocomplete="off">
-        </div>
-
-        <div class="input-item">
-          <label for="app-id" class="form-label">App ID</label>
-          <input type="text" id="app-id" name="app-id" autocomplete="off">
-        </div>
-      </div>
-
-      <div class="form-buttons">
-        <button type="submit" class="btn green">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-md me-2">
-            <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
-            <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
-            <path d="M7 3v4a1 1 0 0 0 1 1h7" />
-          </svg>
-          Save
-        </button>
-      </div>
     </form>
 
   </article>
