@@ -16,7 +16,7 @@ form {
 
 fieldset {
   border-radius: var(--border-radius);
-  border: 1px solid var(--border-colour);
+  border: var(--border-size) solid var(--border-colour);
 }
 
 legend {
@@ -36,7 +36,7 @@ textarea {
   background-color: var(--bg-body);
   color: var(--text);
   font-family: inherit;
-  border: 2px solid var(--border-colour);
+  border: var(--border-size) solid var(--border-colour);
 }
 
 input::placeholder {
@@ -61,7 +61,8 @@ input:focus,
 select:focus,
 button:focus,
 textarea:focus {
-  border: 2px solid var(--border-highlight);
+  border: var(--border-size) solid var(--border-highlight);
+  box-shadow: 0px 0px 6px 1px var(--border-highlight);
   outline: none;
 }
 

@@ -2,11 +2,17 @@
   --svg-size: var(--h2);
   --svg-stroke-width: 4;
   background: var(--bg-body);
-  border: var(--border-size) solid transparent;
+  border: var(--border-size) solid var(--border-colour);
   border-radius: var(--border-radius);
   display: flex;
   align-items: center;
   padding: 0.25rem;
+}
+
+.sidebar-btn:focus {
+  border: var(--border-size) solid var(--border-highlight);
+  outline: none;
+  box-shadow: none;
 }
 
 .sidebar-btn svg {
@@ -23,7 +29,7 @@
   --svg-stroke-width: 2;
   /* Button defults */
   background: none;
-  border: 2px solid transparent;
+  border: var(--border-size) solid transparent;
   border-radius: var(--border-radius);
 
   /* Typography */
@@ -58,21 +64,29 @@
 
 .nav-dropdown {
   padding-inline-start: var(--gap-lg);
-  margin-top: var(--gap-md);
   overflow: hidden;
   height: 0;
   opacity: 0;
   transition:
-    height 1s cubic-bezier(.16, 1, .3, 1),
-    opacity 300ms ease;
+    height 0.5s ease;
+}
+
+.nav-dropdown > :first-child {
+  margin-top: var(--gap-md);
 }
 
 .nav-dropdown.show {
   opacity: 1;
+  transition:
+    height 0.5s ease;
+}
+
+.nav-chevron {
+  margin-inline-start: auto;
 }
 
 .nav-dropdown-container .nav-chevron {
-  transition: transform 1ms cubic-bezier(.16, 1, .3, 1);
+  transition: transform 1ms ease;
   transform: scaleY(1);
 }
 

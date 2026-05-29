@@ -10,9 +10,11 @@ export const sidebar = {
         const isOpen = dropdown.classList.contains("show");
 
         if (isOpen) {
+          btn.classList.remove("active");
           dropdown.style.height = "0px";
           dropdown.classList.remove("show");
         } else {
+          btn.classList.add("active");
           dropdown.classList.add("show");
           dropdown.style.height = dropdown.scrollHeight + "px";
         }
@@ -20,6 +22,8 @@ export const sidebar = {
 
       return true;
     }
+
+    return false;
   },
   click(event) {
     const btn = event.target.closest("#sidebar-btn");

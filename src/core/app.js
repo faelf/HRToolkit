@@ -10,6 +10,7 @@ import { form } from "../utilities/form.js";
 import { modal } from "../utilities/modal.js";
 import { storages } from "../utilities/storages.js";
 import { sidebar } from "../ui/sidebar.js";
+import { dropdown } from "../utilities/dropdown.js";
 
 /**
  * Router Setup
@@ -47,6 +48,9 @@ document.addEventListener("click", (e) => {
   const target = e.target;
 
   switch (true) {
+    case dropdown.slidedownClick(e):
+      break;
+
     case sidebar.dropdownClick(e):
       break;
 

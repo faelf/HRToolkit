@@ -40,3 +40,24 @@
     opacity: 0;
   }
 }
+
+[data-slidedown] {
+  overflow: hidden;
+  height: 0;
+
+  transition: height 1s ease;
+}
+
+[data-slidedown].show {
+  transition: height 1s ease;
+}
+
+.chevron {
+  border-radius: var(--border-radius);
+  margin-inline-start: var(--gap-lg);
+  transition: transform 300ms ease;
+}
+
+[data-slidedown-btn][data-expanded="true"] .chevron {
+  transform: scaleY(-1);
+}
