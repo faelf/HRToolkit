@@ -9,3 +9,14 @@ svg {
   stroke-linejoin: round;
   flex-shrink: 0;
 }
+
+.svg-hl-5 {
+  --svg-size: var(--headline-5);
+  --svg-stroke-width: 2;
+  border: var(--border-size) solid var(--border-colour);
+  border-radius: 5000px;
+  padding: 0.25rem;
+  height: 100px + 3.9vw;
+  width: 100px + 3.9vw;
+  margin-inline-end: var(--gap-lg);
+}

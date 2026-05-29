@@ -1,4 +1,44 @@
+import { svg } from "./svg.js";
+
 export const form = {
+  buttons: {
+    render({ container, buttons }) {
+      const el = typeof container === "string" ? document.querySelector(container) : container;
+
+      if (!el) {
+        console.error("Button container not found");
+        return;
+      }
+
+      el.innerHTML = "";
+      el.classList.add("form-buttons");
+
+      Object.entries(buttons).forEach(([key, config]) => {
+        const btn = document.createElement("button");
+
+        btn.type = config.type || "button";
+        btn.className = `btn ${config.className || ""}`.trim();
+
+        // Modal Buttons
+        if (config.action === "close-modal") btn.setAttribute("data-modal", "close");
+
+        // ID
+        if (config.id) btn.id = config.id;
+
+        // SVG
+        if (config.svg && svg[config.svg]) {
+          btn.innerHTML = svg[config.svg].trim();
+        }
+
+        // label
+        if (config.label) {
+          btn.appendChild(document.createTextNode(config.label));
+        }
+
+        el.appendChild(btn);
+      });
+    },
+  },
   inputs: {
     text: {
       render({ input = "text", id, label, helper } = {}) {
@@ -143,81 +183,6 @@ export const form = {
 
         return container;
       },
-    },
-  },
-  buttons: {
-    submit: {
-      type: "submit",
-      className: "green",
-      label: "Save",
-      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
-              <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
-              <path d="M7 3v4a1 1 0 0 0 1 1h7" />
-            </svg>`,
-    },
-    reset: {
-      type: "reset",
-      className: "yellow",
-      label: "Reset",
-      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-              <path d="M3 3v5h5" />
-            </svg>`,
-    },
-    delete: {
-      type: "button",
-      className: "red",
-      id: "delete-candidate",
-      label: "Delete",
-      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M10 11v6" />
-              <path d="M14 11v6" />
-              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
-              <path d="M3 6h18" />
-              <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-            </svg>`,
-    },
-    render({ containerId, deleteBtnId } = {}) {
-      const container = document.querySelector(containerId);
-
-      if (!container) {
-        console.error(`Buttons container not found: ${containerId}`);
-        return;
-      }
-
-      container.classList.add("form-buttons");
-
-      const buttonList = ["submit", "reset", "delete"];
-      buttonList.forEach((key) => {
-        const config = this[key];
-
-        if (!config) {
-          console.warn(`Unknown button: ${key}`);
-          return;
-        }
-
-        const btn = document.createElement("button");
-
-        btn.type = config.type || "button";
-        btn.className = `btn ${config.className || ""}`.trim();
-
-        if (key === "delete" && deleteBtnId) {
-          btn.id = deleteBtnId;
-        } else if (config.id) {
-          btn.id = config.id;
-        }
-
-        if (config.svg) {
-          const wrapper = document.createElement("span");
-          wrapper.innerHTML = config.svg;
-          btn.appendChild(wrapper.firstElementChild);
-        }
-
-        btn.appendChild(document.createTextNode(config.label));
-
-        container.appendChild(btn);
-      });
     },
   },
   select: {

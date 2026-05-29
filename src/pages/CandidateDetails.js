@@ -28,8 +28,28 @@ export const CandidateDetails = {
     });
 
     form.buttons.render({
-      containerId: "#form-buttons",
-      deleteBtnId: "delete-candidate",
+      container: "#form-buttons",
+      buttons: {
+        submit: {
+          type: "submit",
+          label: "Save",
+          className: "green",
+          svg: "floppy",
+        },
+        reset: {
+          type: "reset",
+          label: "Undo Changes",
+          className: "yellow",
+          svg: "undo",
+        },
+        delete: {
+          type: "button",
+          label: "Delete",
+          className: "red",
+          id: "delete-candidate",
+          svg: "trash",
+        },
+      },
     });
 
     async function loadcandidate(id, candidateForm) {

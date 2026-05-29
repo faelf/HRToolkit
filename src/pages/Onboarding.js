@@ -21,8 +21,27 @@ export const OnboardingPage = {
       });
 
       form.buttons.render({
-        containerId: "#form-buttons",
-        deleteBtnId: "delete-candidate",
+        container: "#form-buttons",
+        buttons: {
+          submit: {
+            type: "submit",
+            label: "Save",
+            className: "green",
+            svg: "floppy",
+          },
+          reset: {
+            type: "reset",
+            label: "Undo",
+            className: "yellow",
+            svg: "undo",
+          },
+          close: {
+            action: "close-modal",
+            label: "Close",
+            className: "red",
+            svg: "close",
+          },
+        },
       });
 
       if (candidates) {

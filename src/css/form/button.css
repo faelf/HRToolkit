@@ -1,6 +1,7 @@
 .btn, .btn-sm {
   --svg-size: var(--text-md);
   --svg-colour: var(--text);
+  --svg-stroke-width: 3;
   display: flex;
   align-items: center;
   justify-content: center;
