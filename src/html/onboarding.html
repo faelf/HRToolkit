@@ -7,7 +7,7 @@
       <line x1="9" x2="9" y1="9" y2="21" />
       <line x1="15" x2="15" y1="9" y2="21" />
     </svg>
-    <h2>Onboarding Tracker</h2>
+    <h2>Candidates</h2>
   </header>
 
   <article class="section-body" aria-label="Candidates table">
@@ -19,7 +19,7 @@
       </div>
 
       <div class="add-candidate-container">
-        <button type="button" class="btn" popovertarget="add-candidate">
+        <button type="button" class="btn" data-modal-btn="add-candidate">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
             <path d="M14 2v5a1 1 0 0 0 1 1h5" />
@@ -27,34 +27,6 @@
             <path d="M12 18v-6" />
           </svg>
           Add Candidate</button>
-        <dialog popover id="add-candidate">
-          <div class="card-header">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <line x1="19" x2="19" y1="8" y2="14" />
-              <line x1="22" x2="16" y1="11" y2="11" />
-            </svg>
-            <h4>New Candidate</h4>
-          </div>
-          <form id="new-candidate">
-            <div class="modal-body">
-              <h4 class="mb-3">Personal Information</h4>
-              <div id="personal-information" class="form-grid">
-                <!-- JS -->
-              </div>
-
-              <h4 class="mb-3">Employement Information</h4>
-              <div id="employment-information" class="form-grid">
-                <!-- JS -->
-              </div>
-            </div>
-
-            <div id="form-buttons" class="modal-footer">
-              <!-- JS -->
-            </div>
-          </form>
-        </dialog>
       </div>
     </div>
 
@@ -64,3 +36,33 @@
 
   </article>
 </section>
+
+<dialog id="add-candidate" data-modal="add-candidate">
+  <form id="new-candidate">
+    <div class="modal-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <line x1="19" x2="19" y1="8" y2="14" />
+        <line x1="22" x2="16" y1="11" y2="11" />
+      </svg>
+      <h4>New Candidate</h4>
+    </div>
+
+    <div class="modal-body">
+      <h4 class="mb-3">Personal Information</h4>
+      <div id="personal-information" class="form-grid">
+        <!-- JS -->
+      </div>
+
+      <h4 class="mb-3">Employement Information</h4>
+      <div id="employment-information" class="form-grid">
+        <!-- JS -->
+      </div>
+    </div>
+
+    <div id="form-buttons" class="modal-footer">
+      <!-- JS -->
+    </div>
+  </form>
+</dialog>

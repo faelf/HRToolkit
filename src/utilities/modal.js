@@ -1,15 +1,25 @@
 export const modal = {
-  popover: {
-    click(e) {
-      const dialog = e.target.closest('[data-modal="close"]')?.closest("dialog");
+  click(e) {
+    const openBtn = e.target.closest("[data-modal-btn]");
+    if (openBtn) {
+      const modalId = openBtn.dataset.modalBtn;
+      const dialog = document.querySelector(`[data-modal="${modalId}"]`);
 
       if (dialog) {
-        // Dynamically handle popovers vs traditional dialog modals
-        dialog.hasAttribute("popover") ? dialog.hidePopover() : dialog.close();
-        return true; // Action was handled, stop further event execution
+        dialog.showModal();
+        return true;
       }
+    }
 
-      return false; // Not a modal close click
-    },
+    const closeBtn = e.target.closest('[data-modal="close"]');
+    if (closeBtn) {
+      const dialog = closeBtn.closest("dialog");
+
+      if (dialog) {
+        dialog.close();
+        return true;
+      }
+    }
+    return false;
   },
 };

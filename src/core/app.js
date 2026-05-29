@@ -56,7 +56,7 @@ document.addEventListener("click", (e) => {
     case theme.click(e):
       break;
 
-    case modal.popover.click(e):
+    case modal.click(e):
       break;
 
     case form.select.click(e):
