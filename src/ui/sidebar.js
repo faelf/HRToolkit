@@ -1,4 +1,26 @@
 export const sidebar = {
+  dropdownClick(event) {
+    const btn = event.target.closest("[data-nav-dropdown-btn]");
+
+    if (btn) {
+      const dropdownId = btn.dataset.navDropdownBtn;
+      const dropdown = document.querySelector(`[data-nav-dropdown="${dropdownId}"]`);
+
+      if (dropdown) {
+        const isOpen = dropdown.classList.contains("show");
+
+        if (isOpen) {
+          dropdown.style.height = "0px";
+          dropdown.classList.remove("show");
+        } else {
+          dropdown.classList.add("show");
+          dropdown.style.height = dropdown.scrollHeight + "px";
+        }
+      }
+
+      return true;
+    }
+  },
   click(event) {
     const btn = event.target.closest("#sidebar-btn");
     const sidebarNode = document.querySelector(".sidebar-nav");

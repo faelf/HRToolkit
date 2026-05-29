@@ -47,6 +47,9 @@ document.addEventListener("click", (e) => {
   const target = e.target;
 
   switch (true) {
+    case sidebar.dropdownClick(e):
+      break;
+
     case sidebar.click(e):
       break;
 
