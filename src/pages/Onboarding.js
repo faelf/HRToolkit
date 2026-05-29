@@ -88,20 +88,22 @@ export const OnboardingPage = {
         department: "",
         "hiring-manager": "",
         "right-to-work": "",
-        "expiry-date": "",
-        dbs: "",
-        "dbs-number": "",
+        "rwt-expiry-date": "",
+        "rtw-note": "",
+        "start-date": "",
+        "dbs-issue-date": "",
+        "dbs-certificate-number": "",
         "dbs-level": "",
+        "dbs-note": "",
         oh: "",
         references: "",
-        "start-date": "",
         adp: false,
         "learn-space": false,
         "name-badge": false,
       };
 
       const formData = form.submit(event);
-      const newCandidate = { ...defaultCandidate, ...formData, status: "Onboarding" };
+      const newCandidate = { ...defaultCandidate, ...formData, "onboarding-status": "Onboarding" };
 
       await storages.add("candidates", newCandidate);
 
