@@ -18,10 +18,11 @@
 @import "./form/form.css";
 @import "./form/input-date.css";
 @import "./form/input-select.css";
+@import "./form/checkbox.css";
 @import "./form/button.css";
 
 /* Components */
-@import "./components/navbar.css";
+@import "./components/nav-sidebar.css";
 @import "./components/card.css";
 @import "./components/section.css";
 @import "./components/info-box.css";
