@@ -12,6 +12,8 @@ form {
   color: var(--text);
   font-weight: 600;
   font-size: inherit;
+  display: grid;
+  gap: var(--gap-md);
 }
 
 fieldset {
@@ -195,20 +197,20 @@ progress::-moz-progress-bar {
 */
 .input-item {
   display: grid;
-  gap: 4px;
-  margin-bottom: 0.5rem;
+  gap: var(--gap-md);
+  margin-bottom: var(--gap-md);
 }
 
 .checkbox-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: var(--gap-md);
 }
 
 .progress-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--gap-md);
 }
 
 .form-buttons {

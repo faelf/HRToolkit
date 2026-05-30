@@ -1,12 +1,12 @@
 .table-skeleton {
   display: grid;
-  gap: 10px;
+  gap: var(--gap-md);
   padding: 10px;
 }
 
 .table-skeleton .row {
   display: grid;
-  gap: 10px;
+  gap: var(--gap-md);
   padding: 10px;
   grid-template-columns: repeat(5, 1fr);
   border-bottom: 1px solid hsla(0 0% 0% / 0.5);

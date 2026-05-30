@@ -43,7 +43,7 @@ export const table = {
       const tr = document.createElement("tr");
       tr.setAttribute("data-id", item.id);
       tr.classList.add("cursor-pointer");
-      tr.setAttribute("href", "candidatedetails");
+      tr.setAttribute("data-href", "candidatedetails");
 
       // Create the rest of the columns based on the head configuration
       for (const column of Object.keys(columns)) {

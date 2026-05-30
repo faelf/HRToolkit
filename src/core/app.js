@@ -22,7 +22,7 @@ import { dropdown } from "../utilities/dropdown.js";
 const router = new Router({
   contentArea: "#main-content",
   pageContent: pageContent,
-  linkAttribute: "href",
+  linkAttribute: "data-href",
   idAttribute: "data-id",
   landingPage: "dashboard",
 });

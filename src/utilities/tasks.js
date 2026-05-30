@@ -23,7 +23,7 @@ const createHtmlBadgeList = (tasks) => {
   for (const item of tasks) {
     const li = document.createElement("li");
     li.className = "task-group";
-    li.setAttribute("href", "candidatedetails");
+    li.setAttribute("data-href", "candidatedetails");
     li.setAttribute("data-id", item.id);
 
     const nameSpan = document.createElement("span");
@@ -177,7 +177,7 @@ export const DashboardInfo = {
       for (const item of starters) {
         const li = document.createElement("li");
         li.className = "candidate-list";
-        li.setAttribute("href", "candidatedetails");
+        li.setAttribute("data-href", "candidatedetails");
         li.setAttribute("data-id", item.id);
 
         const name = document.createElement("span");

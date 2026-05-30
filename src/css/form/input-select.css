@@ -38,7 +38,7 @@ select {
 .select-dropdown {
   position: relative;
   display: grid;
-  gap: 4px;
+  gap: var(--gap-md);
   margin-bottom: 0.5rem;
   width: 100%;
   anchor-scope: --select-input;

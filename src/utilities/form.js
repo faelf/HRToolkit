@@ -48,18 +48,17 @@ export const form = {
         // Label
         const labelEl = document.createElement("label");
         labelEl.classList.add("form-label");
-        labelEl.setAttribute("for", id);
         labelEl.textContent = label;
 
         // Input
         const inputEl = document.createElement("input");
         inputEl.type = input;
-        inputEl.id = id;
         inputEl.name = id;
+        inputEl.autocomplete = "off";
 
         // Append required elements
+        labelEl.appendChild(inputEl);
         container.appendChild(labelEl);
-        container.appendChild(inputEl);
 
         // Optional helper
         if (helper) {
@@ -81,13 +80,11 @@ export const form = {
         // Label
         const labelEl = document.createElement("label");
         labelEl.classList.add("form-label");
-        labelEl.setAttribute("for", id);
         labelEl.textContent = label;
 
         // Input
         const inputEl = document.createElement("input");
         inputEl.type = "text";
-        inputEl.id = id;
         inputEl.name = id;
         inputEl.classList.add("select-input");
         inputEl.autocomplete = "off";
@@ -105,8 +102,8 @@ export const form = {
         });
 
         // Append required elements
+        labelEl.appendChild(inputEl);
         container.appendChild(labelEl);
-        container.appendChild(inputEl);
         container.appendChild(optionsEl);
 
         // Optional helper
@@ -129,13 +126,11 @@ export const form = {
         // Label
         const labelEl = document.createElement("label");
         labelEl.classList.add("form-label");
-        labelEl.setAttribute("for", id);
         labelEl.textContent = label;
 
         // Input
         const inputEl = document.createElement("input");
         inputEl.type = "text";
-        inputEl.id = id;
         inputEl.name = id;
         inputEl.classList.add("date-input");
         inputEl.placeholder = placeholder;
@@ -144,8 +139,8 @@ export const form = {
         inputEl.autocomplete = "off";
 
         // Append required elements
+        labelEl.appendChild(inputEl);
         container.appendChild(labelEl);
-        container.appendChild(inputEl);
 
         // Optional helper
         if (helper) {
@@ -167,18 +162,16 @@ export const form = {
         // Input
         const inputEl = document.createElement("input");
         inputEl.type = "checkbox";
-        inputEl.id = id;
         inputEl.name = id;
         inputEl.checked = checked;
 
         // Label
         const labelEl = document.createElement("label");
         labelEl.classList.add("form-label");
-        labelEl.setAttribute("for", id);
-        labelEl.textContent = label;
 
         // Append in correct order
-        container.appendChild(inputEl);
+        labelEl.appendChild(inputEl);
+        labelEl.appendChild(document.createTextNode(label));
         container.appendChild(labelEl);
 
         return container;

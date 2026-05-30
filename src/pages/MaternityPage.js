@@ -5,12 +5,15 @@ export const MaternityPage = {
   title: "HR Helper - Maternity Calculator",
   html: MaternityHTML,
   setup() {
-    formatters.setMinMaxDates();
     // DOM Elements
     const maternityForm = document.getElementById("maternity-form");
-    const startDateInput = document.getElementById("start-date-input");
-    const babyDueInput = document.getElementById("baby-due-date-input");
-    const maternityStartInput = document.getElementById("maternity-start-date-input");
+    const startDateInput =
+      document.querySelector('[name="start-date-input"]') || document.querySelector('[name="start-date"]');
+    const babyDueInput =
+      document.querySelector('[name="baby-due-date-input"]') || document.querySelector('[name="baby-due-date"]');
+    const maternityStartInput =
+      document.querySelector('[name="maternity-start-date-input"]') ||
+      document.querySelector('[name="maternity-start-date"]');
     const resultsContainer = document.getElementById("results");
 
     // Policy Constants
@@ -166,8 +169,8 @@ export const MaternityPage = {
      * @returns {Object} The calculation results.
      */
     function calculateMat() {
-      const empStart = parseBritishDate(startDateInput.value);
-      const babyDue = parseBritishDate(babyDueInput.value);
+      const empStart = parseBritishDate(startDateInput?.value);
+      const babyDue = parseBritishDate(babyDueInput?.value);
 
       const ewcStart = getWeekStart(babyDue);
       const ewcEnd = getWeekEnd(babyDue);
@@ -177,9 +180,9 @@ export const MaternityPage = {
       const qualifyingEnd = getWeekEnd(qualifyingStart);
 
       let maternityStart;
-      if (maternityStartInput.value) {
+      if (maternityStartInput?.value) {
         // If the user entered a maternity start date, use that
-        maternityStart = parseBritishDate(maternityStartInput.value);
+        maternityStart = parseBritishDate(maternityStartInput?.value);
       } else {
         // Otherwise, use the earliest legal start date (11 weeks before EWC)
         maternityStart = new Date(ewcStart);
@@ -300,32 +303,32 @@ export const MaternityPage = {
     function validateDates() {
       let isValid = true;
 
-      const StartDate = parseBritishDate(startDateInput.value);
-      const BabyDueDate = parseBritishDate(babyDueInput.value);
-      const MatStartDate = parseBritishDate(maternityStartInput.value);
+      const StartDate = parseBritishDate(startDateInput?.value);
+      const BabyDueDate = parseBritishDate(babyDueInput?.value);
+      const MatStartDate = parseBritishDate(maternityStartInput?.value);
 
       if (!StartDate || !BabyDueDate) return false;
 
       if (StartDate > BabyDueDate) {
         helpers.babyDue.className = "invalid-feedback";
         helpers.babyDue.textContent = "Baby cannot be due before the start date.";
-        babyDueInput.classList.add("is-invalid");
+        babyDueInput?.classList.add("is-invalid");
         isValid = false;
       } else {
         helpers.babyDue.className = "input-helper";
         helpers.babyDue.textContent = originalTexts.babyDue;
-        babyDueInput.classList.remove("is-invalid");
+        babyDueInput?.classList.remove("is-invalid");
       }
 
       if (MatStartDate && BabyDueDate < MatStartDate) {
         helpers.mat.className = "invalid-feedback";
         helpers.mat.textContent = "Maternity cannot start after baby is due.";
-        maternityStartInput.classList.add("is-invalid");
+        maternityStartInput?.classList.add("is-invalid");
         isValid = false;
       } else {
         helpers.mat.className = "input-helper";
         helpers.mat.textContent = originalTexts.mat;
-        maternityStartInput.classList.remove("is-invalid");
+        maternityStartInput?.classList.remove("is-invalid");
       }
 
       return isValid;

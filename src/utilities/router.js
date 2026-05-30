@@ -34,7 +34,7 @@ export class Router {
       pageContent,
       landingPage = "home",
       baseHtmlPath = "src/html/",
-      linkAttribute = "href",
+      linkAttribute = "data-href",
       idAttribute = "data-id",
     } = config;
 
@@ -45,6 +45,9 @@ export class Router {
     this.baseHtmlPath = baseHtmlPath;
     this.linkAttribute = linkAttribute;
     this.idAttribute = idAttribute;
+
+    // Support both the custom link attribute and standard href
+    this.linkSelector = this.linkAttribute === "href" ? "[href]" : `[href], [${this.linkAttribute}]`;
 
     // Bind event handlers to maintain correct 'this' context
     this.handleClick = this.handleClick.bind(this);
@@ -59,11 +62,10 @@ export class Router {
    * @param {string} [providedActiveGroup]
    */
   updateActiveLinks(activePageKey, providedActiveGroup) {
-    const selector = `[${this.linkAttribute}]`;
-    const links = document.querySelectorAll(selector);
+    const links = document.querySelectorAll(this.linkSelector);
 
     const activeLinkElement = Array.from(links).find((l) => {
-      const val = l.getAttribute(this.linkAttribute);
+      const val = l.getAttribute(this.linkAttribute) || l.getAttribute("href");
       return val === activePageKey || val === `#${activePageKey}`;
     });
 
@@ -72,7 +74,7 @@ export class Router {
       providedActiveGroup || pageConfig?.activeGroup || activeLinkElement?.getAttribute("data-active-group");
 
     links.forEach((link) => {
-      const val = link.getAttribute(this.linkAttribute);
+      const val = link.getAttribute(this.linkAttribute) || link.getAttribute("href");
       const isExactMatch = val === activePageKey || val === `#${activePageKey}`;
       const isGroupMatch = activeGroup && link.getAttribute("data-active-group") === activeGroup;
 
@@ -143,12 +145,11 @@ export class Router {
    * @param {MouseEvent} event
    */
   handleClick(event) {
-    const selector = `[${this.linkAttribute}]`;
-    const link = event.target.closest(selector);
+    const link = event.target.closest(this.linkSelector);
     if (!link) return;
 
     // Only prevent default if it's an internal hash link or matches a pageKey
-    const rawLink = link.getAttribute(this.linkAttribute);
+    const rawLink = link.getAttribute(this.linkAttribute) || link.getAttribute("href");
     if (rawLink && (rawLink.startsWith("#") || this.pageContent[rawLink])) {
       event.preventDefault();
 
