@@ -213,10 +213,29 @@ export const form = {
 
         optionsPanel?.classList.add("open");
 
+        let hasVisibleOptions = false;
+
         options?.forEach((option) => {
           const text = option.textContent.toLowerCase();
-          option.style.display = text.includes(query) ? "block" : "none";
+          const isMatch = text.includes(query);
+          option.style.display = isMatch ? "block" : "none";
+          if (isMatch) hasVisibleOptions = true;
         });
+
+        if (optionsPanel) {
+          let noOptionMsg = optionsPanel.querySelector(".no-option-msg");
+          if (!hasVisibleOptions) {
+            if (!noOptionMsg) {
+              noOptionMsg = document.createElement("div");
+              noOptionMsg.className = "no-option-msg";
+              noOptionMsg.textContent = "Option not found";
+              optionsPanel.appendChild(noOptionMsg);
+            }
+            noOptionMsg.style.display = "block";
+          } else if (noOptionMsg) {
+            noOptionMsg.style.display = "none";
+          }
+        }
       },
     },
     "date-input": {

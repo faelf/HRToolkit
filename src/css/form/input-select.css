@@ -40,12 +40,16 @@ select {
   justify-self: anchor-center;
   width: anchor-size(width);
   background: var(--bg-body);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-sm);
   z-index: 1000;
-  max-height: 120px;
+  max-height: 150px;
   overflow-y: auto;
   border: var(--border-size) solid var(--border-colour);
   display: none;
+}
+
+.select-options.open {
+  display: block;
 }
 
 @position-try --left {
@@ -78,11 +82,7 @@ select {
   right: anchor(right);
 }
 
-.select-options.open {
-  display: block;
-}
-
-.option {
+.option, .no-option-msg {
   height: 35px;
   line-height: 35px;
   padding-left: 10px;
@@ -94,5 +94,5 @@ select {
 }
 
 .option:hover {
-  background: hsla(0 0% 0% / 0.3);
+  background: var(--border-colour);
 }
