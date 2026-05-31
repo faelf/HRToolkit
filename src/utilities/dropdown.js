@@ -8,14 +8,14 @@ export const dropdown = {
 
     if (!slidedown) return false;
 
-    const isOpen = btn.dataset.expanded === "true";
+    const isOpen = slidedown.dataset.expanded === "true";
 
     if (isOpen) {
-      btn.dataset.expanded = "false";
+      btn.dataset.flipY = "false";
       slidedown.dataset.expanded = "false";
       slidedown.style.height = "0px";
     } else {
-      btn.dataset.expanded = "true";
+      btn.dataset.flipY = "true";
       slidedown.dataset.expanded = "true";
       slidedown.style.height = slidedown.scrollHeight + "px";
     }
