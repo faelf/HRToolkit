@@ -109,8 +109,10 @@ export const DashboardInfo = {
       const tasks = [];
       if (!candidate["right-to-work"]) tasks.push("Right to Work");
       if (!candidate["dbs-issue-date"]) tasks.push("DBS check");
-      if (!candidate["oh"]) tasks.push("Occupational Health");
-      if (!candidate["references"]) tasks.push("References");
+      if (!candidate["oh-issue-date"]) tasks.push("Occupational Health");
+      if (!candidate["reference-sent"]) tasks.push("Send References");
+      if (!candidate["reference-received"]) tasks.push("References Received");
+      if (!candidate["professional-registration"]) tasks.push("Professional Registration");
 
       return tasks;
     },
@@ -165,6 +167,9 @@ export const DashboardInfo = {
   },
   starters: {
     get(candidates) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
       return (
         candidates
           .filter((c) => c["start-date"])
@@ -178,6 +183,7 @@ export const DashboardInfo = {
               rawDate: new Date(Number(year), Number(month) - 1, Number(day)),
             };
           })
+          .filter((c) => c.rawDate >= today)
           // Sort to show the closest upcoming starters first
           .sort((a, b) => a.rawDate - b.rawDate)
       );

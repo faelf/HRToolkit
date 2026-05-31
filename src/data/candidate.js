@@ -92,13 +92,18 @@ export const CandidateScheme = {
     },
     OccupationalHealth: {
       input: "date-input",
-      id: "oh",
+      id: "oh-issue-date",
       label: "Occupational Health",
+    },
+    ReferenceSent: {
+      input: "date-input",
+      id: "reference-sent",
+      label: "References Sent",
     },
     References: {
       input: "date-input",
-      id: "references",
-      label: "References",
+      id: "reference-received",
+      label: "References Received",
     },
     ReferencesNote: {
       input: "text",

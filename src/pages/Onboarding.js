@@ -15,7 +15,13 @@ export const OnboardingPage = {
       let data = await storages.load("candidates");
 
       data = data.map((candidate) => {
-        const progressFields = ["dbs", "right-to-work", "oh", "references"];
+        const progressFields = [
+          "right-to-work",
+          "dbs-issue-date",
+          "oh-issue-date",
+          "reference-received",
+          "professional-registration",
+        ];
         const completedCount = progressFields.filter((field) => candidate[field]).length;
         const percentage = Math.round((completedCount / progressFields.length) * 100);
 
