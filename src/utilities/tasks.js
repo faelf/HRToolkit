@@ -46,11 +46,18 @@ function createHtmlBadgeList({ tasks }) {
     const badgesDiv = document.createElement("div");
     badgesDiv.className = "badge-group";
 
-    for (const task of item.tasks) {
+    if (item.tasks.length === 0) {
       const badgeSpan = document.createElement("span");
-      badgeSpan.className = "badge red";
-      badgeSpan.textContent = task;
+      badgeSpan.className = "badge green";
+      badgeSpan.textContent = "Complete";
       badgesDiv.appendChild(badgeSpan);
+    } else {
+      for (const task of item.tasks) {
+        const badgeSpan = document.createElement("span");
+        badgeSpan.className = "badge red";
+        badgeSpan.textContent = task;
+        badgesDiv.appendChild(badgeSpan);
+      }
     }
 
     li.appendChild(badgesDiv);
@@ -119,7 +126,6 @@ export const DashboardInfo = {
       if (!candidate["learn-space"]) tasks.push("Learn Space setup");
       if (!candidate.adp) tasks.push("ADP setup");
       if (!candidate["name-badge"]) tasks.push("Name badge");
-      if (!candidate["post-checks-complete"]) tasks.push("Post Checks Complete");
 
       return tasks;
     },
@@ -129,7 +135,6 @@ export const DashboardInfo = {
       if (!candidate["learn-space"]) tasks.push("Learn Space setup");
       if (!candidate.adp) tasks.push("ADP setup");
       if (!candidate["name-badge"]) tasks.push("Name badge");
-      if (!candidate["post-checks-complete"]) tasks.push("Post Checks Complete");
 
       return tasks;
     },
@@ -168,25 +173,21 @@ export const DashboardInfo = {
         .filter((c) => c.tasks.length > 0);
     },
     onboardingTasksList(onboarding) {
-      const onboardingCandidates = onboarding
-        .map((candidate) => ({
-          id: candidate.id,
-          candidate: getCandidateName(candidate),
-          jobTitle: candidate["job-title"],
-          tasks: this.getOnboardingTasks(candidate),
-        }))
-        .filter((c) => c.tasks.length > 0);
+      const onboardingCandidates = onboarding.map((candidate) => ({
+        id: candidate.id,
+        candidate: getCandidateName(candidate),
+        jobTitle: candidate["job-title"],
+        tasks: this.getOnboardingTasks(candidate),
+      }));
       return createHtmlBadgeList({ tasks: onboardingCandidates });
     },
     postCheckTasksList(candidates) {
-      const postCheckCandidates = candidates
-        .map((candidate) => ({
-          id: candidate.id,
-          candidate: getCandidateName(candidate),
-          jobTitle: candidate["job-title"],
-          tasks: this.getPostCheckTasks(candidate),
-        }))
-        .filter((c) => c.tasks.length > 0);
+      const postCheckCandidates = candidates.map((candidate) => ({
+        id: candidate.id,
+        candidate: getCandidateName(candidate),
+        jobTitle: candidate["job-title"],
+        tasks: this.getPostCheckTasks(candidate),
+      }));
       return createHtmlBadgeList({ tasks: postCheckCandidates });
     },
     allTasksList(candidates) {
