@@ -1,4 +1,3 @@
-/* Dropdown Behaviour in tablet and larger screens */
 .dropdown-container {
   --gap-md: 10px;
   --dropdown-border: 1px solid black;
@@ -44,20 +43,5 @@
 [data-slidedown] {
   overflow: hidden;
   height: 0;
-
   transition: height 1s ease;
-}
-
-[data-slidedown].show {
-  transition: height 1s ease;
-}
-
-.chevron {
-  border-radius: var(--border-radius);
-  margin-inline-start: var(--gap-lg);
-  transition: transform 300ms ease;
-}
-
-[data-slidedown-btn][data-expanded="true"] .chevron {
-  transform: scaleY(-1);
 }

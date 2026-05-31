@@ -1,0 +1,22 @@
+.state-icon {
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+/* Horizontal flip */
+[data-flip-x="false"] .state-icon {
+  transform: scaleX(1);
+}
+
+[data-flip-x="true"] .state-icon {
+  transform: scaleX(-1);
+}
+
+/* Vertical flip */
+[data-flip-y="false"] .state-icon {
+  transform: scaleY(1);
+}
+
+[data-flip-y="true"] .state-icon {
+  transform: scaleY(-1);
+}

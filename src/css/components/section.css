@@ -1,7 +1,6 @@
 .section {
   --svg-size: var(--h2);
   --svg-stroke-width: 1.75;
-  background: var(--bg-body);
   border-radius: 20px;
   border: var(--border-size) solid transparent;
   overflow: clip;
@@ -10,7 +9,6 @@
 .section-header {
   padding: 0.75rem 1rem;
   border-bottom: var(--border-size) solid transparent;
-  background: var(--bg-body);
   display: flex;
   align-items: center;
   gap: var(--gap-md);
@@ -23,7 +21,6 @@
 .section-footer {
   padding: 0.75rem 1rem;
   border-top: var(--border-size) solid transparent;
-  background: var(--bg-body);
   display: flex;
   justify-content: flex-end;
   gap: var(--gap-md);

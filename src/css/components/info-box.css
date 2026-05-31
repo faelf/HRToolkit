@@ -1,8 +1,7 @@
 .info-box {
   --box-bg-colour: var(--dark);
   --box-boder-colour: var(--dark);
-  --box-border-width: 2px;
-
+  --box-border-width: 1px;
   border: var(--box-border-width) solid var(--box-boder-colour);
   background-color: var(--box-bg-colour);
   border-radius: var(--border-radius);
@@ -11,6 +10,7 @@
 
 .info-box-header {
   --svg-size: var(--text-md);
+  --svg-stroke-width: 3;
   display: flex;
   align-items: center;
   gap: var(--gap-md);
@@ -22,7 +22,7 @@
 }
 
 .info-box-body {
-  background-color: var(--bg-highlight);
+  background-color: var(--bg-surface);
   color: var(--text);
   padding: 0.25rem 1rem;
 }

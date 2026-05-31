@@ -1,17 +1,15 @@
 .card {
-  --svg-size: var(--h3);
+  --svg-size: var(--h4);
   --svg-stroke-width: 1.75;
   background: var(--bg-surface);
-  border-radius: 20px;
+  border-radius: var(--border-radius-lg);
   border: var(--border-size) solid var(--border-colour);
   overflow: clip;
-  box-shadow:
-    0 2px 6px rgb(0 0 0 / 0.08),
-    0 8px 24px rgb(0 0 0 / 0.12);
+  box-shadow: 0px 0px 12px 1px hsla(0 0% 0% / 0.2);
 }
 
 .card-header {
-  padding: 0.75rem 1rem;
+  padding: var(--gap-md);
   border-bottom: var(--border-size) solid var(--border-colour);
   background: var(--bg-highlight);
   display: flex;
@@ -19,12 +17,16 @@
   gap: var(--gap-md);
 }
 
+.card-title {
+  font-size: calc(var(--text-md) * 1.25);
+}
+
 .card-body {
-  padding: 0.75rem 1rem;
+  padding: var(--gap-md);
 }
 
 .card-footer {
-  padding: 0.75rem 1rem;
+  padding: var(--gap-md);
   border-top: var(--border-size) solid var(--border-colour);
   background: var(--bg-highlight);
   display: flex;
@@ -36,6 +38,7 @@
   font-size: 3rem;
   font-weight: 700;
   line-height: 1;
+  margin-inline-start: var(--gap-lg);
 }
 
 .card-description {

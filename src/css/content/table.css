@@ -1,18 +1,18 @@
 table {
-  background: var(--bg-middle);
-  border-collapse: collapse;
+  background: var(--bg-surface);
   table-layout: fixed;
   border-spacing: 0;
   width: 100%;
-  border-radius: 1rem;
+  border-radius: var(--border-radius);
   overflow: hidden;
-  box-shadow: none;
   color: var(--text);
+  border: var(--border-size) solid var(--border-colour);
 }
 
 thead {
   background: var(--bg-thead);
   color: var(--text-heading);
+
 }
 
 tbody tr:nth-child(even) {
@@ -26,43 +26,30 @@ tbody tr:hover, tr:nth-child(even):hover {
 th {
   --svg-size: var(--text-md);
   font-size: var(--text-md);
-  padding: 0.75rem 1rem;
+  padding: var(--gap-md) var(--gap-lg);
   font-weight: 700;
   text-align: left;
+  border-bottom: var(--border-size) solid var(--border-colour);
+}
+
+thead th + th {
+  border-left: var(--border-size) solid var(--border-colour);
 }
 
 td {
-  padding: 0.75rem 1rem;
-}
-
-/* 
-  Colours
-  -------------------
-*/
-
-table.lower {
-  box-shadow: var(--box-shadow-lower);
-}
-
-table.top {
-  box-shadow: var(--box-shadow-top);
+  padding: var(--gap-md) var(--gap-lg);
 }
 
 /* 
   Utilities
   -------------------
 */
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .th-sorting {
   cursor: pointer;
 }
 
 .th-sorting:hover {
-  background: hsla(0 0% 0% / 0.3);
+  background: var(--border-colour);
 }
 
 .sorting {

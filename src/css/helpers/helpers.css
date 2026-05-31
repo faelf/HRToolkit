@@ -23,14 +23,18 @@
   display: none !important;
 }
 
-.link {
+[data-href] {
   cursor: pointer;
 }
 
-.link:hover {
-  background: hsla(0 0% 0% / 0.3);
+[data-href]:hover {
+  background: var(--border-colour);
 }
 
 .ms-auto {
   margin-inline-start: auto;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

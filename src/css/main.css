@@ -24,12 +24,14 @@
 /* Components */
 @import "./components/nav-sidebar.css";
 @import "./components/card.css";
+@import "./components/badges.css";
 @import "./components/section.css";
 @import "./components/info-box.css";
 @import "./components/dropdown.css";
 @import "./components/modal.css";
 
 /* Helpers */
+@import "./helpers/annimations.css";
 @import "./helpers/skeleton.css";
 @import "./helpers/helpers.css";
 @import "./helpers/spacing.css";

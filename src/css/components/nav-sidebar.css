@@ -15,22 +15,14 @@
   box-shadow: none;
 }
 
-.sidebar-btn svg {
-  transition: transform 0.5s ease-in-out;
-}
-
-.rotate svg {
-  transform: scaleX(-1);
-}
-
 .nav-btn {
-  --svg-size: 1.1rem;
+  --svg-size: var(--text-md);
   --svg-colour: var(--text);
   --svg-stroke-width: 2;
   /* Button defults */
   background: none;
   border: var(--border-size) solid transparent;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-sm);
 
   /* Typography */
   line-height: 1;
@@ -41,7 +33,7 @@
   /* Sizing */
   overflow: hidden;
   width: 100%;
-  padding: .75rem;
+  padding: var(--gap-md);
 
   /* Layout */
   display: flex;
@@ -52,18 +44,23 @@
   transition: all .3s ease-in-out;
 }
 
-.nav-btn:hover, .nav-btn.active {
+.nav-btn:hover, [aria-current="page"] {
   background: var(--bg-body);
   color: var(--text);
 }
 
-.nav-btn:focus-visible {
+.nav-btn:focus {
   outline: none;
   border: var(--border-size) solid var(--border-highlight);
+  box-shadow: none;
 }
 
 .nav-dropdown {
-  padding-inline-start: var(--gap-lg);
+  padding-inline-start: var(--gap-md);
+}
+
+.nav-dropdown:not([data-expanded="true"]) {
+  display: none;
   overflow: hidden;
   height: 0;
   opacity: 0;
@@ -71,25 +68,8 @@
     height 0.5s ease;
 }
 
-.nav-dropdown > :first-child {
-  margin-top: var(--gap-md);
-}
-
-.nav-dropdown.show {
+.nav-dropdown[data-expanded="true"] {
   opacity: 1;
   transition:
     height 0.5s ease;
-}
-
-.nav-chevron {
-  margin-inline-start: auto;
-}
-
-.nav-dropdown-container .nav-chevron {
-  transition: transform 1ms ease;
-  transform: scaleY(1);
-}
-
-.nav-dropdown-container:has(.nav-dropdown.show) .nav-chevron {
-  transform: scaleY(-1);
 }

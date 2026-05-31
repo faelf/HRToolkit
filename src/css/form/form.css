@@ -1,19 +1,23 @@
-/*
-  Global / General Styles
-  ------------------------------
-*/
 form {
   container-type: inline-size;
 }
 
-.form-label {
-  display: block;
-  margin: 0;
-  color: var(--text);
-  font-weight: 600;
-  font-size: inherit;
+.input-item {
   display: grid;
   gap: var(--gap-md);
+  margin-bottom: var(--gap-md);
+}
+
+/* Input to be nested inside the label */
+.form-label {
+  /* Sizing */
+  font-size: var(--text-md);
+  gap: var(--gap-md);
+  margin: 0;
+  display: block;
+  color: var(--text);
+  font-weight: 600;
+  display: grid;
 }
 
 fieldset {
@@ -26,19 +30,19 @@ legend {
   font-weight: 600;
 }
 
-input,
-textarea {
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 0.375rem 0.75rem;
+input, textarea, select {
+  padding: var(--gap-md) var(--gap-lg);
   font-size: var(--text-md);
   line-height: var(--line-height-form);
-  border-radius: var(--border-radius);
-  background-color: var(--bg-body);
+  border: var(--border-size) solid var(--border-colour);
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius-sm);
+  background: var(--bg-body);
   color: var(--text);
   font-family: inherit;
-  border: var(--border-size) solid var(--border-colour);
 }
 
 input::placeholder {
@@ -64,7 +68,7 @@ select:focus,
 button:focus,
 textarea:focus {
   border: var(--border-size) solid var(--border-highlight);
-  box-shadow: 0px 0px 6px 1px var(--border-highlight);
+  box-shadow: 0px 0px 12px 1px hsla(0 0% 0% / 0.3);
   outline: none;
 }
 
@@ -93,58 +97,11 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 /*
-  Checkbox Input
-  ------------------------------
-*/
-.checkbox-item label {
-  font-size: var(--text-md);
-  line-height: 1.4;
-  cursor: pointer;
-  user-select: none;
-}
-
-input[type="checkbox"] {
-  /* Sizing & Structure */
-  --checkbox-size: 1.6rem;
-  width: var(--checkbox-size);
-  height: var(--checkbox-size);
-  padding: 0;
-  flex-shrink: 0;
-
-  /* Reset & Appearance */
-  appearance: none;
-  -webkit-appearance: none;
-  border-radius: 8px;
-  cursor: pointer;
-
-  /* Borders & Background Defaults */
-  background-color: var(--bg-surface);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 70%;
-
-  /* Micro-interactions */
-  transition: all 0.2s ease;
-}
-
-/* Not selected */
-/* input[type="checkbox"]:not(:checked) {
-  color: var(--border-colour);
-  border-color: var(--border-colour);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
-} */
-
-input[type="checkbox"]:checked {
-  border-color: var(--border-colour);
-  background-color: var(--blue);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-}
-
-/*
   Text Area
   ------------------------------
 */
 textarea {
+  box-sizing: content-box;
   resize: vertical;
   min-height: 100px;
 }
@@ -166,6 +123,12 @@ input[type="search"] {
   Progress Element
   ------------------------------
 */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+}
+
 progress {
   appearance: none;
   -webkit-appearance: none;
@@ -192,53 +155,38 @@ progress::-moz-progress-bar {
 }
 
 /*
-  Component Classes
+  Helper Classes
   ------------------------------
 */
-.input-item {
-  display: grid;
-  gap: var(--gap-md);
-  margin-bottom: var(--gap-md);
-}
-
-.checkbox-item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--gap-md);
-}
-
-.progress-container {
-  display: flex;
-  align-items: center;
-  gap: var(--gap-md);
-}
-
 .form-buttons {
   grid-column: 1 / -1;
   display: grid;
   gap: var(--gap-md);
+  padding: var(--gap-md);
 
-  @container (min-width: 576px) {
+  @container (min-width: 450px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @container (min-width: 768px) {
     display: flex;
     align-items: center;
     justify-content: end;
   }
 }
 
-/*
-  State & Helper Classes
-  ------------------------------
-*/
-
 /* Input helper text */
 .input-helper {
   margin: 0;
   font-size: var(--text-sm);
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: var(--line-height-text);
 }
 
-/* Invalid/Error state */
+/*
+  Validation Classes
+  ------------------------------
+*/
 .is-invalid {
   border-color: var(--red);
   outline-color: none;
@@ -248,7 +196,6 @@ progress::-moz-progress-bar {
   border-color: var(--green);
 }
 
-/* Form validation feedback */
 .valid-feedback {
   display: block;
   font-size: 0.875rem;

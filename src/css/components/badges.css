@@ -1,0 +1,25 @@
+.badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-sm);
+}
+
+.badge {
+  color: var(--dark);
+  margin-top: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  background: var(--yellow);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.badge.green {
+  background: var(--green);
+}
+
+.badge.red {
+  background: var(--red);
+}

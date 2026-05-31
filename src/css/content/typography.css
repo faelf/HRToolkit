@@ -123,6 +123,18 @@ code {
   font-size: 0.9em;
 }
 
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
 .text-muted {
   color: var(--text-muted);
 }

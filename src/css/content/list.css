@@ -1,7 +1,6 @@
 ul,
 ol {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-block: 0 0.5rem;
   padding-left: 2rem;
 }
 
@@ -10,72 +9,40 @@ ul {
 }
 
 li {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-block: 0 0.5rem;
 }
 
-.candidate-name {
-  font-weight: 500;
+li:has(> ul) {
+  list-style: none;
 }
 
-.task-list, .starters-list {
+.list-style-none {
   list-style: none;
   padding: 0;
 }
 
-.starters-list li {
+.list-style-none li {
+  position: relative;
+  padding: var(--gap-md);
+  border-radius: var(--border-radius);
+}
+
+.list-style-none li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: -4px;
+  block-size: 1px;
+  background: var(--border-colour);
+}
+
+.li-2-col {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.task-list li, .starters-list li {
-  padding: 0.75rem 1rem;
-  cursor: pointer;
-  margin: 0.25rem 0;
-  border-radius: 1rem;
-  background: hsla(0 0% 70% / 0.1);
-}
-
-.task-list li:hover, .starters-list li:hover {
+.starters-list li:hover {
   cursor: pointer;
   background: var(--border-colour);
-}
-
-.candidate-name {
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.task-text {
-  margin: 0.2rem 0 0;
-  opacity: 0.7;
-  font-size: var(--text-md);
-}
-
-.task-badges {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: var(--gap-sm);
-}
-
-.task-badge {
-  color: var(--dark);
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  background: var(--yellow);
-  white-space: nowrap;
-  text-align: center;
-}
-
-.task-badge.complete {
-  background: var(--green);
-}
-
-.task-badge.pending {
-  background: var(--red);
 }
