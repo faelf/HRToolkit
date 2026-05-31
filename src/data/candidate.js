@@ -97,6 +97,11 @@ export const CandidateScheme = {
     },
   },
   PostChecks: {
+    IdentityCheck: {
+      input: "checkbox-item",
+      id: "identity-check",
+      label: "Identity Check",
+    },
     ADP: {
       input: "checkbox-item",
       id: "adp",
@@ -111,6 +116,11 @@ export const CandidateScheme = {
       input: "checkbox-item",
       id: "name-badge",
       label: "Name Badge",
+    },
+    PostChecksComplete: {
+      input: "checkbox-item",
+      id: "post-checks-complete",
+      label: "Post Checks Complete",
     },
   },
 };

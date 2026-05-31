@@ -7,6 +7,7 @@ import { SalaryPage } from "./Salary.js";
 import { OnboardingPage } from "./Onboarding.js";
 import { CandidateDetails } from "./CandidateDetails.js";
 import { SettingsPage } from "./Settings.js";
+import { ToDoPage } from "./Todo.js";
 
 // Combine all pages into the pageContent object
 export const pageContent = {
@@ -18,4 +19,5 @@ export const pageContent = {
   onboarding: OnboardingPage,
   candidatedetails: CandidateDetails,
   settings: SettingsPage,
+  todo: ToDoPage,
 };

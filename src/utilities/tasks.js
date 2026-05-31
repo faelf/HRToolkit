@@ -3,11 +3,12 @@ const createEmptyContainer = (text) => {
   container.className = "empty-state";
   container.innerHTML = /* html */ `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="m15 9-6 6"/>
-        <path d="m9 9 6 6"/>
+        <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/>
+        <path d="M14 2v5a1 1 0 0 0 1 1h5"/>
+        <path d="M9 15h6"/>
+        <path d="M12 18v-6"/>
       </svg>
-      <p class="text-muted h1">${text}</p>
+      <p class="text-muted h3">${text}</p>
     `;
   return container;
 };
@@ -53,21 +54,23 @@ export const DashboardInfo = {
   tasks: {
     get(candidate) {
       const tasks = [];
-      if (!candidate["right-to-work"]) tasks.push("Right to Work");
+      if (!candidate["right-to-work"]) tasks.push("Right to work");
       if (!candidate["dbs-issue-date"]) tasks.push("DBS check");
       if (!candidate["oh"]) tasks.push("Occupational Health");
       if (!candidate["references"]) tasks.push("References");
-      if (candidate["learn-space"] === false) tasks.push("Learn Space setup");
-      if (candidate.adp === false) tasks.push("ADP setup");
-      if (candidate["name-badge"] === false) tasks.push("Name badge");
+      if (!candidate["learn-space"]) tasks.push("LearnSpace setup");
+      if (!candidate.adp) tasks.push("ADP setup");
+      if (!candidate["name-badge"]) tasks.push("Name badge");
+      if (!candidate["identity-check"]) tasks.push("Identity check");
 
       return tasks;
     },
     getPostCheckTasks(candidate) {
       const tasks = [];
-      if (candidate["learn-space"] === false) tasks.push("Learn Space setup");
-      if (candidate.adp === false) tasks.push("ADP setup");
-      if (candidate["name-badge"] === false) tasks.push("Name badge");
+      if (!candidate["identity-check"]) tasks.push("Identity check");
+      if (!candidate["learn-space"]) tasks.push("Learn Space setup");
+      if (!candidate.adp) tasks.push("ADP setup");
+      if (!candidate["name-badge"]) tasks.push("Name badge");
 
       return tasks;
     },

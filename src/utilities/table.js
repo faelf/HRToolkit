@@ -4,11 +4,12 @@ export const table = {
     container.className = "empty-state";
     container.innerHTML = /* html */ `
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="m15 9-6 6"/>
-          <path d="m9 9 6 6"/>
+          <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/>
+          <path d="M14 2v5a1 1 0 0 0 1 1h5"/>
+          <path d="M9 15h6"/>
+          <path d="M12 18v-6"/>
         </svg>
-        <p class="text-muted h1">${text}</p>
+        <p class="text-muted h3">${text}</p>
       `;
     return container;
   },
