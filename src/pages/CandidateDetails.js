@@ -84,8 +84,10 @@ export const CandidateDetails = {
       try {
         await storages.update("candidates", id, newCandidate);
         await loadcandidate(id, candidateForm);
+        alert("Candidate saved successfully!");
       } catch (error) {
         console.error("Storage Update Error:", error);
+        alert("There was an error saving the candidate details.");
       }
     });
 
@@ -96,7 +98,7 @@ export const CandidateDetails = {
       if (confirmed) {
         try {
           await storages.remove("candidates", id);
-          window.location.hash = "onboarding";
+          window.location.hash = "dashboard";
         } catch (error) {
           console.error("Storage Delete Error:", error);
         }
