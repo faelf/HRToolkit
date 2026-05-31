@@ -10,6 +10,7 @@ export const DashboardPage = {
     const cards = {
       total: document.querySelector("#total"),
       todo: document.querySelector("#todo"),
+      postcheck: document.querySelector("#post-checking-total"),
       thisWeek: document.querySelector("#this-week"),
       startersReady: document.querySelector("#starters-ready"),
       onboardingTaskList: document.querySelector("#onboarding-list-container"),
@@ -26,6 +27,7 @@ export const DashboardPage = {
     cards.todo.textContent = DashboardInfo.tasks.getTotal(candidates);
     cards.thisWeek.textContent = DashboardInfo.starters.getThisWeekTotal(candidates);
     cards.startersReady.textContent = DashboardInfo.starters.startersReady(complete);
+    cards.postcheck.textContent = DashboardInfo.starters.postCheckingTotal(candidates);
 
     cards.onboardingTaskList.innerHTML = "";
     cards.onboardingTaskList.appendChild(DashboardInfo.tasks.onboardingTasksList(onboarding));

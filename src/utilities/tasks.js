@@ -109,14 +109,17 @@ export const DashboardInfo = {
   tasks: {
     get(candidate) {
       const tasks = [];
-      if (!candidate["right-to-work"]) tasks.push("Right to work");
+      if (!candidate["right-to-work"]) tasks.push("Right to Work");
       if (!candidate["dbs-issue-date"]) tasks.push("DBS check");
-      if (!candidate["oh"]) tasks.push("Occupational Health");
-      if (!candidate["references"]) tasks.push("References");
-      if (!candidate["learn-space"]) tasks.push("LearnSpace setup");
+      if (!candidate["professional-registration"]) tasks.push("Professional Registration");
+      if (!candidate["oh-issue-date"]) tasks.push("Occupational Health");
+      if (!candidate["reference-sent"]) tasks.push("Send References");
+      if (!candidate["reference-received"]) tasks.push("References Received");
+      if (!candidate["identity-check"]) tasks.push("Identity check");
+      if (!candidate["learn-space"]) tasks.push("Learn Space setup");
       if (!candidate.adp) tasks.push("ADP setup");
       if (!candidate["name-badge"]) tasks.push("Name badge");
-      if (!candidate["identity-check"]) tasks.push("Identity check");
+      if (!candidate["post-checks-complete"]) tasks.push("Post Checks Complete");
 
       return tasks;
     },
@@ -126,6 +129,7 @@ export const DashboardInfo = {
       if (!candidate["learn-space"]) tasks.push("Learn Space setup");
       if (!candidate.adp) tasks.push("ADP setup");
       if (!candidate["name-badge"]) tasks.push("Name badge");
+      if (!candidate["post-checks-complete"]) tasks.push("Post Checks Complete");
 
       return tasks;
     },
@@ -238,6 +242,9 @@ export const DashboardInfo = {
     },
     startersReady(data) {
       return data.filter((c) => c.status === "Ready" || c["onboarding-status"] === "Ready").length;
+    },
+    postCheckingTotal(data) {
+      return data.filter((c) => c["onboarding-status"] === "Post Checks").length;
     },
     startersList(data) {
       return createHtmlTwoColList({
