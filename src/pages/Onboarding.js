@@ -33,9 +33,16 @@ export const OnboardingPage = {
     }
 
     let currentPage = 1;
+    let searchQuery = "";
 
     async function renderTable() {
-      const candidatesData = await loadCandidates();
+      let candidatesData = await loadCandidates();
+
+      if (searchQuery) {
+        candidatesData = candidatesData.filter((candidate) =>
+          candidate.fullName.toLowerCase().includes(searchQuery.toLowerCase()),
+        );
+      }
 
       if (candidatesData) {
         const processedCandidates = pagination.paginateItems({
@@ -54,7 +61,7 @@ export const OnboardingPage = {
             progress: "Progress",
           },
           tbody: processedCandidates,
-          emptyText: "No Candidates",
+          emptyText: "No Candidates Found",
         };
 
         table.render(candidatesTable);
@@ -70,6 +77,14 @@ export const OnboardingPage = {
 
     // Initial Load
     renderTable();
+
+    // Search functionality
+    const searchInput = document.querySelector("#search-candidate");
+    searchInput.addEventListener("input", (event) => {
+      searchQuery = event.target.value.trim();
+      currentPage = 1; // Reset to first page on new search
+      renderTable();
+    });
 
     /* 
       Adding a new candidate
