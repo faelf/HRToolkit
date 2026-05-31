@@ -33,7 +33,8 @@ li:has(> ul) {
   inset-inline: 0;
   inset-block-end: -4px;
   block-size: 1px;
-  background: var(--border-colour);
+  border-bottom: 1px solid var(--border-colour);
+  background: transparent;
 }
 
 .li-2-col {
