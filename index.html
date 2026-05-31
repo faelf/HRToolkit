@@ -16,26 +16,26 @@
 </head>
 
 <body class="sidebar-nav-page">
-  <header class="page-header">
+  <header class="page-header" aria-label="Page Header">
 
-    <button type="button" id="sidebar-btn" class="sidebar-btn">
+    <button type="button" id="sidebar-btn" class="sidebar-btn" aria-label="Sidebar Toggle">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="state-icon">
         <path d="m9 18 6-6-6-6" />
       </svg>
     </button>
 
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-label="Logo Image">
       <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
       <path d="M14 2v5a1 1 0 0 0 1 1h5" />
       <path d="M16 22a4 4 0 0 0-8 0" />
       <circle cx="12" cy="15" r="3" />
     </svg>
 
-    <h1 class="headline-6">HR Helper</h1>
+    <h1 class="headline-6" aria-label="Title">HR Helper</h1>
   </header>
 
   <!-- Side Navbar -->
-  <nav class="sidebar-nav">
+  <nav class="sidebar-nav" aria-label="Main navigation, links to the pages">
     <a class="nav-btn" href="dashboard">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <rect width="7" height="9" x="3" y="3" rx="1" />
@@ -45,7 +45,7 @@
       </svg>
       <span>Dashboard</span>
     </a>
-    <button type="button" class="nav-btn" data-nav-dropdown-btn="onboarding-menu" data-active-group="onboarding">
+    <button type="button" class="nav-btn" data-nav-dropdown-btn="onboarding-menu" aria-label="Button to open Onboarding menu">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M15 13a3 3 0 1 0-6 0" />
         <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
@@ -57,7 +57,7 @@
       </svg>
     </button>
     <div class="nav-dropdown" data-nav-dropdown="onboarding-menu">
-      <a class="nav-btn" href="onboarding" data-active-group="onboarding">
+      <a class="nav-btn" href="onboarding">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M15 13a3 3 0 1 0-6 0" />
           <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
@@ -111,7 +111,7 @@
       </svg>
       <span>Settings</span>
     </a>
-    <button type="button" class="nav-btn" id="theme-toggle">
+    <button type="button" class="nav-btn" id="theme-toggle" aria-label="Button to select page theme">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M11 17a4 4 0 0 1-8 0V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2Z" />
         <path d="M16.7 13H19a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7" />
@@ -123,7 +123,7 @@
   </nav>
 
   <!-- Main Content -->
-  <main id="main-content">
+  <main id="main-content" aria-label="Page content will go here">
     <!-- Content will be inject here -->
   </main>
 
