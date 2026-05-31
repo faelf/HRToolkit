@@ -100,7 +100,7 @@ export const CandidateScheme = {
       id: "reference-sent",
       label: "References Sent",
     },
-    References: {
+    ReferenceReceived: {
       input: "date-input",
       id: "reference-received",
       label: "References Received",
