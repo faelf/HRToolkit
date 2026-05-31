@@ -51,7 +51,7 @@ export const CandidateScheme = {
       input: "text",
       id: "rtw-note",
       label: "Right to work note",
-      placeholder: "Visa Conditions",
+      placeholder: "Conditions",
     },
     DBSIssueDate: {
       input: "date-input",
@@ -74,6 +74,22 @@ export const CandidateScheme = {
       id: "dbs-note",
       label: "DBS Note",
     },
+    ProfessionalRegistration: {
+      input: "select-dropdown",
+      id: "professional-registration",
+      label: "Professional Registration",
+      options: ["NMC", "HCPC", "GMC", "GPC", "No need"],
+    },
+    ProfessionalRegistrationPin: {
+      input: "text",
+      id: "professional-registration-pin",
+      label: "Professional Registration PIN",
+    },
+    ProfessionalRegistrationExpiryDate: {
+      input: "date-input",
+      id: "professional-registration-expiry-date",
+      label: "Professional Registration Expiry Date",
+    },
     OccupationalHealth: {
       input: "date-input",
       id: "oh",
@@ -85,7 +101,7 @@ export const CandidateScheme = {
       label: "References",
     },
     ReferencesNote: {
-      input: "date-input",
+      input: "text",
       id: "references-note",
       label: "References Note",
     },
