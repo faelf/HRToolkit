@@ -26,7 +26,6 @@ export const CandidateDetails = {
       selector: "#post-checks",
       scheme: CandidateScheme.PostChecks,
     });
-
     form.buttons.render({
       container: "#form-buttons",
       buttons: {
@@ -54,13 +53,10 @@ export const CandidateDetails = {
 
     async function loadcandidate(id, candidateForm) {
       const rawCandidate = await storages.get("candidates", id);
-
-      const candidate = form.date.format.toUi(rawCandidate);
-
+      const candidate = form.inputs["date-input"].format.toUi(rawCandidate);
       const fullname = `${candidate["first-name"]} ${candidate["last-name"]}`;
       const title = document.querySelector("#candidate-full-name");
       if (title) title.innerText = fullname;
-
       form.populate(candidateForm, candidate);
     }
 

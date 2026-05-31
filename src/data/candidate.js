@@ -51,6 +51,7 @@ export const CandidateScheme = {
       input: "text",
       id: "rtw-note",
       label: "Right to work note",
+      placeholder: "Visa Conditions",
     },
     DBSIssueDate: {
       input: "date-input",
@@ -58,7 +59,7 @@ export const CandidateScheme = {
       label: "DBS Issued Date",
     },
     DBSCertificateNumber: {
-      input: "text",
+      input: "number",
       id: "dbs-certificate-number",
       label: "DBS Certificate Number",
     },

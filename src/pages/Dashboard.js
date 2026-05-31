@@ -8,12 +8,10 @@ export const DashboardPage = {
   html: DashboardHTML,
   async setup() {
     const cards = {
-      // KPI Cards
       total: document.querySelector("#total"),
       todo: document.querySelector("#todo"),
       thisWeek: document.querySelector("#this-week"),
       startersReady: document.querySelector("#starters-ready"),
-      // Action Cards
       onboardingTaskList: document.querySelector("#onboarding-list-container"),
       postCheckTaskList: document.querySelector("#post-check-list-container"),
       startersList: document.querySelector("#starters-container"),
@@ -24,19 +22,14 @@ export const DashboardPage = {
     const complete = candidates.filter((c) => c["onboarding-status"] === "Completed");
     const ready = candidates.filter((c) => c["onboarding-status"] === "Ready");
 
-    // KPI Cards
     cards.todo.textContent = DashboardInfo.tasks.getTotal(candidates);
     cards.total.textContent = onboarding.length;
     cards.thisWeek.textContent = DashboardInfo.starters.getThisWeekTotal(candidates);
     cards.startersReady.textContent = DashboardInfo.starters.startersReady(candidates);
-
-    // Action Cards
     cards.onboardingTaskList.innerHTML = "";
     cards.onboardingTaskList.appendChild(DashboardInfo.tasks.onboardingTasksList(onboarding));
-
     cards.postCheckTaskList.innerHTML = "";
     cards.postCheckTaskList.appendChild(DashboardInfo.tasks.postCheckTasksList(complete));
-
     cards.startersList.innerHTML = "";
     cards.startersList.appendChild(DashboardInfo.starters.htmlList(candidates));
   },

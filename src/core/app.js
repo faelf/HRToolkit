@@ -63,14 +63,14 @@ document.addEventListener("click", (e) => {
     case modal.click(e):
       break;
 
-    case form.select.click(e):
+    case form.inputs["select-dropdown"].click(e):
       break;
   }
 });
 
 document.addEventListener("input", (e) => {
-  form.select.handleSearch(e);
-  form.date.handleInput(e);
+  form.inputs["select-dropdown"].handleSearch(e);
+  form.inputs["date-input"].handleInput(e);
 });
 
 // Listen for the 'load' event to trigger the startup sequence

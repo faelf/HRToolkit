@@ -1,6 +1,6 @@
 export const modal = {
-  click(e) {
-    const openBtn = e.target.closest("[data-modal-btn]");
+  click(event) {
+    const openBtn = event.target.closest("[data-modal-btn]");
     if (openBtn) {
       const modalId = openBtn.dataset.modalBtn;
       const dialog = document.querySelector(`[data-modal="${modalId}"]`);
@@ -11,7 +11,7 @@ export const modal = {
       }
     }
 
-    const closeBtn = e.target.closest('[data-modal="close"]');
+    const closeBtn = event.target.closest('[data-modal="close"]');
     if (closeBtn) {
       const dialog = closeBtn.closest("dialog");
 
@@ -21,5 +21,11 @@ export const modal = {
       }
     }
     return false;
+  },
+  close(event) {
+    const dialog = event.target.closest("dialog");
+    if (dialog) {
+      dialog.hasAttribute("popover") ? dialog.hidePopover() : dialog.close();
+    }
   },
 };
