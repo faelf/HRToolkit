@@ -12,6 +12,7 @@ select {
   ------------------------------
 */
 .select-input {
+  cursor: pointer;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-size: 20px;
@@ -82,11 +83,10 @@ select {
 }
 
 .option {
-  height: 40px;
-  line-height: 40px;
+  height: 35px;
+  line-height: 35px;
   padding-left: 10px;
   cursor: pointer;
-  box-sizing: border-box;
   white-space: nowrap;
   text-overflow: ellipsis;
   padding-right: 15px;

@@ -157,7 +157,7 @@ export const form = {
     "checkbox-item": {
       render({ id, label, checked = false } = {}) {
         const container = document.createElement("div");
-        container.classList.add("checkbox-item");
+        container.classList.add("input-item");
 
         // Input
         const inputEl = document.createElement("input");
@@ -167,7 +167,7 @@ export const form = {
 
         // Label
         const labelEl = document.createElement("label");
-        labelEl.classList.add("form-label");
+        labelEl.classList.add("checkbox-label");
 
         // Append in correct order
         labelEl.appendChild(inputEl);

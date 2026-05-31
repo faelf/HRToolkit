@@ -1,19 +1,13 @@
-.checkbox-item {
+.checkbox-label {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--gap-md);
-}
-
-.checkbox-item label {
-  font-size: var(--text-md);
-  line-height: 1.4;
-  cursor: pointer;
-  user-select: none;
+  font-weight: 600;
 }
 
 input[type="checkbox"] {
   /* Sizing & Structure */
-  --checkbox-size: 1.6rem;
+  --checkbox-size: 1.4rem;
   width: var(--checkbox-size);
   height: var(--checkbox-size);
   padding: 0;
@@ -22,7 +16,7 @@ input[type="checkbox"] {
   /* Reset & Appearance */
   appearance: none;
   -webkit-appearance: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
 
   /* Borders & Background Defaults */

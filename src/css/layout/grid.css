@@ -34,6 +34,10 @@
   grid-column: span 8;
 }
 
+.col-100 {
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
 .col-200 {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }

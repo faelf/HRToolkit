@@ -79,9 +79,14 @@ export const CandidateScheme = {
       label: "Occupational Health",
     },
     References: {
-      input: "text",
+      input: "date-input",
       id: "references",
       label: "References",
+    },
+    ReferencesNote: {
+      input: "date-input",
+      id: "references-note",
+      label: "References Note",
     },
     OnboardingStatus: {
       input: "select-dropdown",
