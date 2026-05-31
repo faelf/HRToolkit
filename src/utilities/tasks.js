@@ -26,10 +26,22 @@ function createHtmlBadgeList({ tasks }) {
     li.setAttribute("data-href", "candidatedetails");
     li.setAttribute("data-id", item.id);
 
-    const nameSpan = document.createElement("span");
+    const infoDiv = document.createElement("div");
+
+    const nameSpan = document.createElement("div");
     nameSpan.className = "fw-600";
     nameSpan.textContent = item.candidate;
-    li.appendChild(nameSpan);
+    infoDiv.appendChild(nameSpan);
+
+    if (item.jobTitle) {
+      const jobSpan = document.createElement("div");
+      jobSpan.className = "text-muted";
+      jobSpan.style.fontSize = "0.875em";
+      jobSpan.textContent = item.jobTitle;
+      infoDiv.appendChild(jobSpan);
+    }
+
+    li.appendChild(infoDiv);
 
     const badgesDiv = document.createElement("div");
     badgesDiv.className = "badge-group";
@@ -62,12 +74,24 @@ function createHtmlTwoColList({ items, emptyText, secondaryKey }) {
     li.setAttribute("data-href", "candidatedetails");
     li.setAttribute("data-id", item.id);
 
-    const nameSpan = document.createElement("span");
+    const infoDiv = document.createElement("div");
+
+    const nameSpan = document.createElement("div");
     nameSpan.className = "fw-600";
     nameSpan.textContent = item.candidate;
-    li.appendChild(nameSpan);
+    infoDiv.appendChild(nameSpan);
 
-    const secondSpan = document.createElement("span");
+    if (item.jobTitle) {
+      const jobSpan = document.createElement("div");
+      jobSpan.className = "text-muted";
+      jobSpan.style.fontSize = "0.875em";
+      jobSpan.textContent = item.jobTitle;
+      infoDiv.appendChild(jobSpan);
+    }
+
+    li.appendChild(infoDiv);
+
+    const secondSpan = document.createElement("div");
     secondSpan.className = "text-muted";
     secondSpan.textContent = item[secondaryKey];
     li.appendChild(secondSpan);
@@ -121,6 +145,7 @@ export const DashboardInfo = {
         this.get(candidate).map((task) => ({
           id: candidate.id,
           candidate: getCandidateName(candidate),
+          jobTitle: candidate["job-title"],
           task,
         })),
       );
@@ -133,6 +158,7 @@ export const DashboardInfo = {
         .map((candidate) => ({
           id: candidate.id,
           candidate: getCandidateName(candidate),
+          jobTitle: candidate["job-title"],
           tasks: this.get(candidate),
         }))
         .filter((c) => c.tasks.length > 0);
@@ -142,6 +168,7 @@ export const DashboardInfo = {
         .map((candidate) => ({
           id: candidate.id,
           candidate: getCandidateName(candidate),
+          jobTitle: candidate["job-title"],
           tasks: this.getOnboardingTasks(candidate),
         }))
         .filter((c) => c.tasks.length > 0);
@@ -152,6 +179,7 @@ export const DashboardInfo = {
         .map((candidate) => ({
           id: candidate.id,
           candidate: getCandidateName(candidate),
+          jobTitle: candidate["job-title"],
           tasks: this.getPostCheckTasks(candidate),
         }))
         .filter((c) => c.tasks.length > 0);
@@ -179,6 +207,7 @@ export const DashboardInfo = {
             return {
               id: c.id,
               candidate: getCandidateName(c),
+              jobTitle: c["job-title"],
               date: `${day}/${month}/${year}`,
               rawDate: new Date(Number(year), Number(month) - 1, Number(day)),
             };
