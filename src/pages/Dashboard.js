@@ -20,7 +20,6 @@ export const DashboardPage = {
     const candidates = await storages.load("candidates");
     const onboarding = candidates.filter((c) => c["onboarding-status"] === "Onboarding");
     const complete = candidates.filter((c) => c["onboarding-status"] === "Completed");
-    const ready = candidates.filter((c) => c["onboarding-status"] === "Ready");
 
     cards.todo.textContent = DashboardInfo.tasks.getTotal(candidates);
     cards.total.textContent = onboarding.length;
@@ -30,7 +29,9 @@ export const DashboardPage = {
     cards.onboardingTaskList.appendChild(DashboardInfo.tasks.onboardingTasksList(onboarding));
     cards.postCheckTaskList.innerHTML = "";
     cards.postCheckTaskList.appendChild(DashboardInfo.tasks.postCheckTasksList(complete));
+
     cards.startersList.innerHTML = "";
-    cards.startersList.appendChild(DashboardInfo.starters.htmlList(candidates));
+    cards.startersList.classList.remove("empty-state");
+    cards.startersList.appendChild(DashboardInfo.starters.startersList(candidates));
   },
 };
