@@ -56,33 +56,22 @@ export class Router {
   }
 
   /**
-   * Syncs the UI by adding the 'active' class to matching links.
+   * Syncs the UI by adding the 'aria-current' attribute to matching links.
    * Uses the configured linkAttribute to identify navigation elements.
    * @param {string} activePageKey
-   * @param {string} [providedActiveGroup]
    */
-  updateActiveLinks(activePageKey, providedActiveGroup) {
+  updateAriaCurrent(activePageKey) {
     const links = document.querySelectorAll(this.linkSelector);
-
-    const activeLinkElement = Array.from(links).find((l) => {
-      const val = l.getAttribute(this.linkAttribute) || l.getAttribute("href");
-      return val === activePageKey || val === `#${activePageKey}`;
-    });
-
     const pageConfig = this.pageContent[activePageKey];
-    const activeGroup =
-      providedActiveGroup || pageConfig?.activeGroup || activeLinkElement?.getAttribute("data-active-group");
+    const keyToMatch = pageConfig?.ariaCurrent || activePageKey;
 
     links.forEach((link) => {
       const val = link.getAttribute(this.linkAttribute) || link.getAttribute("href");
-      const isExactMatch = val === activePageKey || val === `#${activePageKey}`;
-      const isGroupMatch = activeGroup && link.getAttribute("data-active-group") === activeGroup;
+      const isMatch = val === keyToMatch || val === `#${keyToMatch}`;
 
-      if (isExactMatch || isGroupMatch) {
-        link.classList.add("active");
+      if (isMatch) {
         link.setAttribute("aria-current", "page");
       } else {
-        link.classList.remove("active");
         link.removeAttribute("aria-current");
       }
     });
@@ -96,7 +85,7 @@ export class Router {
    * @param {boolean} [addToHistory=true] - Whether to push to browser history.
    * @returns {Promise<void>}
    */
-  async updateMainContent(pageKey, params = {}, addToHistory = true) {
+  async updateContent(pageKey, params = {}, addToHistory = true) {
     const content = this.pageContent[pageKey];
     if (!content || !this.container) return;
 
@@ -137,7 +126,7 @@ export class Router {
     document.title = content.title;
 
     // Visual feedback for navigation
-    this.updateActiveLinks(pageKey, params.activeGroup);
+    this.updateAriaCurrent(pageKey);
   }
 
   /**
@@ -169,7 +158,7 @@ export class Router {
    * Handle custom 'navigate' events dispatched from handleClick or other scripts.
    */
   handleNavigate(event) {
-    this.updateMainContent(event.detail.pageKey, event.detail);
+    this.updateContent(event.detail.pageKey, event.detail);
   }
 
   /**
@@ -177,7 +166,7 @@ export class Router {
    */
   handlePopState(event) {
     if (event.state) {
-      this.updateMainContent(event.state.pageKey, event.state.params, false);
+      this.updateContent(event.state.pageKey, event.state.params, false);
     } else {
       // Fallback for initial load or manual URL entry
       const hash = window.location.hash.substring(1);
@@ -187,7 +176,7 @@ export class Router {
         const urlParams = new URLSearchParams(query);
         params.pageId = urlParams.get("id") ?? undefined;
       }
-      this.updateMainContent(pageKey || this.landingPage, params, false);
+      this.updateContent(pageKey || this.landingPage, params, false);
     }
   }
 
@@ -207,7 +196,7 @@ export class Router {
     if (hash) {
       this.handlePopState({ state: null });
     } else {
-      this.updateMainContent(this.landingPage, {}, false);
+      this.updateContent(this.landingPage, {}, false);
     }
   }
 }
