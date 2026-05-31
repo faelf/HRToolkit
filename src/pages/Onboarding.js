@@ -130,7 +130,7 @@ export const OnboardingPage = {
       await storages.add("candidates", newCandidate);
       event.target.reset();
       const updatedCandidates = await loadCandidates();
-      currentPage = pagination.getLastPage({ totalItems: updatedCandidates.length });
+      currentPage = 1;
       await renderTable();
       modal.close(event);
     });

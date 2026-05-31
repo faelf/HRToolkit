@@ -1,6 +1,6 @@
 export const pagination = {
   default: {
-    itemsPerPage: 2,
+    itemsPerPage: 10,
   },
 
   _createPageLink(options) {
