@@ -5,6 +5,7 @@ import { form } from "../utilities/form.js";
 import { CandidateScheme } from "../data/candidate.js";
 import { modal } from "../utilities/modal.js";
 import { pagination } from "../utilities/pagination.js";
+import { csv } from "../utilities/csv.js";
 
 export const OnboardingPage = {
   title: "HR Helper - Onboarding",
@@ -140,5 +141,13 @@ export const OnboardingPage = {
       await renderTable();
       modal.close(event);
     });
+
+    const downloadBtn = document.querySelector("#download-btn");
+    if (downloadBtn) {
+      downloadBtn.addEventListener("click", async () => {
+        const candidatesData = await storages.load("candidates");
+        csv.download(candidatesData, "candidates");
+      });
+    }
   },
 };
