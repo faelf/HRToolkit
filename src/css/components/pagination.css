@@ -19,6 +19,10 @@
   font-weight: 600;
 }
 
+.pagination-btn + .pagination-btn {
+  margin-inline-start: calc(var(--border-size) * -1);
+}
+
 .pagination-btn.active {
   background: var(--border-colour);
 }
