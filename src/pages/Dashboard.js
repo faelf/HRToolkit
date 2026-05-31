@@ -19,16 +19,19 @@ export const DashboardPage = {
 
     const candidates = await storages.load("candidates");
     const onboarding = candidates.filter((c) => c["onboarding-status"] === "Onboarding");
+    const postchecking = candidates.filter((c) => c["onboarding-status"] === "Post Checks");
     const complete = candidates.filter((c) => c["onboarding-status"] === "Completed");
 
-    cards.todo.textContent = DashboardInfo.tasks.getTotal(candidates);
     cards.total.textContent = onboarding.length;
+    cards.todo.textContent = DashboardInfo.tasks.getTotal(candidates);
     cards.thisWeek.textContent = DashboardInfo.starters.getThisWeekTotal(candidates);
-    cards.startersReady.textContent = DashboardInfo.starters.startersReady(candidates);
+    cards.startersReady.textContent = DashboardInfo.starters.startersReady(complete);
+
     cards.onboardingTaskList.innerHTML = "";
     cards.onboardingTaskList.appendChild(DashboardInfo.tasks.onboardingTasksList(onboarding));
+
     cards.postCheckTaskList.innerHTML = "";
-    cards.postCheckTaskList.appendChild(DashboardInfo.tasks.postCheckTasksList(complete));
+    cards.postCheckTaskList.appendChild(DashboardInfo.tasks.postCheckTasksList(postchecking));
 
     cards.startersList.innerHTML = "";
     cards.startersList.classList.remove("empty-state");

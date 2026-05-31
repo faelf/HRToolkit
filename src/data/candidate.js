@@ -37,87 +37,102 @@ export const CandidateScheme = {
   },
   OnboardingProgress: {
     RightToWork: {
-      input: "select-dropdown",
-      id: "right-to-work",
-      label: "Right to work",
-      options: ["British / Irish", "Skilled Worker Visa", "Visa", "Indefinite Leave to Remain"],
+      RightToWork: {
+        input: "select-dropdown",
+        id: "right-to-work",
+        label: "Right to work",
+        options: ["British / Irish", "Skilled Worker Visa", "Visa", "Indefinite Leave to Remain"],
+      },
+      RightToWorkExpiryDate: {
+        input: "date-input",
+        id: "rwt-expiry-date",
+        label: "Right to work Expiry Date",
+      },
+      RightToWorkNote: {
+        input: "text",
+        id: "rtw-note",
+        label: "Right to work note",
+        placeholder: "Conditions",
+      },
     },
-    RightToWorkExpiryDate: {
-      input: "date-input",
-      id: "rwt-expiry-date",
-      label: "Right to work Expiry Date",
-    },
-    RightToWorkNote: {
-      input: "text",
-      id: "rtw-note",
-      label: "Right to work note",
-      placeholder: "Conditions",
-    },
-    DBSIssueDate: {
-      input: "date-input",
-      id: "dbs-issue-date",
-      label: "DBS Issued Date",
-    },
-    DBSCertificateNumber: {
-      input: "number",
-      id: "dbs-certificate-number",
-      label: "DBS Certificate Number",
-    },
-    DBSLevel: {
-      input: "select-dropdown",
-      id: "dbs-level",
-      label: "DBS Level",
-      options: ["Basic", "Standard", "Enhanced"],
-    },
-    DBSNote: {
-      input: "text",
-      id: "dbs-note",
-      label: "DBS Note",
+    DBS: {
+      DBSIssueDate: {
+        input: "date-input",
+        id: "dbs-issue-date",
+        label: "DBS Issued Date",
+      },
+      DBSCertificateNumber: {
+        input: "number",
+        id: "dbs-certificate-number",
+        label: "DBS Certificate Number",
+      },
+      DBSLevel: {
+        input: "select-dropdown",
+        id: "dbs-level",
+        label: "DBS Level",
+        options: ["Basic", "Standard", "Enhanced"],
+      },
+      DBSNote: {
+        input: "text",
+        id: "dbs-note",
+        label: "DBS Note",
+      },
     },
     ProfessionalRegistration: {
-      input: "select-dropdown",
-      id: "professional-registration",
-      label: "Professional Registration",
-      options: ["NMC", "HCPC", "GMC", "GPC", "No need"],
-    },
-    ProfessionalRegistrationPin: {
-      input: "text",
-      id: "professional-registration-pin",
-      label: "Professional Registration PIN",
-    },
-    ProfessionalRegistrationExpiryDate: {
-      input: "date-input",
-      id: "professional-registration-expiry-date",
-      label: "Professional Registration Expiry Date",
+      ProfessionalRegistration: {
+        input: "select-dropdown",
+        id: "professional-registration",
+        label: "Professional Registration",
+        options: ["NMC", "HCPC", "GMC", "GPC", "No need"],
+      },
+      ProfessionalRegistrationPin: {
+        input: "text",
+        id: "professional-registration-pin",
+        label: "Professional Registration PIN",
+      },
+      ProfessionalRegistrationExpiryDate: {
+        input: "date-input",
+        id: "professional-registration-expiry-date",
+        label: "Professional Registration Expiry Date",
+      },
     },
     OccupationalHealth: {
-      input: "date-input",
-      id: "oh-issue-date",
-      label: "Occupational Health",
+      OccupationalHealth: {
+        input: "date-input",
+        id: "oh-issue-date",
+        label: "Occupational Health",
+      },
+      OccupationalHealthNote: {
+        input: "text",
+        id: "oh-note",
+        label: "Occupational Health Note",
+      },
     },
-    ReferenceSent: {
-      input: "date-input",
-      id: "reference-sent",
-      label: "References Sent",
+    Reference: {
+      ReferenceSent: {
+        input: "date-input",
+        id: "reference-sent",
+        label: "References Sent",
+      },
+      ReferenceReceived: {
+        input: "date-input",
+        id: "reference-received",
+        label: "References Received",
+      },
+      ReferencesNote: {
+        input: "text",
+        id: "references-note",
+        label: "References Note",
+      },
     },
-    ReferenceReceived: {
-      input: "date-input",
-      id: "reference-received",
-      label: "References Received",
-    },
-    ReferencesNote: {
-      input: "text",
-      id: "references-note",
-      label: "References Note",
-    },
+  },
+  PostChecks: {
     OnboardingStatus: {
       input: "select-dropdown",
       id: "onboarding-status",
       label: "Onboarding Status",
-      options: ["Onboarding", "Completed", "Ready"],
+      options: ["Onboarding", "Post Checks", "Ready", "Completed"],
     },
-  },
-  PostChecks: {
     IdentityCheck: {
       input: "checkbox-item",
       id: "identity-check",

@@ -19,8 +19,24 @@ export const CandidateDetails = {
       scheme: CandidateScheme.EmploymentInformation,
     });
     form.render({
-      selector: "#onboarding-progress",
-      scheme: CandidateScheme.OnboardingProgress,
+      selector: "#rtw-container",
+      scheme: CandidateScheme.OnboardingProgress.RightToWork,
+    });
+    form.render({
+      selector: "#dbs-container",
+      scheme: CandidateScheme.OnboardingProgress.DBS,
+    });
+    form.render({
+      selector: "#pr-container",
+      scheme: CandidateScheme.OnboardingProgress.ProfessionalRegistration,
+    });
+    form.render({
+      selector: "#oh-container",
+      scheme: CandidateScheme.OnboardingProgress.OccupationalHealth,
+    });
+    form.render({
+      selector: "#reference-container",
+      scheme: CandidateScheme.OnboardingProgress.Reference,
     });
     form.render({
       selector: "#post-checks",
