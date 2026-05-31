@@ -1,9 +1,10 @@
 version: "3.8"
 
 services:
-  gameslibrary:
+  hrhelper:
     image: node:20
-    container_name: hrhelper-dev
+    container_name: hrhelper
+    user: "1000:1000"
     ports:
       - "8002:5173"
     volumes:
