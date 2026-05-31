@@ -1,4 +1,4 @@
-const createEmptyContainer = (text) => {
+function createEmptyContainer({ text }) {
   const container = document.createElement("div");
   container.className = "empty-state";
   container.innerHTML = /* html */ `
@@ -11,11 +11,11 @@ const createEmptyContainer = (text) => {
       <p class="text-muted h3">${text}</p>
     `;
   return container;
-};
+}
 
-const createHtmlBadgeList = (tasks) => {
+function createHtmlBadgeList({ tasks }) {
   if (tasks.length === 0) {
-    return createEmptyContainer("No Tasks");
+    return createEmptyContainer({ text: "No Tasks" });
   }
 
   const ul = document.createElement("ul");
@@ -46,9 +46,40 @@ const createHtmlBadgeList = (tasks) => {
   }
 
   return ul;
-};
+}
 
-const getCandidateName = (candidate) => `${candidate["first-name"]} ${candidate["last-name"]}`;
+function createHtmlTwoColList({ items, emptyText, secondaryKey }) {
+  if (items.length === 0) {
+    return createEmptyContainer({ text: emptyText });
+  }
+
+  const ul = document.createElement("ul");
+  ul.classList.add("list-style-none");
+
+  for (const item of items) {
+    const li = document.createElement("li");
+    li.className = "li-2-col";
+    li.setAttribute("data-href", "candidatedetails");
+    li.setAttribute("data-id", item.id);
+
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "fw-600";
+    nameSpan.textContent = item.candidate;
+    li.appendChild(nameSpan);
+
+    const secondSpan = document.createElement("span");
+    secondSpan.className = "text-muted";
+    secondSpan.textContent = item[secondaryKey];
+    li.appendChild(secondSpan);
+
+    ul.appendChild(li);
+  }
+  return ul;
+}
+
+function getCandidateName(candidate) {
+  return `${candidate["first-name"]} ${candidate["last-name"]}`;
+}
 
 export const DashboardInfo = {
   tasks: {
@@ -112,7 +143,7 @@ export const DashboardInfo = {
           tasks: this.getOnboardingTasks(candidate),
         }))
         .filter((c) => c.tasks.length > 0);
-      return createHtmlBadgeList(onboardingCandidates);
+      return createHtmlBadgeList({ tasks: onboardingCandidates });
     },
     postCheckTasksList(candidates) {
       const postCheckCandidates = candidates
@@ -122,7 +153,14 @@ export const DashboardInfo = {
           tasks: this.getPostCheckTasks(candidate),
         }))
         .filter((c) => c.tasks.length > 0);
-      return createHtmlBadgeList(postCheckCandidates);
+      return createHtmlBadgeList({ tasks: postCheckCandidates });
+    },
+    allTasksList(candidates) {
+      return createHtmlTwoColList({
+        items: this.getFlat(candidates),
+        emptyText: "No Tasks",
+        secondaryKey: "task",
+      });
     },
   },
   starters: {
@@ -166,36 +204,12 @@ export const DashboardInfo = {
     startersReady(data) {
       return data.filter((c) => c.status === "Ready" || c["onboarding-status"] === "Ready").length;
     },
-    htmlList(data) {
-      const starters = this.get(data);
-
-      if (starters.length === 0) {
-        return createEmptyContainer("No Starters");
-      }
-
-      const ul = document.createElement("ul");
-      ul.classList.add("list-style-none");
-
-      for (const item of starters) {
-        const li = document.createElement("li");
-        li.className = "li-2-col";
-        li.setAttribute("data-href", "candidatedetails");
-        li.setAttribute("data-id", item.id);
-
-        const name = document.createElement("span");
-        name.className = "fw-600";
-        name.textContent = item.candidate;
-        li.appendChild(name);
-
-        const date = document.createElement("span");
-        date.classList.add("text-muted");
-        date.textContent = item.date;
-        li.appendChild(date);
-
-        ul.appendChild(li);
-      }
-
-      return ul;
+    startersList(data) {
+      return createHtmlTwoColList({
+        items: this.get(data),
+        emptyText: "No Starters",
+        secondaryKey: "date",
+      });
     },
   },
 };
