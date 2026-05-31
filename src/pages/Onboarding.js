@@ -4,6 +4,7 @@ import { table } from "../utilities/table.js";
 import { form } from "../utilities/form.js";
 import { CandidateScheme } from "../data/candidate.js";
 import { modal } from "../utilities/modal.js";
+import { pagination } from "../utilities/pagination.js";
 
 export const OnboardingPage = {
   title: "HR Helper - Onboarding",
@@ -45,10 +46,18 @@ export const OnboardingPage = {
     // Initial Load
     const candidates = await storages.load("candidates");
 
-    async function renderTable(candidates) {
-      if (candidates) {
+    let currentPage = 1;
+
+    async function renderTable(candidatesData) {
+      if (candidatesData) {
+        const pagedCandidates = pagination.paginateItems({
+          items: candidatesData,
+          currentPage,
+          itemsPerPage: pagination.default.itemsPerPage,
+        });
+
         // To Display Full Name and Progress
-        const processedCandidates = candidates.map((candidate) => {
+        const processedCandidates = pagedCandidates.map((candidate) => {
           // Fields that count towards the progress
           const progressFields = ["dbs", "right-to-work", "oh", "references"];
           const completedCount = progressFields.filter((field) => candidate[field]).length;
@@ -75,6 +84,16 @@ export const OnboardingPage = {
         };
 
         table.render(candidatesTable);
+
+        pagination.render({
+          ContainerID: "#pagination",
+          totalItems: candidatesData.length,
+          currentPage,
+          onPageChange: (newPage) => {
+            currentPage = newPage;
+            renderTable(candidatesData);
+          },
+        });
       }
     }
 
@@ -87,8 +106,9 @@ export const OnboardingPage = {
       const newCandidate = { ...formData, "onboarding-status": "Onboarding" };
       await storages.add("candidates", newCandidate);
       event.target.reset();
-      const candidates = await storages.load("candidates");
-      await renderTable(candidates);
+      const updatedCandidates = await storages.load("candidates");
+      currentPage = pagination.getLastPage({ totalItems: updatedCandidates.length });
+      await renderTable(updatedCandidates);
       modal.close(event);
     });
   },

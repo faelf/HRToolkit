@@ -29,6 +29,7 @@
 @import "./components/info-box.css";
 @import "./components/dropdown.css";
 @import "./components/modal.css";
+@import "./components/pagination.css";
 
 /* Helpers */
 @import "./helpers/annimations.css";
