@@ -7,15 +7,17 @@ export const sidebar = {
       const dropdown = document.querySelector(`[data-nav-dropdown="${dropdownId}"]`);
 
       if (dropdown) {
-        const isOpen = dropdown.classList.contains("show");
+        const isOpen = dropdown.dataset.expanded === "true";
 
         if (isOpen) {
-          btn.classList.remove("active");
+          btn.dataset.flipY = "false";
           dropdown.style.height = "0px";
-          dropdown.classList.remove("show");
+          setTimeout(() => {
+            dropdown.dataset.expanded = "false";
+          }, 200);
         } else {
-          btn.classList.add("active");
-          dropdown.classList.add("show");
+          btn.dataset.flipY = "true";
+          dropdown.dataset.expanded = "true";
           dropdown.style.height = dropdown.scrollHeight + "px";
         }
       }
@@ -26,41 +28,52 @@ export const sidebar = {
     return false;
   },
   click(event) {
-    const btn = event.target.closest("#sidebar-btn");
-    const sidebarNode = document.querySelector(".sidebar-nav");
+    const sidebar = document.querySelector(".sidebar-nav");
+    const btn = document.querySelector("#sidebar-btn");
 
-    if (btn) {
-      if (sidebarNode) {
-        sidebarNode.classList.toggle("sidebar-open");
-        btn.classList.toggle("rotate");
+    if (!sidebar) return false;
+
+    // Toggle button clicked
+    if (event.target.closest("#sidebar-btn")) {
+      const isExpanded = sidebar.ariaExpanded === "true";
+
+      sidebar.ariaExpanded = isExpanded ? "false" : "true";
+
+      if (btn) {
+        btn.dataset.flipX = isExpanded ? "false" : "true";
       }
+
       return true;
     }
 
-    if (sidebarNode && sidebarNode.classList.contains("sidebar-open") && window.innerWidth <= 1024) {
+    // Mobile auto-close
+    if (sidebar.ariaExpanded === "true" && window.innerWidth <= 1024) {
       const clickedOutside = !event.target.closest(".sidebar-nav");
       const clickedNavLink = event.target.closest(".nav-btn");
 
       if (clickedOutside || clickedNavLink) {
-        sidebarNode.classList.remove("sidebar-open");
-        const toggleBtn = document.querySelector("#sidebar-btn");
-        if (toggleBtn) toggleBtn.classList.remove("rotate");
-        if (clickedOutside) return true;
+        sidebar.ariaExpanded = "false";
+
+        if (btn) {
+          btn.dataset.flipX = "false";
+        }
+
+        return true;
       }
     }
 
     return false;
   },
   responsive() {
-    const sidebarNode = document.querySelector(".sidebar-nav");
-    const toggleBtn = document.querySelector("#sidebar-btn");
+    const sidebar = document.querySelector(".sidebar-nav");
+    const btn = document.querySelector("#sidebar-btn");
 
     if (window.innerWidth > 1024) {
-      if (sidebarNode) sidebarNode.classList.add("sidebar-open");
-      if (toggleBtn) toggleBtn.classList.add("rotate");
+      if (sidebar) sidebar.ariaExpanded = "true";
+      if (btn) btn.dataset.flipX = "true";
     } else {
-      if (sidebarNode) sidebarNode.classList.remove("sidebar-open");
-      if (toggleBtn) toggleBtn.classList.remove("rotate");
+      if (sidebar) sidebar.ariaExpanded = "false";
+      if (btn) btn.dataset.flipX = "false";
     }
   },
 };

@@ -18,25 +18,24 @@ const createHtmlBadgeList = (tasks) => {
   }
 
   const ul = document.createElement("ul");
-  ul.classList.add("task-list");
+  ul.classList.add("list-style-none");
 
   for (const item of tasks) {
     const li = document.createElement("li");
-    li.className = "task-group";
     li.setAttribute("data-href", "candidatedetails");
     li.setAttribute("data-id", item.id);
 
     const nameSpan = document.createElement("span");
-    nameSpan.className = "candidate-name";
+    nameSpan.className = "fw-600";
     nameSpan.textContent = item.candidate;
     li.appendChild(nameSpan);
 
     const badgesDiv = document.createElement("div");
-    badgesDiv.className = "task-badges";
+    badgesDiv.className = "badge-group";
 
     for (const task of item.tasks) {
       const badgeSpan = document.createElement("span");
-      badgeSpan.className = "task-badge pending";
+      badgeSpan.className = "badge red";
       badgeSpan.textContent = task;
       badgesDiv.appendChild(badgeSpan);
     }
@@ -172,16 +171,16 @@ export const DashboardInfo = {
       }
 
       const ul = document.createElement("ul");
-      ul.classList.add("starters-list");
+      ul.classList.add("list-style-none");
 
       for (const item of starters) {
         const li = document.createElement("li");
-        li.className = "candidate-list";
+        li.className = "li-2-col";
         li.setAttribute("data-href", "candidatedetails");
         li.setAttribute("data-id", item.id);
 
         const name = document.createElement("span");
-        name.className = "candidate-name";
+        name.className = "fw-600";
         name.textContent = item.candidate;
         li.appendChild(name);
 

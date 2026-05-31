@@ -36,7 +36,7 @@ export const table = {
     thead.appendChild(tr);
     return thead;
   },
-  tbody(data, columns) {
+  tbody({ data, columns }) {
     const tbody = document.createElement("tbody");
 
     data.forEach((item) => {
@@ -45,7 +45,6 @@ export const table = {
       tr.classList.add("cursor-pointer");
       tr.setAttribute("data-href", "candidatedetails");
 
-      // Create the rest of the columns based on the head configuration
       for (const column of Object.keys(columns)) {
         const td = document.createElement("td");
         td.setAttribute("data-cell", columns[column]);
@@ -66,9 +65,8 @@ export const table = {
       container.appendChild(this._emptyContainer(config.emptyText));
     } else {
       const table = document.createElement("table");
-      table.classList.add("top");
       table.appendChild(this.thead(config.thead));
-      table.appendChild(this.tbody(config.tbody, config.thead));
+      table.appendChild(this.tbody({ data: config.tbody, columns: config.thead }));
       container.appendChild(table);
     }
   },

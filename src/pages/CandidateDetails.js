@@ -5,7 +5,7 @@ import { CandidateScheme } from "../data/candidate.js";
 
 export const CandidateDetails = {
   title: "HR Helper - Candidate Details",
-  activeGroup: "onboarding",
+  ariaCurrent: "onboarding",
   html: CandidateDetailsHTML,
   async setup(id) {
     const candidateForm = document.querySelector("#candidate-form");

@@ -19,7 +19,7 @@
   <header class="page-header">
 
     <button type="button" id="sidebar-btn" class="sidebar-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="state-icon">
         <path d="m9 18 6-6-6-6" />
       </svg>
     </button>
@@ -45,30 +45,27 @@
       </svg>
       <span>Dashboard</span>
     </a>
-    <div class="nav-dropdown-container">
-      <a class="nav-btn" data-nav-dropdown-btn="onboarding-menu" data-active-group="onboarding">
+    <button type="button" class="nav-btn" data-nav-dropdown-btn="onboarding-menu" data-active-group="onboarding">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M15 13a3 3 0 1 0-6 0" />
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
+        <circle cx="12" cy="8" r="2" />
+      </svg>
+      <span>Onboarding</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ms-auto state-icon">
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </button>
+    <div class="nav-dropdown" data-nav-dropdown="onboarding-menu">
+      <a class="nav-btn" href="onboarding" data-active-group="onboarding">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M15 13a3 3 0 1 0-6 0" />
           <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
           <circle cx="12" cy="8" r="2" />
         </svg>
-        <span>Onboarding</span>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="nav-chevron">
-          <path d="m6 9 6 6 6-6" />
-        </svg>
+        <span>All Candidates</span>
       </a>
-      <div class="nav-dropdown" data-nav-dropdown="onboarding-menu">
-        <a class="nav-btn" href="onboarding" data-active-group="onboarding">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M15 13a3 3 0 1 0-6 0" />
-            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
-            <circle cx="12" cy="8" r="2" />
-          </svg>
-          <span>All Candidates</span>
-        </a>
-      </div>
     </div>
-
     <a class="nav-btn" href="maternity">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5" />
