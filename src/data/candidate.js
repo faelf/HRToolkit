@@ -131,7 +131,7 @@ export const CandidateScheme = {
       input: "select-dropdown",
       id: "onboarding-status",
       label: "Onboarding Status",
-      options: ["Onboarding", "Post Checks", "Ready", "Completed"],
+      options: ["Onboarding", "Post Checks", "Completed"],
     },
     IdentityCheck: {
       input: "checkbox-item",
@@ -152,11 +152,6 @@ export const CandidateScheme = {
       input: "checkbox-item",
       id: "name-badge",
       label: "Name Badge",
-    },
-    PostChecksComplete: {
-      input: "checkbox-item",
-      id: "post-checks-complete",
-      label: "Post Checks Complete",
     },
   },
 };
