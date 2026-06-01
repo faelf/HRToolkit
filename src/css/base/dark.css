@@ -9,6 +9,10 @@
   --text-heading: hsl(220, 20%, 95%);
   --text-strong: hsl(220 20% 90%);
   --text-muted: hsl(220 20% 70%);
+  --text-blue: hsl(210 80% 72%);
+  --text-yellow: hsl(42 90% 72%);
+  --text-red: hsl(5 85% 75%);
+  --text-green: hsl(150 65% 68%);
   --svg-colour: hsl(220, 20%, 95%);
 
   /* Utilities */

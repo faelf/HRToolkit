@@ -3,10 +3,10 @@
   --primary: hsl(266 85% 58%);
 
   /* Semantic */
-  --blue: hsl(210 90% 60%);
-  --yellow: hsl(45 90% 60%);
-  --red: hsl(5 90% 60%);
-  --green: hsl(150 90% 60%);
+  --blue: hsl(210 80% 65%);
+  --yellow: hsl(42 85% 65%);
+  --red: hsl(5 80% 68%);
+  --green: hsl(150 60% 58%);
   --light: hsl(217 25% 95%);
   --dark: hsl(217 25% 15%);
 
