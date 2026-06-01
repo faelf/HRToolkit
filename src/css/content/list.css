@@ -23,7 +23,7 @@ li:has(> ul) {
 
 .list-style-none li {
   position: relative;
-  padding: var(--gap-md);
+  padding: var(--gap-md) var(--gap-lg);
   border-radius: var(--border-radius-sm);
 }
 
