@@ -83,7 +83,7 @@ export const CandidateScheme = {
         input: "select-dropdown",
         id: "professional-registration",
         label: "Professional Registration",
-        options: ["NMC", "HCPC", "GMC", "GPC", "No need"],
+        options: ["No need", "NMC", "HCPC", "GMC", "GPC"],
       },
       ProfessionalRegistrationPin: {
         input: "text",
