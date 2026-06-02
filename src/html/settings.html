@@ -17,8 +17,10 @@
 
       <div>
         <div class="select-dropdown">
-          <label class="form-label" for="storage-options">Select the database</label>
-          <input type="text" id="storage-options" name="storage-options" class="select-input" autocomplete="off" readonly placeholder="Select storage...">
+          <label class="form-label" for="storage-options">
+            Select the database
+            <input type="text" id="storage-options" name="storage-options" class="select-input" autocomplete="off" readonly placeholder="Select storage...">
+          </label>
           <div class="select-options">
             <div class="option">Local Storage</div>
             <div class="option">Firestore</div>
@@ -26,34 +28,13 @@
         </div>
 
         <div id="firestore-keys" class="d-none">
-          <div class="input-item">
-            <label for="api-key" class="form-label">API Key</label>
-            <input type="text" id="api-key" name="api-key" autocomplete="off">
-          </div>
-
-          <div class="input-item">
-            <label for="auth-domain" class="form-label">Auth Domain</label>
-            <input type="text" id="auth-domain" name="auth-domain" autocomplete="off">
-          </div>
-
-          <div class="input-item">
-            <label for="project-id" class="form-label">Project ID</label>
-            <input type="text" id="project-id" name="project-id" autocomplete="off">
-          </div>
-
-          <div class="input-item">
-            <label for="storage-bucket" class="form-label">Storage Bucket</label>
-            <input type="text" id="storage-bucket" name="storage-bucket" autocomplete="off">
-          </div>
-
-          <div class="input-item">
-            <label for="sender-id" class="form-label">Messaging Sender ID</label>
-            <input type="text" id="sender-id" name="sender-id" autocomplete="off">
-          </div>
-
-          <div class="input-item">
-            <label for="app-id" class="form-label">App ID</label>
-            <input type="text" id="app-id" name="app-id" autocomplete="off">
+          <div class="grid col-300">
+            <label for="api-key" class="form-label">API Key<input type="text" id="api-key" name="api-key" autocomplete="off"></label>
+            <label for="auth-domain" class="form-label">Auth Domain<input type="text" id="auth-domain" name="auth-domain" autocomplete="off"></label>
+            <label for="project-id" class="form-label">Project ID<input type="text" id="project-id" name="project-id" autocomplete="off"></label>
+            <label for="storage-bucket" class="form-label">Storage Bucket<input type="text" id="storage-bucket" name="storage-bucket" autocomplete="off"></label>
+            <label for="sender-id" class="form-label">Messaging Sender ID<input type="text" id="sender-id" name="sender-id" autocomplete="off"></label>
+            <label for="app-id" class="form-label">App ID<input type="text" id="app-id" name="app-id" autocomplete="off"></label>
           </div>
         </div>
 
@@ -70,6 +51,5 @@
       </div>
 
     </form>
-
   </article>
 </section>
