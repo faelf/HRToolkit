@@ -6,37 +6,37 @@ import DashboardHTML from "../html/dashboard.html?raw";
 export const DashboardPage = {
   title: "HR Helper - Dashboard",
   html: DashboardHTML,
+  updateKpis({ onboarding, postchecking, complete, all }) {
+    document.querySelector("#total").textContent = onboarding.length;
+    document.querySelector("#todo").textContent = DashboardInfo.tasks.getTotal(all);
+    document.querySelector("#this-week").textContent = DashboardInfo.starters.getThisWeekTotal(all);
+    document.querySelector("#starters-ready").textContent = complete.length;
+    document.querySelector("#post-checking-total").textContent = postchecking.length;
+  },
+
+  updateLists({ onboarding, postchecking, all }) {
+    const onboardingTaskList = document.querySelector("#onboarding-list-container");
+    onboardingTaskList.innerHTML = "";
+    onboardingTaskList.appendChild(DashboardInfo.tasks.onboardingTasksList(onboarding));
+    const postCheckTaskList = document.querySelector("#post-check-list-container");
+    postCheckTaskList.innerHTML = "";
+    postCheckTaskList.appendChild(DashboardInfo.tasks.postCheckTasksList(postchecking));
+    const startersList = document.querySelector("#starters-container");
+    startersList.innerHTML = "";
+    startersList.appendChild(DashboardInfo.starters.startersList(all));
+  },
+
   async setup() {
-    const cards = {
-      total: document.querySelector("#total"),
-      todo: document.querySelector("#todo"),
-      postcheck: document.querySelector("#post-checking-total"),
-      thisWeek: document.querySelector("#this-week"),
-      startersReady: document.querySelector("#starters-ready"),
-      onboardingTaskList: document.querySelector("#onboarding-list-container"),
-      postCheckTaskList: document.querySelector("#post-check-list-container"),
-      startersList: document.querySelector("#starters-container"),
+    const candidates = await storages.load("candidates");
+
+    const categorised = {
+      onboarding: candidates.filter((c) => c["onboarding-status"] === "Onboarding"),
+      postchecking: candidates.filter((c) => c["onboarding-status"] === "Post Checks"),
+      complete: candidates.filter((c) => c["onboarding-status"] === "Completed"),
+      all: candidates,
     };
 
-    const candidates = await storages.load("candidates");
-    const onboarding = candidates.filter((c) => c["onboarding-status"] === "Onboarding");
-    const postchecking = candidates.filter((c) => c["onboarding-status"] === "Post Checks");
-    const complete = candidates.filter((c) => c["onboarding-status"] === "Completed");
-
-    cards.total.textContent = onboarding.length;
-    cards.todo.textContent = DashboardInfo.tasks.getTotal(candidates);
-    cards.thisWeek.textContent = DashboardInfo.starters.getThisWeekTotal(candidates);
-    cards.startersReady.textContent = DashboardInfo.starters.startersReady(complete);
-    cards.postcheck.textContent = DashboardInfo.starters.postCheckingTotal(candidates);
-
-    cards.onboardingTaskList.innerHTML = "";
-    cards.onboardingTaskList.appendChild(DashboardInfo.tasks.onboardingTasksList(onboarding));
-
-    cards.postCheckTaskList.innerHTML = "";
-    cards.postCheckTaskList.appendChild(DashboardInfo.tasks.postCheckTasksList(postchecking));
-
-    cards.startersList.innerHTML = "";
-    cards.startersList.classList.remove("empty-state");
-    cards.startersList.appendChild(DashboardInfo.starters.startersList(candidates));
+    this.updateKpis(categorised);
+    this.updateLists(categorised);
   },
 };
