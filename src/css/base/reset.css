@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overscroll-behavior-y: none;
+}
+
 body {
   font-family: "Lato", sans-serif;
   line-height: var(--line-height-text);

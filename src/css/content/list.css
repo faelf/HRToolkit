@@ -41,9 +41,30 @@ li:has(> ul) {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--gap-md);
 }
 
 .starters-list li:hover {
   cursor: pointer;
   background: var(--border-colour);
+}
+
+.card-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: var(--gap-md);
+}
+
+.card-list li > * {
+  align-self: start;
+}
+
+.card-list li {
+  position: relative;
+  padding: var(--gap-md) var(--gap-lg);
+  border-radius: var(--border-radius-sm);
+  border: var(--border-size) solid var(--border-colour);
+  margin-block: 0;
 }

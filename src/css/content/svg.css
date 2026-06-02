@@ -10,13 +10,31 @@ svg {
   flex-shrink: 0;
 }
 
-.svg-hl-5 {
-  --svg-size: var(--headline-5);
-  --svg-stroke-width: 2;
-  border: var(--border-size) solid var(--border-colour);
-  border-radius: 5000px;
-  padding: 0.25rem;
-  height: 100px + 3.9vw;
-  width: 100px + 3.9vw;
-  margin-inline-end: var(--gap-lg);
+.profile-pic-big {
+  width: clamp(72px, calc(60px + 2vw), 110px);
+  height: clamp(72px, calc(60px + 2vw), 110px);
+
+  padding: 0.6rem;
+  margin-right: 1.5rem;
+
+  border-radius: 50%;
+  border: 2px solid var(--border-colour);
+
+  background:
+    radial-gradient(circle at 30% 25%,
+      hsl(210 80% 75% / 0.2),
+      transparent 55%),
+    var(--bg-card);
+
+  stroke: var(--border-colour);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+
+  box-shadow:
+    0 2px 8px hsl(0 0% 0% / 0.08),
+    0 8px 24px hsl(0 0% 0% / 0.12);
+
+  flex-shrink: 0;
 }

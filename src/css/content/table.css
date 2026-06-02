@@ -67,8 +67,6 @@ td {
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 1fr;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
   }
 
   table tbody td, table tfoot td {
@@ -111,13 +109,8 @@ td {
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   table tbody tr {
     grid-template-columns: 1fr;
   }
-
-  table tbody td, table tfoot td {
-    border-bottom: 1px solid hsla(0 0% 40% / 0.1);
-  }
-
 }

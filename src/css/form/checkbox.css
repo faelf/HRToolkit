@@ -1,4 +1,9 @@
 .checkbox-label {
+  cursor: pointer;
+  background-color: var(--bg-surface);
+  padding: var(--gap-lg);
+  border-radius: var(--border-radius);
+  border: var(--border-size) solid var(--border-colour);
   display: flex;
   align-items: center;
   gap: var(--gap-md);

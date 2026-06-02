@@ -97,14 +97,14 @@ strong {
 
 /* Links */
 a {
-  color: var(--primary);
+  color: var(--text-blue);
   font-weight: 600;
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--primary);
-  filter: brightness(1.1);
+  color: var(--text-blue);
+  filter: brightness(0.8);
   text-decoration: none;
 }
 

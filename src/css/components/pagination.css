@@ -17,6 +17,7 @@
   color: var(--text);
   background: var(--bg-surface);
   font-weight: 600;
+  cursor: pointer;
 }
 
 .pagination-btn + .pagination-btn {
@@ -25,6 +26,7 @@
 
 .pagination-btn.active {
   background: var(--border-colour);
+  cursor: default;
 }
 
 .pagination-btn:first-child {

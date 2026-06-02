@@ -1,10 +1,10 @@
 dialog {
   --svg-size: calc(var(--text-md) * 1.275 + 0.3vw);
-  background-color: var(--bg-surface);
+  background-color: var(--bg-body);
   border-radius: 20px;
   padding: 0;
   border: var(--border-size) solid var(--border-colour);
-  width: min(95%, 600px);
+  width: min(95%, 650px);
 }
 
 dialog > * {
@@ -29,8 +29,8 @@ dialog::backdrop {
   --svg-size: var(--h3);
   --svg-stroke-width: 1.75;
   padding: 0.75rem 1rem;
-  background-color: var(--bg-highlight);
-  border-bottom: 2px solid var(--border-colour);
+  background-color: var(--bg-surface);
+  border-bottom: var(--border-size) solid var(--border-colour);
   display: flex;
   align-items: center;
   gap: var(--gap-md);
@@ -47,7 +47,7 @@ dialog::backdrop {
 .modal-footer {
   padding: 0.75rem 1rem;
   border-top: var(--border-size) solid var(--border-colour);
-  background-color: var(--bg-highlight);
+  background-color: var(--bg-surface);
   display: flex;
   justify-content: flex-end;
   gap: var(--gap-md);

@@ -18,6 +18,11 @@ form {
   color: var(--text);
   font-weight: 600;
   display: grid;
+  cursor: pointer;
+  background-color: var(--bg-surface);
+  padding: var(--gap-md);
+  border-radius: var(--border-radius);
+  border: var(--border-size) solid var(--border-colour);
 }
 
 fieldset {
@@ -68,7 +73,7 @@ select:focus,
 button:focus,
 textarea:focus {
   border: var(--border-size) solid var(--border-highlight);
-  box-shadow: 0px 0px 12px 1px hsla(0 0% 0% / 0.3);
+  box-shadow: 0px 0px 0px 2px hsla(0 0% 0% / 0.3);
   outline: none;
 }
 
