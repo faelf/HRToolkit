@@ -42,13 +42,13 @@ export const form = {
   inputs: {
     text: {
       render({ input = "text", id, label, helper, placeholder } = {}) {
-        const container = document.createElement("div");
-        container.classList.add("input-item");
-
-        // Label
         const labelEl = document.createElement("label");
         labelEl.classList.add("form-label");
-        labelEl.textContent = label;
+
+        // Label
+        if (label) {
+          labelEl.textContent = label;
+        }
 
         // Input
         const inputEl = document.createElement("input");
@@ -58,14 +58,13 @@ export const form = {
 
         // Append required elements
         labelEl.appendChild(inputEl);
-        container.appendChild(labelEl);
 
         // Optional helper
         if (helper) {
           const helperEl = document.createElement("div");
           helperEl.classList.add("input-helper");
           helperEl.textContent = helper;
-          container.appendChild(helperEl);
+          labelEl.appendChild(helperEl);
         }
 
         // Placeholder
@@ -73,18 +72,18 @@ export const form = {
           inputEl.placeholder = placeholder;
         }
 
-        return container;
+        return labelEl;
       },
     },
     number: {
       render({ input = "number", id, label, helper, placeholder } = {}) {
-        const container = document.createElement("div");
-        container.classList.add("input-item");
-
-        // Label
         const labelEl = document.createElement("label");
         labelEl.classList.add("form-label");
-        labelEl.textContent = label;
+
+        // Label
+        if (label) {
+          labelEl.textContent = label;
+        }
 
         // Input
         const inputEl = document.createElement("input");
@@ -94,14 +93,13 @@ export const form = {
 
         // Append required elements
         labelEl.appendChild(inputEl);
-        container.appendChild(labelEl);
 
         // Optional helper
         if (helper) {
           const helperEl = document.createElement("div");
           helperEl.classList.add("input-helper");
           helperEl.textContent = helper;
-          container.appendChild(helperEl);
+          labelEl.appendChild(helperEl);
         }
 
         // Placeholder
@@ -109,7 +107,7 @@ export const form = {
           inputEl.placeholder = placeholder;
         }
 
-        return container;
+        return labelEl;
       },
     },
     "select-dropdown": {
@@ -120,7 +118,10 @@ export const form = {
         // Label
         const labelEl = document.createElement("label");
         labelEl.classList.add("form-label");
-        labelEl.textContent = label;
+
+        if (label) {
+          labelEl.textContent = label;
+        }
 
         // Input
         const inputEl = document.createElement("input");
@@ -240,13 +241,13 @@ export const form = {
     },
     "date-input": {
       render({ id, label, helper, placeholder = "DD/MM/YYYY" } = {}) {
-        const container = document.createElement("div");
-        container.classList.add("input-item");
-
         // Label
         const labelEl = document.createElement("label");
         labelEl.classList.add("form-label");
-        labelEl.textContent = label;
+
+        if (label) {
+          labelEl.textContent = label;
+        }
 
         // Input
         const inputEl = document.createElement("input");
@@ -260,7 +261,6 @@ export const form = {
 
         // Append required elements
         labelEl.appendChild(inputEl);
-        container.appendChild(labelEl);
 
         // Optional helper
         if (helper) {
@@ -268,10 +268,10 @@ export const form = {
           helperEl.classList.add("input-helper");
           helperEl.textContent = helper;
 
-          container.appendChild(helperEl);
+          labelEl.appendChild(helperEl);
         }
 
-        return container;
+        return labelEl;
       },
       /**
        * Formats user text to DD/MM/YYYY instantly as they type and syncs YYYY-MM-DD
@@ -381,9 +381,6 @@ export const form = {
     },
     "checkbox-item": {
       render({ id, label, checked = false } = {}) {
-        const container = document.createElement("div");
-        container.classList.add("input-item");
-
         // Input
         const inputEl = document.createElement("input");
         inputEl.type = "checkbox";
@@ -397,9 +394,8 @@ export const form = {
         // Append in correct order
         labelEl.appendChild(inputEl);
         labelEl.appendChild(document.createTextNode(label));
-        container.appendChild(labelEl);
 
-        return container;
+        return labelEl;
       },
     },
   },
@@ -414,10 +410,10 @@ export const form = {
 
     const formElement = event.target;
 
-    // 1. Process all text, select, and date inputs through the date sanitiser
+    // Process all text, select, and date inputs through the date sanitiser
     const processedData = form.inputs["date-input"].format.toDb(new FormData(formElement));
 
-    // 2. Automatically sweep and append checkbox states as true/false
+    // Automatically sweep and append checkbox states as true/false
     const checkboxes = formElement.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach((checkbox) => {
       if (checkbox.name && checkbox.name.trim() !== "") {
