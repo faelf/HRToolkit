@@ -9,7 +9,7 @@
 }
 
 .card-header {
-  padding: var(--gap-md);
+  padding: 0.5rem 0.6rem;
   border-bottom: var(--border-size) solid var(--border-colour);
   background: var(--bg-highlight);
   display: flex;
@@ -22,11 +22,11 @@
 }
 
 .card-body {
-  padding: var(--gap-md);
+  padding: 0.5rem 0.6rem;
 }
 
 .card-footer {
-  padding: var(--gap-md);
+  padding: 0.5rem 0.6rem;
   border-top: var(--border-size) solid var(--border-colour);
   background: var(--bg-highlight);
   display: flex;

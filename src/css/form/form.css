@@ -13,10 +13,8 @@ form {
   /* Sizing */
   font-size: var(--text-md);
   gap: var(--gap-md);
-  margin: 0;
   display: block;
   color: var(--text);
-  font-weight: 600;
   display: grid;
   cursor: pointer;
   background-color: var(--bg-surface);
@@ -73,7 +71,7 @@ select:focus,
 button:focus,
 textarea:focus {
   border: var(--border-size) solid var(--border-highlight);
-  box-shadow: 0px 0px 0px 2px hsla(0 0% 0% / 0.3);
+  box-shadow: 0px 0px 0px 3px color-mix(in srgb, var(--border-highlight) 30%, transparent);
   outline: none;
 }
 

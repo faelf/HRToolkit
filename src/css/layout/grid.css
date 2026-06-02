@@ -1,7 +1,6 @@
 .grid {
   display: grid;
   gap: var(--gap-md);
-  margin-bottom: var(--gap-md);
 }
 
 .align-start {
@@ -46,9 +45,9 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-.col-300 {
+.col-300-fit {
   grid-template-columns:
-    repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    repeat(auto-fit, minmax(min(300px, 100%), 1fr));
 }
 
 .col-300-fill {
