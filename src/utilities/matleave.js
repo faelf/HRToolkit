@@ -30,7 +30,7 @@ export function parseBritishDate(input) {
  * @param {Date} date - The input date.
  * @returns {Date} The Sunday of that week.
  */
-export function getWeekStart(date) {
+export function getSunday(date) {
   const sunday = new Date(date);
   sunday.setHours(0, 0, 0, 0);
   sunday.setDate(sunday.getDate() - sunday.getDay());
@@ -42,7 +42,7 @@ export function getWeekStart(date) {
  * @param {Date} date - The input date.
  * @returns {Date} The Saturday date.
  */
-export function getWeekEnd(date) {
+export function getSaturday(date) {
   const saturday = new Date(date);
   saturday.setHours(0, 0, 0, 0);
   saturday.setDate(date.getDate() - date.getDay() + 6);
@@ -156,12 +156,12 @@ export function calculateMat(empStartDateStr, babyDueDateStr, maternityStartDate
   const empStart = parseBritishDate(empStartDateStr);
   const babyDue = parseBritishDate(babyDueDateStr);
 
-  const ewcStart = getWeekStart(babyDue);
-  const ewcEnd = getWeekEnd(babyDue);
+  const ewcStart = getSunday(babyDue);
+  const ewcEnd = getSaturday(babyDue);
 
   const qualifyingStart = new Date(ewcStart);
   qualifyingStart.setDate(ewcStart.getDate() - offset.qualifying * 7);
-  const qualifyingEnd = getWeekEnd(qualifyingStart);
+  const qualifyingEnd = getSaturday(qualifyingStart);
 
   let maternityStart;
   if (maternityStartDateStr) {
@@ -311,7 +311,7 @@ export function validateDates(elements, originalTexts) {
   }
 
   if (MatStartDate) {
-    const ewcStart = getWeekStart(BabyDueDate);
+    const ewcStart = getSunday(BabyDueDate);
     const earliestStart = new Date(ewcStart);
     earliestStart.setDate(ewcStart.getDate() - offset.earliestStart * 7);
 
