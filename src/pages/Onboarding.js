@@ -6,14 +6,15 @@ import { CandidateScheme } from "../data/candidate.js";
 import { modal } from "../utilities/modal.js";
 import { pagination } from "../utilities/pagination.js";
 import { csv } from "../utilities/csv.js";
+import { appState } from "../core/state.js";
 
 export const OnboardingPage = {
   title: "HR Helper - Onboarding",
   html: OnboardingHTML,
   async setup() {
     async function loadCandidates() {
-      // Fetch Data from Database
-      let data = await storages.load("candidates");
+      // Fetch Data from Global State
+      let data = appState.candidates;
 
       data = data.map((candidate) => {
         const progressFields = [
@@ -136,7 +137,10 @@ export const OnboardingPage = {
       const newCandidate = { ...formData, "onboarding-status": "Onboarding", "date-created": new Date().toISOString() };
       await storages.add("candidates", newCandidate);
       event.target.reset();
-      const updatedCandidates = await loadCandidates();
+      await new Promise((resolve) => {
+        document.addEventListener("candidates-updated", resolve, { once: true });
+        document.dispatchEvent(new CustomEvent("refresh-candidates"));
+      });
       currentPage = 1;
       await renderTable();
       modal.close(event);
@@ -145,8 +149,7 @@ export const OnboardingPage = {
     const downloadBtn = document.querySelector("#download-btn");
     if (downloadBtn) {
       downloadBtn.addEventListener("click", async () => {
-        const candidatesData = await storages.load("candidates");
-        csv.download(candidatesData, "candidates");
+        csv.download(appState.candidates, "candidates");
       });
     }
   },

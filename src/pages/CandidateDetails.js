@@ -2,6 +2,7 @@ import CandidateDetailsHTML from "../html/candidatedetails.html?raw";
 import { storages } from "../utilities/storages.js";
 import { form } from "../utilities/form.js";
 import { CandidateScheme } from "../data/candidate.js";
+import { appState } from "../core/state.js";
 
 export const CandidateDetails = {
   title: "HR Helper - Candidate Details",
@@ -68,7 +69,8 @@ export const CandidateDetails = {
     });
 
     async function loadcandidate(id, candidateForm) {
-      const rawCandidate = await storages.get("candidates", id);
+      const rawCandidate = appState.candidates.find((c) => c.id == id);
+      if (!rawCandidate) return;
       const candidate = form.inputs["date-input"].format.toUi(rawCandidate);
       const fullname = `${candidate["first-name"]} ${candidate["last-name"]}`;
       const title = document.querySelector("#candidate-full-name");
@@ -83,6 +85,10 @@ export const CandidateDetails = {
 
       try {
         await storages.update("candidates", id, newCandidate);
+        await new Promise((resolve) => {
+          document.addEventListener("candidates-updated", resolve, { once: true });
+          document.dispatchEvent(new CustomEvent("refresh-candidates"));
+        });
         await loadcandidate(id, candidateForm);
         alert("Candidate saved successfully!");
       } catch (error) {
@@ -98,6 +104,10 @@ export const CandidateDetails = {
       if (confirmed) {
         try {
           await storages.remove("candidates", id);
+          await new Promise((resolve) => {
+            document.addEventListener("candidates-updated", resolve, { once: true });
+            document.dispatchEvent(new CustomEvent("refresh-candidates"));
+          });
           window.location.hash = "dashboard";
         } catch (error) {
           console.error("Storage Delete Error:", error);

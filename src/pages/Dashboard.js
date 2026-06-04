@@ -1,5 +1,5 @@
-import { storages } from "../utilities/storages.js";
 import { DashboardInfo } from "../utilities/tasks.js";
+import { appState } from "../core/state.js";
 
 import DashboardHTML from "../html/dashboard.html?raw";
 
@@ -27,7 +27,7 @@ export const DashboardPage = {
   },
 
   async setup() {
-    const candidates = await storages.load("candidates");
+    const candidates = appState.candidates;
 
     const categorised = {
       onboarding: candidates.filter((c) => c["onboarding-status"] === "Onboarding"),

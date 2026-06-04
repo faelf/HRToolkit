@@ -11,6 +11,7 @@ import { modal } from "../utilities/modal.js";
 import { storages } from "../utilities/storages.js";
 import { sidebar } from "../ui/sidebar.js";
 import { dropdown } from "../utilities/dropdown.js";
+import { appState } from "./state.js";
 
 /**
  * Router Setup
@@ -26,19 +27,24 @@ const router = new Router({
   idAttribute: "data-id",
   landingPage: "dashboard",
 });
-router.init();
 
 /**
  * Initial Load Handler
  * --------------------
  * Runs once when the browser window has fully loaded.
  */
-function initialLoad() {
+async function initialLoad() {
   // Apply the user's preferred theme
   theme.init();
   storages.init();
   sidebar.responsive();
+  await appState.loadCandidates();
+  router.init();
 }
+
+document.addEventListener("refresh-candidates", async () => {
+  await appState.loadCandidates();
+});
 
 /*
   Eventlisteners

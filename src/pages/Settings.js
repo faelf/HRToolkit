@@ -36,7 +36,7 @@ export const SettingsPage = {
 
     toggleFirebaseFields();
 
-    storageForm.addEventListener("submit", (event) => {
+    storageForm.addEventListener("submit", async (event) => {
       const formData = form.submit(event);
       const selectedStorage = formData["storage-options"];
       localStorage.setItem(storages.Key, selectedStorage);
@@ -52,6 +52,14 @@ export const SettingsPage = {
         };
         localStorage.setItem(storages.Firebase.Firestore.ConfigKey, JSON.stringify(config));
       }
+
+      // Trigger global state refresh to load data from the newly selected storage
+      await new Promise((resolve) => {
+        document.addEventListener("candidates-updated", resolve, { once: true });
+        document.dispatchEvent(new CustomEvent("refresh-candidates"));
+      });
+      
+      alert("Storage settings updated and data refreshed!");
     });
   },
 };
