@@ -18,6 +18,7 @@
 
 .badge.green {
   background: var(--green);
+  color: hsla(0 0% 0% / 0.6);
 }
 
 .badge.red {
