@@ -1,5 +1,15 @@
 # HR Toolkit
 
+## Overview
+
+HR Helper was created to support the employee onboarding process by replacing spreadsheet-based tracking with a simple, centralised view of individuals progressing through onboarding stages. This includes visibility over candidates at different stages, completed checks, and upcoming starters.
+
+The system does not automate the onboarding process or act as an ATS. Instead, it provides a structured way to manually track onboarding progress and reduce reliance on disconnected spreadsheets.
+
+In addition, the application includes HR utilities such as a maternity leave and statutory pay calculator to support common administrative tasks.
+
+Overall, the tool focuses on improving clarity and organisation around onboarding workflows while remaining lightweight and manual in nature.
+
 ## ⚙️ Technologies Used
 
 ### 💬 Languages
