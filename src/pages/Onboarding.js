@@ -7,6 +7,7 @@ import { modal } from "../utilities/modal.js";
 import { pagination } from "../utilities/pagination.js";
 import { csv } from "../utilities/csv.js";
 import { appState } from "../core/state.js";
+import { toast } from "../ui/toast.js";
 
 export const OnboardingPage = {
   title: "HR Helper - Onboarding",
@@ -135,15 +136,21 @@ export const OnboardingPage = {
     newCandidateForm.addEventListener("submit", async (event) => {
       const formData = form.submit(event);
       const newCandidate = { ...formData, "onboarding-status": "Onboarding", "date-created": new Date().toISOString() };
-      await storages.add("candidates", newCandidate);
-      event.target.reset();
-      await new Promise((resolve) => {
-        document.addEventListener("candidates-updated", resolve, { once: true });
-        document.dispatchEvent(new CustomEvent("refresh-candidates"));
-      });
-      currentPage = 1;
-      await renderTable();
-      modal.close(event);
+      try {
+        await storages.add("candidates", newCandidate);
+        event.target.reset();
+        await new Promise((resolve) => {
+          document.addEventListener("candidates-updated", resolve, { once: true });
+          document.dispatchEvent(new CustomEvent("refresh-candidates"));
+        });
+        currentPage = 1;
+        await renderTable();
+        modal.close(event);
+        toast.success({ message: "Candidate added successfully!" });
+      } catch (error) {
+        console.error("Error adding candidate:", error);
+        toast.error({ message: "There was an error adding the candidate." });
+      }
     });
 
     const downloadBtn = document.querySelector("#download-btn");

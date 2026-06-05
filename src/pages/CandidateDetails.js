@@ -3,6 +3,7 @@ import { storages } from "../utilities/storages.js";
 import { form } from "../utilities/form.js";
 import { CandidateScheme } from "../data/candidate.js";
 import { appState } from "../core/state.js";
+import { toast } from "../ui/toast.js";
 
 export const CandidateDetails = {
   title: "HR Helper - Candidate Details",
@@ -90,10 +91,10 @@ export const CandidateDetails = {
           document.dispatchEvent(new CustomEvent("refresh-candidates"));
         });
         await loadcandidate(id, candidateForm);
-        alert("Candidate saved successfully!");
+        toast.success({ message: "Candidate saved successfully!" });
       } catch (error) {
         console.error("Storage Update Error:", error);
-        alert("There was an error saving the candidate details.");
+        toast.error({ message: "There was an error saving the candidate details." });
       }
     });
 
@@ -109,8 +110,10 @@ export const CandidateDetails = {
             document.dispatchEvent(new CustomEvent("refresh-candidates"));
           });
           window.location.hash = "dashboard";
+          toast.success({ message: "Candidate deleted successfully!" });
         } catch (error) {
           console.error("Storage Delete Error:", error);
+          toast.error({ message: "There was an error deleting the candidate." });
         }
       }
     });

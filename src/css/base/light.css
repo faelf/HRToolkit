@@ -27,4 +27,22 @@
   /* Skeleton */
   --shimmer-base: hsla(0, 0%, 85%, 1);
   --shimmer-highlight: hsla(0, 0%, 100%, 0.6);
+
+  --toast-bg: var(--bg-body);
+  --toast-text: var(--text);
+  --toast-border: var(--border-colour);
+  --toast-header-bg: var(--bg-surface);
+  --toast-title: var(--text-heading);
+
+  --toast-success-bg: hsl(145 45% 82%);
+  --toast-success-title: hsl(145 65% 18%);
+  --toast-success-border: hsl(145 45% 45%);
+
+  --toast-warning-bg: hsl(42 90% 80%);
+  --toast-warning-title: hsl(35 90% 18%);
+  --toast-warning-border: hsl(42 70% 50%);
+
+  --toast-error-bg: hsl(0 70% 82%);
+  --toast-error-title: hsl(0 65% 22%);
+  --toast-error-border: hsl(0 65% 55%);
 }
