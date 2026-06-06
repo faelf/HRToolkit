@@ -26,41 +26,49 @@ export const sidebar = {
 
     return true;
   },
-  click(event) {
+  mobileClick(event) {
     const sidebar = document.querySelector(".sidebar-nav");
-    const btn = document.querySelector("#sidebar-btn");
-
     if (!sidebar) return false;
 
-    // Toggle button clicked
-    if (event.target.closest("#sidebar-btn")) {
-      const isExpanded = sidebar.ariaExpanded === "true";
+    const isMobile = window.innerWidth <= 1024;
+    if (!isMobile) return false;
 
-      sidebar.ariaExpanded = isExpanded ? "false" : "true";
+    const isExpanded = sidebar.ariaExpanded === "true";
+    const clickedOutside = !event.target.closest(".sidebar-nav");
+    const clickedNavLink = event.target.closest("a");
+    const autoClose = isExpanded && isMobile && (clickedOutside || clickedNavLink);
 
-      if (btn) {
-        const path = btn.querySelectorAll("path")[1];
-        if (path) path.setAttribute("d", isExpanded ? "M 8 9 L 11 12 L 8 15" : "M 10 15 L 7 12 L 10 9");
-      }
-
+    if (autoClose) {
+      const globalBtn = document.querySelector("#sidebar-btn");
+      const path = globalBtn?.querySelectorAll("path")[1];
+      sidebar.ariaExpanded = "false";
+      path?.setAttribute("d", "M 8 9 L 11 12 L 8 15");
       return true;
     }
 
-    // Mobile auto-close
-    if (sidebar.ariaExpanded === "true" && window.innerWidth <= 1024) {
-      const clickedOutside = !event.target.closest(".sidebar-nav");
-      const clickedNavLink = event.target.closest(".nav-btn");
+    return false;
+  },
+  click(event) {
+    const btn = event.target.closest("#sidebar-btn");
+    if (!btn) return false;
 
-      if (clickedOutside || clickedNavLink) {
-        sidebar.ariaExpanded = "false";
+    const sidebar = document.querySelector(".sidebar-nav");
+    if (!sidebar) return false;
 
-        if (btn) {
-          const path = btn.querySelectorAll("path")[1];
-          if (path) path.setAttribute("d", "M 8 9 L 11 12 L 8 15");
-        }
+    const isExpanded = sidebar.ariaExpanded === "true";
 
-        return true;
-      }
+    if (isExpanded) {
+      const path = btn.querySelectorAll("path")[1];
+      sidebar.ariaExpanded = "false";
+      path?.setAttribute("d", "M 8 9 L 11 12 L 8 15");
+      return true;
+    }
+
+    if (!isExpanded) {
+      const path = btn.querySelectorAll("path")[1];
+      sidebar.ariaExpanded = "true";
+      path?.setAttribute("d", "M 10 15 L 7 12 L 10 9");
+      return true;
     }
 
     return false;
@@ -68,19 +76,17 @@ export const sidebar = {
   responsive() {
     const sidebar = document.querySelector(".sidebar-nav");
     const btn = document.querySelector("#sidebar-btn");
+    const path = btn?.querySelectorAll("path")[1];
+    const isDesktop = window.innerWidth > 1024;
 
-    if (window.innerWidth > 1024) {
-      if (sidebar) sidebar.ariaExpanded = "true";
-      if (btn) {
-        const path = btn.querySelectorAll("path")[1];
-        if (path) path.setAttribute("d", "M 10 15 L 7 12 L 10 9");
-      }
-    } else {
-      if (sidebar) sidebar.ariaExpanded = "false";
-      if (btn) {
-        const path = btn.querySelectorAll("path")[1];
-        if (path) path.setAttribute("d", "M 8 9 L 11 12 L 8 15");
-      }
+    if (isDesktop && sidebar) {
+      sidebar.ariaExpanded = "true";
+      path?.setAttribute("d", "M 10 15 L 7 12 L 10 9");
+    }
+
+    if (!isDesktop && sidebar) {
+      sidebar.ariaExpanded = "false";
+      path?.setAttribute("d", "M 8 9 L 11 12 L 8 15");
     }
   },
 };

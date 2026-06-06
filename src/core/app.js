@@ -57,6 +57,9 @@ document.addEventListener("click", (e) => {
     case dropdown.slidedownClick(e):
       break;
 
+    case sidebar.mobileClick(e):
+      break;
+
     case sidebar.dropdownClick(e):
       break;
 
