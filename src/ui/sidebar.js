@@ -40,7 +40,8 @@ export const sidebar = {
       sidebar.ariaExpanded = isExpanded ? "false" : "true";
 
       if (btn) {
-        btn.dataset.flipX = isExpanded ? "false" : "true";
+        const path = btn.querySelectorAll("path")[1];
+        if (path) path.setAttribute("d", isExpanded ? "M 8 9 L 11 12 L 8 15" : "M 10 15 L 7 12 L 10 9");
       }
 
       return true;
@@ -55,7 +56,8 @@ export const sidebar = {
         sidebar.ariaExpanded = "false";
 
         if (btn) {
-          btn.dataset.flipX = "false";
+          const path = btn.querySelectorAll("path")[1];
+          if (path) path.setAttribute("d", "M 8 9 L 11 12 L 8 15");
         }
 
         return true;
@@ -70,10 +72,16 @@ export const sidebar = {
 
     if (window.innerWidth > 1024) {
       if (sidebar) sidebar.ariaExpanded = "true";
-      if (btn) btn.dataset.flipX = "true";
+      if (btn) {
+        const path = btn.querySelectorAll("path")[1];
+        if (path) path.setAttribute("d", "M 10 15 L 7 12 L 10 9");
+      }
     } else {
       if (sidebar) sidebar.ariaExpanded = "false";
-      if (btn) btn.dataset.flipX = "false";
+      if (btn) {
+        const path = btn.querySelectorAll("path")[1];
+        if (path) path.setAttribute("d", "M 8 9 L 11 12 L 8 15");
+      }
     }
   },
 };

@@ -1,18 +1,17 @@
 .sidebar-btn {
   --svg-size: var(--h2);
-  --svg-stroke-width: 4;
-  background: var(--bg-body);
-  border: var(--border-size) solid var(--border-colour);
-  border-radius: var(--border-radius);
+  --svg-stroke-width: 2;
+  background: transparent;
+  border: var(--border-size) solid transparent;
+  border-radius: var(--border-radius-sm);
   display: flex;
+  flex-shrink: 0;
   align-items: center;
-  padding: 0.25rem;
+  padding: var(--gap-md);
 }
 
-.sidebar-btn:focus {
-  border: var(--border-size) solid var(--border-highlight);
-  outline: none;
-  box-shadow: none;
+.sidebar-btn:hover {
+  background: var(--bg-body);
 }
 
 .nav-btn {
@@ -35,7 +34,7 @@
   --margin: var(--gap-md);
   width: calc(100% - (var(--margin) * 2));
   margin: var(--margin);
-  padding: var(--gap-md);
+  padding: var(--gap-lg);
 
   /* Layout */
   display: flex;
@@ -52,9 +51,10 @@
   color: var(--text);
 }
 
-.nav-btn:focus {
+.nav-btn:focus, .sidebar-btn:focus {
+  background: var(--bg-body);
   outline: none;
-  border: var(--border-size) solid var(--border-highlight);
+  border: var(--border-size) solid transparent;
   box-shadow: none;
 }
 
