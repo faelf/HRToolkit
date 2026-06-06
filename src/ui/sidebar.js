@@ -1,31 +1,30 @@
 export const sidebar = {
   dropdownClick(event) {
     const btn = event.target.closest("[data-nav-dropdown-btn]");
+    if (!btn) return false;
 
-    if (btn) {
-      const dropdownId = btn.dataset.navDropdownBtn;
-      const dropdown = document.querySelector(`[data-nav-dropdown="${dropdownId}"]`);
+    const dropdownId = btn.dataset.navDropdownBtn;
+    const dropdown = document.querySelector(`[data-nav-dropdown="${dropdownId}"]`);
 
-      if (dropdown) {
-        const isOpen = dropdown.dataset.expanded === "true";
+    if (!dropdown) return false;
 
-        if (isOpen) {
-          btn.dataset.flipY = "false";
-          dropdown.style.height = "0px";
-          setTimeout(() => {
-            dropdown.dataset.expanded = "false";
-          }, 200);
-        } else {
-          btn.dataset.flipY = "true";
-          dropdown.dataset.expanded = "true";
-          dropdown.style.height = dropdown.scrollHeight + "px";
-        }
-      }
+    const isOpen = dropdown.dataset.expanded === "true";
 
-      return true;
+    if (isOpen) {
+      btn.dataset.flipY = "false";
+      dropdown.style.height = "0px";
+      dropdown.inert = true;
+      dropdown.dataset.expanded = "false";
     }
 
-    return false;
+    if (!isOpen) {
+      btn.dataset.flipY = "true";
+      dropdown.dataset.expanded = "true";
+      dropdown.style.height = dropdown.scrollHeight + "px";
+      dropdown.inert = false;
+    }
+
+    return true;
   },
   click(event) {
     const sidebar = document.querySelector(".sidebar-nav");
