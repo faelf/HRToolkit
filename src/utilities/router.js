@@ -84,10 +84,9 @@ export class Router {
     this.updateAriaCurrent(pageKey);
   }
   handleClick(event) {
-    event.preventDefault();
-
     const link = event.target.closest(this.linkSelector);
     if (!link) return;
+    event.preventDefault();
 
     const rawLink = link.getAttribute(this.linkAttribute) || link.getAttribute("href");
     if (!rawLink) return;
