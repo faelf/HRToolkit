@@ -44,7 +44,7 @@ export const table = {
       const tr = document.createElement("tr");
       tr.setAttribute("data-id", item.id);
       tr.classList.add("cursor-pointer");
-      tr.setAttribute("data-href", "candidatedetails");
+      tr.setAttribute("data-href", "/candidatedetails");
 
       for (const column of Object.keys(columns)) {
         const td = document.createElement("td");

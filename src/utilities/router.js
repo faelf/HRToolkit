@@ -1,33 +1,4 @@
-/**
- * Router class for handling SPA navigation and page updates.
- * Manages click delegation, history navigation, and page content updates.
- * @example
- * const router = new Router({
- *    contentArea: "#main-content",
- *    pageContent: pageContent: {
- *                    "home": {
- *                        title: "Home - Welcome",
- *                        html: "home.html",
- *                        setup(): void,
- *                    };
- *    landingPage = "home",
- *    baseHtmlPath = "src/html/",
- *    linkAttribute: "href",
- *    idAttribute: "data-doc-id",
- * });
- * router.init();
- */
 export class Router {
-  /**
-   * Creates a new Router instance.
-   * @param {Object} config - The configuration object.
-   * @param {string} config.contentArea - The CSS selector for the area where pages will be rendered (e.g., "#main-content").
-   * @param {Object} config.pageContent - The page definitions. Each key is a route name, and the value is an object with `title`, `html`, and optional `setup` method.
-   * @param {string} [config.landingPage="home"] - Initial page to load.
-   * @param {string} [config.baseHtmlPath="src/html/"] - Path to external HTML files.
-   * @param {string} [config.linkAttribute="href"] - The attribute used to identify nav links.
-   * @param {string} [config.idAttribute="data-doc-id"] - The attribute used for document/page IDs.
-   */
   constructor(config) {
     const {
       contentArea,
@@ -54,12 +25,6 @@ export class Router {
     this.handleNavigate = this.handleNavigate.bind(this);
     this.handlePopState = this.handlePopState.bind(this);
   }
-
-  /**
-   * Syncs the UI by adding the 'aria-current' attribute to matching links.
-   * Uses the configured linkAttribute to identify navigation elements.
-   * @param {string} activePageKey
-   */
   updateAriaCurrent(activePageKey) {
     const links = document.querySelectorAll(this.linkSelector);
     const pageConfig = this.pageContent[activePageKey];
@@ -67,31 +32,24 @@ export class Router {
 
     links.forEach((link) => {
       const val = link.getAttribute(this.linkAttribute) || link.getAttribute("href");
-      const isMatch = val === keyToMatch || val === `#${keyToMatch}`;
+      const isMatch =
+        val === keyToMatch || val === `/${keyToMatch}` || (keyToMatch === this.landingPage && val === "/");
 
       if (isMatch) {
         link.setAttribute("aria-current", "page");
-      } else {
+      }
+
+      if (!isMatch) {
         link.removeAttribute("aria-current");
       }
     });
   }
-
-  /**
-   * Update the main content area with a page.
-   * Supports both raw HTML strings and external .html file paths.
-   * @param {string} pageKey - The key of the page to display.
-   * @param {Object} [params={}] - Optional parameters (e.g., { pageId: 101 }).
-   * @param {boolean} [addToHistory=true] - Whether to push to browser history.
-   * @returns {Promise<void>}
-   */
   async updateContent(pageKey, params = {}, addToHistory = true) {
     const content = this.pageContent[pageKey];
     if (!content || !this.container) return;
 
     let html;
 
-    // If the html property points to a file, fetch it.
     if (typeof content.html === "string" && content.html.endsWith(".html")) {
       const fullPath = this.baseHtmlPath + content.html;
       try {
@@ -103,21 +61,17 @@ export class Router {
         html = `<section><p style="color:red;">Error loading page: ${err.message}</p></section>`;
       }
     } else {
-      // Otherwise, use the static string
       html = content.html;
     }
 
-    // Inject the HTML into the page
     this.container.innerHTML = html;
 
-    // Run setup logic if provided
     if (typeof content.setup === "function") {
       await content.setup(params.pageId);
     }
 
-    // Update Browser History and URL
-    let url = `#${pageKey}`;
-    if (params.pageId != null) url += `?id=${params.pageId}`;
+    let url = pageKey === this.landingPage ? "/" : `/${pageKey}`;
+    if (params.pageId != null) url += `/${params.pageId}`;
 
     if (addToHistory) {
       history.pushState({ pageKey, params }, content.title, url);
@@ -125,38 +79,30 @@ export class Router {
 
     document.title = content.title;
 
-    // Visual feedback for navigation
     this.updateAriaCurrent(pageKey);
   }
-
-  /**
-   * Handle clicks using event delegation on elements with the configured linkAttribute.
-   * @param {MouseEvent} event
-   */
   handleClick(event) {
+    event.preventDefault();
+
     const link = event.target.closest(this.linkSelector);
     if (!link) return;
 
-    // Only prevent default if it's an internal hash link or matches a pageKey
     const rawLink = link.getAttribute(this.linkAttribute) || link.getAttribute("href");
-    if (rawLink && (rawLink.startsWith("#") || this.pageContent[rawLink])) {
-      event.preventDefault();
+    if (!rawLink) return;
 
-      const pageKey = rawLink.replace("#", "");
-      const pageId = link.getAttribute(this.idAttribute);
-      const activeGroup = link.getAttribute("data-active-group");
+    let pageKey = rawLink.startsWith("/") ? rawLink.substring(1) : rawLink;
+    if (pageKey === "") pageKey = this.landingPage;
 
-      document.dispatchEvent(
-        new CustomEvent("navigate", {
-          detail: { pageKey, pageId, activeGroup },
-        }),
-      );
-    }
+    if (!this.pageContent[pageKey]) return;
+
+    const pageId = link.getAttribute(this.idAttribute);
+
+    document.dispatchEvent(
+      new CustomEvent("navigate", {
+        detail: { pageKey, pageId },
+      }),
+    );
   }
-
-  /**
-   * Handle custom 'navigate' events dispatched from handleClick or other scripts.
-   */
   handleNavigate(event) {
     this.updateContent(event.detail.pageKey, event.detail);
   }
@@ -165,19 +111,25 @@ export class Router {
    * Handle browser back/forward navigation (popstate).
    */
   handlePopState(event) {
-    if (event.state) {
+    if (event && event.state) {
       this.updateContent(event.state.pageKey, event.state.params, false);
-    } else {
-      // Fallback for initial load or manual URL entry
-      const hash = window.location.hash.substring(1);
-      const [pageKey, query] = hash.split("?");
-      const params = {};
-      if (query) {
-        const urlParams = new URLSearchParams(query);
-        params.pageId = urlParams.get("id") ?? undefined;
-      }
-      this.updateContent(pageKey || this.landingPage, params, false);
+      return;
     }
+    // Fallback for initial load or manual URL entry
+    const pathSegments = window.location.pathname.split("/").filter(Boolean);
+    const pageKey = pathSegments[0] || this.landingPage;
+    const params = {};
+
+    if (pathSegments[1]) {
+      params.pageId = pathSegments[1];
+    }
+
+    if (!params.pageId && window.location.search) {
+      const urlParams = new URLSearchParams(window.location.search);
+      params.pageId = urlParams.get("id") ?? undefined;
+    }
+
+    this.updateContent(this.pageContent[pageKey] ? pageKey : this.landingPage, params, false);
   }
 
   /**
@@ -192,11 +144,6 @@ export class Router {
     document.addEventListener("navigate", this.handleNavigate);
     window.addEventListener("popstate", this.handlePopState);
 
-    const hash = window.location.hash.substring(1);
-    if (hash) {
-      this.handlePopState({ state: null });
-    } else {
-      this.updateContent(this.landingPage, {}, false);
-    }
+    this.handlePopState({ state: null });
   }
 }
