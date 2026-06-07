@@ -86,6 +86,7 @@ export class Router {
   handleClick(event) {
     const link = event.target.closest(this.linkSelector);
     if (!link) return;
+
     event.preventDefault();
 
     const rawLink = link.getAttribute(this.linkAttribute) || link.getAttribute("href");
