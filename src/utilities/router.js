@@ -44,24 +44,26 @@ export class Router {
       }
     });
   }
+  async fetchHtml(htmlFile) {
+    const fullPath = this.baseHtmlPath + htmlFile;
+    const response = await fetch(fullPath).catch((err) => ({ ok: false, error: err }));
+
+    if (!response.ok) {
+      const errorMessage = response.error ? response.error.message : `Could not find ${fullPath}`;
+      console.error("Router Error:", response.error || errorMessage);
+      return `<section><p style="color:red;">Error loading page: ${errorMessage}</p></section>`;
+    }
+
+    return await response.text();
+  }
   async updateContent(pageKey, params = {}, addToHistory = true) {
     const content = this.pageContent[pageKey];
     if (!content || !this.container) return;
 
-    let html;
+    let html = content.html;
 
-    if (typeof content.html === "string" && content.html.endsWith(".html")) {
-      const fullPath = this.baseHtmlPath + content.html;
-      try {
-        const response = await fetch(fullPath);
-        if (!response.ok) throw new Error(`Could not find ${fullPath}`);
-        html = await response.text();
-      } catch (err) {
-        console.error("Router Error:", err);
-        html = `<section><p style="color:red;">Error loading page: ${err.message}</p></section>`;
-      }
-    } else {
-      html = content.html;
+    if (typeof html === "string" && html.endsWith(".html")) {
+      html = await this.fetchHtml(html);
     }
 
     this.container.innerHTML = html;
@@ -106,7 +108,6 @@ export class Router {
   handleNavigate(event) {
     this.updateContent(event.detail.pageKey, event.detail);
   }
-
   /**
    * Handle browser back/forward navigation (popstate).
    */
@@ -131,7 +132,6 @@ export class Router {
 
     this.updateContent(this.pageContent[pageKey] ? pageKey : this.landingPage, params, false);
   }
-
   /**
    * Initialise the router listeners.
    */
