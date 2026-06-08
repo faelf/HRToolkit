@@ -1,1 +1,0 @@
-import{initializeApp as e}from"https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";import{getFirestore as s}from"https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";const t=s(e(JSON.parse(localStorage.getItem("firebase-config"))));export{t as db};
