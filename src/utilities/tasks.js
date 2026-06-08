@@ -49,13 +49,13 @@ function createHtmlBadgeList({ tasks }) {
 
     if (item.tasks.length === 0) {
       const badgeSpan = document.createElement("span");
-      badgeSpan.className = "badge green";
+      badgeSpan.className = "badge green-subtle";
       badgeSpan.textContent = "Complete";
       badgesDiv.appendChild(badgeSpan);
     } else {
       for (const task of item.tasks) {
         const badgeSpan = document.createElement("span");
-        badgeSpan.className = "badge red";
+        badgeSpan.className = "badge red-subtle";
         badgeSpan.textContent = task;
         badgesDiv.appendChild(badgeSpan);
       }
