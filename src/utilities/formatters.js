@@ -1,31 +1,30 @@
-export const formatters = {
-  longDate(date) {
-    const d = new Date(date);
-    const options = {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      weekday: "long",
-    };
-    return d.toLocaleDateString("en-GB", options);
-  },
-  setMinMaxDates() {
-    const dateInputs = document.querySelectorAll(".date-input");
+export function longDate(date) {
+  const d = new Date(date);
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    weekday: "long",
+  };
+  return d.toLocaleDateString("en-GB", options);
+}
 
-    const today = new Date();
+export function setMinMaxDates() {
+  const dateInputs = document.querySelectorAll(".date-input");
 
-    const minDate = new Date(today);
-    minDate.setFullYear(today.getFullYear() - 60);
+  const today = new Date();
 
-    const maxDate = new Date(today);
-    maxDate.setFullYear(today.getFullYear() + 1);
+  const minDate = new Date(today);
+  minDate.setFullYear(today.getFullYear() - 60);
 
-    const min = minDate.toISOString().split("T")[0];
-    const max = maxDate.toISOString().split("T")[0];
+  const maxDate = new Date(today);
+  maxDate.setFullYear(today.getFullYear() + 1);
 
-    dateInputs.forEach((input) => {
-      input.min = min;
-      input.max = max;
-    });
-  },
-};
+  const min = minDate.toISOString().split("T")[0];
+  const max = maxDate.toISOString().split("T")[0];
+
+  dateInputs.forEach((input) => {
+    input.min = min;
+    input.max = max;
+  });
+}

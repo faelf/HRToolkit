@@ -1,40 +1,42 @@
-export const dropdown = {
-  slidedownClick(event) {
-    const btn = event.target.closest("[data-slidedown-btn]");
-    if (!btn) return false;
+export function slidedownClick(event) {
+  const btn = event.target.closest("[data-slidedown-btn]");
+  if (!btn) return false;
 
-    const id = btn.dataset.slidedownBtn;
-    const slidedown = document.querySelector(`[data-slidedown="${id}"]`);
+  const id = btn.dataset.slidedownBtn;
+  const slidedown = document.querySelector(`[data-slidedown="${id}"]`);
 
-    if (!slidedown) return false;
+  if (!slidedown) return false;
 
-    const isOpen = slidedown.dataset.expanded === "true";
+  const isOpen = slidedown.dataset.expanded === "true";
 
-    if (isOpen) {
-      btn.dataset.flipY = "false";
-      slidedown.dataset.expanded = "false";
-      slidedown.style.height = "0px";
-    } else {
-      btn.dataset.flipY = "true";
-      slidedown.dataset.expanded = "true";
-      slidedown.style.height = slidedown.scrollHeight + "px";
-    }
+  if (isOpen) {
+    btn.dataset.flipY = "false";
+    slidedown.dataset.expanded = "false";
+    slidedown.style.height = "0px";
+  }
+  
+  if (!isOpen) {
+    btn.dataset.flipY = "true";
+    slidedown.dataset.expanded = "true";
+    slidedown.style.height = slidedown.scrollHeight + "px";
+  }
 
-    return true;
-  },
-  dropdownClick(event) {
-    const btn = event.target.closest("[data-dropdown-btn]");
+  return true;
+}
 
-    if (btn) {
-      const dropdownId = btn.dataset.dropdownBtn;
-      const dropdown = document.querySelector(`[data-dropdown="${dropdownId}"]`);
-      event.stopPropagation();
-      dropdown.classList.toggle("show");
-      return;
-    }
+export function dropdownClick(event) {
+  const btn = event.target.closest("[data-dropdown-btn]");
 
-    document.querySelectorAll("[data-dropdown]").forEach((dropdown) => {
-      dropdown.classList.remove("show");
-    });
-  },
-};
+  if (btn) {
+    const dropdownId = btn.dataset.dropdownBtn;
+    const dropdown = document.querySelector(`[data-dropdown="${dropdownId}"]`);
+    event.stopPropagation();
+    dropdown.classList.toggle("show");
+    return;
+  }
+
+  document.querySelectorAll("[data-dropdown]").forEach((dropdown) => {
+    dropdown.classList.remove("show");
+  });
+}
+

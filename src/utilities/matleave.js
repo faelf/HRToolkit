@@ -1,4 +1,4 @@
-import { formatters } from "./formatters.js";
+import * as formatters  from "./formatters.js";
 
 // Policy Constants
 export const duration = {

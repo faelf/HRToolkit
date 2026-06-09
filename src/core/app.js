@@ -6,11 +6,11 @@
 import { Router } from "../utilities/router.js";
 import { pageContent } from "../pages/index.js";
 import { theme } from "../utilities/theme.js";
-import { form } from "../utilities/form.js";
-import { modal } from "../utilities/modal.js";
+import * as form from "../utilities/form.js";
+import * as modal from "../utilities/modal.js";
 import { storages } from "../utilities/storages.js";
-import { sidebar } from "../ui/sidebar.js";
-import { dropdown } from "../utilities/dropdown.js";
+import * as sidebar from "../ui/sidebar.js";
+import * as dropdown from "../utilities/dropdown.js";
 import { appState } from "./state.js";
 
 /**

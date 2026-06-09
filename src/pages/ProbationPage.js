@@ -1,5 +1,5 @@
 import ProbationHTML from "../html/probation.html?raw";
-import { formatters } from "../utilities/formatters.js";
+import * as formatters from "../utilities/formatters.js";
 
 export const ProbationPage = {
   title: "HR Helper - Probation Calculator",
@@ -42,7 +42,7 @@ export const ProbationPage = {
       const resultDiv = document.getElementById("results");
 
       resultDiv.innerHTML = /* html */ `
-        <table class="top">
+        <table>
           <thead>
             <tr>
               <th>Monthly Milestone</th>

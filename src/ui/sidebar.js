@@ -1,4 +1,4 @@
-function dropdownClick(event) {
+export function dropdownClick(event) {
   const btn = event.target.closest("[data-nav-dropdown-btn]");
   if (!btn) return false;
 
@@ -26,7 +26,7 @@ function dropdownClick(event) {
   return true;
 }
 
-function mobileClick(event) {
+export function mobileClick(event) {
   const sidebar = document.querySelector(".sidebar-nav");
   if (!sidebar) return false;
 
@@ -49,7 +49,7 @@ function mobileClick(event) {
   return false;
 }
 
-function click(event) {
+export function click(event) {
   const btn = event.target.closest("#sidebar-btn");
   if (!btn) return false;
 
@@ -75,7 +75,7 @@ function click(event) {
   return false;
 }
 
-function responsive() {
+export function responsive() {
   const sidebar = document.querySelector(".sidebar-nav");
   const btn = document.querySelector("#sidebar-btn");
   const path = btn?.querySelectorAll("path")[1];
@@ -91,10 +91,3 @@ function responsive() {
     path?.setAttribute("d", "M 8 9 L 11 12 L 8 15");
   }
 }
-
-export const sidebar = {
-  dropdownClick,
-  mobileClick,
-  click,
-  responsive,
-};

@@ -1,5 +1,5 @@
 import SettingsHTML from "../html/settings.html?raw";
-import { form } from "../utilities/form.js";
+import * as form from "../utilities/form.js";
 import { storages } from "../utilities/storages.js";
 
 export const SettingsPage = {

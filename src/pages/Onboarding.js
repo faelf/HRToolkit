@@ -1,9 +1,9 @@
 import OnboardingHTML from "../html/onboarding.html?raw";
 import { storages } from "../utilities/storages.js";
 import { table } from "../utilities/table.js";
-import { form } from "../utilities/form.js";
+import * as form from "../utilities/form.js";
 import { CandidateScheme } from "../data/candidate.js";
-import { modal } from "../utilities/modal.js";
+import * as modal from "../utilities/modal.js";
 import { pagination } from "../utilities/pagination.js";
 import { csv } from "../utilities/csv.js";
 import { appState } from "../core/state.js";

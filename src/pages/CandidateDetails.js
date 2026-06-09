@@ -1,6 +1,6 @@
 import CandidateDetailsHTML from "../html/candidatedetails.html?raw";
 import { storages } from "../utilities/storages.js";
-import { form } from "../utilities/form.js";
+import * as form from "../utilities/form.js";
 import { CandidateScheme } from "../data/candidate.js";
 import { appState } from "../core/state.js";
 import { toast } from "../ui/toast.js";
