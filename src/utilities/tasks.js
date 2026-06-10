@@ -13,31 +13,31 @@ function createEmptyContainer({ text }) {
   return container;
 }
 
-function createHtmlBadgeList({ tasks }) {
+export function createHtmlBadgeList({ tasks }) {
   if (tasks.length === 0) {
     return createEmptyContainer({ text: "No Tasks" });
   }
 
   const ul = document.createElement("ul");
-  ul.classList.add("list-style-none");
+  ul.className = "list-group m-2";
 
   for (const item of tasks) {
     const li = document.createElement("li");
+    li.className = "d-flex-column g-2";
     li.setAttribute("data-href", "candidatedetails");
     li.setAttribute("data-id", item.id);
 
     const infoDiv = document.createElement("div");
-    infoDiv.classList.add("d-flex", "space-between");
+    infoDiv.className = "d-flex space-between";
 
-    const nameSpan = document.createElement("div");
+    const nameSpan = document.createElement("span");
     nameSpan.className = "fw-600";
     nameSpan.textContent = item.candidate;
     infoDiv.appendChild(nameSpan);
 
     if (item.jobTitle) {
-      const jobSpan = document.createElement("div");
-      jobSpan.className = "text-muted text-right";
-      jobSpan.style.fontSize = "0.875em";
+      const jobSpan = document.createElement("span");
+      jobSpan.className = "text-muted";
       jobSpan.textContent = item.jobTitle;
       infoDiv.appendChild(jobSpan);
     }
@@ -45,17 +45,19 @@ function createHtmlBadgeList({ tasks }) {
     li.appendChild(infoDiv);
 
     const badgesDiv = document.createElement("div");
-    badgesDiv.className = "badge-group";
+    badgesDiv.className = "d-flex flex-wrap g-2";
 
     if (item.tasks.length === 0) {
       const badgeSpan = document.createElement("span");
       badgeSpan.className = "badge green-subtle";
       badgeSpan.textContent = "Complete";
       badgesDiv.appendChild(badgeSpan);
-    } else {
+    }
+    
+    if (item.tasks.length > 0){
       for (const task of item.tasks) {
         const badgeSpan = document.createElement("span");
-        badgeSpan.className = "badge red-subtle";
+        badgeSpan.className = "badge blue-subtle";
         badgeSpan.textContent = task;
         badgesDiv.appendChild(badgeSpan);
       }
@@ -68,31 +70,31 @@ function createHtmlBadgeList({ tasks }) {
   return ul;
 }
 
-function createHtmlTwoColList({ items, emptyText, secondaryKey }) {
+export function createHtmlTwoColList({ items, emptyText, secondaryKey }) {
   if (items.length === 0) {
     return createEmptyContainer({ text: emptyText });
   }
 
   const ul = document.createElement("ul");
-  ul.classList.add("list-style-none");
+  ul.className = "list-group";
 
   for (const item of items) {
     const li = document.createElement("li");
-    li.className = "li-2-col";
+    li.className = "d-flex space-between align-items-center";
     li.setAttribute("data-href", "candidatedetails");
     li.setAttribute("data-id", item.id);
 
     const infoDiv = document.createElement("div");
+    infoDiv.className = "d-flex-column";
 
-    const nameSpan = document.createElement("div");
+    const nameSpan = document.createElement("span");
     nameSpan.className = "fw-600";
     nameSpan.textContent = item.candidate;
     infoDiv.appendChild(nameSpan);
 
     if (item.jobTitle) {
-      const jobSpan = document.createElement("div");
-      jobSpan.className = "text-muted";
-      jobSpan.style.fontSize = "0.875em";
+      const jobSpan = document.createElement("small");
+      jobSpan.className = "text-muted fs-sm";
       jobSpan.textContent = item.jobTitle;
       infoDiv.appendChild(jobSpan);
     }
@@ -115,33 +117,33 @@ function gridCardList({ items, emptyText, secondaryKey }) {
   }
 
   const ul = document.createElement("ul");
-  ul.classList.add("card-list");
+  ul.classList.add("list-card-group");
 
   for (const item of items) {
     const li = document.createElement("li");
-    li.className = "li-2-col";
+    li.className = "d-flex-column g-2";
     li.setAttribute("data-href", "candidatedetails");
     li.setAttribute("data-id", item.id);
 
     const infoDiv = document.createElement("div");
+    infoDiv.className = "d-flex-column";
 
-    const nameSpan = document.createElement("div");
+    const nameSpan = document.createElement("span");
     nameSpan.className = "fw-600";
     nameSpan.textContent = item.candidate;
     infoDiv.appendChild(nameSpan);
 
     if (item.jobTitle) {
-      const jobSpan = document.createElement("div");
+      const jobSpan = document.createElement("small");
       jobSpan.className = "text-muted";
-      jobSpan.style.fontSize = "0.875em";
       jobSpan.textContent = item.jobTitle;
       infoDiv.appendChild(jobSpan);
     }
 
     li.appendChild(infoDiv);
 
-    const secondSpan = document.createElement("div");
-    secondSpan.className = "text-muted text-right";
+    const secondSpan = document.createElement("span");
+    secondSpan.className = "badge blue-subtle";
     secondSpan.textContent = item[secondaryKey];
     li.appendChild(secondSpan);
 
