@@ -31,7 +31,11 @@ export const MaternityPage = {
       if (!validateDates(elements, originalTexts)) return;
 
       elements.resultsContainer.innerHTML = generateNarrative(
-        calculateMat(elements.startDateInput?.value, elements.babyDueInput?.value, elements.maternityStartInput?.value),
+        calculateMat(
+          elements.startDateInput?.value,
+          elements.babyDueInput?.value,
+          elements.maternityStartInput?.value
+        ),
       );
     });
   },
