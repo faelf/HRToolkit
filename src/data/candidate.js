@@ -12,6 +12,16 @@ export const CandidateScheme = {
       label: "Last Name",
       helper: "Please enter as shown on the passport",
     },
+    Email: {
+      input: "text",
+      id: "e-mail",
+      label: "E-mail",
+    },
+    Mobile: {
+      input: "text",
+      id: "mobile-number",
+      label: "Telephone Number",
+    },
   },
   EmploymentInformation: {
     JobTitle: {
