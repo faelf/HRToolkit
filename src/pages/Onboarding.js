@@ -1,6 +1,6 @@
 import OnboardingHTML from "../html/onboarding.html?raw";
 import { storages } from "../utilities/storages.js";
-import { table } from "../utilities/table.js";
+import { datatable } from "../utilities/table.js";
 import * as form from "../utilities/form.js";
 import { CandidateScheme } from "../data/candidate.js";
 import * as modal from "../utilities/modal.js";
@@ -44,7 +44,7 @@ export const OnboardingPage = {
     let currentPage = 1;
     let searchQuery = "";
 
-    async function renderTable() {
+    async function loadtable() {
       let candidatesData = await loadCandidates();
 
       if (searchQuery) {
@@ -73,26 +73,26 @@ export const OnboardingPage = {
           emptyText: "No Candidates Found",
         };
 
-        table.render(candidatesTable);
+        datatable(candidatesTable);
 
         pagination.render({
           ContainerID: "#pagination",
           totalItems: candidatesData.length,
           currentPage,
-          onPageChange: pagination.createPageHandler((newPage) => (currentPage = newPage), renderTable),
+          onPageChange: pagination.createPageHandler((newPage) => (currentPage = newPage), loadtable),
         });
       }
     }
 
     // Initial Load
-    renderTable();
+    loadtable();
 
     // Search functionality
     const searchInput = document.querySelector("#search-candidate");
     searchInput.addEventListener("input", (event) => {
       searchQuery = event.target.value.trim();
       currentPage = 1; // Reset to first page on new search
-      renderTable();
+      loadtable();
     });
 
     /* 
@@ -144,7 +144,7 @@ export const OnboardingPage = {
           document.dispatchEvent(new CustomEvent("refresh-candidates"));
         });
         currentPage = 1;
-        await renderTable();
+        await loadtable();
         modal.close(event);
         toast.success({ message: "Candidate added successfully!" });
       } catch (error) {

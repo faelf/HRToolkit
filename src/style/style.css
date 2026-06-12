@@ -277,15 +277,15 @@ main {
 }
 
 .col-100 {
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100px, 100%), 1fr));
 }
 
 .col-200 {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
 }
 
 .col-250 {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
 }
 
 .col-300-fit {
@@ -297,7 +297,7 @@ main {
 }
 
 .col-375 {
-  grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(375px, 100%), 1fr));
 }
 
 @media (min-width: 768px) {
@@ -336,18 +336,18 @@ main {
 
 /* Headlines */
 :root {
-  --headline-1: calc(var(--text-md) * 1.625 + 4.5vw);
-  --headline-2: calc(var(--text-md) * 1.575 + 3.9vw);
-  --headline-3: calc(var(--text-md) * 1.525 + 3.9vw);
-  --headline-4: calc(var(--text-md) * 1.475 + 3.9vw);
-  --headline-5: calc(var(--text-md) * 1.425 + 3.9vw);
-  --headline-6: calc(var(--text-md) * 1.375 + 1.5vw);
-  --h1: calc(var(--text-md) * 1.375 + 1.5vw);
-  --h2: calc(var(--text-md) * 1.325 + 0.9vw);
-  --h3: calc(var(--text-md) * 1.3 + 0.6vw);
-  --h4: calc(var(--text-md) * 1.275 + 0.3vw);
-  --h5: calc(var(--text-md) * 1.25);
-  --h6: var(--text-md);
+  --headline-1: calc(var(--text-md) * 1.625 + 3vw);
+  --headline-2: calc(var(--text-md) * 1.575 + 2.5vw);
+  --headline-3: calc(var(--text-md) * 1.525 + 2vw);
+  --headline-4: calc(var(--text-md) * 1.475 + 1.5vw);
+  --headline-5: calc(var(--text-md) * 1.425 + 1vw);
+  --headline-6: calc(var(--text-md) * 1.375 + 0.5vw);
+  --h1: calc(var(--text-md) * 2.5);
+  --h2: calc(var(--text-md) * 2.25);
+  --h3: calc(var(--text-md) * 2);
+  --h4: calc(var(--text-md) * 1.75);
+  --h5: calc(var(--text-md) * 1.5);
+  --h6: calc(var(--text-md) * 1.25);
 }
 
 .headline-1, .headline-2, .headline-3,
@@ -417,6 +417,13 @@ h1, h2, h3, h4, h5, h6 {
   font-size: var(--h6);
 }
 
+.sub-heading {
+  font-size: var(--text-lg);
+  line-height: var(--line-height-heading);
+  font-weight: 500;
+  color: var(--text-heading);
+}
+
 p {
   text-wrap: pretty;
   margin-top: 0;
@@ -483,10 +490,6 @@ small {
     --headline-4: calc(var(--text-md) * 3.5);
     --headline-5: calc(var(--text-md) * 3);
     --headline-6: calc(var(--text-md) * 2.5);
-    --h1: calc(var(--text-md) * 2.5);
-    --h2: calc(var(--text-md) * 2);
-    --h3: calc(var(--text-md) * 1.75);
-    --h4: calc(var(--text-md) * 1.5);
   }
 }
 table {
@@ -522,10 +525,6 @@ th {
   border-bottom: var(--border-size) solid var(--border-colour);
 }
 
-thead th + th {
-  border-left: var(--border-size) solid var(--border-colour);
-}
-
 td {
   padding: var(--gap-md) var(--gap-lg);
 }
@@ -534,15 +533,16 @@ td {
   Utilities
   -------------------
 */
-.th-sorting {
+.table-sortable thead th + th {
+  border-left: var(--border-size) solid var(--border-colour);
+}
+.table-sortable th {
   cursor: pointer;
 }
-
-.th-sorting:hover {
+.table-sortable th:hover {
   background: var(--border-colour);
 }
-
-.sorting {
+.table-sortable .sorting {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1163,6 +1163,7 @@ input[type=checkbox]:checked {
   color: var(--svg-colour);
   cursor: pointer;
   transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn {
@@ -1624,6 +1625,7 @@ input[type=checkbox]:checked {
   gap: var(--gap-md);
   cursor: pointer;
   transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nav-btn:hover, [aria-current=page] {
