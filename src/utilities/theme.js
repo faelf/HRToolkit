@@ -1,58 +1,85 @@
-export const theme = {
-  click(e) {
-    if (e.target.closest("#theme-toggle")) {
-      this.toggle();
-      return true;
-    }
-    return false;
-  },
-  get() {
-    return document.documentElement.getAttribute("data-theme") || "light";
-  },
-  set(value) {
-    document.documentElement.setAttribute("data-theme", value);
-    localStorage.setItem("theme", value);
-    this.updateIcon(value);
-  },
-  toggle() {
-    const currentTheme = this.get();
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    this.set(newTheme);
-  },
-  init() {
-    const savedTheme = localStorage.getItem("theme");
+/**
+ * Get the user's saved theme preference from localStorage or default to "system"
+ * @returns {string} "light", "dark", or "system"
+ */
+export function getSavedTheme() {
+  return localStorage.getItem("theme") || "system";
+}
 
-    if (savedTheme) {
-      this.set(savedTheme);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      this.set(prefersDark ? "dark" : "light");
+/**
+ * Resolves the actual theme to apply based on preference
+ * @param {string} preference - "light", "dark", or "system"
+ * @returns {string} "light" or "dark"
+ */
+export function userPreference(preference) {
+  if (preference === "system") {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  return preference;
+}
+
+/**
+ * Sets the theme state across the application
+ * @param {string} preference - "light", "dark", or "system"
+ */
+export function setTheme(preference) {
+  const theme = userPreference(preference);
+  
+  // 1. Apply the actual active theme to the document root for CSS styling
+  document.documentElement.setAttribute("data-theme", theme);
+  
+  // 2. Persist the absolute preference to localStorage
+  localStorage.setItem("theme", preference);
+  
+  // 3. Keep the radio button form UI synced with this preference
+  syncRadioFormUI(preference);
+}
+
+/**
+ * Synchronises the state of the radio buttons inside the form matching the preference
+ * @param {string} preference - "light", "dark", or "system"
+ */
+export function syncRadioFormUI(preference) {
+  const themeForm = document.querySelector("#theme-form");
+  if (!themeForm) return;
+
+  const radioToCheck = themeForm.querySelector(`input[value="${preference}"]`);
+  if (radioToCheck) {
+    radioToCheck.checked = true;
+  }
+}
+
+/**
+ * Initialises the theme immediately on load and tracks live OS changes
+ */
+export function init() {
+  const currentPreference = getSavedTheme();
+  setTheme(currentPreference);
+
+  // Listen for live system changes if the user is using the "system" preference
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (getSavedTheme() === "system") {
+      setTheme("system");
     }
-  },
-  updateIcon(value) {
-    const toggleButton = document.querySelector("#theme-toggle");
-    if (toggleButton) {
-      toggleButton.innerHTML =
-        value === "dark"
-          ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 2v2" />
-            <path d="M12 20v2" />
-            <path d="m4.93 4.93 1.41 1.41" />
-            <path d="m17.66 17.66 1.41 1.41" />
-            <path d="M2 12h2" />
-            <path d="M20 12h2" />
-            <path d="m6.34 17.66-1.41 1.41" />
-            <path d="m19.07 4.93-1.41 1.41" />
-          </svg>
-          <span>Light</span>`
-          : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M18 5h4" />
-            <path d="M20 3v4" />
-            <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
-          </svg>
-          <span>Dark<span>`;
-    }
-  },
-};
+  });
+}
+
+/**
+ * Global click interceptor designed for the app.js central switch block
+ * @param {Event} event - The native browser click event
+ * @returns {boolean} True if a theme radio was handled, false otherwise
+ */
+export function click(event) {
+  const btn = event.target.closest('#theme-form .theme-nav-btn');
+  
+  if (!btn) return false;
+
+  const radio = btn.querySelector('input[type="radio"]');
+  if (radio) {
+    radio.checked = true;
+    setTheme(radio.value);
+    return true;
+  }
+
+  return false;
+}

@@ -45,7 +45,7 @@ export function createHtmlBadgeList({ tasks }) {
     li.appendChild(infoDiv);
 
     const badgesDiv = document.createElement("div");
-    badgesDiv.className = "d-flex flex-wrap g-2";
+    badgesDiv.className = "d-flex-200 g-2";
 
     if (item.tasks.length === 0) {
       const badgeSpan = document.createElement("span");

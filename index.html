@@ -42,11 +42,6 @@
     </svg>
 
     <h1 class="h4" aria-label="Title">HR Helper</h1>
-
-    <div class="ms-auto copy">
-      <span class="text-muted">Developed by</span>
-      <h1 class="h5">Rafa Ferreira</h1>
-    </div>
   </header>
 
   <!-- Side Navbar -->
@@ -136,15 +131,53 @@
       </svg>
       <span>Settings</span>
     </a>
-    <button type="button" class="nav-btn" id="theme-toggle" aria-label="Button to select page theme">
+    <button type="button" class="nav-btn" data-dropdown-btn="theme">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M11 17a4 4 0 0 1-8 0V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2Z" />
-        <path d="M16.7 13H19a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7" />
-        <path d="M 7 17h.01" />
-        <path d="m11 8 2.3-2.3a2.4 2.4 0 0 1 3.404.004L18.6 7.6a2.4 2.4 0 0 1 .026 3.434L9.9 19.8" />
+        <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" />
+        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
       </svg>
-      <span>Theme</span>
+      Themes
     </button>
+    <form id="theme-form" data-dropdown="theme" data-expanded="false">
+      <label class="theme-nav-btn">
+        <input type="radio" name="theme-choice" value="light">
+        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+        </svg>
+        <span class="theme-text">Light</span>
+        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </label>
+
+      <label class="theme-nav-btn">
+        <input type="radio" name="theme-choice" value="dark">
+        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
+        <span class="theme-text">Dark</span>
+        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </label>
+
+      <label class="theme-nav-btn">
+        <input type="radio" name="theme-choice" value="system">
+        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <rect width="20" height="14" x="2" y="3" rx="2" />
+          <line x1="8" x2="16" y1="21" y2="21" />
+          <line x1="12" x2="12" y1="17" y2="21" />
+        </svg>
+        <span class="theme-text">System</span>
+        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </label>
+    </form>
   </nav>
 
   <!-- Main Content -->

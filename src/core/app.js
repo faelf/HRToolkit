@@ -5,7 +5,7 @@
 
 import { Router } from "../utilities/router.js";
 import { pageContent } from "../pages/index.js";
-import { theme } from "../utilities/theme.js";
+import * as theme from "../utilities/theme.js";
 import * as form from "../utilities/form.js";
 import * as modal from "../utilities/modal.js";
 import { storages } from "../utilities/storages.js";
@@ -54,6 +54,9 @@ document.addEventListener("click", (e) => {
   const target = e.target;
 
   switch (true) {
+    case dropdown.dropdownClick(e):
+      break;
+
     case dropdown.slidedownClick(e):
       break;
 

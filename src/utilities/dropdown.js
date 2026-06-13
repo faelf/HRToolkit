@@ -14,7 +14,7 @@ export function slidedownClick(event) {
     slidedown.dataset.expanded = "false";
     slidedown.style.height = "0px";
   }
-  
+
   if (!isOpen) {
     btn.dataset.flipY = "true";
     slidedown.dataset.expanded = "true";
@@ -26,17 +26,20 @@ export function slidedownClick(event) {
 
 export function dropdownClick(event) {
   const btn = event.target.closest("[data-dropdown-btn]");
+  if (!btn) return false;
 
-  if (btn) {
-    const dropdownId = btn.dataset.dropdownBtn;
-    const dropdown = document.querySelector(`[data-dropdown="${dropdownId}"]`);
-    event.stopPropagation();
-    dropdown.classList.toggle("show");
-    return;
+  const dropdownId = btn.dataset.dropdownBtn;
+  const dropdown = document.querySelector(`[data-dropdown="${dropdownId}"]`);
+  const isOpen = dropdown.dataset.expanded === "true";
+
+  if (isOpen) {
+    dropdown.dataset.expanded = "false";
+    dropdown.style.height = "0px";
   }
 
-  document.querySelectorAll("[data-dropdown]").forEach((dropdown) => {
-    dropdown.classList.remove("show");
-  });
+  if (!isOpen) {
+    dropdown.dataset.expanded = "true";
+    dropdown.style.height = dropdown.scrollHeight + "px";
+  }
+  return true;
 }
-
