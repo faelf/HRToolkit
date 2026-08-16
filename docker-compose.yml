@@ -1,15 +1,14 @@
-version: "3.8"
-
 services:
-  hrhelper:
-    image: node:20
-    container_name: hrhelper
-    hostname: hrhelper
-    user: "1000:1000"
+  vite-js:
+    build: .
+    container_name: hrtoolkit
+    hostname: home
     ports:
-      - "8002:5173"
-    volumes:
-      - .:/app
-    working_dir: /app
-    command: npm run dev -- --host 0.0.0.0
+      - "8002:80"
     restart: unless-stopped
+    networks:
+      - cloudflare
+
+networks:
+  cloudflare:
+    external: true

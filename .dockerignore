@@ -1,0 +1,37 @@
+# Git
+
+/.git/
+/.github/
+/.gitignore
+
+# Dependencies
+
+/node_modules/
+
+# Build output
+
+/dist/
+
+# Environment
+
+/.env
+/.env.\*
+
+# Editor
+
+/.vscode/
+
+# OS
+
+.DS*Store
+.*\*
+
+# Docker
+
+/docker-compose.yml
+/Dockerfile
+/.dockerignore
+
+# Documentation
+
+/readme.md
