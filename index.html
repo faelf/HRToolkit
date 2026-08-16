@@ -26,7 +26,7 @@
 <body class="sidebar-nav-page">
   <header class="page-header" aria-label="Page Header">
 
-    <button type="button" id="sidebar-btn" class="sidebar-btn" aria-label="Sidebar Toggle">
+    <button type="button" id="sidebar-btn" class="btn-lg" aria-label="Sidebar Toggle">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <rect width="18" height="18" x="3" y="3" rx="2" />
         <path d="M15 3v18" />
@@ -42,6 +42,71 @@
     </svg>
 
     <h1 class="h4" aria-label="Title">HR Helper</h1>
+
+    <button type="button" class="btn-lg ms-auto" data-dropdown-btn="theme">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" />
+        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+      </svg>
+    </button>
+
+    <form id="theme-form" data-dropdown="theme" data-expanded="false">
+      <label class="theme-nav-btn">
+
+        <input type="radio" name="theme-choice" value="light">
+
+        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+        </svg>
+
+        <span class="theme-text">Light</span>
+
+        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+
+      </label>
+
+      <label class="theme-nav-btn">
+        <input type="radio" name="theme-choice" value="dark">
+        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
+        <span class="theme-text">Dark</span>
+        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </label>
+
+      <label class="theme-nav-btn">
+        <input type="radio" name="theme-choice" value="dracula">
+        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
+        <span class="theme-text">Dracula</span>
+        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </label>
+
+      <label class="theme-nav-btn">
+        <input type="radio" name="theme-choice" value="system">
+        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <rect width="20" height="14" x="2" y="3" rx="2" />
+          <line x1="8" x2="16" y1="21" y2="21" />
+          <line x1="12" x2="12" y1="17" y2="21" />
+        </svg>
+        <span class="theme-text">System</span>
+        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </label>
+    </form>
+
   </header>
 
   <!-- Side Navbar -->
@@ -55,37 +120,24 @@
       </svg>
       <span>Dashboard</span>
     </a>
-    <button type="button" class="nav-btn" data-nav-dropdown-btn="onboarding-menu" data-flip-y="false" aria-label="Button to open Onboarding menu">
+    <a class="nav-btn" href="/onboarding">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M15 13a3 3 0 1 0-6 0" />
         <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
         <circle cx="12" cy="8" r="2" />
       </svg>
-      <span>Onboarding</span>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ms-auto state-icon">
-        <path d="m6 9 6 6 6-6" />
+      <span>Candidates</span>
+    </a>
+    <a class="nav-btn" href="todo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M13 5h8" />
+        <path d="M13 12h8" />
+        <path d="M13 19h8" />
+        <path d="m3 17 2 2 4-4" />
+        <rect x="3" y="4" width="6" height="6" rx="1" />
       </svg>
-    </button>
-    <div class="nav-dropdown" data-nav-dropdown="onboarding-menu" inert>
-      <a class="nav-btn" href="/onboarding">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M15 13a3 3 0 1 0-6 0" />
-          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
-          <circle cx="12" cy="8" r="2" />
-        </svg>
-        <span>Candidates</span>
-      </a>
-      <a class="nav-btn" href="todo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M13 5h8" />
-          <path d="M13 12h8" />
-          <path d="M13 19h8" />
-          <path d="m3 17 2 2 4-4" />
-          <rect x="3" y="4" width="6" height="6" rx="1" />
-        </svg>
-        <span>To do</span>
-      </a>
-    </div>
+      <span>To do</span>
+    </a>
     <a class="nav-btn" href="/maternity">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5" />
@@ -131,59 +183,14 @@
       </svg>
       <span>Settings</span>
     </a>
-    <button type="button" class="nav-btn" data-dropdown-btn="theme">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" />
-        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
-        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
-        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
-        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
-      </svg>
-      Themes
-    </button>
-    <form id="theme-form" data-dropdown="theme" data-expanded="false">
-      <label class="theme-nav-btn">
-        <input type="radio" name="theme-choice" value="light">
-        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
-        </svg>
-        <span class="theme-text">Light</span>
-        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M20 6 9 17l-5-5" />
-        </svg>
-      </label>
-
-      <label class="theme-nav-btn">
-        <input type="radio" name="theme-choice" value="dark">
-        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        </svg>
-        <span class="theme-text">Dark</span>
-        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M20 6 9 17l-5-5" />
-        </svg>
-      </label>
-
-      <label class="theme-nav-btn">
-        <input type="radio" name="theme-choice" value="system">
-        <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <rect width="20" height="14" x="2" y="3" rx="2" />
-          <line x1="8" x2="16" y1="21" y2="21" />
-          <line x1="12" x2="12" y1="17" y2="21" />
-        </svg>
-        <span class="theme-text">System</span>
-        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M20 6 9 17l-5-5" />
-        </svg>
-      </label>
-    </form>
   </nav>
 
   <!-- Main Content -->
-  <main id="main-content" aria-label="Page content will go here">
-    <!-- Content will be inject here -->
-  </main>
+  <div class="page-content">
+    <main id="main-content" class="page-content-inner" aria-label="Page content will go here">
+      <!-- Content will be inject here -->
+    </main>
+  </div>
 
   <noscript>
     <p>Please enable JavaScript to use the HR Toolkit.</p>
